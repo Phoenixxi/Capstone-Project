@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,20 +7,27 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    [Header("Essentials: Do Not Change!")]
+    [SerializeField] private GameObject aimDirection;
+    
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
     [SerializeField] private float jumpVelocity = 1f;
     [SerializeField] private float gravityMultiplier = 1f;
 
     private Vector3 movementDirection;
+    private Vector3 mousePosition;
     private Rigidbody player;
     private bool isGrounded;
+    private Camera playerCamera;
+
 
 
     private void Awake()
     {
         player = GetComponent<Rigidbody>();
         isGrounded = true;
+        playerCamera = FindFirstObjectByType<Camera>();
     }
 
     /// <summary>
@@ -42,8 +50,16 @@ public class PlayerController : MonoBehaviour
         player.linearVelocity = new Vector3(player.linearVelocity.x, jumpVelocity, player.linearVelocity.z);
     }
 
+    private void OnAim(InputValue input)
+    {
+        Vector2 mouseInput = input.Get<Vector2>();
+        mousePosition = playerCamera.ScreenToWorldPoint(new Vector3(mouseInput.x, mouseInput.y, 10f));
+        mousePosition.y = aimDirection.transform.position.y;
+    }
+
     private void FixedUpdate()
     {
+        aimDirection.transform.LookAt(mousePosition);
         Vector3 convertedVelocity = new Vector3(movementDirection.x * movementSpeed, player.linearVelocity.y, movementDirection.z * movementSpeed);
         player.linearVelocity = convertedVelocity;
         if (player.linearVelocity.y < 0) player.linearVelocity += Vector3.up * Physics.gravity.y * gravityMultiplier * Time.deltaTime;
