@@ -7,8 +7,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed = 1;
-
+    [SerializeField] private float movementSpeed = 1f;
+    [SerializeField] private float jumpVelocity = 1f;
+    [SerializeField] private float gravityMultiplier = 1f;
 
     private Vector3 movementDirection;
     private Rigidbody player;
@@ -18,6 +19,10 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody>();
     }
 
+    /// <summary>
+    /// Triggers when the four movement keys (WASD) are pressed
+    /// </summary>
+    /// <param name="input"></param>
     private void OnMove(InputValue input)
     {
         Vector2 inputtedDirection = input.Get<Vector2>().normalized;
@@ -25,9 +30,16 @@ public class PlayerController : MonoBehaviour
         movementDirection.z = inputtedDirection.y;
     }
 
+    private void OnJump()
+    {
+        Debug.Log("Jump pressed");
+        player.linearVelocity = new Vector3(player.linearVelocity.x, jumpVelocity, player.linearVelocity.z);
+    }
+
     private void FixedUpdate()
     {
         Vector3 convertedVelocity = new Vector3(movementDirection.x * movementSpeed, player.linearVelocity.y, movementDirection.z * movementSpeed);
         player.linearVelocity = convertedVelocity;
+        if (player.linearVelocity.y < 0) player.linearVelocity += Vector3.up * Physics.gravity.y * gravityMultiplier * Time.deltaTime;
     }
 }
