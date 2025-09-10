@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private float movementSpeed = 1;
 
 
     private Vector3 movementDirection;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        player.linearVelocity = movementDirection;
+        Vector3 convertedVelocity = new Vector3(movementDirection.x * movementSpeed, player.linearVelocity.y, movementDirection.z * movementSpeed);
+        player.linearVelocity = convertedVelocity;
     }
 }
