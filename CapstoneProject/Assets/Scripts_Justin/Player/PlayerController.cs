@@ -13,14 +13,17 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 movementDirection;
     private Rigidbody player;
+    private bool isGrounded;
+
 
     private void Awake()
     {
         player = GetComponent<Rigidbody>();
+        isGrounded = true;
     }
 
     /// <summary>
-    /// Triggers when the four movement keys (WASD) are pressed
+    /// Triggers when the four movement keys are pressed
     /// </summary>
     /// <param name="input"></param>
     private void OnMove(InputValue input)
@@ -30,9 +33,12 @@ public class PlayerController : MonoBehaviour
         movementDirection.z = inputtedDirection.y;
     }
 
+    /// <summary>
+    /// Triggers when the jump button is pressed
+    /// </summary>
     private void OnJump()
     {
-        Debug.Log("Jump pressed");
+        if (!isGrounded) return;
         player.linearVelocity = new Vector3(player.linearVelocity.x, jumpVelocity, player.linearVelocity.z);
     }
 
@@ -41,5 +47,14 @@ public class PlayerController : MonoBehaviour
         Vector3 convertedVelocity = new Vector3(movementDirection.x * movementSpeed, player.linearVelocity.y, movementDirection.z * movementSpeed);
         player.linearVelocity = convertedVelocity;
         if (player.linearVelocity.y < 0) player.linearVelocity += Vector3.up * Physics.gravity.y * gravityMultiplier * Time.deltaTime;
+    }
+
+    /// <summary>
+    /// Sets whether or not the player is currently touching the ground
+    /// </summary>
+    /// <param name="isGrounded"></param>
+    public void SetIsGrounded(bool isGrounded)
+    {
+        this.isGrounded = isGrounded;
     }
 }
