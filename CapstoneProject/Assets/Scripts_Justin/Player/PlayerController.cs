@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
         mousePosition.y = aimDirection.transform.position.y;
     }
 
+    private void OnCharacterSwap()
+    {
+        
+    }
+
     private void FixedUpdate()
     {
         aimDirection.transform.LookAt(mousePosition);
