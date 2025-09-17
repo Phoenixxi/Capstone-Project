@@ -1,6 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using lilGuysNamespace;
 
 /// <summary>
 /// Takes in input from the player and performs the associated action. Logic is mostly limited to movement and aiming, with combat logic to be handled by other classes
@@ -9,6 +11,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Essentials: Do Not Change!")]
     [SerializeField] private GameObject aimDirection;
+    [SerializeField] private SwappingManager swappingManager;
     
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
@@ -20,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody player;
     private bool isGrounded;
     private Camera playerCamera;
+    private List<GameObject> charactersListPC;
 
     //EVERYTHING INVOLVING WEAPONS WILL BE REMOVED ONCE PROPER ENTITY SCRIPT IMPLEMENTATION IS ADDED
     public float attackCooldown;
@@ -27,6 +31,11 @@ public class PlayerController : MonoBehaviour
     public GameObject projectile;
     private Weapon weapon;
 
+    public void Start()
+    {
+        // Will active the first time each character is awake
+        charactersListPC = swappingManager.charactersList;
+    }
 
     private void Awake()
     {
@@ -74,16 +83,35 @@ public class PlayerController : MonoBehaviour
 
     private void OnSwapCharacter1()
     {
+        // Might need to add Rotation to the swap functions later
+        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        charactersListPC[0].transform.position = currentLocation.position;
+
+        charactersListPC[0].SetActive(true);
+        charactersListPC[1].SetActive(false);
+        charactersListPC[2].SetActive(false);
         Debug.Log("Character 1 chosen");
     }
 
     private void OnSwapCharacter2(InputValue input)
     {
+        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        charactersListPC[1].transform.position = currentLocation.position;
+
+        charactersListPC[0].SetActive(false);
+        charactersListPC[1].SetActive(true);
+        charactersListPC[2].SetActive(false);
         Debug.Log("Character 2 chosen");
     }
 
     private void OnSwapCharacter3(InputValue input)
     {
+        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        charactersListPC[2].transform.position = currentLocation.position;
+
+        charactersListPC[0].SetActive(false);
+        charactersListPC[1].SetActive(false);
+        charactersListPC[2].SetActive(true);
         Debug.Log("Character 3 chosen");
     }
 

@@ -3,15 +3,17 @@ using lilGuysNamespace;
 
 public class HealthPack : MonoBehaviour
 {
-    public int healAmount = 25; // how much health to restore
+    // Serialized so that designers can adjust in the inspector
+    [SerializeField] public float healAmount = 25f; // how much health to restore
 
-    private void OnTriggerEnter(Collider other)  // Use Collider2D if in 2D
+    private void OnTriggerEnter(Collider other)  
     {
-        PlayerHealth player = other.GetComponent<PlayerHealth>();
+       EntityManager player = other.GetComponentInParent<EntityManager>();
+
         if (player != null)
         {
             player.Heal(healAmount);
-            Destroy(gameObject); // remove the health pack after use
+            Destroy(gameObject); // remove the health pack after healing
         }
     }
 }
