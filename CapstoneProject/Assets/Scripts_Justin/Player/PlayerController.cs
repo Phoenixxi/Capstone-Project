@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public int damage;
     public GameObject projectile;
     private Weapon weapon;
+    public Transform mouseObject;
 
     public void Start()
     {
@@ -69,8 +70,16 @@ public class PlayerController : MonoBehaviour
     private void OnAim(InputValue input)
     {
         Vector2 mouseInput = input.Get<Vector2>();
-        mousePosition = playerCamera.ScreenToWorldPoint(new Vector3(mouseInput.x, mouseInput.y, 10f));
-        mousePosition.y = aimDirection.transform.position.y;
+
+        Ray ray = playerCamera.ScreenPointToRay(mouseInput);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+            mousePosition = hit.point;
+            mousePosition.y = aimDirection.transform.position.y;
+        }
+
+        mouseObject.position = mousePosition;
     }
 
     private void OnAttack()
