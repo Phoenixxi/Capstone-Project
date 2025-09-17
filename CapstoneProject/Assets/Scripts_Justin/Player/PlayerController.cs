@@ -25,8 +25,10 @@ public class PlayerController : MonoBehaviour
     private Camera playerCamera;
     private List<GameObject> charactersListPC;
 
+
     public void Start()
     {
+        // Will active the first time each character is awake
         charactersListPC = swappingManager.charactersList;
     }
 
@@ -66,6 +68,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnSwapCharacter1()
     {
+        // Might need to add Rotation to the swap functions later
+        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        charactersListPC[0].transform.position = currentLocation.position;
+
         charactersListPC[0].SetActive(true);
         charactersListPC[1].SetActive(false);
         charactersListPC[2].SetActive(false);
@@ -74,6 +80,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnSwapCharacter2(InputValue input)
     {
+        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        charactersListPC[1].transform.position = currentLocation.position;
+
         charactersListPC[0].SetActive(false);
         charactersListPC[1].SetActive(true);
         charactersListPC[2].SetActive(false);
@@ -82,6 +91,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnSwapCharacter3(InputValue input)
     {
+        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        charactersListPC[2].transform.position = currentLocation.position;
+
         charactersListPC[0].SetActive(false);
         charactersListPC[1].SetActive(false);
         charactersListPC[2].SetActive(true);

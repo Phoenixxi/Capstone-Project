@@ -441,6 +441,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 9036532490687551659, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d45001ba4e5f6584bb7e930b30edba4d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -591,6 +595,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 9036532490687551659, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f6380b63e0795b147aa30d156c544126, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -699,6 +707,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 9036532490687551659, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ce4d1dc4c1a1d74489ad4ca1866f4bb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1334,6 +1346,7 @@ MonoBehaviour:
   - {fileID: 2053253694}
   - {fileID: 1135042007}
   - {fileID: 970340431}
+  currentCharacter: 
 --- !u!4 &2130926186
 Transform:
   m_ObjectHideFlags: 0
