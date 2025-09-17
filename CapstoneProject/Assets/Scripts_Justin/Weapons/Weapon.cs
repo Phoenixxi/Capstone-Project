@@ -5,10 +5,10 @@ using UnityEngine;
 /// </summary>
 public abstract class Weapon
 {
-    private float attackCooldown;
-    private int damage;
+    protected float attackCooldown;
+    protected int damage;
     //TODO: Once elements implemented, add element field ehre
-    private float lastAttackTime;
+    protected float lastAttackTime;
 
     public Weapon(float attackCooldown, int damage)
     {
@@ -20,9 +20,15 @@ public abstract class Weapon
     /// <summary>
     /// Executes an attack if called after the attack cooldown has expried
     /// </summary>
-    public void Attack()
+    public abstract void Attack();
+
+    /// <summary>
+    /// Checks whether the weapon's attack cooldown has finished
+    /// </summary>
+    /// <returns></returns>
+    protected bool hasCooldownExpired()
     {
         float currentAttackTime = Time.time;
-        if (currentAttackTime - lastAttackTime < attackCooldown) return;
+        return currentAttackTime - lastAttackTime >= attackCooldown;
     }
 }
