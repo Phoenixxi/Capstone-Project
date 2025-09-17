@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Camera playerCamera;
 
+    //EVERYTHING INVOLVING WEAPONS WILL BE REMOVED ONCE PROPER ENTITY SCRIPT IMPLEMENTATION IS ADDED
+    public float attackCooldown;
+    public int damage;
+    public GameObject projectile;
+    private Weapon weapon;
 
 
     private void Awake()
@@ -28,6 +33,8 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody>();
         isGrounded = true;
         playerCamera = FindFirstObjectByType<Camera>();
+        //TODO: Delete the line below this
+        weapon = new RangedWeapon(attackCooldown, damage, projectile);
     }
 
     /// <summary>
@@ -55,6 +62,14 @@ public class PlayerController : MonoBehaviour
         Vector2 mouseInput = input.Get<Vector2>();
         mousePosition = playerCamera.ScreenToWorldPoint(new Vector3(mouseInput.x, mouseInput.y, 10f));
         mousePosition.y = aimDirection.transform.position.y;
+    }
+
+    private void OnAttack()
+    {
+        Debug.Log("Attack button pressed");
+        //TODO Delete lines below this
+        if (weapon is RangedWeapon) (weapon as RangedWeapon).UpdateWeaponTransform(aimDirection.transform.forward, transform.position);
+        weapon.Attack();
     }
 
     private void OnSwapCharacter1()
