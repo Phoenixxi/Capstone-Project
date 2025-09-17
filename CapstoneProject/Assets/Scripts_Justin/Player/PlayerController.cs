@@ -57,9 +57,19 @@ public class PlayerController : MonoBehaviour
         mousePosition.y = aimDirection.transform.position.y;
     }
 
-    private void OnCharacterSwap()
+    private void OnSwapCharacter1()
     {
-        
+        Debug.Log("Character 1 chosen");
+    }
+
+    private void OnSwapCharacter2(InputValue input)
+    {
+        Debug.Log("Character 2 chosen");
+    }
+
+    private void OnSwapCharacter3(InputValue input)
+    {
+        Debug.Log("Character 3 chosen");
     }
 
     private void FixedUpdate()
