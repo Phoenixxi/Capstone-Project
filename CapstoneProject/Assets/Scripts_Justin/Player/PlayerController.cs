@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public int damage;
     public GameObject projectile;
     private Weapon weapon;
-    public Transform mouseObject;
+    //public Transform mouseObject;
 
     public void Start()
     {
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             mousePosition.y = aimDirection.transform.position.y;
         }
 
-        mouseObject.position = mousePosition;
+        //mouseObject.position = mousePosition;
     }
 
     private void OnAttack()
