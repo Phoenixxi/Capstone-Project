@@ -102,8 +102,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Might need to add Rotation to the swap functions later
-        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
-        zoom.transform.position = currentLocation.position;
+        //Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        //zoom.transform.position = currentLocation.position;
 
         //Activate Zoom
         zoom.SetActive(true);
@@ -124,8 +124,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
-        boom.transform.position = currentLocation.position;
+        //Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        //boom.transform.position = currentLocation.position;
 
         // Activate Boom
         boom.SetActive(true);
@@ -145,8 +145,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
-        gloom.transform.position = currentLocation.position;
+        //Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        //gloom.transform.position = currentLocation.position;
 
         // Activate Gloom
         gloom.SetActive(true);

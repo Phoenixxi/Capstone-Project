@@ -43,8 +43,8 @@ public class SwappingManager : MonoBehaviour
             if(character != self && character.GetComponent<EntityManager>().isAlive)
             {
                 Debug.Log("Swapping to: " + character.name);
-                Transform currentLocation = self.transform;
-                character.transform.position = currentLocation.position;
+                //Transform currentLocation = self.transform;
+                //character.transform.position = currentLocation.position;
                 character.SetActive(true);
                 self.SetActive(false);
                 return;
