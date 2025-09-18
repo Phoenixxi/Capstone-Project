@@ -92,35 +92,67 @@ public class PlayerController : MonoBehaviour
 
     private void OnSwapCharacter1()
     {
+        // Check if character is alive
+        GameObject zoom = charactersListPC[0];
+        EntityManager entity = zoom.GetComponent<EntityManager>();
+        if(!entity.isAlive)
+        {
+            Debug.Log("Zoom is dead and cannot be swapped to.");
+            return;
+        }
+
         // Might need to add Rotation to the swap functions later
         Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
-        charactersListPC[0].transform.position = currentLocation.position;
+        zoom.transform.position = currentLocation.position;
 
-        charactersListPC[0].SetActive(true);
+        //Activate Zoom
+        zoom.SetActive(true);
+        // Deactivate the other characters
         charactersListPC[1].SetActive(false);
         charactersListPC[2].SetActive(false);
-        Debug.Log("Character 1 chosen");
+        Debug.Log("Zoom chosen");
     }
 
     private void OnSwapCharacter2(InputValue input)
     {
-        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
-        charactersListPC[1].transform.position = currentLocation.position;
+        // Check if character is alive
+        GameObject boom = charactersListPC[1];
+        EntityManager entity = boom.GetComponent<EntityManager>();
+        if(!entity.isAlive)
+        {
+            Debug.Log("Boom is dead and cannot be swapped to.");
+            return;
+        }
 
+        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        boom.transform.position = currentLocation.position;
+
+        // Activate Boom
+        boom.SetActive(true);
+        // Deactivate the other characters
         charactersListPC[0].SetActive(false);
-        charactersListPC[1].SetActive(true);
         charactersListPC[2].SetActive(false);
-        Debug.Log("Character 2 chosen");
+        Debug.Log("Boom chosen");
     }
 
     private void OnSwapCharacter3(InputValue input)
     {
-        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
-        charactersListPC[2].transform.position = currentLocation.position;
+        GameObject gloom = charactersListPC[2];
+        EntityManager entity = gloom.GetComponent<EntityManager>();
+        if(!entity.isAlive)
+        {
+            Debug.Log("Gloom is dead and cannot be swapped to.");
+            return;
+        }
 
+        Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
+        gloom.transform.position = currentLocation.position;
+
+        // Activate Gloom
+        gloom.SetActive(true);
+        // Deactivate the other characters
         charactersListPC[0].SetActive(false);
         charactersListPC[1].SetActive(false);
-        charactersListPC[2].SetActive(true);
         Debug.Log("Character 3 chosen");
     }
 

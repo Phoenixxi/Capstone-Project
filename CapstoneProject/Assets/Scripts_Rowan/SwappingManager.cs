@@ -36,4 +36,25 @@ public class SwappingManager : MonoBehaviour
         return null;
     }
 
+    public void PlayerHasDied(GameObject self)
+    {
+        foreach(GameObject character in charactersList)
+        {
+            if(character != self && character.GetComponent<EntityManager>().isAlive)
+            {
+                Debug.Log("Swapping to: " + character.name);
+                Transform currentLocation = self.transform;
+                character.transform.position = currentLocation.position;
+                character.SetActive(true);
+                self.SetActive(false);
+                return;
+            }
+            else // If all characters are dead
+            {
+                Debug.Log("All characters are dead.");
+                return;
+            }
+        }
+    }
+
 }
