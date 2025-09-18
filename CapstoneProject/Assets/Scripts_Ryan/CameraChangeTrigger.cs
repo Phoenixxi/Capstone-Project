@@ -44,24 +44,9 @@ public class CameraChangeTrigger : MonoBehaviour
 
             //make the camera the lowest priority 
             cinemachineCamera.Priority = LOWEST_PRIORITY;
-
-            //if the camera was the previous active camera save it
-            if (cinemachineCamera.Priority == HIGHEST_PRIORITY)
-            {
-                lastCamera = cinemachineCamera;
-            }
-
-            //lets say the player walks back into the collider
-            //we need to swap back to the last active camera
-            if (cinemachineCamera == camera && cinemachineCamera.Priority == 10)
-            {
-                lastCamera.Priority = 10;
-            }
         }
 
-        if (lastCamera == null || lastCamera.Priority != 10)
-        {
-            camera.Priority = 10;
-        }
+        //change this camera to be the highest priority
+        camera.Priority = HIGHEST_PRIORITY;
     }
 }
