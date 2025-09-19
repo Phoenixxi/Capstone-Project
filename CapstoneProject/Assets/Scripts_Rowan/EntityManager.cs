@@ -4,8 +4,9 @@ using UnityEngine.UIElements;
 
 public class EntityManager : MonoBehaviour
 {
+    [SerializeField] public string entityName;
     [SerializeField] public float maxHealth = 100f;
-    [SerializeField] public SwappingManager swappingManager;
+    [SerializeField] private SwappingManager swappingManager;
     public float currentHealth;
     public bool isAlive = true;
 
@@ -20,7 +21,7 @@ public class EntityManager : MonoBehaviour
     void Start()
     {
         // TEMPORARY- change back to maxHealth later
-        currentHealth = 25f;
+        currentHealth = 20f;
         CreateWeapon();
     }
 

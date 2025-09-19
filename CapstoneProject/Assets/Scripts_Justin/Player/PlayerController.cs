@@ -41,6 +41,19 @@ public class PlayerController : MonoBehaviour
         playerCamera = FindFirstObjectByType<Camera>();
     }
 
+    public void HealAllCharacters(float healAmount)
+    {
+
+       
+        foreach(GameObject character in charactersListPC)
+        {
+            EntityManager entity = character.GetComponentInChildren<EntityManager>();
+            entity.Heal(healAmount);
+        }
+        
+        
+    }
+
     /// <summary>
     /// Triggers when the four movement keys are pressed
     /// </summary>
