@@ -12,6 +12,7 @@ public class HealthPack : MonoBehaviour
 
         if (player != null)
         {
+            Debug.Log("heal called");
             player.Heal(healAmount);
             Destroy(gameObject); // remove the health pack after healing
         }
