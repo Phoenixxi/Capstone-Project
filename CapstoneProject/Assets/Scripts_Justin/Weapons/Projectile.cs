@@ -46,8 +46,8 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"Collided with {collision}");
-        //TODO Inflict damage here
+        EntityManager hitEntity = collision.gameObject.GetComponent<EntityManager>();
+        if (hitEntity != null) hitEntity.TakeDamage(damage);
         Destroy(gameObject);
     }
 

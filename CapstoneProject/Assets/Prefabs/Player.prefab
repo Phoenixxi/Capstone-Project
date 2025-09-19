@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 8708904835094065169}
   - component: {fileID: 6099202190651621813}
   - component: {fileID: 5377437969833900074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,6 +139,9 @@ MonoBehaviour:
   swappingManager: {fileID: 0}
   currentHealth: 0
   isAlive: 1
+  attackCooldown: 0.33
+  weaponDamage: 2
+  projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
 --- !u!114 &5377437969833900074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +199,7 @@ GameObject:
   - component: {fileID: 7617289105161180958}
   - component: {fileID: 7850124068460452317}
   - component: {fileID: 5105736751404034660}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,6 +238,9 @@ MonoBehaviour:
   swappingManager: {fileID: 0}
   currentHealth: 0
   isAlive: 1
+  attackCooldown: 0.33
+  weaponDamage: 2
+  projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
 --- !u!114 &5105736751404034660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +355,7 @@ GameObject:
   - component: {fileID: 2716587646394959634}
   - component: {fileID: 4069364185334456115}
   - component: {fileID: 3968515568990736517}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gloom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,6 +394,9 @@ MonoBehaviour:
   swappingManager: {fileID: 0}
   currentHealth: 0
   isAlive: 1
+  attackCooldown: 0.33
+  weaponDamage: 2
+  projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
 --- !u!114 &3968515568990736517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,13 +635,10 @@ MonoBehaviour:
   swappingManager: {fileID: 0}
   aimLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   movementSpeed: 5
   jumpVelocity: 5
   gravityMultiplier: 1.5
-  attackCooldown: 0.33
-  damage: 1
-  projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
 --- !u!1 &5583875979716774749
 GameObject:
   m_ObjectHideFlags: 0
