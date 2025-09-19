@@ -26,11 +26,6 @@ public class PlayerController : MonoBehaviour
     private Camera playerCamera;
     private List<GameObject> charactersListPC;
 
-    //EVERYTHING INVOLVING WEAPONS WILL BE REMOVED ONCE PROPER ENTITY SCRIPT IMPLEMENTATION IS ADDED
-    public float attackCooldown;
-    public int damage;
-    public GameObject projectile;
-    private Weapon weapon;
     //public Transform mouseObject;
 
     public void Start()
@@ -44,8 +39,6 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody>();
         isGrounded = true;
         playerCamera = FindFirstObjectByType<Camera>();
-        //TODO: Delete the line below this
-        weapon = new RangedWeapon(attackCooldown, damage, projectile);
     }
 
     /// <summary>
@@ -68,6 +61,10 @@ public class PlayerController : MonoBehaviour
         player.linearVelocity = new Vector3(player.linearVelocity.x, jumpVelocity, player.linearVelocity.z);
     }
 
+    /// <summary>
+    /// Triggers when the user moves their mouse
+    /// </summary>
+    /// <param name="input"></param>
     private void OnAim(InputValue input)
     {
         Vector2 mouseInput = input.Get<Vector2>();
@@ -83,14 +80,18 @@ public class PlayerController : MonoBehaviour
         //mouseObject.position = mousePosition;
     }
 
+    /// <summary>
+    /// Triggers when the attack button is pressed
+    /// </summary>
     private void OnAttack()
     {
-        Debug.Log("Attack button pressed");
-        //TODO Delete lines below this
-        if (weapon is RangedWeapon) (weapon as RangedWeapon).UpdateWeaponTransform(aimDirection.transform.forward, transform.position);
-        weapon.Attack();
+        EntityManager currentCharacter = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
+        currentCharacter.Attack(aimDirection.transform.forward, transform.position);
     }
 
+    /// <summary>
+    /// Triggers when the character 1 (Zoom) hotkey is pressed
+    /// </summary>
     private void OnSwapCharacter1()
     {
         // Check if character is alive
@@ -114,6 +115,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Zoom chosen");
     }
 
+    /// <summary>
+    /// Triggers when the character 2 (Boom) hotkey is pressed
+    /// </summary>
+    /// <param name="input"></param>
     private void OnSwapCharacter2(InputValue input)
     {
         // Check if character is alive
@@ -136,6 +141,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Boom chosen");
     }
 
+    /// <summary>
+    /// Triggers when the character 3 (Gloom) hotkey is pressed
+    /// </summary>
+    /// <param name="input"></param>
     private void OnSwapCharacter3(InputValue input)
     {
         GameObject gloom = charactersListPC[2];
