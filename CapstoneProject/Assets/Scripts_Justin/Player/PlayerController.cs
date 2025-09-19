@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Essentials: Do Not Change!")]
     [SerializeField] private GameObject aimDirection;
     [SerializeField] private SwappingManager swappingManager;
+    [SerializeField] private LayerMask aimLayerMask;
     
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
         Ray ray = playerCamera.ScreenPointToRay(mouseInput);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        if(Physics.Raycast(ray, out hit, aimLayerMask))
         {
             mousePosition = hit.point;
             mousePosition.y = aimDirection.transform.position.y;
