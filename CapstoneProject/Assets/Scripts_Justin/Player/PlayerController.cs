@@ -51,6 +51,12 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void HealActiveCharacter(float healAmount)
+    {
+        EntityManager activeChar = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
+        activeChar.Heal(healAmount);
+    }
+
     /// <summary>
     /// Triggers when the four movement keys are pressed
     /// </summary>
