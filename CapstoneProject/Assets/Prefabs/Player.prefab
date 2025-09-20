@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed522ae092ed8140925d1dbc796d1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  entityName: 
+  entityName: Boom
   maxHealth: 100
   swappingManager: {fileID: 0}
   currentHealth: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed522ae092ed8140925d1dbc796d1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  entityName: 
+  entityName: Zoom
   maxHealth: 100
   swappingManager: {fileID: 0}
   currentHealth: 0
@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 7622514955205583283}
   - component: {fileID: 785779049799174176}
   - component: {fileID: 4772511672391848921}
+  - component: {fileID: 8225667030630241660}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -346,6 +347,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8225667030630241660
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859287322252384218}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4096034835489068672
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed522ae092ed8140925d1dbc796d1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  entityName: 
+  entityName: Gloom
   maxHealth: 100
   swappingManager: {fileID: 0}
   currentHealth: 0
@@ -425,6 +447,7 @@ GameObject:
   - component: {fileID: 5401725578858880343}
   - component: {fileID: 1270081313529237335}
   - component: {fileID: 4902652068235946279}
+  - component: {fileID: 5055115953640850995}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -503,6 +526,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5055115953640850995
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5237944947350783271}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5316081044738082790
 GameObject:
   m_ObjectHideFlags: 0

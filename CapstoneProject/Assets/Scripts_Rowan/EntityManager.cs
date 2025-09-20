@@ -21,7 +21,7 @@ public class EntityManager : MonoBehaviour
     void Start()
     {
         // TEMPORARY- change back to maxHealth later
-        currentHealth = 20f;
+        currentHealth += 20f;
         CreateWeapon();
     }
 

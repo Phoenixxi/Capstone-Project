@@ -274,18 +274,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2384383547745438605, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3968515568990736517, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1891752875}
-    - target: {fileID: 4069364185334456115, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: entityName
-      value: Gloom
-      objectReference: {fileID: 0}
     - target: {fileID: 4070096453353980523, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
@@ -342,24 +334,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1891752875}
-    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: entityName
-      value: Boom
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: entityName
-      value: Zoom
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5237944947350783271, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1456337526}
-    - targetCorrespondingSourceObject: {fileID: 3859287322252384218, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1241013065}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
 --- !u!1 &270017851
 GameObject:
@@ -547,32 +525,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561365930}
   m_CullTransparentMesh: 1
---- !u!1 &1241013061 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3859287322252384218, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-  m_PrefabInstance: {fileID: 71437068}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1241013065
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241013061}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1384169139
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,32 +650,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RevivePack
   healAmount: 10
---- !u!1 &1456337522 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5237944947350783271, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-  m_PrefabInstance: {fileID: 71437068}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1456337526
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1456337522}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1484810635
 GameObject:
   m_ObjectHideFlags: 0
