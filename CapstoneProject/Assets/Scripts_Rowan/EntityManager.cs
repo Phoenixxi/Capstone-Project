@@ -45,6 +45,8 @@ public class EntityManager : MonoBehaviour
             currentHealth = 0;
             Debug.Log("Entity has died.");
             isAlive = false;
+            Destroy(gameObject);
+            return;
             swappingManager.PlayerHasDied(gameObject);
         }
         else

@@ -48,7 +48,12 @@ public class PlayerController : MonoBehaviour
             entity.Heal(healAmount/3f);
         }
         
-        
+    }
+
+     public void TakeDamageWrapper(float damage)
+    {
+        EntityManager activeChar = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
+        activeChar.TakeDamage(damage);
     }
 
     public void HealActiveCharacter(float healAmount)

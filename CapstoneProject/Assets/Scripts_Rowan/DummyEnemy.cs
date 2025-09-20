@@ -4,13 +4,14 @@ public class DummyEnemy : MonoBehaviour
 {
    public float damageAmount = 5f; // how much health to restore
 
-    private void OnTriggerEnter(Collider other)  
+    private void OnCollisionEnter(Collision other)  
     {
-       EntityManager player = other.GetComponentInParent<EntityManager>();
-
+        Debug.Log("in collision");
+       PlayerController player = other.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
-            player.TakeDamage(damageAmount);
+            Debug.Log("player not null");
+            player.TakeDamageWrapper(damageAmount);
         }
     }
 }

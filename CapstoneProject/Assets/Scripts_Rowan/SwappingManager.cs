@@ -45,8 +45,8 @@ public class SwappingManager : MonoBehaviour
                 Debug.Log("Swapping to: " + character.name);
                 //Transform currentLocation = self.transform;
                 //character.transform.position = currentLocation.position;
-                character.SetActive(true);
-                self.SetActive(false);
+                //character.SetActive(true);
+                //self.SetActive(false);
                 return;
             }
             else // If all characters are dead
