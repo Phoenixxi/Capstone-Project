@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using lilGuysNamespace;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Takes in input from the player and performs the associated action. Logic is mostly limited to movement and aiming, with combat logic to be handled by other classes
@@ -193,5 +194,7 @@ public class PlayerController : MonoBehaviour
         if (player.isGrounded && movementVelocity.y < 0) movementVelocity.y = -2f;
         movementVelocity.y -= gravity * Time.deltaTime;
         player.Move(movementVelocity * Time.deltaTime);
+        //FOR TESTING PURPOSES, WILL BE REMOVED LATER
+        if (transform.position.y <= -10) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
