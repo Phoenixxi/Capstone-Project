@@ -15,16 +15,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SwappingManager swappingManager;
     [SerializeField] private LayerMask aimLayerMask;
     
-    [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed = 1f;
-    [SerializeField] private float jumpHeight = 1f;
-    [SerializeField] private float gravity = 10f;
+    //[Header("Movement Settings")]
+    //[SerializeField] private float movementSpeed = 1f;
+    //[SerializeField] private float jumpHeight = 1f;
+    //[SerializeField] private float gravity = 10f;
 
     private Vector3 movementVelocity;
     private Vector3 mousePosition;
     private CharacterController player;
     private Camera playerCamera;
     private List<GameObject> charactersListPC;
+    private EntityManager currentCharacter;
 
     //public Transform mouseObject;
 
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         player = GetComponent<CharacterController>();
         playerCamera = FindFirstObjectByType<Camera>();
+        currentCharacter = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
     }
 
     public void HealAllCharacters(float healAmount)
@@ -70,8 +72,10 @@ public class PlayerController : MonoBehaviour
     private void OnMove(InputValue input)
     {
         Vector2 inputtedDirection = input.Get<Vector2>().normalized;
-        movementVelocity.x = inputtedDirection.x * movementSpeed;
-        movementVelocity.z = inputtedDirection.y * movementSpeed;
+        currentCharacter.SetInputDirection(inputtedDirection);
+        //movementVelocity.x = inputtedDirection.x * movementSpeed;
+        //movementVelocity.z = inputtedDirection.y * movementSpeed;
+
     }
 
     /// <summary>
@@ -79,8 +83,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnJump()
     {
-        if (!player.isGrounded) return;
-        movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
+        //if (!player.isGrounded) return;
+        //movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
+        currentCharacter.Jump();
     }
 
     /// <summary>
@@ -131,6 +136,8 @@ public class PlayerController : MonoBehaviour
 
         //Activate Zoom
         zoom.SetActive(true);
+        entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
+        currentCharacter = entity;
         // Deactivate the other characters
         charactersListPC[1].SetActive(false);
         charactersListPC[2].SetActive(false);
@@ -157,6 +164,8 @@ public class PlayerController : MonoBehaviour
 
         // Activate Boom
         boom.SetActive(true);
+        entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
+        currentCharacter = entity;
         // Deactivate the other characters
         charactersListPC[0].SetActive(false);
         charactersListPC[2].SetActive(false);
@@ -182,6 +191,8 @@ public class PlayerController : MonoBehaviour
 
         // Activate Gloom
         gloom.SetActive(true);
+        entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
+        currentCharacter = entity;
         // Deactivate the other characters
         charactersListPC[0].SetActive(false);
         charactersListPC[1].SetActive(false);
@@ -191,9 +202,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         aimDirection.transform.LookAt(mousePosition);
-        if (player.isGrounded && movementVelocity.y < 0) movementVelocity.y = -2f;
-        movementVelocity.y -= gravity * Time.deltaTime;
-        player.Move(movementVelocity * Time.deltaTime);
+        //if (player.isGrounded && movementVelocity.y < 0) movementVelocity.y = -2f;
+        //movementVelocity.y -= gravity * Time.deltaTime;
+        //player.Move(movementVelocity * Time.deltaTime);
         //FOR TESTING PURPOSES, WILL BE REMOVED LATER
         if (transform.position.y <= -10) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
