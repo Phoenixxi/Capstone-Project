@@ -138,8 +138,12 @@ MonoBehaviour:
   entityName: Boom
   maxHealth: 100
   swappingManager: {fileID: 0}
+  entityMovement: {fileID: 2384383547745438605}
   currentHealth: 0
   isAlive: 1
+  movementSpeed: 5
+  jumpHeight: 2
+  gravity: 25
   attackCooldown: 0.33
   weaponDamage: 2
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
@@ -238,8 +242,12 @@ MonoBehaviour:
   entityName: Zoom
   maxHealth: 100
   swappingManager: {fileID: 0}
+  entityMovement: {fileID: 2384383547745438605}
   currentHealth: 0
   isAlive: 1
+  movementSpeed: 5
+  jumpHeight: 2
+  gravity: 25
   attackCooldown: 0.33
   weaponDamage: 2
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
@@ -417,8 +425,12 @@ MonoBehaviour:
   entityName: Gloom
   maxHealth: 100
   swappingManager: {fileID: 0}
+  entityMovement: {fileID: 2384383547745438605}
   currentHealth: 0
   isAlive: 1
+  movementSpeed: 5
+  jumpHeight: 2
+  gravity: 25
   attackCooldown: 0.33
   weaponDamage: 2
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
@@ -633,9 +645,6 @@ MonoBehaviour:
   aimLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  movementSpeed: 5
-  jumpHeight: 2
-  gravity: 25
 --- !u!143 &2384383547745438605
 CharacterController:
   m_ObjectHideFlags: 0
