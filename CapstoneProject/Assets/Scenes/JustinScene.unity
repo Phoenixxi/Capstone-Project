@@ -1474,26 +1474,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 218786345}
     - target: {fileID: 4069364185334456115, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: gravity
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4069364185334456115, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: jumpHeight
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4069364185334456115, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: movementSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4069364185334456115, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: entityMovement
-      value: 
-      objectReference: {fileID: 1229921452990356108}
-    - target: {fileID: 4069364185334456115, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: playerMovement
-      value: 
-      objectReference: {fileID: 1229921452990356108}
-    - target: {fileID: 4069364185334456115, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
       objectReference: {fileID: 769566055}
@@ -1554,49 +1534,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 218786345}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: gravity
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: jumpHeight
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: movementSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: entityMovement
-      value: 
-      objectReference: {fileID: 1229921452990356108}
-    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: playerMovement
-      value: 
-      objectReference: {fileID: 1229921452990356108}
-    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
       objectReference: {fileID: 769566055}
-    - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: gravity
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: jumpHeight
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: movementSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: entityMovement
-      value: 
-      objectReference: {fileID: 1229921452990356108}
-    - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: playerMovement
-      value: 
-      objectReference: {fileID: 1229921452990356108}
     - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
@@ -1609,11 +1549,6 @@ PrefabInstance:
 --- !u!4 &1229921452990356107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-  m_PrefabInstance: {fileID: 1229921452990356106}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &1229921452990356108 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 2384383547745438605, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
   m_PrefabInstance: {fileID: 1229921452990356106}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

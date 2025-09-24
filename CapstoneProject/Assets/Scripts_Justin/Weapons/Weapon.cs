@@ -1,4 +1,7 @@
+using lilGuysNamespace;
 using UnityEngine;
+
+using ElementType = lilGuysNamespace.EntityData.ElementType;
 
 /// <summary>
 /// Class that handles attacks for both the player and enemies
@@ -7,13 +10,14 @@ public abstract class Weapon
 {
     protected float attackCooldown;
     protected int damage;
-    //TODO: Once elements implemented, add element field ehre
+    protected ElementType element;
     protected float lastAttackTime;
 
-    public Weapon(float attackCooldown, int damage)
+    public Weapon(float attackCooldown, int damage, ElementType element)
     {
         this.attackCooldown = attackCooldown;
         this.damage = damage;
+        this.element = element;
         lastAttackTime = 0f;
     }
 

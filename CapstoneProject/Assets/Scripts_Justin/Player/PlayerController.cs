@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnAttack()
     {
-        EntityManager currentCharacter = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
+        //EntityManager currentCharacter = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
         currentCharacter.Attack(aimDirection.transform.forward, transform.position);
     }
 

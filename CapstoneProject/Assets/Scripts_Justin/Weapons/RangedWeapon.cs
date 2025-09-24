@@ -1,5 +1,10 @@
+using TMPro;
 using UnityEngine;
+using ElementType = lilGuysNamespace.EntityData.ElementType;
 
+/// <summary>
+/// Class that handles ranged attacks that utilize projectiles
+/// </summary>
 public class RangedWeapon : Weapon
 {
     private GameObject projectile;
@@ -7,7 +12,7 @@ public class RangedWeapon : Weapon
     private Vector3 attackDirection;
     private Vector3 currentLocation;
 
-    public RangedWeapon(float attackCooldown, int damage, GameObject projectile) : base(attackCooldown, damage)
+    public RangedWeapon(float attackCooldown, int damage, ElementType element, GameObject projectile) : base(attackCooldown, damage, element)
     {
         this.projectile = projectile;
         attackDirection = Vector3.zero;

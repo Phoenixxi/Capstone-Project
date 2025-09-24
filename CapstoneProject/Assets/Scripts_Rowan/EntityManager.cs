@@ -16,10 +16,16 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float gravity = 10f;
 
-    [Header("Weapon Settings")]
+    [Header("Universal Weapon Settings")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private int weaponDamage;
+
+    [Header("Ranged Weapon Settings: Keep Empty If Not Using")]
     [SerializeField] private GameObject projectile;
+
+    [Header("Melee Weapon Settings: Keep Empty If Not Using")]
+    [SerializeField] private Hurtbox meleeHurtbox;
+    [SerializeField] private float hurtboxActivationTime;
 
     private Weapon weapon;
     private Vector3 movementVelocity;
@@ -34,8 +40,9 @@ public class EntityManager : MonoBehaviour
 
     private void CreateWeapon()
     {
-        //TODO Implement melee weapon generation
-        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, projectile);
+        //TODO Replace default element with the entity-specific one
+        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, EntityData.ElementType.Normal, projectile);
+        else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, EntityData.ElementType.Normal, meleeHurtbox, hurtboxActivationTime);
         else Debug.LogError($"Neither a melee nor ranged weapon could be assigned to {gameObject}. Make sure either the Projectile or Hurtbox fields have a value");
     }
 
