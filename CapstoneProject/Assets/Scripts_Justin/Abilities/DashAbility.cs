@@ -7,6 +7,8 @@ public class DashAbility : Ability
     [SerializeField] private float distance;
     [SerializeField] private float speed;
     [SerializeField] private Hurtbox dashHurtbox;
+    [SerializeField] private Collider entityCollision;
+    [SerializeField] private LayerMask dashPhasingLayers;
 
     private float currentDashTimer;
     private float dashTimer;
@@ -20,6 +22,7 @@ public class DashAbility : Ability
         if (horizontalDirection == Vector2.zero) movementVector = Vector3.right * speed; 
         else movementVector = new Vector3(horizontalDirection.x, 0f, horizontalDirection.y) * speed;
         movements[0] = new AbilityMovement(movementVector);
+        entityCollision.excludeLayers += dashPhasingLayers;
         return movements;
     }
 
@@ -41,6 +44,7 @@ public class DashAbility : Ability
             currentDashTimer = 0f;
             movements[0].Complete();
             abilityInUse = false;
+            entityCollision.excludeLayers -= dashPhasingLayers;
             currentCooldown = cooldown;
         }
     }
