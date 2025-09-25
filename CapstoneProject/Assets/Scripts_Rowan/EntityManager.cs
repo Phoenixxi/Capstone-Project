@@ -1,6 +1,8 @@
 using UnityEngine;
 using lilGuysNamespace;
+using System.Collections.Generic;
 using UnityEngine.UIElements;
+using System.Collections;
 
 public class EntityManager : MonoBehaviour
 {
@@ -27,8 +29,13 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private Hurtbox meleeHurtbox;
     [SerializeField] private float hurtboxActivationTime;
 
+    [Header("Ability Settings Must Be Changed In Ability Script")]
+
     private Weapon weapon;
     private Vector3 movementVelocity;
+    private Ability ability;
+    //Keeps track of movements associated with abilities; if this queue is not empty, these movements must be performed before standard movements can
+    private Queue<AbilityMovement> movementQueue;
 
     
     void Start()
@@ -36,6 +43,7 @@ public class EntityManager : MonoBehaviour
         // TEMPORARY- change back to maxHealth later
         currentHealth += 20f;
         CreateWeapon();
+        ability = GetComponent<Ability>();
     }
 
     private void CreateWeapon()
@@ -56,9 +64,20 @@ public class EntityManager : MonoBehaviour
         entityMovement.Move(movementVelocity * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Makes the entity move based on the first movement in the movement queue. If that first move is finished, it is cleared
+    /// </summary>
+    private void HandleQueueMovement()
+    {
+        AbilityMovement currentMovement = movementQueue.Peek();
+        if (currentMovement.HasEnded()) movementQueue.Dequeue();
+        else entityMovement.Move(currentMovement.GetMovementVelocity());
+    }
+
     void Update()
     {
-        HandleDefaultMovement();
+        if (movementQueue.Count > 0) HandleQueueMovement();
+        else HandleDefaultMovement();
     }
 
     /// <summary>
@@ -96,6 +115,22 @@ public class EntityManager : MonoBehaviour
     {
         if (!entityMovement.isGrounded) return;
         movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
+    }
+
+    /// <summary>
+    /// Attempts to use this entity's ability
+    /// </summary>
+    /// <param name="horizontalDirection">The direction the entity is moving horizontally at the time of activation</param>
+    public void UseAbility(Vector2 horizontalDirection)
+    {
+        if(ability != null)
+        {
+            AbilityMovement[] movementList = ability.UseAbility(horizontalDirection);
+            foreach (AbilityMovement movement in movementList) movementQueue.Enqueue(movement);
+        } else
+        {
+            Debug.LogError("No ability assigned; make sure an ability script has been attatched to this game object");
+        }
     }
 
     public void TakeDamage(float damage)

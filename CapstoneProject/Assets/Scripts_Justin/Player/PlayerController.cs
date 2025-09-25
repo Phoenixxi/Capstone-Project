@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private float jumpHeight = 1f;
     //[SerializeField] private float gravity = 10f;
 
-    private Vector3 movementVelocity;
+    private Vector3 movementInput;
     private Vector3 mousePosition;
     private CharacterController player;
     private Camera playerCamera;
@@ -71,10 +71,8 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     private void OnMove(InputValue input)
     {
-        Vector2 inputtedDirection = input.Get<Vector2>().normalized;
-        currentCharacter.SetInputDirection(inputtedDirection);
-        //movementVelocity.x = inputtedDirection.x * movementSpeed;
-        //movementVelocity.z = inputtedDirection.y * movementSpeed;
+        movementInput = input.Get<Vector2>().normalized;
+        currentCharacter.SetInputDirection(movementInput);
 
     }
 
@@ -83,8 +81,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnJump()
     {
-        //if (!player.isGrounded) return;
-        //movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
         currentCharacter.Jump();
     }
 
@@ -94,7 +90,6 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     private void UpdateMouseAim()
     {
-        //Vector2 mouseInput = input.Get<Vector2>();
         Vector2 mouseScreenPos = Mouse.current.position.value;
 
         Ray ray = playerCamera.ScreenPointToRay(mouseScreenPos);
@@ -113,7 +108,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnAttack()
     {
-        //EntityManager currentCharacter = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
         currentCharacter.Attack(aimDirection.transform.forward, transform.position);
     }
 
@@ -200,12 +194,14 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Character 3 chosen");
     }
 
+    private void OnAbility()
+    {
+        currentCharacter.UseAbility(movementInput);
+    }
+
     private void Update()
     {
         UpdateMouseAim();
-        //if (player.isGrounded && movementVelocity.y < 0) movementVelocity.y = -2f;
-        //movementVelocity.y -= gravity * Time.deltaTime;
-        //player.Move(movementVelocity * Time.deltaTime);
         //FOR TESTING PURPOSES, WILL BE REMOVED LATER
         if (transform.position.y <= -10) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
