@@ -89,21 +89,22 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Triggers when the user moves their mouse
+    /// Updates the mouse's aiming direction
     /// </summary>
     /// <param name="input"></param>
-    private void OnAim(InputValue input)
+    private void UpdateMouseAim()
     {
-        Vector2 mouseInput = input.Get<Vector2>();
+        //Vector2 mouseInput = input.Get<Vector2>();
+        Vector2 mouseScreenPos = Mouse.current.position.value;
 
-        Ray ray = playerCamera.ScreenPointToRay(mouseInput);
+        Ray ray = playerCamera.ScreenPointToRay(mouseScreenPos);
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, aimLayerMask))
         {
             mousePosition = hit.point;
             mousePosition.y = aimDirection.transform.position.y;
         }
-
+        aimDirection.transform.LookAt(mousePosition);
         //mouseObject.position = mousePosition;
     }
 
@@ -201,7 +202,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        aimDirection.transform.LookAt(mousePosition);
+        UpdateMouseAim();
         //if (player.isGrounded && movementVelocity.y < 0) movementVelocity.y = -2f;
         //movementVelocity.y -= gravity * Time.deltaTime;
         //player.Move(movementVelocity * Time.deltaTime);
