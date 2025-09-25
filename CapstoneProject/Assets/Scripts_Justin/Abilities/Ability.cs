@@ -1,4 +1,5 @@
 using UnityEngine;
+using ElementType = lilGuysNamespace.EntityData.ElementType;
 
 /// <summary>
 /// Base class used by all abilities that entities can use
@@ -8,20 +9,27 @@ public abstract class Ability : MonoBehaviour
     [Header("Universal Ability Settings")]
     [SerializeField] protected float cooldown;
     [SerializeField] protected int damage;
+    [SerializeField] protected ElementType element;
 
     protected bool abilityInUse;
     protected float currentCooldown;
+    protected AbilityMovement[] movements;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         abilityInUse = false;
         currentCooldown = 0f;
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (!abilityInUse && currentCooldown > 0) currentCooldown -= Time.deltaTime;
         else currentCooldown = 0f;
+    }
+
+    public bool AbilityInUse()
+    {
+        return abilityInUse;
     }
 
     /// <summary>

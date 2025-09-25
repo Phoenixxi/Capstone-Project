@@ -44,6 +44,7 @@ public class EntityManager : MonoBehaviour
         currentHealth += 20f;
         CreateWeapon();
         ability = GetComponent<Ability>();
+        movementQueue = new Queue<AbilityMovement>();
     }
 
     private void CreateWeapon()
@@ -70,8 +71,12 @@ public class EntityManager : MonoBehaviour
     private void HandleQueueMovement()
     {
         AbilityMovement currentMovement = movementQueue.Peek();
-        if (currentMovement.HasEnded()) movementQueue.Dequeue();
-        else entityMovement.Move(currentMovement.GetMovementVelocity());
+        if (currentMovement.HasEnded())
+        {
+            movementQueue.Dequeue();
+            if (movementQueue.Count == 0) movementVelocity.y = 0f;
+        }
+        else entityMovement.Move(currentMovement.GetMovementVelocity() * Time.deltaTime);
     }
 
     void Update()
@@ -161,14 +166,25 @@ public class EntityManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Has the entity attack using their weapon
+    /// Has the entity attack using their weapon if they aren't currently using an ability
     /// </summary>
     /// <param name="attackDirection">The direction the attack is facing. If the entity uses a melee wepaon, this parameter is unimportant.</param>
     /// <param name="entityPosition">The attacking entity's position. If the entity uses a melee weapon, this parameter is unimportant.</param>
     public void Attack(Vector3 attackDirection, Vector3 entityPosition)
     {
+        if (AbilityInUse()) return;
         if (weapon is RangedWeapon) (weapon as RangedWeapon).UpdateWeaponTransform(attackDirection, entityPosition);
         weapon.Attack();
+    }
+
+    /// <summary>
+    /// Returns whether or not this entity's ability is being used
+    /// </summary>
+    /// <returns></returns>
+    public bool AbilityInUse()
+    {
+        if (ability == null) return false;
+        return ability.AbilityInUse();
     }
 
     

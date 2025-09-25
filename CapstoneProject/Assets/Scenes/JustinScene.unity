@@ -544,6 +544,29 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3098750437766999248, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
   m_PrefabInstance: {fileID: 1229921452990356106}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &460585707 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7617289105161180958, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+  m_PrefabInstance: {fileID: 1229921452990356106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &460585710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460585706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e404a19f4ab2547a5d737f097f026c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DashAbility
+  cooldown: 5
+  damage: 2
+  element: 0
+  distance: 7
+  speed: 28
+  dashHurtbox: {fileID: 1006341011}
 --- !u!1 &540842957
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +786,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1006341009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1006341010}
+  - component: {fileID: 1006341012}
+  - component: {fileID: 1006341011}
+  m_Layer: 9
+  m_Name: DashHurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1006341010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006341009}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.9171964, y: 1.2567658, z: 1.2567658}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 460585707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1006341011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006341009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88f375b4bba0c24b94da205b04e3d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+--- !u!65 &1006341012
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006341009}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 768
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1103931901 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4096034835489068672, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
@@ -1543,8 +1632,14 @@ PrefabInstance:
       objectReference: {fileID: 769566055}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7617289105161180958, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1006341010}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3098750437766999248, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 460585710}
   m_SourcePrefab: {fileID: 100100000, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
 --- !u!4 &1229921452990356107 stripped
 Transform:

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using ElementType = lilGuysNamespace.EntityData.ElementType;
 
 /// <summary>
 /// Handles colliders that damage enemies during melee combat
@@ -11,6 +12,7 @@ public class Hurtbox : MonoBehaviour
     private HashSet<EntityManager> hitEntities;
     private int damage;
     private Collider meleeCollider;
+    private ElementType element;
 
     private void Awake()
     {
@@ -61,7 +63,7 @@ public class Hurtbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log($"Melee hit {other.gameObject}", other.gameObject);
+        Debug.Log($"Melee hit {other.gameObject}", other.gameObject);
         EntityManager hitEntity = other.gameObject.GetComponent<EntityManager>();
         if (hitEntity == null || hitEntities.Contains(hitEntity)) return;
         hitEntities.Add(hitEntity);

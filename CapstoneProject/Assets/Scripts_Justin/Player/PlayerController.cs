@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private float jumpHeight = 1f;
     //[SerializeField] private float gravity = 10f;
 
-    private Vector3 movementInput;
+    private Vector2 movementInput;
     private Vector3 mousePosition;
     private CharacterController player;
     private Camera playerCamera;
@@ -116,6 +116,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnSwapCharacter1()
     {
+        if (currentCharacter.AbilityInUse()) return;
         // Check if character is alive
         GameObject zoom = charactersListPC[0];
         EntityManager entity = zoom.GetComponent<EntityManager>();
@@ -145,6 +146,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     private void OnSwapCharacter2(InputValue input)
     {
+        if (currentCharacter.AbilityInUse()) return;
         // Check if character is alive
         GameObject boom = charactersListPC[1];
         EntityManager entity = boom.GetComponent<EntityManager>();
@@ -173,6 +175,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     private void OnSwapCharacter3(InputValue input)
     {
+        if (currentCharacter.AbilityInUse()) return;
         GameObject gloom = charactersListPC[2];
         EntityManager entity = gloom.GetComponent<EntityManager>();
         if(!entity.isAlive)
