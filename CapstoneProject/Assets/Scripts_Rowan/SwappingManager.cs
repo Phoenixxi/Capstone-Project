@@ -7,7 +7,6 @@ public class SwappingManager : MonoBehaviour
     [SerializeField] public List<GameObject> charactersList;
     public string currentCharacter;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
          foreach (GameObject character in charactersList)
@@ -15,12 +14,6 @@ public class SwappingManager : MonoBehaviour
             Debug.Log(character.name);
         }
         currentCharacter = "zoom";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public Transform GetCurrentCharacterTransform()
@@ -43,10 +36,10 @@ public class SwappingManager : MonoBehaviour
             if(character != self && character.GetComponent<EntityManager>().isAlive)
             {
                 Debug.Log("Swapping to: " + character.name);
-                //Transform currentLocation = self.transform;
-                //character.transform.position = currentLocation.position;
-                //character.SetActive(true);
-                //self.SetActive(false);
+                Transform currentLocation = self.transform;
+                character.transform.position = currentLocation.position;
+                character.SetActive(true);
+                self.SetActive(false);
                 return;
             }
             else // If all characters are dead

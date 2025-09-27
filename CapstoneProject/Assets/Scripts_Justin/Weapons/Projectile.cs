@@ -1,4 +1,5 @@
 using UnityEngine;
+using lilGuysNamespace;
 
 /// <summary>
 /// Handles behavior for projectiles fired by the player and enemies
@@ -12,7 +13,9 @@ public class Projectile : MonoBehaviour
     
     private Rigidbody projectile;
     private int damage;
+    private EntityData.ElementType elementType = EntityData.ElementType.Normal;
     private float currentLifetime;
+
 
     private void Awake()
     {
@@ -44,10 +47,17 @@ public class Projectile : MonoBehaviour
         this.damage = damage;
     }
 
+    public void SetProjectileElement(EntityData.ElementType element)
+    {
+        Debug.Log("Element set: " + element.ToString());
+        this.elementType = element;
+        
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         EntityManager hitEntity = collision.gameObject.GetComponent<EntityManager>();
-        if (hitEntity != null) hitEntity.TakeDamage(damage);
+        if (hitEntity != null) hitEntity.TakeDamage(damage, elementType);
         Destroy(gameObject);
     }
 

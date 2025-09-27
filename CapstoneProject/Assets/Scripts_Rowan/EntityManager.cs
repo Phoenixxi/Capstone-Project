@@ -8,10 +8,13 @@ public class EntityManager : MonoBehaviour
 {
     [SerializeField] public string entityName;
     [SerializeField] public float maxHealth = 100f;
+    [SerializeField] public EntityData.ElementType defaultElement;  // Will never change
+    [SerializeField] public EntityData.ElementType taggedElement = EntityData.ElementType.Normal;   // default and tagged will be the same if default != Normal
     [SerializeField] private SwappingManager swappingManager;
     [SerializeField] private CharacterController entityMovement;
     public float currentHealth;
     public bool isAlive = true;
+    private bool normalChar = false;    // this means defaultElement != normal
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
@@ -45,13 +48,19 @@ public class EntityManager : MonoBehaviour
         CreateWeapon();
         ability = GetComponent<Ability>();
         movementQueue = new Queue<AbilityMovement>();
+
+        // Set tagged element to default if default != normal
+        if (defaultElement != EntityData.ElementType.Normal) 
+            taggedElement = defaultElement;
+        else
+            normalChar = true;
     }
 
     private void CreateWeapon()
     {
         //TODO Replace default element with the entity-specific one
-        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, EntityData.ElementType.Normal, projectile);
-        else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, EntityData.ElementType.Normal, meleeHurtbox, hurtboxActivationTime);
+        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile);
+        else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime);
         else Debug.LogError($"Neither a melee nor ranged weapon could be assigned to {gameObject}. Make sure either the Projectile or Hurtbox fields have a value");
     }
 
@@ -138,6 +147,8 @@ public class EntityManager : MonoBehaviour
         }
     }
 
+
+    // TODO: Get rid of this method instance
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -148,11 +159,31 @@ public class EntityManager : MonoBehaviour
             isAlive = false;
             Destroy(gameObject);
             return;
-            swappingManager.PlayerHasDied(gameObject);
+            //swappingManager.PlayerHasDied(gameObject);
         }
         else
         {
             Debug.Log("Entity took damage. Current health: " + currentHealth);
+        }
+    }
+
+    public void TakeDamage(float damage, EntityData.ElementType element)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Debug.Log("Entity has died.");
+            isAlive = false;
+            Destroy(gameObject);
+            return;
+            //swappingManager.PlayerHasDied(gameObject);
+        }
+        else
+        {
+            Debug.Log("Entity has " + currentHealth + " by element: " + element.ToString());
+            if (normalChar)
+                taggedElement = element;
         }
     }
 
