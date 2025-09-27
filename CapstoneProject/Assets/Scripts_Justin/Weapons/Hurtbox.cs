@@ -61,12 +61,15 @@ public class Hurtbox : MonoBehaviour
         this.damage = damage;
     }
 
+
+    // Melee for Zoom (CHANGE CODE IF OTHER CHARACTERS USE MELEE)
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log($"Melee hit {other.gameObject}", other.gameObject);
         EntityManager hitEntity = other.gameObject.GetComponent<EntityManager>();
         if (hitEntity == null || hitEntities.Contains(hitEntity)) return;
         hitEntities.Add(hitEntity);
-        hitEntity.TakeDamage(damage);
+        hitEntity.TakeDamage(damage, ElementType.Zoom);    
     }
 }
+ 

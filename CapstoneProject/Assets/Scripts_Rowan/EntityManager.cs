@@ -3,18 +3,18 @@ using lilGuysNamespace;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using System.Collections;
+using ElementType = lilGuysNamespace.EntityData.ElementType;
 
 public class EntityManager : MonoBehaviour
 {
     [SerializeField] public string entityName;
     [SerializeField] public float maxHealth = 100f;
-    [SerializeField] public EntityData.ElementType defaultElement;  // Will never change
-    [SerializeField] public EntityData.ElementType taggedElement = EntityData.ElementType.Normal;   // default and tagged will be the same if default != Normal
+    [SerializeField] public ElementType defaultElement;  // Will never change
+    [SerializeField] public ElementType taggedElement = ElementType.Normal;   // default and tagged will be the same if default != Normal
     [SerializeField] private SwappingManager swappingManager;
     [SerializeField] private CharacterController entityMovement;
     public float currentHealth;
     public bool isAlive = true;
-    private bool normalChar = false;    // this means defaultElement != normal
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
@@ -40,6 +40,9 @@ public class EntityManager : MonoBehaviour
     //Keeps track of movements associated with abilities; if this queue is not empty, these movements must be performed before standard movements can
     private Queue<AbilityMovement> movementQueue;
 
+    // DESIGNERS: Adjust fields here
+    private float dmgMultiplier = 2.0f;
+
     
     void Start()
     {
@@ -50,10 +53,8 @@ public class EntityManager : MonoBehaviour
         movementQueue = new Queue<AbilityMovement>();
 
         // Set tagged element to default if default != normal
-        if (defaultElement != EntityData.ElementType.Normal) 
+        if (defaultElement != ElementType.Normal) 
             taggedElement = defaultElement;
-        else
-            normalChar = true;
     }
 
     private void CreateWeapon()
@@ -148,7 +149,7 @@ public class EntityManager : MonoBehaviour
     }
 
 
-    // TODO: Get rid of this method instance
+    // TODO: Get rid of this method instance (referenced in PlayerController.TakeDamageWrapper())
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -167,25 +168,84 @@ public class EntityManager : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage, EntityData.ElementType element)
+    /// <summary>
+    /// Called when the entity is attacked (with either a weapon or an ability)
+    /// </summary>
+    /// <param name="damage">The amount of damage being delt.</param>
+    /// <param name="element">The incoming element.</param>
+    public void TakeDamage(float damage, ElementType element)
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        float newHealth = currentHealth - damage;
+        if (newHealth <= 0)
         {
-            currentHealth = 0;
-            Debug.Log("Entity has died.");
-            isAlive = false;
-            Destroy(gameObject);
+            EntityHasDied();
             return;
-            //swappingManager.PlayerHasDied(gameObject);
         }
         else
         {
             Debug.Log("Entity has " + currentHealth + " by element: " + element.ToString());
-            if (normalChar)
+             //If entity is not tagged or if they are hit with their same element
+            if (taggedElement == ElementType.Normal || taggedElement == element)  
+            {
                 taggedElement = element;
+                currentHealth = newHealth;
+            }
+            else    // entity is already tagged and they were hit with different element, start a reaction
+            {
+                Reaction(element, damage);
+            }
         }
     }
+
+    /// <summary>
+    /// Called when the entity's health has reached 0 or less
+    /// </summary>
+    private void EntityHasDied()
+    {
+        currentHealth = 0;
+        Debug.Log("Entity has died.");
+        isAlive = false;
+        Destroy(gameObject);
+        if(this.gameObject.CompareTag("Player"))
+            swappingManager.PlayerHasDied(gameObject);
+    }
+
+    /// <summary>
+    /// Signaled when a reaction occurs between two different elements
+    /// </summary>
+    /// <param name="initiatingElement">The second element that caused the reaction.</param>
+    /// <param name="incomingDmg">The amount of damage being delt to the enemy before reaction.</param>
+    private void Reaction( ElementType initiatingElement, float incomingDmg)
+    {  
+        // ZOOM x BOOM
+        if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Boom || initiatingElement == ElementType.Boom))
+        {
+            float newHealth = currentHealth - (incomingDmg * dmgMultiplier);
+            Debug.Log("currentHealth: " + currentHealth + " incomingDmg: " + incomingDmg + " incomingxdmgMult: " + (incomingDmg * dmgMultiplier));
+            if(newHealth <= 0)
+            {
+                EntityHasDied();
+                return;
+            }
+            // If entity survived, set new health and reset their tagged element to default
+            currentHealth = newHealth;
+            taggedElement = defaultElement;
+        }
+        // ZOOM x GLOOM
+        else if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
+        {
+            float newHealth = currentHealth - incomingDmg;
+
+        }
+        // BOOM x GLOOM
+        else
+        {
+
+        }
+
+        
+
+    } 
 
     public void Heal(float heal)
     {
