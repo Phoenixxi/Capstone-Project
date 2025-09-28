@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60cd9b1879aa40d429e6fb69f55e6536, type: 3}
-  m_Name: AbilityData
+  m_Name: SlowData
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
-  AbilityName: BoomxGloom
-  DOTAmount: 5
-  tickSpeed: 1
-  movementPenalty: 0
-  effectLifeTime: 4
-  ParticleEffects: {fileID: 720135145037961379, guid: 5714829a3d11d394c8f7dba269972167, type: 3}
+  AbilityName: ZoomxGloom
+  DOTAmount: 0
+  tickSpeed: 0
+  movementPenalty: 2
+  effectLifeTime: 5
+  ParticleEffects: {fileID: 7011574980652007753, guid: d5e45887b593fd449bb7e2b65a451fb4, type: 3}

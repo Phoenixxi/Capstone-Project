@@ -1259,7 +1259,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.13, z: 0}
-  m_LocalScale: {x: 30.322783, y: 1, z: 11.847539}
+  m_LocalScale: {x: 161.58739, y: 1.3094, z: 45.473747}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1475,6 +1475,7 @@ GameObject:
   - component: {fileID: 1863573022}
   - component: {fileID: 1863573021}
   - component: {fileID: 1863573026}
+  - component: {fileID: 1863573027}
   m_Layer: 11
   m_Name: Dummy
   m_TagString: Enemy
@@ -1621,6 +1622,7 @@ MonoBehaviour:
   entityMovement: {fileID: 1229921452990356108}
   currentHealth: 100
   isAlive: 1
+  data: {fileID: 0}
   movementSpeed: 1
   jumpHeight: 1
   gravity: 10
@@ -1629,6 +1631,20 @@ MonoBehaviour:
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+--- !u!114 &1863573027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863573020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85ce758851f4c64f83faf3ec5c81520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTesting
+  shouldMove: 1
+  moveRight: 1
 --- !u!1001 &1229921452990356106
 PrefabInstance:
   m_ObjectHideFlags: 0

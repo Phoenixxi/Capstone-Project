@@ -7,14 +7,17 @@ public class EnemyTesting : MonoBehaviour, IEffectable
     private float movementSpeed = 2f;
     private Vector3 startPosition;
     public bool shouldMove = false;
+    private float currentMovementSpeed;
 
     private AbilityData data;
     
+    //private GameObject effectParticles;
 
     private void Start()
     {
         entityManager = GetComponent<EntityManager>();
         startPosition = transform.position;
+        currentMovementSpeed = movementSpeed;
     }
 
     void Update()
@@ -29,6 +32,7 @@ public class EnemyTesting : MonoBehaviour, IEffectable
     }
 
     public bool moveRight = true;
+    
 
     void HandleMove()
     {
@@ -38,29 +42,34 @@ public class EnemyTesting : MonoBehaviour, IEffectable
         if(!moveRight && Vector3.Distance(transform.position, startPosition + (-transform.right * 3f)) < 0.01)
             moveRight = true;
 
+
+        //var currentMoveSpeed = data == null ? movementSpeed : moveSpeed / data.movementPenalty;
         if(moveRight)
-            transform.position += transform.right * movementSpeed * Time.deltaTime;
+            transform.position += transform.right * currentMovementSpeed * Time.deltaTime;
         else
-            transform.position += -transform.right * movementSpeed * Time.deltaTime;
+            transform.position += -transform.right * currentMovementSpeed * Time.deltaTime;
     }
 
 
-    private GameObject effectParticles;
 
     public void ApplyEffect(AbilityData data)
     {
+        RemoveEffect();
         this.data = data;
         // PARTICLE EFFECTS HERE
 
-        if(effectParticles != null)
-            Destroy(effectParticles);
-        effectParticles = Instantiate(data.ParticleEffects, transform);
+        // if(data.movementPenalty > 0)
+        //     currentMovementSpeed = movementSpeed / data.movementPenalty;
 
-        var ps = effectParticles.GetComponent<ParticleSystem>();
-        if(ps != null)
-        {
-            Destroy(effectParticles, ps.main.duration + ps.main.startLifetime.constantMax);
-        }
+        // if(effectParticles != null)
+        //     Destroy(effectParticles);
+        // effectParticles = Instantiate(data.ParticleEffects, transform);
+
+        // var ps = effectParticles.GetComponent<ParticleSystem>();
+        // if(ps != null)
+        // {
+        //     Destroy(effectParticles, ps.main.duration + ps.main.startLifetime.constantMax);
+        // }
     } 
 
     private float currentEffectTime = 0f;
@@ -71,12 +80,13 @@ public class EnemyTesting : MonoBehaviour, IEffectable
         data = null;
         currentEffectTime = 0f;
         lastTickTime = 0f;
+        currentMovementSpeed = movementSpeed;
         
-        if(effectParticles != null)
-        {
-            Destroy(effectParticles);
-            effectParticles = null;
-        }
+        // if(effectParticles != null)
+        // {
+        //     Destroy(effectParticles);
+        //     effectParticles = null;
+        // }
     }
 
 
