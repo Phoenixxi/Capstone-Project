@@ -15,7 +15,7 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private CharacterController entityMovement;
     public float currentHealth;
     public bool isAlive = true;
-    public bool shouldApplyAbility = false;
+    public AbilityData data;
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
@@ -190,11 +190,9 @@ public class EntityManager : MonoBehaviour
             {
                 taggedElement = element;
                 currentHealth = newHealth;
-                shouldApplyAbility = false;
             }
             else    // entity is already tagged and they were hit with different element, start a reaction
             {
-                shouldApplyAbility = true;
                 Reaction(element, damage);
             }
         }
@@ -245,9 +243,14 @@ public class EntityManager : MonoBehaviour
         {
             currentHealth -= incomingDmg;
 
-
             // Reset tag to default/starting element
             taggedElement = defaultElement;
+
+            var effectable = gameObject.GetComponent<IEffectable>();
+            if (effectable != null && data != null)
+            {
+                effectable.ApplyEffect(data);
+            }
         }
 
         

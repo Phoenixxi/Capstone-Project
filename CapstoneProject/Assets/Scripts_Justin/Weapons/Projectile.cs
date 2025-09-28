@@ -59,16 +59,8 @@ public class Projectile : MonoBehaviour
     {
         EntityManager hitEntity = collision.gameObject.GetComponent<EntityManager>();
         if (hitEntity != null) {
-            Debug.Log("TakeDamage called with element: " + elementType.ToString());
+            hitEntity.data = data;  //Sends the DOT data to entity's manager
             hitEntity.TakeDamage(damage, elementType);
-        }
-        
-        bool apply = hitEntity.shouldApplyAbility;
-        var effectable = collision.gameObject.GetComponent<IEffectable>();
-
-        if (effectable != null && data != null && apply)
-        {
-            effectable.ApplyEffect(data);
         }
 
         Destroy(gameObject);
