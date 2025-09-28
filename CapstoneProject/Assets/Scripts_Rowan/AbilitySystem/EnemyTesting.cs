@@ -45,13 +45,22 @@ public class EnemyTesting : MonoBehaviour, IEffectable
     }
 
 
-    //private ParticleSystem effectParticles;
+    private GameObject effectParticles;
 
     public void ApplyEffect(AbilityData data)
     {
         this.data = data;
         // PARTICLE EFFECTS HERE
-        //effectParticles = Instantiate(data.ParticleEffects, transform);
+
+        if(effectParticles != null)
+            Destroy(effectParticles);
+        effectParticles = Instantiate(data.ParticleEffects, transform);
+
+        var ps = effectParticles.GetComponent<ParticleSystem>();
+        if(ps != null)
+        {
+            Destroy(effectParticles, ps.main.duration + ps.main.startLifetime.constantMax);
+        }
     } 
 
     private float currentEffectTime = 0f;
@@ -63,8 +72,11 @@ public class EnemyTesting : MonoBehaviour, IEffectable
         currentEffectTime = 0f;
         lastTickTime = 0f;
         
-        //if(effectParticles != null)
-          //  Destroy(effectParticles.gameObject);
+        if(effectParticles != null)
+        {
+            Destroy(effectParticles);
+            effectParticles = null;
+        }
     }
 
 
@@ -84,8 +96,6 @@ public class EnemyTesting : MonoBehaviour, IEffectable
         {
             lastTickTime += data.tickSpeed;
             entityManager.TakeDamage(data.DOTAmount);
-            //entityManager.currentHealth -= data.DOTAmount;
-            // Note that this is accessing the entity's health directly, instead of calling TakeDamage 
         }
 
     }
