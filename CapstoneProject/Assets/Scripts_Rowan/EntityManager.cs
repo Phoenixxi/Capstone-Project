@@ -48,7 +48,7 @@ public class EntityManager : MonoBehaviour
     void Start()
     {
         // TEMPORARY- change back to maxHealth later
-        currentHealth += 20f;
+        currentHealth = maxHealth;
         CreateWeapon();
         ability = GetComponent<Ability>();
         movementQueue = new Queue<AbilityMovement>();

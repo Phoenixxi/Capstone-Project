@@ -1,15 +1,15 @@
 using UnityEngine;
 using lilGuysNamespace;
 
-public class EnemyTesting : MonoBehaviour, IEffectable
+public class AbilityManager : MonoBehaviour, IEffectable
 {
     EntityManager entityManager;
     private float movementSpeed = 2f;
     private Vector3 startPosition;
-    public bool shouldMove = false;
     private float currentMovementSpeed;
 
     private AbilityData data;
+    private AbilityData slowData;
     
     //private GameObject effectParticles;
 
@@ -23,33 +23,10 @@ public class EnemyTesting : MonoBehaviour, IEffectable
     void Update()
     {
         if(data != null)
-        {
             HandleEffect();
-        }
-
-        if(shouldMove)
-            HandleMove();
-    }
-
-    public bool moveRight = true;
-    
-
-    void HandleMove()
-    {
-        if(moveRight && Vector3.Distance(transform.position, startPosition + (transform.right * 3f)) < 0.01)
-            moveRight = false;
         
-        if(!moveRight && Vector3.Distance(transform.position, startPosition + (-transform.right * 3f)) < 0.01)
-            moveRight = true;
 
-
-        //var currentMoveSpeed = data == null ? movementSpeed : moveSpeed / data.movementPenalty;
-        if(moveRight)
-            transform.position += transform.right * currentMovementSpeed * Time.deltaTime;
-        else
-            transform.position += -transform.right * currentMovementSpeed * Time.deltaTime;
     }
-
 
 
     public void ApplyEffect(AbilityData data)
@@ -109,4 +86,7 @@ public class EnemyTesting : MonoBehaviour, IEffectable
         }
 
     }
+
+
+   
 }
