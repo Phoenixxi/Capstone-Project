@@ -15,6 +15,7 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private CharacterController entityMovement;
     public float currentHealth;
     public bool isAlive = true;
+    public AbilityData data;
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
@@ -153,6 +154,7 @@ public class EntityManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -183,7 +185,6 @@ public class EntityManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Entity has " + currentHealth + " by element: " + element.ToString());
              //If entity is not tagged or if they are hit with their same element
             if (taggedElement == ElementType.Normal || taggedElement == element)  
             {
@@ -234,13 +235,22 @@ public class EntityManager : MonoBehaviour
         // ZOOM x GLOOM
         else if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
         {
-            float newHealth = currentHealth - incomingDmg;
-
+            currentHealth -= incomingDmg;
+            taggedElement = defaultElement;
         }
         // BOOM x GLOOM
         else
         {
+            currentHealth -= incomingDmg;
 
+            // Reset tag to default/starting element
+            taggedElement = defaultElement;
+
+            var effectable = gameObject.GetComponent<IEffectable>();
+            if (effectable != null && data != null)
+            {
+                effectable.ApplyEffect(data);
+            }
         }
 
         

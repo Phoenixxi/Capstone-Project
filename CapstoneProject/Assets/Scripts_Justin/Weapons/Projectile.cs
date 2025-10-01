@@ -10,7 +10,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float projectileLifetime;
 
-    
+    [SerializeField] private AbilityData data;
+
     private Rigidbody projectile;
     private int damage;
     private EntityData.ElementType elementType = EntityData.ElementType.Normal;
@@ -57,8 +58,13 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         EntityManager hitEntity = collision.gameObject.GetComponent<EntityManager>();
-        if (hitEntity != null) hitEntity.TakeDamage(damage, elementType);
+        if (hitEntity != null) {
+            hitEntity.data = data;  //Sends the DOT data to entity's manager
+            hitEntity.TakeDamage(damage, elementType);
+        }
+
         Destroy(gameObject);
+
     }
 
 }

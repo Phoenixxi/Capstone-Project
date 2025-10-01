@@ -137,7 +137,6 @@ public class PlayerController : MonoBehaviour
         // Deactivate the other characters
         charactersListPC[1].SetActive(false);
         charactersListPC[2].SetActive(false);
-        Debug.Log("Zoom chosen");
     }
 
     /// <summary>
@@ -166,7 +165,6 @@ public class PlayerController : MonoBehaviour
         // Deactivate the other characters
         charactersListPC[0].SetActive(false);
         charactersListPC[2].SetActive(false);
-        Debug.Log("Boom chosen");
     }
 
     /// <summary>
@@ -194,7 +192,6 @@ public class PlayerController : MonoBehaviour
         // Deactivate the other characters
         charactersListPC[0].SetActive(false);
         charactersListPC[1].SetActive(false);
-        Debug.Log("Character 3 chosen");
     }
 
     private void OnAbility()
