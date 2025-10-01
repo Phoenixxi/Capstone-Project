@@ -235,16 +235,22 @@ public class EntityManager : MonoBehaviour
         // ZOOM x GLOOM
         else if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
         {
+             Debug.Log("in zoomxgloom");
             currentHealth -= incomingDmg;
-            taggedElement = defaultElement;
+            taggedElement = defaultElement; // Reset tag to default/starting element
+
+            var effectable = gameObject.GetComponent<IEffectable>();
+            if (effectable != null && data != null)
+            {
+                Debug.Log("ApplySlow called");
+                effectable.ApplySlow(data);
+            }
         }
         // BOOM x GLOOM
         else
         {
             currentHealth -= incomingDmg;
-
-            // Reset tag to default/starting element
-            taggedElement = defaultElement;
+            taggedElement = defaultElement; // Reset tag to default/starting element
 
             var effectable = gameObject.GetComponent<IEffectable>();
             if (effectable != null && data != null)
