@@ -48,6 +48,7 @@ public class Hurtbox : MonoBehaviour
     public void Activate(float activeTime)
     {
         enabled = true;
+        hitEntities.Clear();
         this.activeTime = activeTime;
 
     }

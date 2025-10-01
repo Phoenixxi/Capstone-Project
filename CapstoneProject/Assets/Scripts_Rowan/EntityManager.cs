@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UIElements;
 using System.Collections;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
+using UnityEngine.AI;
 
 public class EntityManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class EntityManager : MonoBehaviour
     public float currentHealth;
     public bool isAlive = true;
     public AbilityData data;
+    private bool usesNavAgent;
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
@@ -56,6 +58,7 @@ public class EntityManager : MonoBehaviour
         // Set tagged element to default if default != normal
         if (defaultElement != ElementType.Normal) 
             taggedElement = defaultElement;
+        if (GetComponent<NavMeshAgent>() != null) usesNavAgent = true;
     }
 
     private void CreateWeapon()
@@ -71,6 +74,7 @@ public class EntityManager : MonoBehaviour
     /// </summary>
     private void HandleDefaultMovement()
     {
+        if (usesNavAgent) return;
         if (entityMovement.isGrounded && movementVelocity.y < 0) movementVelocity.y = -2f;
         movementVelocity.y -= gravity * Time.deltaTime;
         entityMovement.Move(movementVelocity * Time.deltaTime);
