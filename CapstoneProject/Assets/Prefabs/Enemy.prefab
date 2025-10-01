@@ -14,9 +14,12 @@ GameObject:
   - component: {fileID: 68536883291156192}
   - component: {fileID: 7493769958297259037}
   - component: {fileID: 6001685213739500416}
-  m_Layer: 0
+  - component: {fileID: 8039355975360593558}
+  - component: {fileID: 5053508518923957891}
+  - component: {fileID: 5192659738883732383}
+  m_Layer: 11
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,4 +150,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e083ef273799f44befc0f38f813eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  enemyPrefab: {fileID: 7543563098658516984}
+--- !u!114 &8039355975360593558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543563098658516984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed522ae092ed8140925d1dbc796d1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityManager
+  entityName: AI Enemy
+  maxHealth: 100
+  defaultElement: 0
+  taggedElement: 0
+  swappingManager: {fileID: 0}
+  entityMovement: {fileID: 5192659738883732383}
+  currentHealth: 0
+  isAlive: 1
+  data: {fileID: 0}
+  movementSpeed: 1
+  jumpHeight: 1
+  gravity: 10
+  attackCooldown: 0
+  weaponDamage: 0
+  projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
+  meleeHurtbox: {fileID: 0}
+  hurtboxActivationTime: 0
+--- !u!114 &5053508518923957891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543563098658516984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85ce758851f4c64f83faf3ec5c81520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTesting
+--- !u!143 &5192659738883732383
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543563098658516984}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}

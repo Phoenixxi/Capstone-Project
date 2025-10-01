@@ -43,7 +43,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 1984
@@ -203,10 +203,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   entityName: Boom
   maxHealth: 100
+  defaultElement: 2
+  taggedElement: 2
   swappingManager: {fileID: 0}
   entityMovement: {fileID: 2384383547745438605}
   currentHealth: 0
   isAlive: 1
+  data: {fileID: 0}
   movementSpeed: 5
   jumpHeight: 2
   gravity: 25
@@ -312,10 +315,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   entityName: Zoom
   maxHealth: 100
+  defaultElement: 1
+  taggedElement: 1
   swappingManager: {fileID: 0}
   entityMovement: {fileID: 2384383547745438605}
   currentHealth: 0
   isAlive: 1
+  data: {fileID: 0}
   movementSpeed: 5
   jumpHeight: 2
   gravity: 25
@@ -519,10 +525,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   entityName: Gloom
   maxHealth: 100
+  defaultElement: 3
+  taggedElement: 3
   swappingManager: {fileID: 0}
   entityMovement: {fileID: 2384383547745438605}
   currentHealth: 0
   isAlive: 1
+  data: {fileID: 0}
   movementSpeed: 5
   jumpHeight: 2
   gravity: 25
