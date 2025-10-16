@@ -23,6 +23,8 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private float movementSpeed = 1f;
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float gravity = 10f;
+    [SerializeField] private int extraJumps = 0;
+    private int currentExtraJumps;
 
     [Header("Universal Weapon Settings")]
     [SerializeField] private float attackCooldown;
@@ -98,6 +100,7 @@ public class EntityManager : MonoBehaviour
     {
         if (movementQueue.Count > 0) HandleQueueMovement();
         else HandleDefaultMovement();
+        if (entityMovement.isGrounded) currentExtraJumps = extraJumps;
     }
 
     /// <summary>
@@ -133,7 +136,12 @@ public class EntityManager : MonoBehaviour
     /// </summary>
     public void Jump()
     {
-        if (!entityMovement.isGrounded) return;
+        //if (!entityMovement.isGrounded) return;
+        if(!entityMovement.isGrounded)
+        {
+            if (currentExtraJumps == 0) return;
+            currentExtraJumps--;
+        }
         movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
     }
 
