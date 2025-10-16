@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 8708904835094065169}
   - component: {fileID: 6099202190651621813}
   - component: {fileID: 5377437969833900074}
+  - component: {fileID: 7478264160224895753}
   m_Layer: 10
   m_Name: Boom
   m_TagString: Untagged
@@ -213,6 +214,7 @@ MonoBehaviour:
   movementSpeed: 5
   jumpHeight: 2
   gravity: 25
+  extraJumps: 1
   attackCooldown: 0.33
   weaponDamage: 2
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
@@ -232,6 +234,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUI
   entityManager: {fileID: 6099202190651621813}
   healthText: {fileID: 0}
+--- !u!114 &7478264160224895753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711543835817741233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d459c3c7b53139439fc118b9f336031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundPoundAbility
+  cooldown: 0
+  damage: 100
+  element: 2
+  entity: {fileID: 2384383547745438605}
+  fallSpeed: 25
+  slamRadius: 3
+  slamLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &2838086303824349459
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +348,7 @@ MonoBehaviour:
   movementSpeed: 5
   jumpHeight: 2
   gravity: 25
+  extraJumps: 0
   attackCooldown: 0.33
   weaponDamage: 2
   projectile: {fileID: 0}
@@ -424,6 +448,7 @@ MonoBehaviour:
   movementSpeed: 5
   jumpHeight: 2
   gravity: 25
+  extraJumps: 0
   attackCooldown: 0.33
   weaponDamage: 2
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}

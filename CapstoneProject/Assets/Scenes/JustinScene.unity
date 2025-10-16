@@ -1269,24 +1269,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1711543835817741233, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
   m_PrefabInstance: {fileID: 1229921452990356106}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1662300228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662300224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d459c3c7b53139439fc118b9f336031, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundPoundAbility
-  cooldown: 0
-  damage: 0
-  element: 2
-  entity: {fileID: 1229921452990356108}
-  fallSpeed: 25
-  slamRadius: 0
 --- !u!1 &1770667010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,10 +1673,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 218786345}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: extraJumps
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
       objectReference: {fileID: 769566055}
@@ -1705,19 +1683,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1711543835817741233, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1662300228}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
 --- !u!4 &1229921452990356107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-  m_PrefabInstance: {fileID: 1229921452990356106}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &1229921452990356108 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 2384383547745438605, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
   m_PrefabInstance: {fileID: 1229921452990356106}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
