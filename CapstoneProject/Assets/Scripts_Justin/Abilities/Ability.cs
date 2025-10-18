@@ -14,6 +14,7 @@ public abstract class Ability : MonoBehaviour
     protected bool abilityInUse;
     protected float currentCooldown;
     protected AbilityMovement[] movements;
+    protected float disabledTime = 0f;
 
     protected virtual void Awake()
     {
@@ -30,6 +31,17 @@ public abstract class Ability : MonoBehaviour
     public bool AbilityInUse()
     {
         return abilityInUse;
+    }
+
+    protected void OnDisable()
+    {
+        disabledTime = Time.time;
+    }
+
+    protected void OnEnable()
+    {
+        float lostTIme = Time.time - disabledTime;
+        if (currentCooldown > 0f) currentCooldown -= lostTIme;
     }
 
     /// <summary>
