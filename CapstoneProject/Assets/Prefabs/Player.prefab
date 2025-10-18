@@ -355,8 +355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d459c3c7b53139439fc118b9f336031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundPoundAbility
-  cooldown: 0
-  damage: 100
+  cooldown: 8
+  damage: 25
   element: 2
   entity: {fileID: 2384383547745438605}
   fallSpeed: 25
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashAbility
   cooldown: 5
-  damage: 2
+  damage: 10
   element: 1
   distance: 7
   speed: 28
