@@ -6,7 +6,7 @@ public class AbilityManager : MonoBehaviour, IEffectable
 {
     EntityManager entityManager;
     UnityEngine.AI.NavMeshAgent navMeshAgent;
-    private float movementSpeed = 2f;
+   // private float movementSpeed = 2f;
     private Vector3 startPosition;      
     private float startingMovementSpeed;    // do not change
     private float currentMovementSpeed;     // adjustable

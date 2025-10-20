@@ -820,10 +820,23 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: entityMovement
+      value: 
+      objectReference: {fileID: 2139510330}
+    m_RemovedComponents:
+    - {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -836,6 +849,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2139510330}
+    - targetCorrespondingSourceObject: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2139510331}
   m_SourcePrefab: {fileID: 100100000, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
 --- !u!1 &1103931901 stripped
 GameObject:
@@ -1711,6 +1727,7 @@ MonoBehaviour:
   movementSpeed: 1
   jumpHeight: 1
   gravity: 10
+  extraJumps: 0
   attackCooldown: 0
   weaponDamage: 0
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
@@ -1821,6 +1838,7 @@ MonoBehaviour:
   movementSpeed: 1
   jumpHeight: 1
   gravity: 10
+  extraJumps: 0
   attackCooldown: 0
   weaponDamage: 0
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
@@ -1863,6 +1881,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2139510331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139510315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891a4cc8afbebf1428e48ae47df4be62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnHealthPack
+  healthPack: {fileID: 7900407561360032804, guid: 1136974112e701245be1b96d7f7ff093, type: 3}
 --- !u!1001 &1229921452990356106
 PrefabInstance:
   m_ObjectHideFlags: 0
