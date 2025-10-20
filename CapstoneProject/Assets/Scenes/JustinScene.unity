@@ -544,6 +544,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3098750437766999248, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
   m_PrefabInstance: {fileID: 1229921452990356106}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &501774962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5583875979716774749, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+  m_PrefabInstance: {fileID: 1229921452990356106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &501774966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501774962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
 --- !u!1 &540842957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1712,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5583875979716774749, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 501774966}
   m_SourcePrefab: {fileID: 100100000, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
 --- !u!4 &1229921452990356107 stripped
 Transform:

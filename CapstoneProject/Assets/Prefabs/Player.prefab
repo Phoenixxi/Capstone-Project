@@ -591,6 +591,7 @@ GameObject:
   - component: {fileID: 3164552382211843268}
   - component: {fileID: 3173847631704920462}
   - component: {fileID: 906674667207298780}
+  - component: {fileID: 1565344402046012324}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -692,6 +693,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1565344402046012324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5182977827765358829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
 --- !u!1 &5316081044738082790
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +827,7 @@ GameObject:
   - component: {fileID: 8059986241824267869}
   - component: {fileID: 23343305806486993}
   - component: {fileID: 5794985083641099209}
+  - component: {fileID: 6583331229439758005}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -915,6 +929,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6583331229439758005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5583875979716774749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
 --- !u!1 &6015150372348592777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,6 +1323,7 @@ GameObject:
   - component: {fileID: 436805946025078914}
   - component: {fileID: 5819876805274560735}
   - component: {fileID: 8565393368811770842}
+  - component: {fileID: 6593764800421659445}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -1398,3 +1425,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6593764800421659445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9198574925211434902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
