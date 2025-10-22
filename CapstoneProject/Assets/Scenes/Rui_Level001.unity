@@ -657,7 +657,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 101228375}
+  m_Mesh: {fileID: 1047066539}
 --- !u!33 &333654644
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -8565,6 +8565,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2384383547745438605, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 2641225968413369767, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -8719,12 +8723,12 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 13.858139
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
   m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 21.946, y: 16.002}
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
