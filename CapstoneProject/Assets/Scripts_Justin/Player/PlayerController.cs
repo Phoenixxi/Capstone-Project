@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject aimDirection;
     [SerializeField] private SwappingManager swappingManager;
     [SerializeField] private LayerMask aimLayerMask;
+    [SerializeField] public CheckpointController checkpointController;
     
     //[Header("Movement Settings")]
     //[SerializeField] private float movementSpeed = 1f;
@@ -202,7 +203,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateMouseAim();
-        //FOR TESTING PURPOSES, WILL BE REMOVED LATER
-        if (transform.position.y <= -10) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (transform.position.y <= -10) {
+            Vector3 location =  checkpointController.RecentCheckpointLocation();
+            transform.position = location;
+        }
     }
 }
