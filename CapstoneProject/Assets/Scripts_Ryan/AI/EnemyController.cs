@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
         {
             CombatState cs = (CombatState)CurrentState;
             if (cs.isAttacking) return;
-
+            
             ChangeUpdate(hoveringState);
             return;
         }
