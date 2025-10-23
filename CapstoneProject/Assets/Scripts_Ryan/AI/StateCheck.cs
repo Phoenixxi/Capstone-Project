@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Animations;
+using ElementType = lilGuysNamespace.EntityData.ElementType;
 
-public enum AIStateType { Combat, Chasing, Wandering, Hovering}
+public enum AIStateType { Combat, Chasing, Wandering, Hover }
 public static class StateCheck
 {
     private static LayerMask layerMask = LayerMask.GetMask("Walls", "Player");
@@ -54,4 +55,5 @@ public static class StateCheck
         }
         return false;
     }
+    
 }

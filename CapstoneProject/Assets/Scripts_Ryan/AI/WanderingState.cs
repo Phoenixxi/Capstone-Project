@@ -5,7 +5,14 @@ using UnityEngine.Animations;
 
 public class WanderingState : IState
 {
-    private float range = 3f;
+    private float range;
+    private bool hovering;
+
+    public WanderingState(float range = 3f, bool hovering = false)
+    {
+        this.range = range;
+        this.hovering = hovering;
+    }
     public void OnEnter(AIContext aIContext)
     {
 
@@ -19,13 +26,18 @@ public class WanderingState : IState
     public void UpdateAI(AIContext aIContext)
     {
         NavMeshAgent agent = aIContext.agent;
-        Transform EnemyTransform = aIContext.EnemyTransform;
+        Transform transform;
+        if(hovering)
+        {
+            transform = aIContext.PlayerTransform;
+        }
+        transform = aIContext.EnemyTransform;
         
         //check if the enemy AI is done with its previous pathing
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             Vector3 point;
-            if (RandomPoint(EnemyTransform.position, range, out point))
+            if (RandomPoint(transform.position, range, out point))
             {
                 agent.SetDestination(point);
             }
@@ -35,8 +47,8 @@ public class WanderingState : IState
     /// <summary>
     /// Picks a random point for the AI to go to
     /// </summary>
-    /// <param name="center">Enemy AI Position</param>
-    /// <param name="range">How far can the enemy AI go</param>
+    /// <param name="center">Center of the Circle (Can be something like player.position)</param>
+    /// <param name="range">How far can the enemy AI go within the circle (Radius of the circle)</param>
     /// <param name="result">The point to where the enemy AI will go to</param>
     /// <returns></returns>
     private bool RandomPoint(Vector3 center, float range, out Vector3 result)
