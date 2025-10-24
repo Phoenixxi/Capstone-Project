@@ -13,9 +13,11 @@ public class PlatformMoving : MonoBehaviour
     [SerializeField] private Ease ease;
     [Header("Set true to have the platform wait for the player \n to land on the platform before moving, \n Set false to have the platform continously \n loop through the points.")]
     [SerializeField] private bool WaitForPlayer;
+    private bool completedSequence;
 
     void Awake()
     {
+        completedSequence = false;
         transform.position = points[0];
     }
 
@@ -29,6 +31,7 @@ public class PlatformMoving : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
+        if (completedSequence) return;
         if (WaitForPlayer && other.gameObject.CompareTag("Player"))
         {
             Move(WaitForPlayer);
@@ -49,5 +52,6 @@ public class PlatformMoving : MonoBehaviour
         }
 
         Sequence.Play();
+        completedSequence = true;
     }
 }

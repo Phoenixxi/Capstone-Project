@@ -1266,7 +1266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: WaitForPlayer
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
+      propertyPath: points.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: points.Array.data[0].x
@@ -1282,6 +1286,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: points.Array.data[1].y
+      value: -1.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
+      propertyPath: points.Array.data[2].x
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
+      propertyPath: points.Array.data[2].y
       value: -1.89
       objectReference: {fileID: 0}
     m_RemovedComponents: []
