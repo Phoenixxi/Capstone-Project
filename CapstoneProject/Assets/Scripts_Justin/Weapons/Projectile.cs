@@ -55,9 +55,12 @@ public class Projectile : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(UnityEngine.Collider other)
     {
-        EntityManager hitEntity = collision.gameObject.GetComponent<EntityManager>();
+        Debug.Log($"Hit {other}", other);
+        EntityManager hitEntity = other.gameObject.GetComponent<EntityManager>();
+        if (hitEntity == null) hitEntity = other.gameObject.GetComponentInChildren<EntityManager>();
+        Debug.Log(hitEntity, hitEntity);
         if (hitEntity != null) {
             hitEntity.data = data;  //Sends the DOT data to entity's manager
             hitEntity.TakeDamage(damage, elementType);

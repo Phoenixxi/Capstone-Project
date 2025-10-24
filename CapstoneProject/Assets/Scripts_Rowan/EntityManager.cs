@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using System.Collections;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 using UnityEngine.AI;
+using System;
 
 public class EntityManager : MonoBehaviour
 {
@@ -48,12 +49,14 @@ public class EntityManager : MonoBehaviour
     // DESIGNERS: Adjust fields here
     private float dmgMultiplier = 2.0f;
 
+    public Action<float, float, ElementType> OnHealthUpdatedEvent;
+
     
     void Start()
     {
         // TEMPORARY- change back to maxHealth later
         currentHealth = maxHealth;
-        if(gameObject.CompareTag("Enemy"))
+        if (gameObject.CompareTag("Enemy"))
             currentHealth = 1;
         CreateWeapon();
         ability = GetComponent<Ability>();
@@ -210,6 +213,7 @@ public class EntityManager : MonoBehaviour
                 Reaction(element, damage);
             }
         }
+        if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
     }
 
     /// <summary>
@@ -298,6 +302,7 @@ public class EntityManager : MonoBehaviour
             currentHealth = maxHealth;
 
         Debug.Log("Entity healed. Current health: " + currentHealth);
+        if(OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
     }
 
     /// <summary>

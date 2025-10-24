@@ -35,7 +35,7 @@ public class RangedWeapon : Weapon
         projectileScript.SetProjectileElement(element);
         projectileScript.ChangeMoveDirection(attackDirection);
         lastAttackTime = Time.time;
-        Debug.Log("Projectile fired!");
+        //Debug.Log("Projectile fired!");
     }
 
     /// <summary>
