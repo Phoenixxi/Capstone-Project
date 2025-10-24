@@ -840,7 +840,7 @@ Transform:
   m_GameObject: {fileID: 865250238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: -1.13, z: 0}
+  m_LocalPosition: {x: 78.51, y: -1.13, z: 0}
   m_LocalScale: {x: 30.322783, y: 1, z: 11.847539}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1226,7 +1226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6042945545658009087, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22
+      value: 56.06
       objectReference: {fileID: 0}
     - target: {fileID: 6042945545658009087, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1265,12 +1265,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
+      propertyPath: duration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: WaitForPlayer
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
+      propertyPath: ease.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: points.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
+      propertyPath: 'ease.Array.data[0]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
+      propertyPath: 'ease.Array.data[1]'
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
+      propertyPath: 'ease.Array.data[2]'
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: points.Array.data[0].x
@@ -1290,7 +1310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: points.Array.data[2].x
-      value: 28
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 6093926011477453663, guid: 3d3563c588945a64e84772e819c3a278, type: 3}
       propertyPath: points.Array.data[2].y
@@ -1664,6 +1684,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7560839075110883680, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560839075110883680, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: projectile
       value: 
@@ -1752,6 +1780,14 @@ PrefabInstance:
     - target: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560839075110883680, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560839075110883680, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: attackCooldown
