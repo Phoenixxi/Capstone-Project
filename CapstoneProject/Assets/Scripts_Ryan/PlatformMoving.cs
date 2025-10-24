@@ -11,6 +11,8 @@ public class PlatformMoving : MonoBehaviour
     [SerializeField] private float duration;
     [Header("How the platforms will ease to a stop")]
     [SerializeField] private Ease ease;
+    [Header("Set true to have the platform wait for the player \n to land on the platform before moving, \n Set false to have the platform continously \n loop through the points.")]
+    [SerializeField] private bool WaitForPlayer;
 
     void Awake()
     {
@@ -19,10 +21,21 @@ public class PlatformMoving : MonoBehaviour
 
     void Start()
     {
-        Move();
+        if (!WaitForPlayer)
+        {
+            Move(WaitForPlayer);
+        }
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (WaitForPlayer && other.gameObject.CompareTag("Player"))
+        {
+            Move(WaitForPlayer);
+        }
     }
 
-    private void Move()
+    private void Move(bool wait)
     {
         var Sequence = DOTween.Sequence();
         for (int i = 1; i < points.Count; i++)
@@ -30,7 +43,10 @@ public class PlatformMoving : MonoBehaviour
             Sequence.Append(transform.DOMove(points[i], duration).SetEase(ease));
         }
 
-        Sequence.SetLoops(-1, LoopType.Yoyo);
+        if(!wait)
+        {
+            Sequence.SetLoops(-1, LoopType.Yoyo);
+        }
 
         Sequence.Play();
     }
