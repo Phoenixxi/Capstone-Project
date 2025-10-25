@@ -27,6 +27,11 @@ public class PlayerHealthBar : MonoBehaviour
         }
     }
     */
+    private void Start()
+    {
+        maxhp = entityManager.maxHealth;
+    }
+
     private void Update()
     {
         lerpTime = 2f * Time.deltaTime;
@@ -41,7 +46,8 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void updateHPFill()
     {
-        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, hp / maxhp, lerpTime);
+        //healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, hp / maxhp, lerpTime);
+        healthBar.fillAmount = hp / maxhp;
     }
 
     private void updateColor()
