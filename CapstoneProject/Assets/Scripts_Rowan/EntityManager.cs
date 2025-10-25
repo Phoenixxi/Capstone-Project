@@ -56,8 +56,8 @@ public class EntityManager : MonoBehaviour
     {
         // TEMPORARY- change back to maxHealth later
         currentHealth = maxHealth;
-        if (gameObject.CompareTag("Enemy"))
-            currentHealth = 1;
+        //if (gameObject.CompareTag("Enemy"))
+        //    currentHealth = 1;
         CreateWeapon();
         ability = GetComponent<Ability>();
         movementQueue = new Queue<AbilityMovement>();
@@ -230,11 +230,13 @@ public class EntityManager : MonoBehaviour
             SpawnHealthPack spawnPack = GetComponent<SpawnHealthPack>();
             spawnPack.Spawn(gameObject.transform.position);
         }
-        
 
-        Destroy(gameObject); // I dont think we want to destroy the player.....
-        if(this.gameObject.CompareTag("Player"))
+
+        if (this.gameObject.CompareTag("Player"))
+        {
             swappingManager.PlayerHasDied(gameObject);
+        }
+        else Destroy(gameObject); // I dont think we want to destroy the player.....
     }
 
 

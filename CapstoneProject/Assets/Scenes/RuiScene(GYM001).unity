@@ -9680,38 +9680,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2384383547745438605, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 2048
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641225968413369767, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: c0bad065316fc244e8e20cdd2f102713, type: 2}
     - target: {fileID: 3301841785260470896, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: damage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3301841785260470896, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: cooldown
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3968515568990736517, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 2020190214}
     - target: {fileID: 4069364185334456115, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: weaponDamage
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070096453353980523, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
       objectReference: {fileID: 132180985}
     - target: {fileID: 4070096453353980523, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: aimLayerMask.m_Bits
-      value: 2112
-      objectReference: {fileID: 0}
+      propertyPath: swappingManager
+      value: 
+      objectReference: {fileID: 132180985}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7
@@ -9764,29 +9748,22 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 2020190214}
-    - target: {fileID: 5715871584184851188, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: weaponDamage
-      value: 20
+      propertyPath: swappingManager
+      value: 
+      objectReference: {fileID: 132180985}
+    - target: {fileID: 7478264160224895753, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: damage
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: weaponDamage
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 9036532490687551659, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: swappingManager
       value: 
-      objectReference: {fileID: 2100000, guid: 1fc60b0e59d1e93469922993d01e6ffb, type: 2}
+      objectReference: {fileID: 132180985}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5316081044738082790, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1413218844}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
 --- !u!1 &1413218840 stripped
 GameObject:
@@ -9803,31 +9780,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3098750437766999248, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
   m_PrefabInstance: {fileID: 1413218839}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1413218843 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5316081044738082790, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
-  m_PrefabInstance: {fileID: 1413218839}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1413218844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413218843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
-  m_SerializedVersion: 0
-  m_OverrideArea: 0
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 1
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1 &1414114830
 GameObject:
   m_ObjectHideFlags: 0
@@ -10078,10 +10030,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1546088528434446018, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2113378421503788461, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.439884
@@ -10122,10 +10070,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5354003654482808148, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -10136,18 +10080,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7560839075110883680, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8085114813116020661, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8085114813116020661, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8085114813116020661, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

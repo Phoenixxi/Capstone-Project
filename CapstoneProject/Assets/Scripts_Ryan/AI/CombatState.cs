@@ -26,7 +26,7 @@ public class CombatState : IState
 
         isAttacking = true; //lock the enemy in attack state
         entityManager.Attack(EnemyTransform.forward, EnemyTransform.position); //call attack
-        Debug.Log("CombatState Attacking");
+        //Debug.Log("CombatState Attacking");
         isAttacking = false; //unlock the enemy from attack state
     }
 }

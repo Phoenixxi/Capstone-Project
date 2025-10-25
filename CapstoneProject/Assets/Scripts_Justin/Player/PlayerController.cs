@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public void Start()
     {
         charactersListPC = swappingManager.charactersList;
+        swappingManager.SwapCharacterEvent += OnCharacterSwap;
     }
 
     private void Awake()
@@ -40,6 +41,17 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<CharacterController>();
         playerCamera = FindFirstObjectByType<Camera>();
         currentCharacter = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
+    }
+
+    private void OnEnable()
+    {
+        swappingManager.SwapCharacterEvent -= OnCharacterSwap;
+        swappingManager.SwapCharacterEvent += OnCharacterSwap;
+    }
+
+    private void OnDisable()
+    {
+        swappingManager.SwapCharacterEvent -= OnCharacterSwap;
     }
 
     public void HealAllCharacters(float healAmount)
@@ -113,6 +125,26 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// Triggers when the swapping manager forces the player to swap (likely after death)
+    /// </summary>
+    /// <param name="characterNum">The character number to swap to</param>
+    private void OnCharacterSwap(int characterNum)
+    {
+        switch(characterNum)
+        {
+            case 1:
+                OnSwapCharacter1();
+                break;
+            case 2:
+                OnSwapCharacter2();
+                break;
+            case 3:
+                OnSwapCharacter3();
+                break;
+        }
+    }
+
+    /// <summary>
     /// Triggers when the character 1 (Zoom) hotkey is pressed
     /// </summary>
     private void OnSwapCharacter1()
@@ -144,7 +176,7 @@ public class PlayerController : MonoBehaviour
     /// Triggers when the character 2 (Boom) hotkey is pressed
     /// </summary>
     /// <param name="input"></param>
-    private void OnSwapCharacter2(InputValue input)
+    private void OnSwapCharacter2()
     {
         if (currentCharacter.AbilityInUse()) return;
         // Check if character is alive
@@ -172,7 +204,7 @@ public class PlayerController : MonoBehaviour
     /// Triggers when the character 3 (Gloom) hotkey is pressed
     /// </summary>
     /// <param name="input"></param>
-    private void OnSwapCharacter3(InputValue input)
+    private void OnSwapCharacter3()
     {
         if (currentCharacter.AbilityInUse()) return;
         GameObject gloom = charactersListPC[2];

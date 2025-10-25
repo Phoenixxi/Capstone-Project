@@ -45,6 +45,7 @@ public class GroundPoundAbility : Ability
                     if (enemy == null) continue;
                     enemy.TakeDamage(damage, element);
                 }
+                currentCooldown = cooldown;
             }
         }
     }

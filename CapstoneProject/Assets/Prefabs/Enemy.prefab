@@ -619,6 +619,7 @@ GameObject:
   - component: {fileID: 5053508518923957891}
   - component: {fileID: 5192659738883732383}
   - component: {fileID: 1021343216094007474}
+  - component: {fileID: 7721774693254816096}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
@@ -714,7 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityManager
   entityName: AI Enemy
   maxHealth: 100
-  defaultElement: 2
+  defaultElement: 0
   taggedElement: 0
   swappingManager: {fileID: 0}
   entityMovement: {fileID: 5192659738883732383}
@@ -726,8 +727,8 @@ MonoBehaviour:
   gravity: 10
   extraJumps: 0
   attackCooldown: 1
-  weaponDamage: 0
-  projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
+  weaponDamage: 10
+  projectile: {fileID: 1261911922668259766, guid: 4bc40664c52c7214bacf434f48890942, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
 --- !u!114 &5053508518923957891
@@ -825,6 +826,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7721774693254816096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543563098658516984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891a4cc8afbebf1428e48ae47df4be62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnHealthPack
+  healthPack: {fileID: 7900407561360032804, guid: 1136974112e701245be1b96d7f7ff093, type: 3}
+  healthPackChance: 25
 --- !u!1 &7785730262722911322
 GameObject:
   m_ObjectHideFlags: 0

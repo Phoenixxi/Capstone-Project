@@ -132,7 +132,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 1fc60b0e59d1e93469922993d01e6ffb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 7478264160224895753}
   m_Layer: 10
   m_Name: Boom
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   gravity: 25
   extraJumps: 1
   attackCooldown: 0.33
-  weaponDamage: 2
+  weaponDamage: 20
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 3301841785260470896}
   m_Layer: 10
   m_Name: Zoom
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,7 +353,7 @@ MonoBehaviour:
   gravity: 25
   extraJumps: 0
   attackCooldown: 0.33
-  weaponDamage: 2
+  weaponDamage: 20
   projectile: {fileID: 0}
   meleeHurtbox: {fileID: 7404555418333511468}
   hurtboxActivationTime: 0.2
@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 3968515568990736517}
   m_Layer: 10
   m_Name: Gloom
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -534,7 +534,7 @@ MonoBehaviour:
   gravity: 25
   extraJumps: 0
   attackCooldown: 0.33
-  weaponDamage: 2
+  weaponDamage: 20
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
@@ -689,6 +689,7 @@ GameObject:
   - component: {fileID: 5558704475774033969}
   - component: {fileID: 4070096453353980523}
   - component: {fileID: 2384383547745438605}
+  - component: {fileID: 2027696141315316360}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -762,7 +763,7 @@ MonoBehaviour:
   swappingManager: {fileID: 0}
   aimLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2112
   checkpointController: {fileID: 0}
 --- !u!143 &2384383547745438605
 CharacterController:
@@ -777,7 +778,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -789,6 +790,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.46, z: 0}
+--- !u!114 &2027696141315316360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5316081044738082790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
+  m_SerializedVersion: 0
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &5583875979716774749
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +822,7 @@ GameObject:
   - component: {fileID: 23343305806486993}
   - component: {fileID: 5794985083641099209}
   - component: {fileID: 6583331229439758005}
+  - component: {fileID: 5080091467064295336}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -914,6 +936,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+--- !u!114 &5080091467064295336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5583875979716774749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
 --- !u!1 &6015150372348592777
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +1014,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: c0bad065316fc244e8e20cdd2f102713, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

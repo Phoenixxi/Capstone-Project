@@ -1,11 +1,14 @@
 using UnityEngine;
 using lilGuysNamespace;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using System;
 
 public class SwappingManager : MonoBehaviour
 {
     [SerializeField] public List<GameObject> charactersList;
     public string currentCharacter;
+    public Action<int> SwapCharacterEvent;
 
     void Start()
     {
@@ -31,23 +34,22 @@ public class SwappingManager : MonoBehaviour
 
     public void PlayerHasDied(GameObject self)
     {
-        foreach(GameObject character in charactersList)
+        Debug.Log($"{self} has died", self);
+        for(int i = 0; i < charactersList.Count; i++)
         {
-            if(character != self && character.GetComponent<EntityManager>().isAlive)
+            if(charactersList[i] != self && charactersList[i].GetComponent<EntityManager>().isAlive)
             {
-                Debug.Log("Swapping to: " + character.name);
-                Transform currentLocation = self.transform;
-                character.transform.position = currentLocation.position;
-                character.SetActive(true);
-                self.SetActive(false);
-                return;
-            }
-            else // If all characters are dead
-            {
-                Debug.Log("All characters are dead.");
+                Debug.Log("Swapping to: " + charactersList[i].name);
+                //Transform currentLocation = self.transform;
+                //character.transform.position = currentLocation.position;
+                //character.SetActive(true);
+                //self.SetActive(false);
+                if (SwapCharacterEvent != null) SwapCharacterEvent(i + 1);
                 return;
             }
         }
+        Debug.Log("All characters are dead.");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }
