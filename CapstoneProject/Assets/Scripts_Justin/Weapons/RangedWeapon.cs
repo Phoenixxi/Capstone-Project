@@ -21,7 +21,7 @@ public class RangedWeapon : Weapon
     public override void Attack()
     {
         if (!hasCooldownExpired()) return;
-        Vector3 projectileSpawnOffset = attackDirection * 2f;
+        Vector3 projectileSpawnOffset = attackDirection * 0f;
         Vector3 projectileSpawnPosition = currentLocation + projectileSpawnOffset;
         projectileScript = GameObject.Instantiate(projectile, projectileSpawnPosition, Quaternion.identity).GetComponent<Projectile>();
 
