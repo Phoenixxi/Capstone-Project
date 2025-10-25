@@ -212,7 +212,7 @@ MonoBehaviour:
   currentHealth: 0
   isAlive: 1
   data: {fileID: 0}
-  movementSpeed: 5
+  movementSpeed: 7.5
   jumpHeight: 2
   gravity: 25
   extraJumps: 1
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundPoundAbility
   cooldown: 8
-  damage: 25
+  damage: 50
   element: 2
   entity: {fileID: 2384383547745438605}
   fallSpeed: 25
@@ -348,7 +348,7 @@ MonoBehaviour:
   currentHealth: 0
   isAlive: 1
   data: {fileID: 0}
-  movementSpeed: 5
+  movementSpeed: 7.5
   jumpHeight: 2
   gravity: 25
   extraJumps: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashAbility
   cooldown: 5
-  damage: 10
+  damage: 30
   element: 1
   distance: 7
   speed: 28
@@ -529,7 +529,7 @@ MonoBehaviour:
   currentHealth: 0
   isAlive: 1
   data: {fileID: 0}
-  movementSpeed: 5
+  movementSpeed: 7.5
   jumpHeight: 2
   gravity: 25
   extraJumps: 0

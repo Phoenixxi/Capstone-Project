@@ -236,8 +236,14 @@ public class PlayerController : MonoBehaviour
     {
         UpdateMouseAim();
         if (transform.position.y <= -10) {
-            Vector3 location =  checkpointController.RecentCheckpointLocation();
-            transform.position = location;
+            if(checkpointController != null)
+            {
+                Vector3 location = checkpointController.RecentCheckpointLocation();
+                transform.position = location;
+            } else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 }

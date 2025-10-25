@@ -103,7 +103,7 @@ public class AbilityManager : MonoBehaviour, IEffectable
         if(data.DOTAmount != 0 && currentEffectTime > lastTickTime)
         {
             lastTickTime += data.tickSpeed;
-            entityManager.TakeDamage(data.DOTAmount);
+            entityManager.TakeDamage(data.DOTAmount, EntityData.ElementType.Normal);
         }
     }
 
