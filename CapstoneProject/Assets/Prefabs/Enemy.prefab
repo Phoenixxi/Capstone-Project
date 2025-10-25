@@ -685,7 +685,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &6001685213739500416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e083ef273799f44befc0f38f813eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  AttackRange: 0
+  AttackRange: 4
   LineOfSightRange: 0
 --- !u!114 &8039355975360593558
 MonoBehaviour:
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityManager
   entityName: AI Enemy
   maxHealth: 100
-  defaultElement: 0
+  defaultElement: 2
   taggedElement: 0
   swappingManager: {fileID: 0}
   entityMovement: {fileID: 5192659738883732383}
@@ -725,7 +725,7 @@ MonoBehaviour:
   jumpHeight: 1
   gravity: 10
   extraJumps: 0
-  attackCooldown: 0
+  attackCooldown: 1
   weaponDamage: 0
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
