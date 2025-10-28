@@ -1,4 +1,6 @@
+
 using NUnit.Framework;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CombatState : IState
@@ -20,13 +22,27 @@ public class CombatState : IState
         EntityManager entityManager = aIContext.entityManagerEnemy;
         Transform EnemyTransform = aIContext.EnemyTransform;
         Transform PlayerTransform = aIContext.PlayerTransform;
+        Vector3 direction = EnemyTransform.forward;
 
         //make the enemy look at the player
-        EnemyTransform.LookAt(PlayerTransform);
+        if (aIContext.DistanceToPlayer > 0.5f)
+        {
+            direction = (PlayerTransform.position - EnemyTransform.position).normalized;
+            direction.y = 0;
 
-        isAttacking = true; //lock the enemy in attack state
-        entityManager.Attack(EnemyTransform.forward, EnemyTransform.position); //call attack
-        //Debug.Log("CombatState Attacking");
-        isAttacking = false; //unlock the enemy from attack state
+            if (direction.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                EnemyTransform.rotation = Quaternion.Slerp(EnemyTransform.rotation, targetRotation, Time.deltaTime * 5f);
+            }
+        }
+
+        if (!isAttacking)
+        {
+            isAttacking = true; //lock the enemy in attack state
+            entityManager.Attack(direction, EnemyTransform.position); //call attack
+            //Debug.Log("CombatState Attacking");
+            isAttacking = false; //unlock the enemy from attack state
+        }
     }
 }
