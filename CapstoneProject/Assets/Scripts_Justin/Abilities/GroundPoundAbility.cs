@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Ground pound ability that slams the entity down and damages enemies in a distance around the impact area
+/// </summary>
 public class GroundPoundAbility : Ability
 {
     [Header("Ground Pound Ability Settings")]
