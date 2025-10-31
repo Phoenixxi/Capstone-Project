@@ -49,6 +49,10 @@ public class EntityManager : MonoBehaviour
     // DESIGNERS: Adjust fields here
     private float dmgMultiplier = 2.0f;
 
+    // VFX info
+    private GameObject currentVFXInstance;
+    private Transform vfxAnchor;
+
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
     
@@ -66,6 +70,15 @@ public class EntityManager : MonoBehaviour
         if (defaultElement != ElementType.Normal) 
             taggedElement = defaultElement;
         if (GetComponent<NavMeshAgent>() != null) usesNavAgent = true;
+    }
+
+    void Awake()
+    {
+        if (gameObject.CompareTag("Enemy"))
+        {
+            vfxAnchor = transform.Find("VFXanchor");
+        }
+
     }
 
     private void CreateWeapon()
@@ -163,6 +176,33 @@ public class EntityManager : MonoBehaviour
         } else
         {
             Debug.LogError("No ability assigned; make sure an ability script has been attatched to this game object");
+        }
+    }
+
+    private void ApplyVFX(ElementType element)
+    {
+        ClearVFX();
+        if (element == ElementType.Zoom)
+        {
+            currentVFXInstance = Instantiate(Resources.Load<GameObject>("VFX_ElemAffected_ZoomTEMP"), vfxAnchor.position, Quaternion.identity, vfxAnchor);
+        }
+        else if (element == ElementType.Boom)
+        {
+            currentVFXInstance = Instantiate(Resources.Load<GameObject>("VFX_ElemAffected_BoomTEMP"), vfxAnchor.position, Quaternion.identity, vfxAnchor);
+        }
+        else if (element == ElementType.Gloom)
+        {
+            currentVFXInstance = Instantiate(Resources.Load<GameObject>("VFX_ElemAffected_GloomTEMP"), vfxAnchor.position, Quaternion.identity, vfxAnchor);
+        }
+
+    }
+
+    private void ClearVFX()
+    {
+        if (currentVFXInstance != null)
+        {
+            Destroy(currentVFXInstance);
+            currentVFXInstance = null;
         }
     }
 
