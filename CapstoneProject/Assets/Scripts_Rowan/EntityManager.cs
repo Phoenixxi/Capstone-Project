@@ -52,6 +52,9 @@ public class EntityManager : MonoBehaviour
     // VFX info
     private GameObject currentVFXInstance;
     private Transform vfxAnchor;
+    [SerializeField] private GameObject zoomVFXPrefab;
+    [SerializeField] private GameObject boomVFXPrefab;
+    [SerializeField] private GameObject gloomVFXPrefab;
 
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
@@ -184,15 +187,15 @@ public class EntityManager : MonoBehaviour
         ClearVFX();
         if (element == ElementType.Zoom)
         {
-            currentVFXInstance = Instantiate(Resources.Load<GameObject>("VFX_ElemAffected_ZoomTEMP"), vfxAnchor.position, Quaternion.identity, vfxAnchor);
+            currentVFXInstance = Instantiate(zoomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
         else if (element == ElementType.Boom)
         {
-            currentVFXInstance = Instantiate(Resources.Load<GameObject>("VFX_ElemAffected_BoomTEMP"), vfxAnchor.position, Quaternion.identity, vfxAnchor);
+            currentVFXInstance = Instantiate(boomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
         else if (element == ElementType.Gloom)
         {
-            currentVFXInstance = Instantiate(Resources.Load<GameObject>("VFX_ElemAffected_GloomTEMP"), vfxAnchor.position, Quaternion.identity, vfxAnchor);
+            currentVFXInstance = Instantiate(gloomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
 
     }
@@ -247,6 +250,8 @@ public class EntityManager : MonoBehaviour
             {
                 taggedElement = element;
                 currentHealth = newHealth;
+                if (gameObject.CompareTag("Enemy"))
+                    ApplyVFX(element);
             }
             else    // entity is already tagged and they were hit with different element, start a reaction
             {
@@ -277,12 +282,6 @@ public class EntityManager : MonoBehaviour
             swappingManager.PlayerHasDied(gameObject);
         }
         else Destroy(gameObject); // I dont think we want to destroy the player.....
-    }
-
-
-    private void DropHealthPack()
-    {
-
     }
 
     /// <summary>
@@ -333,7 +332,8 @@ public class EntityManager : MonoBehaviour
             }
         }
 
-        
+        if (gameObject.CompareTag("Enemy"))
+        ClearVFX();
 
     } 
 

@@ -9,12 +9,21 @@ public class GroundPoundAbility : Ability
     [SerializeField] private float slamRadius;
     [SerializeField] private float coyoteTime;
     [SerializeField] private LayerMask slamLayerMask;
+    [SerializeField] private GameObject boomVFXPrefab;
     private float currentCoyoteTime;
+
+    //VFX
+    private float duration = 1f;
+    private GameObject vfxInstance;
 
 
     public override AbilityMovement[] UseAbility(Vector2 horizontalDirection)
     {
         if (currentCooldown > 0f || abilityInUse || entity.isGrounded) return Array.Empty<AbilityMovement>();
+        //VFX
+        vfxInstance = Instantiate(boomVFXPrefab, transform.position, Quaternion.identity);
+        StartCoroutine(RemoveAfterDuration(duration));
+
         abilityInUse = true;
         currentCoyoteTime = 0f;
         movements[0] = new AbilityMovement(Vector3.zero);
@@ -59,6 +68,23 @@ public class GroundPoundAbility : Ability
     protected override void Awake()
     {
         base.Awake();
+        if(boomVFXPrefab == null)
+            Debug.LogError("Boom VFX Prefab is not assigned in the inspector for Boom > GroundPoundAbility");
         movements = new AbilityMovement[2];
+    }
+
+    private System.Collections.IEnumerator RemoveAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ClearVFX();
+    }
+
+    private void ClearVFX()
+    {
+        if (vfxInstance != null)
+        {
+            Destroy(vfxInstance);
+            vfxInstance = null;
+        }
     }
 }
