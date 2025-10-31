@@ -221,6 +221,9 @@ MonoBehaviour:
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  zoomVFXPrefab: {fileID: 0}
+  boomVFXPrefab: {fileID: 0}
+  gloomVFXPrefab: {fileID: 0}
 --- !u!114 &5377437969833900074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +260,7 @@ MonoBehaviour:
   slamLayerMask:
     serializedVersion: 2
     m_Bits: 2048
+  boomVFXPrefab: {fileID: 0}
 --- !u!1 &2838086303824349459
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +361,9 @@ MonoBehaviour:
   projectile: {fileID: 0}
   meleeHurtbox: {fileID: 7404555418333511468}
   hurtboxActivationTime: 0.2
+  zoomVFXPrefab: {fileID: 0}
+  boomVFXPrefab: {fileID: 0}
+  gloomVFXPrefab: {fileID: 0}
 --- !u!114 &5105736751404034660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +400,7 @@ MonoBehaviour:
   dashPhasingLayers:
     serializedVersion: 2
     m_Bits: 2048
+  zoomVFXPrefab: {fileID: 0}
 --- !u!1 &3153298784655456344
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +547,9 @@ MonoBehaviour:
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  zoomVFXPrefab: {fileID: 0}
+  boomVFXPrefab: {fileID: 0}
+  gloomVFXPrefab: {fileID: 0}
 --- !u!114 &3968515568990736517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,13 +576,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a654bf0e9db944ba85a5dd0cacef36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuffZoneAbility
-  cooldown: 0
+  cooldown: 15
   damage: 5
   element: 3
   buffZonePrefab: {fileID: 408079023155133850, guid: 38f39e8b5ba4fed42afee22c1cbe220a, type: 3}
-  radius: 5
+  radius: 10
   duration: 10
-  damageRate: 0.1
+  damageRate: 0.5
 --- !u!1 &5182977827765358829
 GameObject:
   m_ObjectHideFlags: 0

@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: weaponDamage
@@ -1883,6 +1883,14 @@ PrefabInstance:
       propertyPath: swappingManager
       value: 
       objectReference: {fileID: 769566055}
+    - target: {fileID: 4328091491385667142, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328091491385667142, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: damageRate
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

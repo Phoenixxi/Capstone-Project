@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 
@@ -16,6 +18,7 @@ public class BuffZone : MonoBehaviour
     private int damage;
     private ElementType element = ElementType.Normal;
     private bool hasTimerStarted = false;
+    private Dictionary<GameObject, IEnumerator> enemies;
     //TODO Implement buffing feature
     
     public void SetDamage(int damage)
@@ -46,6 +49,11 @@ public class BuffZone : MonoBehaviour
     }
 
 
+    private void Awake()
+    {
+        enemies = new Dictionary<GameObject, IEnumerator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -53,6 +61,41 @@ public class BuffZone : MonoBehaviour
         {
             currentTimer += Time.deltaTime;
             if (currentTimer >= duration) Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator DamageEnemyCoroutine(EntityManager enemy)
+    {
+        Debug.Log("Damage coroutine started");
+        while(enemy != null && enemies.ContainsKey(enemy.gameObject))
+        {
+            yield return new WaitForSeconds(damageRate);
+            enemy.TakeDamage(damage, element);
+        }
+        Debug.Log("Damage coroutine ended");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject entity = other.gameObject;
+        if(entity.tag == "Enemy")
+        {
+            if(!enemies.ContainsKey(entity))
+            {
+                EntityManager enemy = entity.GetComponent<EntityManager>();
+                IEnumerator damageCoroutine = DamageEnemyCoroutine(enemy);
+                enemies.Add(entity, damageCoroutine);
+                StartCoroutine(damageCoroutine);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        GameObject entity = other.gameObject;
+        if(entity.tag == "Enemy")
+        {
+            if (enemies.ContainsKey(entity)) enemies.Remove(entity);
         }
     }
 }
