@@ -243,7 +243,7 @@ public class EntityManager : MonoBehaviour
             EntityHasDied();
             return;
         }
-        else
+        else if(element != ElementType.Normal)
         {
              //If entity is not tagged or if they are hit with their same element
             if (taggedElement == ElementType.Normal || taggedElement == element)  
