@@ -12,13 +12,21 @@ public class DashAbility : Ability
     [SerializeField] private Hurtbox dashHurtbox;
     [SerializeField] private Collider entityCollision;
     [SerializeField] private LayerMask dashPhasingLayers;
+    [SerializeField] private GameObject zoomVFXPrefab;
 
     private float currentDashTimer;
     private float dashTimer;
 
+    private float duration = 1f;
+    private GameObject vfxInstance;
+
     public override AbilityMovement[] UseAbility(Vector2 horizontalDirection)
     {
         if (currentCooldown > 0f || abilityInUse) return Array.Empty<AbilityMovement>();
+        // VFX
+        vfxInstance = Instantiate(zoomVFXPrefab, transform.position, Quaternion.identity);
+        StartCoroutine(RemoveAfterDuration(duration));
+
         abilityInUse = true;
         dashHurtbox.Activate(dashTimer);
         Vector3 movementVector;
@@ -32,6 +40,9 @@ public class DashAbility : Ability
     protected override void Awake()
     {
         base.Awake();
+        if(zoomVFXPrefab == null)
+            Debug.LogError("Zoom VFX Prefab is not assigned in the inspector for Zoom > DashAbility");
+        
         movements = new AbilityMovement[1];
         currentDashTimer = 0f;
         dashTimer = distance / speed;
@@ -49,6 +60,21 @@ public class DashAbility : Ability
             abilityInUse = false;
             entityCollision.excludeLayers -= dashPhasingLayers;
             currentCooldown = cooldown;
+        }
+    }
+
+    private System.Collections.IEnumerator RemoveAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ClearVFX();
+    }
+
+    private void ClearVFX()
+    {
+        if (vfxInstance != null)
+        {
+            Destroy(vfxInstance);
+            vfxInstance = null;
         }
     }
 }

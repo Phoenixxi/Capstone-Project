@@ -49,6 +49,13 @@ public class EntityManager : MonoBehaviour
     // DESIGNERS: Adjust fields here
     private float dmgMultiplier = 2.0f;
 
+    // VFX info
+    private GameObject currentVFXInstance;
+    private Transform vfxAnchor;
+    [SerializeField] private GameObject zoomVFXPrefab;
+    [SerializeField] private GameObject boomVFXPrefab;
+    [SerializeField] private GameObject gloomVFXPrefab;
+
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
     
@@ -66,6 +73,15 @@ public class EntityManager : MonoBehaviour
         if (defaultElement != ElementType.Normal) 
             taggedElement = defaultElement;
         if (GetComponent<NavMeshAgent>() != null) usesNavAgent = true;
+    }
+
+    void Awake()
+    {
+        if (gameObject.CompareTag("Enemy"))
+        {
+            vfxAnchor = transform.Find("VFXanchor");
+        }
+
     }
 
     private void CreateWeapon()
@@ -166,6 +182,33 @@ public class EntityManager : MonoBehaviour
         }
     }
 
+    private void ApplyVFX(ElementType element)
+    {
+        ClearVFX();
+        if (element == ElementType.Zoom)
+        {
+            currentVFXInstance = Instantiate(zoomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+        }
+        else if (element == ElementType.Boom)
+        {
+            currentVFXInstance = Instantiate(boomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+        }
+        else if (element == ElementType.Gloom)
+        {
+            currentVFXInstance = Instantiate(gloomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+        }
+
+    }
+
+    private void ClearVFX()
+    {
+        if (currentVFXInstance != null)
+        {
+            Destroy(currentVFXInstance);
+            currentVFXInstance = null;
+        }
+    }
+
 
     // TODO: Get rid of this method instance (referenced in PlayerController.TakeDamageWrapper())
     public void TakeDamage(float damage)
@@ -207,6 +250,8 @@ public class EntityManager : MonoBehaviour
             {
                 taggedElement = element;
                 currentHealth = newHealth;
+                if (gameObject.CompareTag("Enemy"))
+                    ApplyVFX(element);
             }
             else    // entity is already tagged and they were hit with different element, start a reaction
             {
@@ -237,12 +282,6 @@ public class EntityManager : MonoBehaviour
             swappingManager.PlayerHasDied(gameObject);
         }
         else Destroy(gameObject); // I dont think we want to destroy the player.....
-    }
-
-
-    private void DropHealthPack()
-    {
-
     }
 
     /// <summary>
@@ -293,7 +332,8 @@ public class EntityManager : MonoBehaviour
             }
         }
 
-        
+        if (gameObject.CompareTag("Enemy"))
+        ClearVFX();
 
     } 
 
