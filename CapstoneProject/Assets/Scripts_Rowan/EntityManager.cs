@@ -26,6 +26,7 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private float gravity = 10f;
     [SerializeField] private int extraJumps = 0;
     private int currentExtraJumps;
+    public Animator animator;
 
     [Header("Universal Weapon Settings")]
     [SerializeField] private float attackCooldown;
@@ -98,8 +99,13 @@ public class EntityManager : MonoBehaviour
     private void HandleDefaultMovement()
     {
         if (usesNavAgent) return;
-        if (entityMovement.isGrounded && movementVelocity.y < 0) movementVelocity.y = -2f;
+        if (entityMovement.isGrounded && movementVelocity.y < 0) 
+            movementVelocity.y = -2f;
         movementVelocity.y -= gravity * Time.deltaTime;
+        animator.SetFloat("Speed", movementVelocity.magnitude);
+        animator.SetFloat("JumpVelocity", movementVelocity.y);
+        animator.SetBool("isJumpingUp", movementVelocity.y > 0);
+        animator.SetBool("isJumpingDown", movementVelocity.y < -2.1);
         entityMovement.Move(movementVelocity * Time.deltaTime);
     }
 
