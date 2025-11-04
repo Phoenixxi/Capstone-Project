@@ -26,8 +26,11 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private float gravity = 10f;
     [SerializeField] private int extraJumps = 0;
     private int currentExtraJumps;
+
+    [Header("Animation")]
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    public SpriteRenderer attackOverlayRenderer;
 
     [Header("Universal Weapon Settings")]
     [SerializeField] private float attackCooldown;
@@ -107,7 +110,7 @@ public class EntityManager : MonoBehaviour
         animator.SetFloat("Speed", movementVelocity.magnitude);
         animator.SetFloat("JumpVelocity", movementVelocity.y);
         animator.SetBool("isJumpingUp", movementVelocity.y > 0);
-        animator.SetBool("isJumpingDown", movementVelocity.y < -2.1);
+        animator.SetBool("isJumpingDown", movementVelocity.y < -2.1f);
         spriteRenderer.flipX = movementVelocity.x < 0f;
         entityMovement.Move(movementVelocity * Time.deltaTime);
     }
