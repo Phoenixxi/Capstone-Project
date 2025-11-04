@@ -365,7 +365,10 @@ public class EntityManager : MonoBehaviour
     {
         if (AbilityInUse()) return;
         if (weapon is RangedWeapon) (weapon as RangedWeapon).UpdateWeaponTransform(attackDirection, entityPosition);
-        weapon.Attack();
+        {
+            weapon.Attack();
+            animator.SetTrigger("Shoot");
+        }
     }
 
     /// <summary>
