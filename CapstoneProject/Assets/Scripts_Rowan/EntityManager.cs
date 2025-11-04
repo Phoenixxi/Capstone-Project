@@ -27,6 +27,7 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private int extraJumps = 0;
     private int currentExtraJumps;
     public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
     [Header("Universal Weapon Settings")]
     [SerializeField] private float attackCooldown;
@@ -64,6 +65,7 @@ public class EntityManager : MonoBehaviour
     {
         // TEMPORARY- change back to maxHealth later
         currentHealth = maxHealth;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         //if (gameObject.CompareTag("Enemy"))
         //    currentHealth = 1;
         CreateWeapon();
@@ -106,6 +108,7 @@ public class EntityManager : MonoBehaviour
         animator.SetFloat("JumpVelocity", movementVelocity.y);
         animator.SetBool("isJumpingUp", movementVelocity.y > 0);
         animator.SetBool("isJumpingDown", movementVelocity.y < -2.1);
+        spriteRenderer.flipX = movementVelocity.x < 0f;
         entityMovement.Move(movementVelocity * Time.deltaTime);
     }
 
