@@ -30,7 +30,6 @@ public class EntityManager : MonoBehaviour
     [Header("Animation")]
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-    public SpriteRenderer attackOverlayRenderer;
 
     [Header("Universal Weapon Settings")]
     [SerializeField] private float attackCooldown;
