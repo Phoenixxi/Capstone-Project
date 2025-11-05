@@ -703,7 +703,7 @@ Transform:
   m_GameObject: {fileID: 540842957}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 24.108, y: 7.1771116, z: 5.617747}
+  m_LocalPosition: {x: 24.108, y: 6.5230007, z: 5.6177464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -837,7 +837,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
     - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: boomElementVFX
+      value: 
+      objectReference: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
+    - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: gloomVFXPrefab
+      value: 
+      objectReference: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
+    - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: zoomElementVFX
+      value: 
+      objectReference: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
+    - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: gloomElementVFX
       value: 
       objectReference: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
     m_RemovedComponents: []
@@ -946,7 +958,7 @@ Transform:
   m_GameObject: {fileID: 1144122129}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 24.108, y: 7.1771116, z: 5.617747}
+  m_LocalPosition: {x: 24.108, y: 6.5230007, z: 5.6177464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1007,7 +1019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.17711
+      value: 1.523
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1058,6 +1070,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: taggedElement
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: zoomAttackVFX
+      value: 
+      objectReference: {fileID: 9090841650386813736, guid: 92d39f934e68ef0448973eb9d44c27da, type: 3}
+    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: zoomVFXPrefab
       value: 
       objectReference: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
@@ -1065,6 +1085,10 @@ PrefabInstance:
       propertyPath: boomElementVFX
       value: 
       objectReference: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
+    - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: defaultElement
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: gloomVFXPrefab
       value: 
@@ -1089,6 +1113,10 @@ PrefabInstance:
       propertyPath: boomVFXPrefab
       value: 
       objectReference: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
+    - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: zoomAttackVFX
+      value: 
+      objectReference: {fileID: 9090841650386813736, guid: 92d39f934e68ef0448973eb9d44c27da, type: 3}
     - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: zoomVFXPrefab
       value: 

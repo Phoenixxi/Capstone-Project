@@ -389,6 +389,8 @@ public class EntityManager : MonoBehaviour
             if(attacked)
             {
                 animator.SetTrigger("Shoot");
+                if(gameObject.CompareTag("Enemy")) return;
+                
                 currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
                 StartCoroutine(RemoveAfterDuration(1f));
             }
