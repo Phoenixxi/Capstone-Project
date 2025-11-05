@@ -54,13 +54,15 @@ public class EntityManager : MonoBehaviour
     private float dmgMultiplier = 2.0f;
 
     // VFX info
+    [Header("VFX")]
     private GameObject currentVFXInstance;
     private Transform vfxAnchor;
     [SerializeField] private GameObject damageNumberVFXPrefab;
     [SerializeField] private float damageNumberDisplayTime;
-    [SerializeField] private GameObject zoomVFXPrefab;
-    [SerializeField] private GameObject boomVFXPrefab;
-    [SerializeField] private GameObject gloomVFXPrefab;
+    [SerializeField] private GameObject zoomElementVFX;
+    [SerializeField] private GameObject boomElementVFX;
+    [SerializeField] private GameObject gloomElementVFX;
+    [SerializeField] private GameObject zoomAttackVFX;
 
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
@@ -200,15 +202,15 @@ public class EntityManager : MonoBehaviour
         ClearVFX();
         if (element == ElementType.Zoom)
         {
-            currentVFXInstance = Instantiate(zoomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+            currentVFXInstance = Instantiate(zoomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
         else if (element == ElementType.Boom)
         {
-            currentVFXInstance = Instantiate(boomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+            currentVFXInstance = Instantiate(boomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
         else if (element == ElementType.Gloom)
         {
-            currentVFXInstance = Instantiate(gloomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+            currentVFXInstance = Instantiate(gloomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
 
     }

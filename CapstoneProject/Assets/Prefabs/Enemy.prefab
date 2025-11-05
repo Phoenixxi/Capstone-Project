@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 7722578723575890076}
   - component: {fileID: 4282169346562132223}
   - component: {fileID: 2962701942172438257}
+  - component: {fileID: 4432518792157287831}
   m_Layer: 11
   m_Name: EnemyBody
   m_TagString: Untagged
@@ -179,6 +180,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
   yRotation: 0
+--- !u!95 &4432518792157287831
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611961489548705185}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c2baad9b2786d94c995caa5a603f7b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1269007311065635165
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +760,7 @@ MonoBehaviour:
   jumpHeight: 1
   gravity: 10
   extraJumps: 0
-  animator: {fileID: 0}
+  animator: {fileID: 4432518792157287831}
   spriteRenderer: {fileID: 0}
   attackCooldown: 1
   weaponDamage: 5
