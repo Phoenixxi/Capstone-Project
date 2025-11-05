@@ -254,7 +254,7 @@ public class EntityManager : MonoBehaviour
             EntityHasDied();
             return;
         }
-        else
+        else if(element != ElementType.Normal)
         {
              //If entity is not tagged or if they are hit with their same element
             if (taggedElement == ElementType.Normal || taggedElement == element)  
@@ -381,6 +381,24 @@ public class EntityManager : MonoBehaviour
     {
         if (ability == null) return false;
         return ability.AbilityInUse();
+    }
+
+    /// <summary>
+    /// Applies an attack rate mutliplier to this entity's weapon
+    /// </summary>
+    /// <param name="multiplier">The multiplier to apply. Make this > 1 to decrease attack rate and < 1 to increase </param>
+    public void ApplyAttackCooldownMutliplier(float multiplier)
+    {
+        weapon.ApplyCooldownMultiplier(multiplier);
+    }
+
+
+    /// <summary>
+    /// Restore this entity's attack rate to its base amount
+    /// </summary>
+    public void ResetAttackRate()
+    {
+        weapon.RestoreBaseFireRate();
     }
 
     

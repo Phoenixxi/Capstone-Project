@@ -216,11 +216,16 @@ MonoBehaviour:
   jumpHeight: 2
   gravity: 25
   extraJumps: 1
+  animator: {fileID: 220673775427230319}
+  spriteRenderer: {fileID: 8565393368811770842}
   attackCooldown: 0.33
   weaponDamage: 20
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  zoomVFXPrefab: {fileID: 0}
+  boomVFXPrefab: {fileID: 0}
+  gloomVFXPrefab: {fileID: 0}
 --- !u!114 &5377437969833900074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +262,7 @@ MonoBehaviour:
   slamLayerMask:
     serializedVersion: 2
     m_Bits: 2048
+  boomVFXPrefab: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
 --- !u!1 &2838086303824349459
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +308,7 @@ GameObject:
   - component: {fileID: 7850124068460452317}
   - component: {fileID: 5105736751404034660}
   - component: {fileID: 3301841785260470896}
+  - component: {fileID: 7136588418092959098}
   m_Layer: 10
   m_Name: Zoom
   m_TagString: Player
@@ -352,11 +359,16 @@ MonoBehaviour:
   jumpHeight: 2
   gravity: 25
   extraJumps: 0
+  animator: {fileID: 9124373181119756861}
+  spriteRenderer: {fileID: 5794985083641099209}
   attackCooldown: 0.33
   weaponDamage: 20
   projectile: {fileID: 0}
   meleeHurtbox: {fileID: 7404555418333511468}
   hurtboxActivationTime: 0.2
+  zoomVFXPrefab: {fileID: 0}
+  boomVFXPrefab: {fileID: 0}
+  gloomVFXPrefab: {fileID: 0}
 --- !u!114 &5105736751404034660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +405,29 @@ MonoBehaviour:
   dashPhasingLayers:
     serializedVersion: 2
     m_Bits: 2048
+  zoomVFXPrefab: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
+--- !u!95 &7136588418092959098
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3098750437766999248}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c03cee1d93f326439be1277d0c22eec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3153298784655456344
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +519,7 @@ GameObject:
   - component: {fileID: 2716587646394959634}
   - component: {fileID: 4069364185334456115}
   - component: {fileID: 3968515568990736517}
+  - component: {fileID: 4328091491385667142}
   m_Layer: 10
   m_Name: Gloom
   m_TagString: Player
@@ -533,11 +569,16 @@ MonoBehaviour:
   jumpHeight: 2
   gravity: 25
   extraJumps: 0
+  animator: {fileID: 6305530704846346651}
+  spriteRenderer: {fileID: 906674667207298780}
   attackCooldown: 0.33
   weaponDamage: 20
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  zoomVFXPrefab: {fileID: 0}
+  boomVFXPrefab: {fileID: 0}
+  gloomVFXPrefab: {fileID: 0}
 --- !u!114 &3968515568990736517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,6 +593,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUI
   entityManager: {fileID: 4069364185334456115}
   healthText: {fileID: 0}
+--- !u!114 &4328091491385667142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4096034835489068672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a654bf0e9db944ba85a5dd0cacef36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffZoneAbility
+  cooldown: 15
+  damage: 5
+  element: 3
+  buffZonePrefab: {fileID: 408079023155133850, guid: 38f39e8b5ba4fed42afee22c1cbe220a, type: 3}
+  radius: 10
+  duration: 10
+  damageRate: 0.5
+  attackCooldownMultiplier: 0.5
 --- !u!1 &5182977827765358829
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,8 +625,9 @@ GameObject:
   - component: {fileID: 3173847631704920462}
   - component: {fileID: 906674667207298780}
   - component: {fileID: 1565344402046012324}
+  - component: {fileID: 6305530704846346651}
   m_Layer: 0
-  m_Name: PlayerBody
+  m_Name: GloomBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,7 +642,7 @@ Transform:
   m_GameObject: {fileID: 5182977827765358829}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.17000008, z: -0.493}
+  m_LocalPosition: {x: 0, y: 0.17000008, z: 0.008}
   m_LocalScale: {x: 0.088929996, y: 0.088929996, z: 0.088929996}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -677,6 +739,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+--- !u!95 &6305530704846346651
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5182977827765358829}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7499d6ff7bf79c041ac93f84b4deab7e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5316081044738082790
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,8 +907,9 @@ GameObject:
   - component: {fileID: 5794985083641099209}
   - component: {fileID: 6583331229439758005}
   - component: {fileID: 5080091467064295336}
+  - component: {fileID: 9124373181119756861}
   m_Layer: 0
-  m_Name: PlayerBody
+  m_Name: ZoomBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -839,7 +924,7 @@ Transform:
   m_GameObject: {fileID: 5583875979716774749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.17, z: -0.493}
+  m_LocalPosition: {x: 0, y: 0.17, z: 0.008}
   m_LocalScale: {x: 0.08893248, y: 0.08893248, z: 0.08893248}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -918,7 +1003,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 9.36, y: 15.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -948,6 +1033,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+--- !u!95 &9124373181119756861
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5583875979716774749}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 373f5b243f76b6349a714e1dd4734c67, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6015150372348592777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,8 +1382,9 @@ GameObject:
   - component: {fileID: 5819876805274560735}
   - component: {fileID: 8565393368811770842}
   - component: {fileID: 6593764800421659445}
+  - component: {fileID: 220673775427230319}
   m_Layer: 0
-  m_Name: PlayerBody
+  m_Name: BoomBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1291,7 +1399,7 @@ Transform:
   m_GameObject: {fileID: 9198574925211434902}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.17000008, z: -0.493}
+  m_LocalPosition: {x: 0, y: 0.17000008, z: 0.008}
   m_LocalScale: {x: 0.088929996, y: 0.088929996, z: 0.088929996}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1388,3 +1496,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+--- !u!95 &220673775427230319
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9198574925211434902}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2d9fb619e9ae4d4eb23f90f198ae4b7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

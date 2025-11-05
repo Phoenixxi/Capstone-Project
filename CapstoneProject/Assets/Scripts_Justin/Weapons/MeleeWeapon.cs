@@ -18,7 +18,7 @@ public class MeleeWeapon : Weapon
 
     public override void Attack()
     {
-        if (!hasCooldownExpired()) return;
+        if (!HasCooldownExpired()) return;
         hurtbox.Activate(hurtboxActiveTime);
         lastAttackTime = Time.time;
     }

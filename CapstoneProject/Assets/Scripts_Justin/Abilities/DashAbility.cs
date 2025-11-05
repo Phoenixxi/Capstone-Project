@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Behavior for dash ability that damages enemies that pass through it.
+/// </summary>
 public class DashAbility : Ability
 {
     [Header("Dash Ability Settings")]

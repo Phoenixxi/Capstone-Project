@@ -50,7 +50,7 @@ public class Projectile : MonoBehaviour
 
     public void SetProjectileElement(EntityData.ElementType element)
     {
-        Debug.Log("Element set: " + element.ToString());
+        //Debug.Log("Element set: " + element.ToString());
         this.elementType = element;
         
     }
