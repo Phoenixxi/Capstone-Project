@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
         if(Physics.Raycast(ray: ray, hitInfo: out hit, maxDistance: Mathf.Infinity, layerMask: aimLayerMask))
         {
-            Debug.Log(hit.collider.gameObject, hit.collider.gameObject);
+            //Debug.Log(hit.collider.gameObject, hit.collider.gameObject);
             mousePosition = hit.point;
             //mouseObject.position = mousePosition;
             mousePosition.y = aimDirection.transform.position.y;
