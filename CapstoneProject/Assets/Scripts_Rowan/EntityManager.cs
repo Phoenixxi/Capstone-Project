@@ -27,6 +27,10 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private int extraJumps = 0;
     private int currentExtraJumps;
 
+    [Header("Animation")]
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
+
     [Header("Universal Weapon Settings")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private int weaponDamage;
@@ -63,6 +67,7 @@ public class EntityManager : MonoBehaviour
     {
         // TEMPORARY- change back to maxHealth later
         currentHealth = maxHealth;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         //if (gameObject.CompareTag("Enemy"))
         //    currentHealth = 1;
         CreateWeapon();
@@ -98,8 +103,14 @@ public class EntityManager : MonoBehaviour
     private void HandleDefaultMovement()
     {
         if (usesNavAgent) return;
-        if (entityMovement.isGrounded && movementVelocity.y < 0) movementVelocity.y = -2f;
+        if (entityMovement.isGrounded && movementVelocity.y < 0) 
+            movementVelocity.y = -2f;
         movementVelocity.y -= gravity * Time.deltaTime;
+        animator.SetFloat("Speed", movementVelocity.magnitude);
+        animator.SetFloat("JumpVelocity", movementVelocity.y);
+        animator.SetBool("isJumpingUp", movementVelocity.y > 0);
+        animator.SetBool("isJumpingDown", movementVelocity.y < -2.1f);
+        spriteRenderer.flipX = movementVelocity.x < 0f;
         entityMovement.Move(movementVelocity * Time.deltaTime);
     }
 
@@ -356,7 +367,10 @@ public class EntityManager : MonoBehaviour
     {
         if (AbilityInUse()) return;
         if (weapon is RangedWeapon) (weapon as RangedWeapon).UpdateWeaponTransform(attackDirection, entityPosition);
-        weapon.Attack();
+        {
+            weapon.Attack();
+            animator.SetTrigger("Shoot");
+        }
     }
 
     /// <summary>
