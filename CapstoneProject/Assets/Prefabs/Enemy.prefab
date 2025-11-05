@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+  yRotation: 0
 --- !u!1 &1269007311065635165
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +644,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2113378421503788461}
-  - component: {fileID: 68536883291156192}
   - component: {fileID: 7493769958297259037}
   - component: {fileID: 6001685213739500416}
   - component: {fileID: 8039355975360593558}
@@ -676,27 +676,6 @@ Transform:
   - {fileID: 1618604057760933167}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &68536883291156192
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7543563098658516984}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &7493769958297259037
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -765,6 +744,8 @@ MonoBehaviour:
   projectile: {fileID: 1261911922668259766, guid: 4bc40664c52c7214bacf434f48890942, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
+  damageNumberDisplayTime: 1
   zoomVFXPrefab: {fileID: 0}
   boomVFXPrefab: {fileID: 0}
   gloomVFXPrefab: {fileID: 0}
@@ -1028,6 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+  yRotation: 0
 --- !u!114 &7338920810090798981
 MonoBehaviour:
   m_ObjectHideFlags: 0

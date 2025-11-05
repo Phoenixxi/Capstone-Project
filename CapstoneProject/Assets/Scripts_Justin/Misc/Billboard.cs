@@ -6,6 +6,7 @@ using UnityEngine;
 public class Billboard : MonoBehaviour
 {
     Transform cameraTransform;
+    [SerializeField] private float yRotation = 0f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -17,5 +18,6 @@ public class Billboard : MonoBehaviour
     void Update()
     {
         transform.LookAt(cameraTransform);
+        transform.Rotate(0, yRotation, 0);
     }
 }

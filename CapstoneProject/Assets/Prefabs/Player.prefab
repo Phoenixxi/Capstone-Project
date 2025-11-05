@@ -223,6 +223,8 @@ MonoBehaviour:
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
+  damageNumberDisplayTime: 1
   zoomVFXPrefab: {fileID: 0}
   boomVFXPrefab: {fileID: 0}
   gloomVFXPrefab: {fileID: 0}
@@ -366,6 +368,8 @@ MonoBehaviour:
   projectile: {fileID: 0}
   meleeHurtbox: {fileID: 7404555418333511468}
   hurtboxActivationTime: 0.2
+  damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
+  damageNumberDisplayTime: 1
   zoomVFXPrefab: {fileID: 0}
   boomVFXPrefab: {fileID: 0}
   gloomVFXPrefab: {fileID: 0}
@@ -576,6 +580,8 @@ MonoBehaviour:
   projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
+  damageNumberDisplayTime: 1
   zoomVFXPrefab: {fileID: 0}
   boomVFXPrefab: {fileID: 0}
   gloomVFXPrefab: {fileID: 0}
@@ -739,6 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+  yRotation: 0
 --- !u!95 &6305530704846346651
 Animator:
   serializedVersion: 7
@@ -1021,6 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+  yRotation: 0
 --- !u!114 &5080091467064295336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,6 +1041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+  yRotation: 0
 --- !u!95 &9124373181119756861
 Animator:
   serializedVersion: 7
@@ -1496,6 +1505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d25ea2ff68be42a82e6623e654eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
+  yRotation: 0
 --- !u!95 &220673775427230319
 Animator:
   serializedVersion: 7

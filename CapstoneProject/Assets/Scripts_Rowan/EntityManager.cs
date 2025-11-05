@@ -6,6 +6,7 @@ using System.Collections;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 using UnityEngine.AI;
 using System;
+using static UnityEditor.Rendering.FilterWindow;
 
 public class EntityManager : MonoBehaviour
 {
@@ -56,6 +57,8 @@ public class EntityManager : MonoBehaviour
     // VFX info
     private GameObject currentVFXInstance;
     private Transform vfxAnchor;
+    [SerializeField] private GameObject damageNumberVFXPrefab;
+    [SerializeField] private float damageNumberDisplayTime;
     [SerializeField] private GameObject zoomVFXPrefab;
     [SerializeField] private GameObject boomVFXPrefab;
     [SerializeField] private GameObject gloomVFXPrefab;
@@ -251,16 +254,18 @@ public class EntityManager : MonoBehaviour
         float newHealth = currentHealth - damage;
         if (newHealth <= 0)
         {
+            ShowDamageNumber((int)damage, element);
             EntityHasDied();
             return;
         }
-        else if(element != ElementType.Normal)
+        else if (element != ElementType.Normal)
         {
-             //If entity is not tagged or if they are hit with their same element
-            if (taggedElement == ElementType.Normal || taggedElement == element)  
+            //If entity is not tagged or if they are hit with their same element
+            if (taggedElement == ElementType.Normal || taggedElement == element)
             {
                 taggedElement = element;
                 currentHealth = newHealth;
+                ShowDamageNumber((int)damage, element);
                 if (gameObject.CompareTag("Enemy"))
                     ApplyVFX(element);
             }
@@ -269,7 +274,19 @@ public class EntityManager : MonoBehaviour
                 Reaction(element, damage);
             }
         }
+        else
+        {
+            currentHealth = newHealth;
+            ShowDamageNumber((int)damage, ElementType.Normal);
+        }
         if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
+        //Instantiate(damageNumberVFXPrefab, transform);
+    }
+
+    private void ShowDamageNumber(int damage, ElementType element)
+    {
+        DamageNumber damageNumber = Instantiate(damageNumberVFXPrefab, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
+        damageNumber.ShowDamage(damage, element, damageNumberDisplayTime);
     }
 
     /// <summary>
@@ -306,6 +323,7 @@ public class EntityManager : MonoBehaviour
         if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Boom || initiatingElement == ElementType.Boom))
         {
             float newHealth = currentHealth - (incomingDmg * dmgMultiplier);
+            ShowDamageNumber((int)(incomingDmg * dmgMultiplier), initiatingElement);
             Debug.Log("currentHealth: " + currentHealth + " incomingDmg: " + incomingDmg + " incomingxdmgMult: " + (incomingDmg * dmgMultiplier));
             if(newHealth <= 0)
             {
@@ -321,6 +339,7 @@ public class EntityManager : MonoBehaviour
         {
              Debug.Log("in zoomxgloom");
             currentHealth -= incomingDmg;
+            ShowDamageNumber((int)incomingDmg, initiatingElement);
             taggedElement = defaultElement; // Reset tag to default/starting element
 
             var effectable = gameObject.GetComponent<IEffectable>();
@@ -334,8 +353,8 @@ public class EntityManager : MonoBehaviour
         else
         {
             currentHealth -= incomingDmg;
+            ShowDamageNumber((int)incomingDmg, initiatingElement);
             taggedElement = defaultElement; // Reset tag to default/starting element
-
             var effectable = gameObject.GetComponent<IEffectable>();
             if (effectable != null && data != null)
             {
