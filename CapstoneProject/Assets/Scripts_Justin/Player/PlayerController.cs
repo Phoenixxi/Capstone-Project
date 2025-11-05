@@ -107,9 +107,12 @@ public class PlayerController : MonoBehaviour
 
         Ray ray = playerCamera.ScreenPointToRay(mouseScreenPos);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, aimLayerMask))
+
+        if(Physics.Raycast(ray: ray, hitInfo: out hit, maxDistance: Mathf.Infinity, layerMask: aimLayerMask))
         {
+            Debug.Log(hit.collider.gameObject, hit.collider.gameObject);
             mousePosition = hit.point;
+            //mouseObject.position = mousePosition;
             mousePosition.y = aimDirection.transform.position.y;
         }
         aimDirection.transform.LookAt(mousePosition);

@@ -1007,7 +1007,7 @@ GameObject:
   - component: {fileID: 1454609559}
   - component: {fileID: 1454609558}
   - component: {fileID: 1454609557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1428,7 +1428,7 @@ GameObject:
   - component: {fileID: 1634566188}
   - component: {fileID: 1634566187}
   - component: {fileID: 1634566186}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1880,9 +1880,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 769566055}
     - target: {fileID: 4070096453353980523, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: mouseObject
+      value: 
+      objectReference: {fileID: 1786295551}
+    - target: {fileID: 4070096453353980523, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
       objectReference: {fileID: 769566055}
+    - target: {fileID: 4070096453353980523, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: aimLayerMask.m_Bits
+      value: 18496
+      objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
