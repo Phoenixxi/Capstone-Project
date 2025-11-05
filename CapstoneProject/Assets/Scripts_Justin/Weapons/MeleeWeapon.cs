@@ -16,10 +16,11 @@ public class MeleeWeapon : Weapon
         hurtbox.SetHurtboxDamage(damage);
     }
 
-    public override void Attack()
+    public override bool Attack()
     {
-        if (!HasCooldownExpired()) return;
+        if (!HasCooldownExpired()) return false;
         hurtbox.Activate(hurtboxActiveTime);
         lastAttackTime = Time.time;
+        return true;
     }
 }

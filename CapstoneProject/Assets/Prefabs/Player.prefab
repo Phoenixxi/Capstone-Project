@@ -187,6 +187,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5270593298629466088}
   - {fileID: 8662727674538506003}
   - {fileID: 436805946025078914}
   m_Father: {fileID: 4736012897111735060}
@@ -225,9 +226,10 @@ MonoBehaviour:
   hurtboxActivationTime: 0
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
   damageNumberDisplayTime: 1
-  zoomVFXPrefab: {fileID: 0}
-  boomVFXPrefab: {fileID: 0}
-  gloomVFXPrefab: {fileID: 0}
+  zoomElementVFX: {fileID: 0}
+  boomElementVFX: {fileID: 0}
+  gloomElementVFX: {fileID: 0}
+  zoomAttackVFX: {fileID: 0}
 --- !u!114 &5377437969833900074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +333,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5831863894014807419}
   - {fileID: 664773660037922739}
   - {fileID: 8059986241824267869}
   - {fileID: 1653860060451356202}
@@ -370,9 +373,10 @@ MonoBehaviour:
   hurtboxActivationTime: 0.2
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
   damageNumberDisplayTime: 1
-  zoomVFXPrefab: {fileID: 0}
-  boomVFXPrefab: {fileID: 0}
-  gloomVFXPrefab: {fileID: 0}
+  zoomElementVFX: {fileID: 0}
+  boomElementVFX: {fileID: 0}
+  gloomElementVFX: {fileID: 0}
+  zoomAttackVFX: {fileID: 0}
 --- !u!114 &5105736751404034660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +516,37 @@ MonoBehaviour:
   maxHeight: 5
   startingAlpha: 0.8
   minAlpha: 0.2
+--- !u!1 &3386899571854329601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5270593298629466088}
+  m_Layer: 8
+  m_Name: VFXanchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5270593298629466088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3386899571854329601}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.083999634}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8708904835094065169}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4096034835489068672
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +579,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7419994965251817231}
   - {fileID: 7929341229097482736}
   - {fileID: 3164552382211843268}
   m_Father: {fileID: 4736012897111735060}
@@ -582,9 +618,10 @@ MonoBehaviour:
   hurtboxActivationTime: 0
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
   damageNumberDisplayTime: 1
-  zoomVFXPrefab: {fileID: 0}
-  boomVFXPrefab: {fileID: 0}
-  gloomVFXPrefab: {fileID: 0}
+  zoomElementVFX: {fileID: 0}
+  boomElementVFX: {fileID: 0}
+  gloomElementVFX: {fileID: 0}
+  zoomAttackVFX: {fileID: 0}
 --- !u!114 &3968515568990736517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,6 +1101,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &5717552508117343417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7419994965251817231}
+  m_Layer: 8
+  m_Name: VFXanchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7419994965251817231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5717552508117343417}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.083999634}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2716587646394959634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6015150372348592777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,6 +1301,37 @@ MonoBehaviour:
   maxHeight: 5
   startingAlpha: 0.8
   minAlpha: 0.2
+--- !u!1 &6867585225901612326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5831863894014807419}
+  m_Layer: 8
+  m_Name: VFXanchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5831863894014807419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6867585225901612326}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7617289105161180958}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8184903300326561001
 GameObject:
   m_ObjectHideFlags: 0

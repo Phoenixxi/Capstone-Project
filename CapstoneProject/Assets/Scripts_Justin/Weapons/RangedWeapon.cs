@@ -18,9 +18,9 @@ public class RangedWeapon : Weapon
         attackDirection = Vector3.zero;
     }
 
-    public override void Attack()
+    public override bool Attack()
     {
-        if (!HasCooldownExpired()) return;
+        if (!HasCooldownExpired()) return false;
         Vector3 projectileSpawnOffset = attackDirection * 0f;
         Vector3 projectileSpawnPosition = currentLocation + projectileSpawnOffset;
         projectileScript = GameObject.Instantiate(projectile, projectileSpawnPosition, Quaternion.identity).GetComponent<Projectile>();
@@ -28,13 +28,14 @@ public class RangedWeapon : Weapon
         if (projectileScript == null)
         {
             Debug.LogError($"Projectile {projectile} is missing Projectile Monobehavior Script. Make sure the GameObject being used has a Projectile script attatched to it.");
-            return;
+            return false;
         }
 
         projectileScript.SetProjectileDamage(damage);
         projectileScript.SetProjectileElement(element);
         projectileScript.ChangeMoveDirection(attackDirection);
         lastAttackTime = Time.time;
+        return true;
         //Debug.Log("Projectile fired!");
     }
 

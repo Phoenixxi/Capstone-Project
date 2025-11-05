@@ -26,7 +26,7 @@ public abstract class Weapon
     /// <summary>
     /// Executes an attack if called after the attack cooldown has expried
     /// </summary>
-    public abstract void Attack();
+    public abstract bool Attack();
 
     /// <summary>
     /// Checks whether the weapon's attack cooldown has finished

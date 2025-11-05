@@ -55,7 +55,8 @@ public class EntityManager : MonoBehaviour
 
     // VFX info
     [Header("VFX")]
-    private GameObject currentVFXInstance;
+    private GameObject currentElementalVFXInstance;
+    private GameObject currentZoomAttackVFX;
     private Transform vfxAnchor;
     [SerializeField] private GameObject damageNumberVFXPrefab;
     [SerializeField] private float damageNumberDisplayTime;
@@ -86,11 +87,7 @@ public class EntityManager : MonoBehaviour
 
     void Awake()
     {
-        if (gameObject.CompareTag("Enemy"))
-        {
-            vfxAnchor = transform.Find("VFXanchor");
-        }
-
+        vfxAnchor = transform.Find("VFXanchor");
     }
 
     private void CreateWeapon()
@@ -197,30 +194,30 @@ public class EntityManager : MonoBehaviour
         }
     }
 
-    private void ApplyVFX(ElementType element)
+    private void ApplyElementalVFX(ElementType element)
     {
-        ClearVFX();
+        ClearElementalVFX();
         if (element == ElementType.Zoom)
         {
-            currentVFXInstance = Instantiate(zoomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+            currentElementalVFXInstance = Instantiate(zoomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
         else if (element == ElementType.Boom)
         {
-            currentVFXInstance = Instantiate(boomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+            currentElementalVFXInstance = Instantiate(boomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
         else if (element == ElementType.Gloom)
         {
-            currentVFXInstance = Instantiate(gloomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+            currentElementalVFXInstance = Instantiate(gloomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
 
     }
 
-    private void ClearVFX()
+    private void ClearElementalVFX()
     {
-        if (currentVFXInstance != null)
+        if (currentElementalVFXInstance != null)
         {
-            Destroy(currentVFXInstance);
-            currentVFXInstance = null;
+            Destroy(currentElementalVFXInstance);
+            currentElementalVFXInstance = null;
         }
     }
 
@@ -268,7 +265,7 @@ public class EntityManager : MonoBehaviour
                 currentHealth = newHealth;
                 ShowDamageNumber((int)damage, element);
                 if (gameObject.CompareTag("Enemy"))
-                    ApplyVFX(element);
+                    ApplyElementalVFX(element);
             }
             else    // entity is already tagged and they were hit with different element, start a reaction
             {
@@ -364,7 +361,7 @@ public class EntityManager : MonoBehaviour
         }
 
         if (gameObject.CompareTag("Enemy"))
-        ClearVFX();
+            ClearElementalVFX();
 
     } 
 
@@ -388,8 +385,28 @@ public class EntityManager : MonoBehaviour
         if (AbilityInUse()) return;
         if (weapon is RangedWeapon) (weapon as RangedWeapon).UpdateWeaponTransform(attackDirection, entityPosition);
         {
-            weapon.Attack();
-            animator.SetTrigger("Shoot");
+            bool attacked = weapon.Attack();
+            if(attacked)
+            {
+                animator.SetTrigger("Shoot");
+                currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+                StartCoroutine(RemoveAfterDuration(1f));
+            }
+        }
+    }
+
+    private System.Collections.IEnumerator RemoveAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ClearAttackVFX();
+    }
+
+    private void ClearAttackVFX()
+    {
+        if (currentZoomAttackVFX != null)
+        {
+            Destroy(currentZoomAttackVFX);
+            currentZoomAttackVFX = null;
         }
     }
 
