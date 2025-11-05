@@ -11,6 +11,7 @@ public class BuffZoneAbility : Ability
     [SerializeField] private float radius = 5f;
     [SerializeField] private float duration;
     [SerializeField] private float damageRate;
+    [SerializeField] private float attackCooldownMultiplier;
     //TODO Implement buffing component
 
 
@@ -23,6 +24,7 @@ public class BuffZoneAbility : Ability
         buffZone.SetDamage(damage);
         buffZone.SetDamageRate(damageRate);
         buffZone.SetElement(element);
+        buffZone.SetAttackCooldownMultiplier(attackCooldownMultiplier);
         buffZone.StartTimer(duration);
         currentCooldown = cooldown;
         return Array.Empty<AbilityMovement>();

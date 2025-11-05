@@ -19,7 +19,8 @@ public class BuffZone : MonoBehaviour
     private ElementType element = ElementType.Normal;
     private bool hasTimerStarted = false;
     private Dictionary<GameObject, IEnumerator> enemies;
-    //TODO Implement buffing feature
+    private EntityManager player;
+    private float attackCooldownMultiplier;
     
     public void SetDamage(int damage)
     {
@@ -42,6 +43,11 @@ public class BuffZone : MonoBehaviour
         transform.localScale = newScale;
     }
 
+    public void SetAttackCooldownMultiplier(float multiplier)
+    {
+        attackCooldownMultiplier = multiplier;
+    }
+
     public void StartTimer(float duration)
     {
         this.duration = duration;
@@ -54,7 +60,6 @@ public class BuffZone : MonoBehaviour
         enemies = new Dictionary<GameObject, IEnumerator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(hasTimerStarted)
@@ -96,6 +101,29 @@ public class BuffZone : MonoBehaviour
         if(entity.tag == "Enemy")
         {
             if (enemies.ContainsKey(entity)) enemies.Remove(entity);
+        } else if(entity.tag == "Player")
+        {
+            Debug.Log("Player leaving buff zone");
+            player.ResetAttackRate();
+            player = null;
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        GameObject entity = other.gameObject;
+        if(entity.tag == "Player")
+        {
+            EntityManager currentPlayer = entity.GetComponentInChildren<EntityManager>();
+            if (player != currentPlayer) player?.ResetAttackRate();
+            player = currentPlayer;
+            player.ApplyAttackCooldownMutliplier(attackCooldownMultiplier);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Player leaving buff zone");
+        player?.ResetAttackRate();
     }
 }
