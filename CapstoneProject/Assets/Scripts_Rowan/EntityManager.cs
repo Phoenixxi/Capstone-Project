@@ -6,7 +6,6 @@ using System.Collections;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 using UnityEngine.AI;
 using System;
-using static UnityEditor.Rendering.FilterWindow;
 
 public class EntityManager : MonoBehaviour
 {

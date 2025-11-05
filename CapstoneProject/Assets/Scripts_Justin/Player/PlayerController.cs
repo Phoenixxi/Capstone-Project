@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private Camera playerCamera;
     private List<GameObject> charactersListPC;
     private EntityManager currentCharacter;
+    private bool isAttacking;
 
     //public Transform mouseObject;
 
@@ -122,9 +123,12 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Triggers when the attack button is pressed
     /// </summary>
-    private void OnAttack()
+    private void OnAttack(InputValue input)
     {
-        currentCharacter.Attack(aimDirection.transform.forward, transform.position);
+        //Debug.Log(input.Get());
+        //currentCharacter.Attack(aimDirection.transform.forward, transform.position);
+        bool pressed = input.Get<float>() == 1f ? true : false;
+        isAttacking = pressed;
     }
 
     /// <summary>
@@ -238,6 +242,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateMouseAim();
+        if(isAttacking) currentCharacter.Attack(aimDirection.transform.forward, transform.position);
         if (transform.position.y <= -10) {
             if(checkpointController != null)
             {
