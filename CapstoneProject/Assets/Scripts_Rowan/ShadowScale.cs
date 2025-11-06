@@ -33,7 +33,8 @@ public class ShadowScale : MonoBehaviour
         {
             // Position of shadow blob on ground
             Vector3 shadowPosition = hit.point + Vector3.up * (0.05f *originalScale.y);
-            shadowPosition.z = player.position.z - 0.5f;
+            //shadowPosition.z = player.position.z - 0.5f;
+            shadowPosition.z = player.position.z + 0.1f;
             shadowPosition.x = player.position.x - 0.03f;
             transform.position = shadowPosition;
 
