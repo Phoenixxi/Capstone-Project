@@ -3,6 +3,9 @@ using TMPro;
 using UnityEngine;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 
+/// <summary>
+/// Script for floating damage numbers that appear when entities are attacked
+/// </summary>
 public class DamageNumber : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
@@ -22,6 +25,12 @@ public class DamageNumber : MonoBehaviour
        
     }
 
+    /// <summary>
+    /// Displays the damage and element inflicted upon an entity
+    /// </summary>
+    /// <param name="damage">The amount of damage to display</param>
+    /// <param name="element">The damage's element</param>
+    /// <param name="time">How long the text should appear for</param>
     public void ShowDamage(int damage, ElementType element, float time)
     {
         text.text = damage.ToString();
@@ -43,6 +52,11 @@ public class DamageNumber : MonoBehaviour
         StartCoroutine(ShowDamageCoroutine(time));
     }
 
+    /// <summary>
+    /// Displays the damage text and then fades it out over time
+    /// </summary>
+    /// <param name="time">How long it takes for the damage text to disappear</param>
+    /// <returns></returns>
     private IEnumerator ShowDamageCoroutine(float time)
     {
         float currentTime = 0f;
