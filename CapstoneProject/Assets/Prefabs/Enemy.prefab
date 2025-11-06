@@ -769,9 +769,10 @@ MonoBehaviour:
   hurtboxActivationTime: 0
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
   damageNumberDisplayTime: 1
-  zoomVFXPrefab: {fileID: 0}
-  boomVFXPrefab: {fileID: 0}
-  gloomVFXPrefab: {fileID: 0}
+  zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
+  boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
+  gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
+  zoomAttackVFX: {fileID: 0}
 --- !u!114 &5053508518923957891
 MonoBehaviour:
   m_ObjectHideFlags: 0

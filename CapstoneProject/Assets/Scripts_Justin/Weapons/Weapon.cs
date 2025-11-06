@@ -44,7 +44,8 @@ public abstract class Weapon
     /// <param name="multiplier">The amount to multiply the attack cooldown by</param>
     public void ApplyCooldownMultiplier(float multiplier)
     {
-        attackCooldown *= multiplier;
+        //attackCooldown *= multiplier;
+        attackCooldown = baseCooldown * multiplier;
     }
 
     /// <summary>
