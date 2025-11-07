@@ -7,7 +7,7 @@ public class MainMenuScript : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("RuiScene(GYM001)");
+        SceneManager.LoadScene("RowanSceneNew");
     }
 
 
