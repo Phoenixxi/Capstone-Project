@@ -8,11 +8,12 @@ public class HealthPack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)  
     {
-       EntityManager player = other.GetComponentInParent<EntityManager>();
+       PlayerController player = other.GetComponentInParent<PlayerController>();
 
         if (player != null)
         {
-            player.Heal(healAmount);
+            Debug.Log("heal called");
+            player.HealActiveCharacter(healAmount);
             Destroy(gameObject); // remove the health pack after healing
         }
     }

@@ -14,7 +14,7 @@ public class PlayerUI : MonoBehaviour
 
     public void Update()
     {
-        healthText.text =  "Health: " + entityManager.currentHealth.ToString();
+        healthText.text =  "Health: " + ((int)entityManager.currentHealth).ToString();
     }
 
 }

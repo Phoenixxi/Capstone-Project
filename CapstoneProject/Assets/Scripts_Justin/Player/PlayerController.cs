@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using lilGuysNamespace;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Takes in input from the player and performs the associated action. Logic is mostly limited to movement and aiming, with combat logic to be handled by other classes
@@ -12,39 +13,70 @@ public class PlayerController : MonoBehaviour
     [Header("Essentials: Do Not Change!")]
     [SerializeField] private GameObject aimDirection;
     [SerializeField] private SwappingManager swappingManager;
+    [SerializeField] private LayerMask aimLayerMask;
+    [SerializeField] public CheckpointController checkpointController;
     
-    [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed = 1f;
-    [SerializeField] private float jumpVelocity = 1f;
-    [SerializeField] private float gravityMultiplier = 1f;
+    //[Header("Movement Settings")]
+    //[SerializeField] private float movementSpeed = 1f;
+    //[SerializeField] private float jumpHeight = 1f;
+    //[SerializeField] private float gravity = 10f;
 
-    private Vector3 movementDirection;
+    private Vector2 movementInput;
     private Vector3 mousePosition;
-    private Rigidbody player;
-    private bool isGrounded;
+    private CharacterController player;
     private Camera playerCamera;
     private List<GameObject> charactersListPC;
+    private EntityManager currentCharacter;
+    private bool isAttacking;
 
-    //EVERYTHING INVOLVING WEAPONS WILL BE REMOVED ONCE PROPER ENTITY SCRIPT IMPLEMENTATION IS ADDED
-    public float attackCooldown;
-    public int damage;
-    public GameObject projectile;
-    private Weapon weapon;
     //public Transform mouseObject;
 
     public void Start()
     {
-        // Will active the first time each character is awake
         charactersListPC = swappingManager.charactersList;
+        swappingManager.SwapCharacterEvent += OnCharacterSwap;
     }
 
     private void Awake()
     {
-        player = GetComponent<Rigidbody>();
-        isGrounded = true;
+        player = GetComponent<CharacterController>();
         playerCamera = FindFirstObjectByType<Camera>();
-        //TODO: Delete the line below this
-        weapon = new RangedWeapon(attackCooldown, damage, projectile);
+        currentCharacter = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
+    }
+
+    private void OnEnable()
+    {
+        swappingManager.SwapCharacterEvent -= OnCharacterSwap;
+        swappingManager.SwapCharacterEvent += OnCharacterSwap;
+    }
+
+    private void OnDisable()
+    {
+        swappingManager.SwapCharacterEvent -= OnCharacterSwap;
+    }
+
+    public void HealAllCharacters(float healAmount)
+    {
+
+       
+        foreach(GameObject character in charactersListPC)
+        {
+            EntityManager entity = character.GetComponentInChildren<EntityManager>();
+            entity.Heal(healAmount/3f);
+        }
+        
+    }
+
+     public void TakeDamageWrapper(float damage)
+    {
+        EntityManager activeChar = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
+        activeChar.TakeDamage(damage);
+    }
+
+    public void HealActiveCharacter(float healAmount)
+    {
+        EntityManager activeChar = swappingManager.GetCurrentCharacterTransform().GetComponent<EntityManager>();
+        activeChar.Heal(healAmount);
     }
 
     /// <summary>
@@ -53,9 +85,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     private void OnMove(InputValue input)
     {
-        Vector2 inputtedDirection = input.Get<Vector2>().normalized;
-        movementDirection.x = inputtedDirection.x;
-        movementDirection.z = inputtedDirection.y;
+        movementInput = input.Get<Vector2>().normalized;
+        currentCharacter.SetInputDirection(movementInput);
+
     }
 
     /// <summary>
@@ -63,35 +95,68 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnJump()
     {
-        if (!isGrounded) return;
-        player.linearVelocity = new Vector3(player.linearVelocity.x, jumpVelocity, player.linearVelocity.z);
+        currentCharacter.Jump();
     }
 
-    private void OnAim(InputValue input)
+    /// <summary>
+    /// Updates the mouse's aiming direction
+    /// </summary>
+    /// <param name="input"></param>
+    private void UpdateMouseAim()
     {
-        Vector2 mouseInput = input.Get<Vector2>();
+        Vector2 mouseScreenPos = Mouse.current.position.value;
 
-        Ray ray = playerCamera.ScreenPointToRay(mouseInput);
+        Ray ray = playerCamera.ScreenPointToRay(mouseScreenPos);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+
+        if(Physics.Raycast(ray: ray, hitInfo: out hit, maxDistance: Mathf.Infinity, layerMask: aimLayerMask))
         {
+            //Debug.Log(hit.collider.gameObject, hit.collider.gameObject);
             mousePosition = hit.point;
+            //mouseObject.position = mousePosition;
             mousePosition.y = aimDirection.transform.position.y;
         }
-
+        aimDirection.transform.LookAt(mousePosition);
         //mouseObject.position = mousePosition;
     }
 
-    private void OnAttack()
+    /// <summary>
+    /// Triggers when the attack button is pressed
+    /// </summary>
+    private void OnAttack(InputValue input)
     {
-        Debug.Log("Attack button pressed");
-        //TODO Delete lines below this
-        if (weapon is RangedWeapon) (weapon as RangedWeapon).UpdateWeaponTransform(aimDirection.transform.forward, transform.position);
-        weapon.Attack();
+        //Debug.Log(input.Get());
+        //currentCharacter.Attack(aimDirection.transform.forward, transform.position);
+        bool pressed = input.Get<float>() == 1f ? true : false;
+        isAttacking = pressed;
     }
 
+    /// <summary>
+    /// Triggers when the swapping manager forces the player to swap (likely after death)
+    /// </summary>
+    /// <param name="characterNum">The character number to swap to</param>
+    private void OnCharacterSwap(int characterNum)
+    {
+        switch(characterNum)
+        {
+            case 1:
+                OnSwapCharacter1();
+                break;
+            case 2:
+                OnSwapCharacter2();
+                break;
+            case 3:
+                OnSwapCharacter3();
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Triggers when the character 1 (Zoom) hotkey is pressed
+    /// </summary>
     private void OnSwapCharacter1()
     {
+        if (currentCharacter.AbilityInUse()) return;
         // Check if character is alive
         GameObject zoom = charactersListPC[0];
         EntityManager entity = zoom.GetComponent<EntityManager>();
@@ -107,14 +172,20 @@ public class PlayerController : MonoBehaviour
 
         //Activate Zoom
         zoom.SetActive(true);
+        entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
+        currentCharacter = entity;
         // Deactivate the other characters
         charactersListPC[1].SetActive(false);
         charactersListPC[2].SetActive(false);
-        Debug.Log("Zoom chosen");
     }
 
-    private void OnSwapCharacter2(InputValue input)
+    /// <summary>
+    /// Triggers when the character 2 (Boom) hotkey is pressed
+    /// </summary>
+    /// <param name="input"></param>
+    private void OnSwapCharacter2()
     {
+        if (currentCharacter.AbilityInUse()) return;
         // Check if character is alive
         GameObject boom = charactersListPC[1];
         EntityManager entity = boom.GetComponent<EntityManager>();
@@ -129,14 +200,20 @@ public class PlayerController : MonoBehaviour
 
         // Activate Boom
         boom.SetActive(true);
+        entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
+        currentCharacter = entity;
         // Deactivate the other characters
         charactersListPC[0].SetActive(false);
         charactersListPC[2].SetActive(false);
-        Debug.Log("Boom chosen");
     }
 
-    private void OnSwapCharacter3(InputValue input)
+    /// <summary>
+    /// Triggers when the character 3 (Gloom) hotkey is pressed
+    /// </summary>
+    /// <param name="input"></param>
+    private void OnSwapCharacter3()
     {
+        if (currentCharacter.AbilityInUse()) return;
         GameObject gloom = charactersListPC[2];
         EntityManager entity = gloom.GetComponent<EntityManager>();
         if(!entity.isAlive)
@@ -150,26 +227,31 @@ public class PlayerController : MonoBehaviour
 
         // Activate Gloom
         gloom.SetActive(true);
+        entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
+        currentCharacter = entity;
         // Deactivate the other characters
         charactersListPC[0].SetActive(false);
         charactersListPC[1].SetActive(false);
-        Debug.Log("Character 3 chosen");
     }
 
-    private void FixedUpdate()
+    private void OnAbility()
     {
-        aimDirection.transform.LookAt(mousePosition);
-        Vector3 convertedVelocity = new Vector3(movementDirection.x * movementSpeed, player.linearVelocity.y, movementDirection.z * movementSpeed);
-        player.linearVelocity = convertedVelocity;
-        if (player.linearVelocity.y < 0) player.linearVelocity += Vector3.up * Physics.gravity.y * gravityMultiplier * Time.deltaTime;
+        currentCharacter.UseAbility(movementInput);
     }
 
-    /// <summary>
-    /// Sets whether or not the player is currently touching the ground
-    /// </summary>
-    /// <param name="isGrounded"></param>
-    public void SetIsGrounded(bool isGrounded)
+    private void Update()
     {
-        this.isGrounded = isGrounded;
+        UpdateMouseAim();
+        if(isAttacking) currentCharacter.Attack(aimDirection.transform.forward, transform.position);
+        if (transform.position.y <= -10) {
+            if(checkpointController != null)
+            {
+                Vector3 location = checkpointController.RecentCheckpointLocation();
+                transform.position = location;
+            } else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
     }
 }

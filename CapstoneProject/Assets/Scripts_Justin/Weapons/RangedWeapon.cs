@@ -1,5 +1,10 @@
+using TMPro;
 using UnityEngine;
+using ElementType = lilGuysNamespace.EntityData.ElementType;
 
+/// <summary>
+/// Class that handles ranged attacks that utilize projectiles
+/// </summary>
 public class RangedWeapon : Weapon
 {
     private GameObject projectile;
@@ -7,29 +12,31 @@ public class RangedWeapon : Weapon
     private Vector3 attackDirection;
     private Vector3 currentLocation;
 
-    public RangedWeapon(float attackCooldown, int damage, GameObject projectile) : base(attackCooldown, damage)
+    public RangedWeapon(float attackCooldown, int damage, ElementType element, GameObject projectile) : base(attackCooldown, damage, element)
     {
         this.projectile = projectile;
         attackDirection = Vector3.zero;
     }
 
-    public override void Attack()
+    public override bool Attack()
     {
-        if (!hasCooldownExpired()) return;
-        Vector3 projectileSpawnOffset = attackDirection * 2f;
+        if (!HasCooldownExpired()) return false;
+        Vector3 projectileSpawnOffset = attackDirection * 0f;
         Vector3 projectileSpawnPosition = currentLocation + projectileSpawnOffset;
         projectileScript = GameObject.Instantiate(projectile, projectileSpawnPosition, Quaternion.identity).GetComponent<Projectile>();
 
         if (projectileScript == null)
         {
             Debug.LogError($"Projectile {projectile} is missing Projectile Monobehavior Script. Make sure the GameObject being used has a Projectile script attatched to it.");
-            return;
+            return false;
         }
 
         projectileScript.SetProjectileDamage(damage);
+        projectileScript.SetProjectileElement(element);
         projectileScript.ChangeMoveDirection(attackDirection);
         lastAttackTime = Time.time;
-        Debug.Log("Projectile fired!");
+        return true;
+        //Debug.Log("Projectile fired!");
     }
 
     /// <summary>

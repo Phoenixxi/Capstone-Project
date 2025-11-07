@@ -6,6 +6,9 @@ TagManager:
   tags:
   - HealthPack
   - GroundCheck
+  - Enemy
+  - Camera
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
@@ -16,16 +19,16 @@ TagManager:
   - Ground
   - GroundCheck
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerHurtbox
+  - PlayerHitbox
+  - Enemy
+  - EnemyHurtbox
+  - EnemyHitbox
+  - Walls
+  - PlayerProjectile
+  - EnemyProjectile
+  - BuffZone
+  - DialoguePopup
   - 
   - 
   - 
