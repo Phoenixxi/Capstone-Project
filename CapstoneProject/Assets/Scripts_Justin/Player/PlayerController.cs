@@ -250,7 +250,6 @@ public class PlayerController : MonoBehaviour
                 transform.position = location;
             } else
             {
-                Debug.Log("Checkpoint Controller not set in Player Controller on player");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
