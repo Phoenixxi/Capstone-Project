@@ -70,11 +70,8 @@ public class EntityManager : MonoBehaviour
     
     void Start()
     {
-        // TEMPORARY- change back to maxHealth later
         currentHealth = maxHealth;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        //if (gameObject.CompareTag("Enemy"))
-        //    currentHealth = 1;
         CreateWeapon();
         ability = GetComponent<Ability>();
         movementQueue = new Queue<AbilityMovement>();
@@ -230,11 +227,9 @@ public class EntityManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Debug.Log("Entity has died.");
+            EntityHasDied();
             isAlive = false;
-            Destroy(gameObject);
             return;
-            //swappingManager.PlayerHasDied(gameObject);
         }
         else
         {
@@ -254,6 +249,7 @@ public class EntityManager : MonoBehaviour
         {
             ShowDamageNumber((int)damage, element);
             EntityHasDied();
+            isAlive = false;
             return;
         }
         else if (element != ElementType.Normal)
@@ -295,19 +291,20 @@ public class EntityManager : MonoBehaviour
         currentHealth = 0;
         Debug.Log("Entity has died.");
         isAlive = false;
+        ClearElementalVFX();
 
         if(this.gameObject.CompareTag("Enemy"))
         {
             SpawnHealthPack spawnPack = GetComponent<SpawnHealthPack>();
             spawnPack.Spawn(gameObject.transform.position);
+            Destroy(gameObject); 
         }
-
 
         if (this.gameObject.CompareTag("Player"))
         {
             swappingManager.PlayerHasDied(gameObject);
         }
-        else Destroy(gameObject); // I dont think we want to destroy the player.....
+
     }
 
     /// <summary>
@@ -382,19 +379,35 @@ public class EntityManager : MonoBehaviour
     /// <param name="entityPosition">The attacking entity's position. If the entity uses a melee weapon, this parameter is unimportant.</param>
     public void Attack(Vector3 attackDirection, Vector3 entityPosition)
     {
-        if (AbilityInUse()) return;
-        if (weapon is RangedWeapon) (weapon as RangedWeapon).UpdateWeaponTransform(attackDirection, entityPosition);
+        if (AbilityInUse())return;
+        
+        if (weapon is RangedWeapon) 
+            (weapon as RangedWeapon).UpdateWeaponTransform(attackDirection, entityPosition);
+        
+        bool attacked = weapon.Attack();
+        if(attacked)
         {
-            bool attacked = weapon.Attack();
-            if(attacked)
+            animator.SetTrigger("Shoot");
+            if(gameObject.CompareTag("Enemy")) return;
+            if(entityName == "Zoom")
             {
-                animator.SetTrigger("Shoot");
-                if(gameObject.CompareTag("Enemy")) return;
-                
-                currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-                StartCoroutine(RemoveAfterDuration(1f));
+                if(vfxAnchor.childCount > 0)
+                {
+                    for(int i = 0; i < vfxAnchor.childCount; i++)
+                    {
+                        Destroy(vfxAnchor.GetChild(i).gameObject);
+                    }
+                }
+                else
+                {
+                    currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+                    StartCoroutine(RemoveAfterDuration(0.5f));
+                }
+                    
             }
         }
+        
+        
     }
 
     private System.Collections.IEnumerator RemoveAfterDuration(float duration)

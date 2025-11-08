@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         charactersListPC = swappingManager.charactersList;
         swappingManager.SwapCharacterEvent += OnCharacterSwap;
+        if(checkpointController == null)
+            Debug.LogError("Checkpoint Controller not set in Player Controller on player");
     }
 
     private void Awake()

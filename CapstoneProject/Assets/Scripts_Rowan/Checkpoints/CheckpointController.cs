@@ -4,6 +4,7 @@ using lilGuysNamespace;
 
 public class CheckpointController : MonoBehaviour
 {
+    [SerializeField] public PlayerController playerController;
     [SerializeField] public List<Checkpoint> checkpointList;
     private Checkpoint mostRecentCheckpoint;
 
@@ -12,6 +13,9 @@ public class CheckpointController : MonoBehaviour
         // Make sure list is not null on start
         if(checkpointList.Count > 0)
             mostRecentCheckpoint = checkpointList[0];
+
+        if(playerController == null)
+            Debug.LogError("Player Controller not set in Checkpoint controller");
     }
 
     public void UpdateCheckpointList(Checkpoint cp)
@@ -28,6 +32,7 @@ public class CheckpointController : MonoBehaviour
     public Vector3 RecentCheckpointLocation()
     {
         Debug.Log("CP Location: " + mostRecentCheckpoint.transform.position);
+        mostRecentCheckpoint.hasPlayerFallen = true;
         return mostRecentCheckpoint.transform.position;
     }
 }
