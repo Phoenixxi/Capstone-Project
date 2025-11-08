@@ -53,21 +53,33 @@ public class EntityManager : MonoBehaviour
     // DESIGNERS: Adjust fields here
     private float dmgMultiplier = 2.0f;
 
-    // VFX info
-    [Header("VFX")]
-    private GameObject currentElementalVFXInstance;
-    private GameObject currentZoomAttackVFX;
-    private Transform vfxAnchor;
     [SerializeField] private GameObject damageNumberVFXPrefab;
     [SerializeField] private float damageNumberDisplayTime;
+
+    // VFX info
+    [Header("Elemental glow VFX: Needed for both player and enemy")]
     [SerializeField] private GameObject zoomElementVFX;
     [SerializeField] private GameObject boomElementVFX;
     [SerializeField] private GameObject gloomElementVFX;
+
+    [Header("Player Attack VFX")]
     [SerializeField] private GameObject zoomAttackVFX;
+
+    [Header("On Hit Effect: ENEMY ONLY")]
+    [SerializeField] private GameObject zoomHitVFX;
+    [SerializeField] private GameObject boomHitVFX;
+    [SerializeField] private GameObject gloomHitVFX;
+
+    private GameObject currentElementalVFXInstance;
+    private GameObject currentZoomAttackVFX;
+    private GameObject currentHitAttackVFX;
+    private Transform vfxAnchor;
+    private Transform vfxHitAnchor;
 
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
-    
+
+    // Initialization =======================================================================================================================   
     void Start()
     {
         currentHealth = maxHealth;
@@ -85,6 +97,15 @@ public class EntityManager : MonoBehaviour
     void Awake()
     {
         vfxAnchor = transform.Find("VFXanchor");
+        if(gameObject.CompareTag("Enemy"))
+            vfxHitAnchor = transform.Find("VFXHitAnchor");
+    }
+
+    void Update()
+    {
+        if (movementQueue.Count > 0) HandleQueueMovement();
+        else HandleDefaultMovement();
+        if (entityMovement.isGrounded) currentExtraJumps = extraJumps;
     }
 
     private void CreateWeapon()
@@ -95,6 +116,10 @@ public class EntityManager : MonoBehaviour
         else Debug.LogError($"Neither a melee nor ranged weapon could be assigned to {gameObject}. Make sure either the Projectile or Hurtbox fields have a value");
     }
 
+
+
+
+    // Movement =============================================================================================================================
     /// <summary>
     /// Makes the entity's move based off normal movement conditions (regular horizontal movement, jumping, etc.)
     /// </summary>
@@ -126,21 +151,13 @@ public class EntityManager : MonoBehaviour
         else entityMovement.Move(currentMovement.GetMovementVelocity() * Time.deltaTime);
     }
 
-    void Update()
-    {
-        if (movementQueue.Count > 0) HandleQueueMovement();
-        else HandleDefaultMovement();
-        if (entityMovement.isGrounded) currentExtraJumps = extraJumps;
-    }
-
     /// <summary>
-    /// Updates the entity's X and Z movement based off a given input vector. The input vector is expected to be normalized and only handles horizontal movement
+    /// Returns the entity's current movement velocity
     /// </summary>
-    /// <param name="input">The direction the entity should be moving</param>
-    public void SetInputDirection(Vector2 input)
+    /// <returns>A Vector3 representing the entity's movement</returns>
+    public Vector3 GetMovementVelocity()
     {
-        movementVelocity.x = input.x * movementSpeed;
-        movementVelocity.z = input.y * movementSpeed;
+        return movementVelocity;
     }
 
     /// <summary>
@@ -153,12 +170,13 @@ public class EntityManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns the entity's current movement velocity
+    /// Updates the entity's X and Z movement based off a given input vector. The input vector is expected to be normalized and only handles horizontal movement
     /// </summary>
-    /// <returns>A Vector3 representing the entity's movement</returns>
-    public Vector3 GetMovementVelocity()
+    /// <param name="input">The direction the entity should be moving</param>
+    public void SetInputDirection(Vector2 input)
     {
-        return movementVelocity;
+        movementVelocity.x = input.x * movementSpeed;
+        movementVelocity.z = input.y * movementSpeed;
     }
 
     /// <summary>
@@ -175,6 +193,9 @@ public class EntityManager : MonoBehaviour
         movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
     }
 
+
+
+    // Abilities / Damage / Attacking ====================================================================================================================
     /// <summary>
     /// Attempts to use this entity's ability
     /// </summary>
@@ -191,35 +212,6 @@ public class EntityManager : MonoBehaviour
         }
     }
 
-    private void ApplyElementalVFX(ElementType element)
-    {
-        ClearElementalVFX();
-        if (element == ElementType.Zoom)
-        {
-            currentElementalVFXInstance = Instantiate(zoomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-        }
-        else if (element == ElementType.Boom)
-        {
-            currentElementalVFXInstance = Instantiate(boomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-        }
-        else if (element == ElementType.Gloom)
-        {
-            currentElementalVFXInstance = Instantiate(gloomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-        }
-
-    }
-
-    private void ClearElementalVFX()
-    {
-        if (currentElementalVFXInstance != null)
-        {
-            Destroy(currentElementalVFXInstance);
-            currentElementalVFXInstance = null;
-        }
-    }
-
-
-    // TODO: Get rid of this method instance (referenced in PlayerController.TakeDamageWrapper())
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -273,6 +265,13 @@ public class EntityManager : MonoBehaviour
             currentHealth = newHealth;
             ShowDamageNumber((int)damage, ElementType.Normal);
         }
+
+        if(gameObject.CompareTag("Enemy"))
+        {
+            currentHitAttackVFX = Instantiate(zoomHitVFX, vfxHitAnchor.position, Quaternion.identity, vfxHitAnchor);
+            StartCoroutine(RemoveAfterDurationHitAttack(0.5f));
+        }
+
         if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
         //Instantiate(damageNumberVFXPrefab, transform);
     }
@@ -283,29 +282,43 @@ public class EntityManager : MonoBehaviour
         damageNumber.ShowDamage(damage, element, damageNumberDisplayTime);
     }
 
-    /// <summary>
-    /// Called when the entity's health has reached 0 or less
-    /// </summary>
-    private void EntityHasDied()
+
+    private void ApplyElementalVFX(ElementType element)
     {
-        currentHealth = 0;
-        Debug.Log("Entity has died.");
-        isAlive = false;
-        ClearElementalVFX();
-
-        if(this.gameObject.CompareTag("Enemy"))
+        //ClearElementalVFX();
+        ClearVFX(ref currentElementalVFXInstance);
+        if (element == ElementType.Zoom)
         {
-            SpawnHealthPack spawnPack = GetComponent<SpawnHealthPack>();
-            spawnPack.Spawn(gameObject.transform.position);
-            Destroy(gameObject); 
+            currentElementalVFXInstance = Instantiate(zoomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
-
-        if (this.gameObject.CompareTag("Player"))
+        else if (element == ElementType.Boom)
         {
-            swappingManager.PlayerHasDied(gameObject);
+            currentElementalVFXInstance = Instantiate(boomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
-
+        else if (element == ElementType.Gloom)
+        {
+            currentElementalVFXInstance = Instantiate(gloomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+        }
     }
+
+    // private void ClearElementalVFX()
+    // {
+    //     if (currentElementalVFXInstance != null)
+    //     {
+    //         Destroy(currentElementalVFXInstance);
+    //         currentElementalVFXInstance = null;
+    //     }
+    // }
+
+    private void ClearVFX(ref GameObject instance)
+    {
+        if(instance != null)
+        {
+            Destroy(instance);
+            instance = null;
+        }
+    }
+
 
     /// <summary>
     /// Signaled when a reaction occurs between two different elements
@@ -358,19 +371,10 @@ public class EntityManager : MonoBehaviour
         }
 
         if (gameObject.CompareTag("Enemy"))
-            ClearElementalVFX();
+            ClearVFX(ref currentElementalVFXInstance);
+            //ClearElementalVFX();
 
     } 
-
-    public void Heal(float heal)
-    {
-        currentHealth += heal;
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
-
-        Debug.Log("Entity healed. Current health: " + currentHealth);
-        if(OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
-    }
 
     /// <summary>
     /// Has the entity attack using their weapon if they aren't currently using an ability
@@ -402,12 +406,9 @@ public class EntityManager : MonoBehaviour
                 {
                     currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
                     StartCoroutine(RemoveAfterDuration(0.5f));
-                }
-                    
+                }   
             }
         }
-        
-        
     }
 
     private System.Collections.IEnumerator RemoveAfterDuration(float duration)
@@ -415,13 +416,26 @@ public class EntityManager : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ClearAttackVFX();
     }
-
     private void ClearAttackVFX()
     {
         if (currentZoomAttackVFX != null)
         {
             Destroy(currentZoomAttackVFX);
             currentZoomAttackVFX = null;
+        }
+    }
+
+    private System.Collections.IEnumerator RemoveAfterDurationHitAttack(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ClearHitVFX();
+    }
+    private void ClearHitVFX()
+    {
+        if (currentHitAttackVFX != null)
+        {
+            Destroy(currentHitAttackVFX);
+            currentHitAttackVFX = null;
         }
     }
 
@@ -444,7 +458,6 @@ public class EntityManager : MonoBehaviour
         weapon.ApplyCooldownMultiplier(multiplier);
     }
 
-
     /// <summary>
     /// Restore this entity's attack rate to its base amount
     /// </summary>
@@ -453,5 +466,43 @@ public class EntityManager : MonoBehaviour
         weapon.RestoreBaseFireRate();
     }
 
+
+
+
+
+    // Healing / Entity Death =======================================================================================================================
+    /// <summary>
+    /// Called when the entity's health has reached 0 or less
+    /// </summary>
+    private void EntityHasDied()
+    {
+        currentHealth = 0;
+        Debug.Log("Entity has died.");
+        isAlive = false;
+        //ClearElementalVFX();
+        ClearVFX(ref currentElementalVFXInstance);
+
+        if(this.gameObject.CompareTag("Enemy"))
+        {
+            SpawnHealthPack spawnPack = GetComponent<SpawnHealthPack>();
+            spawnPack.Spawn(gameObject.transform.position);
+            Destroy(gameObject); 
+        }
+
+        if (this.gameObject.CompareTag("Player"))
+        {
+            swappingManager.PlayerHasDied(gameObject);
+        }
+    }
+
+    public void Heal(float heal)
+    {
+        currentHealth += heal;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+        Debug.Log("Entity healed. Current health: " + currentHealth);
+        if(OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
+    }
     
 }
