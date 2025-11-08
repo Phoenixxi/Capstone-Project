@@ -9518,7 +9518,7 @@ PrefabInstance:
     - target: {fileID: 3968515568990736517, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: healthText
       value: 
-      objectReference: {fileID: 2020190214}
+      objectReference: {fileID: 0}
     - target: {fileID: 4069364185334456115, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
@@ -9570,7 +9570,7 @@ PrefabInstance:
     - target: {fileID: 5105736751404034660, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: healthText
       value: 
-      objectReference: {fileID: 2020190214}
+      objectReference: {fileID: 0}
     - target: {fileID: 5316081044738082790, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9578,7 +9578,7 @@ PrefabInstance:
     - target: {fileID: 5377437969833900074, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: healthText
       value: 
-      objectReference: {fileID: 2020190214}
+      objectReference: {fileID: 0}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
@@ -11094,17 +11094,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2020190214 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7343911059523330959, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
-  m_PrefabInstance: {fileID: 126590733137209561}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1 &2138935043
 GameObject:
   m_ObjectHideFlags: 0
@@ -13676,7 +13665,8 @@ PrefabInstance:
       value: 52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3437506329021399699, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
