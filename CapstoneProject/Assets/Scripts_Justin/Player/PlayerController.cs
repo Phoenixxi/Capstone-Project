@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         foreach(GameObject character in charactersListPC)
         {
             EntityManager entity = character.GetComponentInChildren<EntityManager>();
-            entity.Heal(healAmount/3f);
+            entity.Heal(healAmount);
         }
         
     }

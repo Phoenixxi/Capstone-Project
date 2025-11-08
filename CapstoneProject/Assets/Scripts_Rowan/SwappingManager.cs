@@ -49,7 +49,7 @@ public class SwappingManager : MonoBehaviour
             }
         }
         Debug.Log("All characters are dead.");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("GameOver");
     }
 
 }
