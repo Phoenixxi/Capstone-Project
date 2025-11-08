@@ -7,7 +7,7 @@ public class PlayerHealthBar : MonoBehaviour
     public EntityManager entityManager;
     public Image healthBar;
 
-    float maxhp;
+    float maxhp = 100;
     float hp;
     float lerpTime;
     //public Image healthBarBoom, healthBarGloom, healthBarZoom;
@@ -27,16 +27,28 @@ public class PlayerHealthBar : MonoBehaviour
         }
     }
     */
+    void Start()
+    {
+        maxhp = entityManager.maxHealth;
+        hp = maxhp;
+    }
+
     private void Update()
     {
-        lerpTime = 2f * Time.deltaTime;
-        hp = entityManager.currentHealth;
+        //I tried a try catch block to see if we could avoid the other characters' health starting out appearing empty by 
+        //having it not update when currentHealth is void, but it didn't do anything.
+        try
+        {
+            lerpTime = 4f * Time.deltaTime;
+            hp = entityManager.currentHealth;
 
-        updateHPFill();
-        updateColor();
+            updateHPFill();
+            updateColor();
 
-        //healthBarZoom.fillAmount = Mathf.Lerp(healthBarZoom.fillAmount, healthZoom / maxHealthZoom, (2f * Time.deltaTime));
-        //updateHPBarFill(zoom);
+            //healthBarZoom.fillAmount = Mathf.Lerp(healthBarZoom.fillAmount, healthZoom / maxHealthZoom, (2f * Time.deltaTime));
+            //updateHPBarFill(zoom);
+        }
+        catch { }
     }
 
     private void updateHPFill()
