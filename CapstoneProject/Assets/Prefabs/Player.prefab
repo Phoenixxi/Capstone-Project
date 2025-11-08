@@ -230,6 +230,10 @@ MonoBehaviour:
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
   zoomAttackVFX: {fileID: 0}
+  zoomHitVFX: {fileID: 0}
+  boomHitVFX: {fileID: 0}
+  gloomHitVFX: {fileID: 0}
+  enemyDeathVFX: {fileID: 0}
 --- !u!114 &5377437969833900074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +270,8 @@ MonoBehaviour:
   slamLayerMask:
     serializedVersion: 2
     m_Bits: 2048
-  boomVFXPrefab: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
+  boomVFXPrefab: {fileID: 5780632897753931835, guid: 89f3093e4bd654448b352f2dc630790b, type: 3}
+  animator: {fileID: 220673775427230319}
 --- !u!1 &2838086303824349459
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +317,6 @@ GameObject:
   - component: {fileID: 7850124068460452317}
   - component: {fileID: 5105736751404034660}
   - component: {fileID: 3301841785260470896}
-  - component: {fileID: 7136588418092959098}
   m_Layer: 10
   m_Name: Zoom
   m_TagString: Player
@@ -377,6 +381,10 @@ MonoBehaviour:
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
   zoomAttackVFX: {fileID: 9090841650386813736, guid: 92d39f934e68ef0448973eb9d44c27da, type: 3}
+  zoomHitVFX: {fileID: 0}
+  boomHitVFX: {fileID: 0}
+  gloomHitVFX: {fileID: 0}
+  enemyDeathVFX: {fileID: 0}
 --- !u!114 &5105736751404034660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,28 +422,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   zoomVFXPrefab: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
---- !u!95 &7136588418092959098
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3098750437766999248}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c03cee1d93f326439be1277d0c22eec, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  animator: {fileID: 9124373181119756861}
 --- !u!1 &3153298784655456344
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +609,10 @@ MonoBehaviour:
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
   zoomAttackVFX: {fileID: 0}
+  zoomHitVFX: {fileID: 0}
+  boomHitVFX: {fileID: 0}
+  gloomHitVFX: {fileID: 0}
+  enemyDeathVFX: {fileID: 0}
 --- !u!114 &3968515568990736517
 MonoBehaviour:
   m_ObjectHideFlags: 0
