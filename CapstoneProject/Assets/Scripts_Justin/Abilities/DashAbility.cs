@@ -13,6 +13,7 @@ public class DashAbility : Ability
     [SerializeField] private Collider entityCollision;
     [SerializeField] private LayerMask dashPhasingLayers;
     [SerializeField] private GameObject zoomVFXPrefab;
+    [SerializeField] public Animator animator;
 
     private float currentDashTimer;
     private float dashTimer;
@@ -23,6 +24,7 @@ public class DashAbility : Ability
     public override AbilityMovement[] UseAbility(Vector2 horizontalDirection)
     {
         if (currentCooldown > 0f || abilityInUse) return Array.Empty<AbilityMovement>();
+        animator.SetTrigger("Dash");
         // VFX
         vfxInstance = Instantiate(zoomVFXPrefab, transform.position, Quaternion.identity);
         StartCoroutine(RemoveAfterDuration(duration));
@@ -55,6 +57,7 @@ public class DashAbility : Ability
         if (abilityInUse) currentDashTimer += Time.deltaTime;
         if(currentDashTimer >= dashTimer)
         {
+            animator.SetTrigger("NotDash");
             currentDashTimer = 0f;
             movements[0].Complete();
             abilityInUse = false;

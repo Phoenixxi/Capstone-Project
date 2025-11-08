@@ -70,9 +70,13 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private GameObject boomHitVFX;
     [SerializeField] private GameObject gloomHitVFX;
 
+    [Header("Enemy Death: ENEMY ONLY")]
+    [SerializeField] private GameObject enemyDeathVFX;
+
     private GameObject currentElementalVFXInstance;
     private GameObject currentZoomAttackVFX;
     private GameObject currentHitAttackVFX;
+    private GameObject currentEnemyDeathVFX;
     private Transform vfxAnchor;
     private Transform vfxHitAnchor;
 
@@ -486,6 +490,8 @@ public class EntityManager : MonoBehaviour
         {
             SpawnHealthPack spawnPack = GetComponent<SpawnHealthPack>();
             spawnPack.Spawn(gameObject.transform.position);
+            Vector3 lastEnemyPosition = gameObject.transform.position;
+            currentEnemyDeathVFX = Instantiate(enemyDeathVFX, lastEnemyPosition, Quaternion.identity);
             Destroy(gameObject); 
         }
 
@@ -494,6 +500,7 @@ public class EntityManager : MonoBehaviour
             swappingManager.PlayerHasDied(gameObject);
         }
     }
+
 
     public void Heal(float heal)
     {

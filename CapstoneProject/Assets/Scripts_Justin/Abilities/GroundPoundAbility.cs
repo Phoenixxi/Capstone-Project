@@ -13,6 +13,7 @@ public class GroundPoundAbility : Ability
     [SerializeField] private float coyoteTime;
     [SerializeField] private LayerMask slamLayerMask;
     [SerializeField] private GameObject boomVFXPrefab;
+    [SerializeField] public Animator animator;
     private float currentCoyoteTime;
 
     //VFX
@@ -23,10 +24,7 @@ public class GroundPoundAbility : Ability
     public override AbilityMovement[] UseAbility(Vector2 horizontalDirection)
     {
         if (currentCooldown > 0f || abilityInUse || entity.isGrounded) return Array.Empty<AbilityMovement>();
-        //VFX
-        vfxInstance = Instantiate(boomVFXPrefab, transform.position, Quaternion.identity);
-        StartCoroutine(RemoveAfterDuration(duration));
-
+        animator.SetTrigger("GroundPound");
         abilityInUse = true;
         currentCoyoteTime = 0f;
         movements[0] = new AbilityMovement(Vector3.zero);
@@ -45,6 +43,10 @@ public class GroundPoundAbility : Ability
                 if (currentCoyoteTime >= coyoteTime) movements[0].Complete();
             } else
             {
+                animator.SetTrigger("Grounded");
+                //VFX
+                vfxInstance = Instantiate(boomVFXPrefab, transform.position, Quaternion.identity);
+                StartCoroutine(RemoveAfterDuration(duration));
                 movements[1].Complete();
                 abilityInUse = false;
                 Ray sphereRay = new Ray(transform.position, Vector3.down);
