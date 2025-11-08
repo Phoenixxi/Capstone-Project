@@ -552,37 +552,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &3450964400108612008
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1610318112022639142}
-  m_Layer: 11
-  m_Name: VFXHitAnchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1610318112022639142
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3450964400108612008}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.318, z: -0.641}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2113378421503788461}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5094408285399476842
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +697,6 @@ Transform:
   - {fileID: 7722578723575890076}
   - {fileID: 605558586999146582}
   - {fileID: 1618604057760933167}
-  - {fileID: 1610318112022639142}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &7493769958297259037
@@ -805,7 +773,6 @@ MonoBehaviour:
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
   zoomAttackVFX: {fileID: 0}
-  zoomHitVFX: {fileID: 1104788038885962465, guid: 884793ef423f0bd4b87a15b4fc838421, type: 3}
 --- !u!114 &5053508518923957891
 MonoBehaviour:
   m_ObjectHideFlags: 0
