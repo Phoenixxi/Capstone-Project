@@ -165,7 +165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8708904835094065169}
   - component: {fileID: 6099202190651621813}
-  - component: {fileID: 5377437969833900074}
   - component: {fileID: 7478264160224895753}
   m_Layer: 10
   m_Name: Boom
@@ -234,20 +233,6 @@ MonoBehaviour:
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
   enemyDeathVFX: {fileID: 0}
---- !u!114 &5377437969833900074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711543835817741233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540b81f32730eb64ca1249ff522d9e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerUI
-  entityManager: {fileID: 6099202190651621813}
-  healthText: {fileID: 0}
 --- !u!114 &7478264160224895753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +300,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7617289105161180958}
   - component: {fileID: 7850124068460452317}
-  - component: {fileID: 5105736751404034660}
   - component: {fileID: 3301841785260470896}
   m_Layer: 10
   m_Name: Zoom
@@ -385,20 +369,6 @@ MonoBehaviour:
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
   enemyDeathVFX: {fileID: 0}
---- !u!114 &5105736751404034660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3098750437766999248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540b81f32730eb64ca1249ff522d9e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerUI
-  entityManager: {fileID: 7850124068460452317}
-  healthText: {fileID: 0}
 --- !u!114 &3301841785260470896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,7 +514,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2716587646394959634}
   - component: {fileID: 4069364185334456115}
-  - component: {fileID: 3968515568990736517}
   - component: {fileID: 4328091491385667142}
   m_Layer: 10
   m_Name: Gloom
@@ -613,20 +582,6 @@ MonoBehaviour:
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
   enemyDeathVFX: {fileID: 0}
---- !u!114 &3968515568990736517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4096034835489068672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 540b81f32730eb64ca1249ff522d9e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerUI
-  entityManager: {fileID: 4069364185334456115}
-  healthText: {fileID: 0}
 --- !u!114 &4328091491385667142
 MonoBehaviour:
   m_ObjectHideFlags: 0

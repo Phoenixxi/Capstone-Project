@@ -1049,6 +1049,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150290296}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &205664065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205664067}
+  - component: {fileID: 205664066}
+  m_Layer: 0
+  m_Name: Checkpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &205664066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205664065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2b9f69e32dcfd4083935fbb2bc3107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Checkpoint
+  isCheckpointReached: 0
+  isNewestCheckpoint: 0
+  hasPlayerFallen: 0
+  checkpointController: {fileID: 0}
+--- !u!4 &205664067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205664065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.72168, y: 1.8224, z: -4.67941}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &216239965
 GameObject:
   m_ObjectHideFlags: 0
@@ -4722,6 +4770,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055083536}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1110766768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110766770}
+  - component: {fileID: 1110766769}
+  m_Layer: 0
+  m_Name: CheckPointController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1110766769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110766768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb319c05ef77cf4da7018840f3f2b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckpointController
+  playerController: {fileID: 1859599093}
+  checkpointList:
+  - {fileID: 205664066}
+--- !u!4 &1110766770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110766768}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.72168, y: 1.8224, z: -4.67941}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143791016
 GameObject:
   m_ObjectHideFlags: 0
@@ -9527,6 +9622,10 @@ PrefabInstance:
       propertyPath: swappingManager
       value: 
       objectReference: {fileID: 132180985}
+    - target: {fileID: 4070096453353980523, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: checkpointController
+      value: 
+      objectReference: {fileID: 1110766769}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7
@@ -10804,6 +10903,17 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!114 &1859599093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4070096453353980523, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+  m_PrefabInstance: {fileID: 1413218839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7151668e389282e4d8e3cf4a5b219749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1 &1942003660
 GameObject:
   m_ObjectHideFlags: 0
@@ -13688,3 +13798,5 @@ SceneRoots:
   - {fileID: 55364167}
   - {fileID: 1172638378}
   - {fileID: 121302803}
+  - {fileID: 1110766770}
+  - {fileID: 205664067}
