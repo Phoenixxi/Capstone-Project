@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6963047163490861105}
   - component: {fileID: 8548033461901599211}
   - component: {fileID: 375100335482551515}
+  - component: {fileID: -1316797206136253843}
   m_Layer: 0
   m_Name: VFX_ZoomMeleeHit
   m_TagString: Untagged
@@ -4894,3 +4895,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-1316797206136253843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104788038885962465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f29932f2310cc4418332139ba337e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXInstance

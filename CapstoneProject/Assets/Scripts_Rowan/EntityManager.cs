@@ -65,6 +65,9 @@ public class EntityManager : MonoBehaviour
     [Header("Player Attack VFX")]
     [SerializeField] private GameObject zoomAttackVFX;
 
+    [Header("Boom Only")]
+    [SerializeField] private GameObject boomJumpVFX;    
+
     [Header("On Hit Effect: ENEMY ONLY")]
     [SerializeField] private GameObject zoomHitVFX;
     [SerializeField] private GameObject boomHitVFX;
@@ -191,7 +194,9 @@ public class EntityManager : MonoBehaviour
         //if (!entityMovement.isGrounded) return;
         if(!entityMovement.isGrounded)
         {
-            if (currentExtraJumps == 0) return;
+            if (currentExtraJumps == 0) 
+                return;
+            Instantiate(boomJumpVFX, vfxAnchor.position, Quaternion.identity);
             currentExtraJumps--;
         }
         movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
@@ -273,7 +278,6 @@ public class EntityManager : MonoBehaviour
         if(gameObject.CompareTag("Enemy"))
         {
             currentHitAttackVFX = Instantiate(zoomHitVFX, vfxHitAnchor.position, Quaternion.identity, vfxHitAnchor);
-            StartCoroutine(RemoveAfterDurationHitAttack(0.5f));
         }
 
         if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
@@ -289,7 +293,6 @@ public class EntityManager : MonoBehaviour
 
     private void ApplyElementalVFX(ElementType element)
     {
-        //ClearElementalVFX();
         ClearVFX(ref currentElementalVFXInstance);
         if (element == ElementType.Zoom)
         {
@@ -304,15 +307,6 @@ public class EntityManager : MonoBehaviour
             currentElementalVFXInstance = Instantiate(gloomElementVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
         }
     }
-
-    // private void ClearElementalVFX()
-    // {
-    //     if (currentElementalVFXInstance != null)
-    //     {
-    //         Destroy(currentElementalVFXInstance);
-    //         currentElementalVFXInstance = null;
-    //     }
-    // }
 
     private void ClearVFX(ref GameObject instance)
     {
@@ -376,7 +370,6 @@ public class EntityManager : MonoBehaviour
 
         if (gameObject.CompareTag("Enemy"))
             ClearVFX(ref currentElementalVFXInstance);
-            //ClearElementalVFX();
 
     } 
 
@@ -409,39 +402,11 @@ public class EntityManager : MonoBehaviour
                 else
                 {
                     currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-                    StartCoroutine(RemoveAfterDuration(0.5f));
                 }   
             }
         }
     }
 
-    private System.Collections.IEnumerator RemoveAfterDuration(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        ClearAttackVFX();
-    }
-    private void ClearAttackVFX()
-    {
-        if (currentZoomAttackVFX != null)
-        {
-            Destroy(currentZoomAttackVFX);
-            currentZoomAttackVFX = null;
-        }
-    }
-
-    private System.Collections.IEnumerator RemoveAfterDurationHitAttack(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        ClearHitVFX();
-    }
-    private void ClearHitVFX()
-    {
-        if (currentHitAttackVFX != null)
-        {
-            Destroy(currentHitAttackVFX);
-            currentHitAttackVFX = null;
-        }
-    }
 
     /// <summary>
     /// Returns whether or not this entity's ability is being used
@@ -483,7 +448,6 @@ public class EntityManager : MonoBehaviour
         currentHealth = 0;
         Debug.Log("Entity has died.");
         isAlive = false;
-        //ClearElementalVFX();
         ClearVFX(ref currentElementalVFXInstance);
 
         if(this.gameObject.CompareTag("Enemy"))
