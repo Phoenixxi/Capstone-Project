@@ -27,7 +27,6 @@ public class DashAbility : Ability
         animator.SetTrigger("Dash");
         // VFX
         vfxInstance = Instantiate(zoomVFXPrefab, transform.position, Quaternion.identity);
-        StartCoroutine(RemoveAfterDuration(duration));
 
         abilityInUse = true;
         dashHurtbox.Activate(dashTimer);
@@ -66,18 +65,4 @@ public class DashAbility : Ability
         }
     }
 
-    private System.Collections.IEnumerator RemoveAfterDuration(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        ClearVFX();
-    }
-
-    private void ClearVFX()
-    {
-        if (vfxInstance != null)
-        {
-            Destroy(vfxInstance);
-            vfxInstance = null;
-        }
-    }
 }

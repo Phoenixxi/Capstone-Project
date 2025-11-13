@@ -46,7 +46,7 @@ public class GroundPoundAbility : Ability
                 animator.SetTrigger("Grounded");
                 //VFX
                 vfxInstance = Instantiate(boomVFXPrefab, transform.position, Quaternion.identity);
-                StartCoroutine(RemoveAfterDuration(duration));
+
                 movements[1].Complete();
                 abilityInUse = false;
                 Ray sphereRay = new Ray(transform.position, Vector3.down);
@@ -76,20 +76,5 @@ public class GroundPoundAbility : Ability
         if(boomVFXPrefab == null)
             Debug.LogError("Boom VFX Prefab is not assigned in the inspector for Boom > GroundPoundAbility");
         movements = new AbilityMovement[2];
-    }
-
-    private System.Collections.IEnumerator RemoveAfterDuration(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        ClearVFX();
-    }
-
-    private void ClearVFX()
-    {
-        if (vfxInstance != null)
-        {
-            Destroy(vfxInstance);
-            vfxInstance = null;
-        }
     }
 }
