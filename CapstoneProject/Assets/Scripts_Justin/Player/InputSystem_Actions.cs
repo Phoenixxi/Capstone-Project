@@ -120,36 +120,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwapCharacter1"",
-                    ""type"": ""Button"",
-                    ""id"": ""e10b82f7-80b3-4027-bd8f-35cebf0dc12b"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwapCharacter2"",
-                    ""type"": ""Button"",
-                    ""id"": ""c5e2ffb8-f96a-4ab0-a8fd-9e3bd0ad3c08"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwapCharacter3"",
-                    ""type"": ""Button"",
-                    ""id"": ""b8f9155e-7dec-4d8c-b1cf-d3d2be92c454"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Ability"",
                     ""type"": ""Button"",
                     ""id"": ""ef6221c4-dc50-48bb-aca2-1e0321eba4eb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapCharacter"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4833c3b-c3d8-4cd8-a600-9c2eaaf2dc25"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -225,39 +207,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cd323d96-293f-4456-8b64-265dd2290f77"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""SwapCharacter1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""80b02405-ac0f-430f-aa9d-88c6de0a61a4"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""SwapCharacter2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7bc895a7-b67a-415e-ac6f-c0945df98afc"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""SwapCharacter3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""267b9d1e-bddc-40a2-bc5a-91cd21bdf024"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -277,6 +226,39 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""4fc160dd-b457-4eb7-a210-eb92ebc2f322"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapCharacter"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a85ad1bf-8a83-431d-8794-07f9b1dfbebe"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapCharacter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""264eba39-f7be-4315-bd6f-12f217db43e6"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapCharacter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -865,10 +847,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_SwapCharacter1 = m_Player.FindAction("SwapCharacter1", throwIfNotFound: true);
-        m_Player_SwapCharacter2 = m_Player.FindAction("SwapCharacter2", throwIfNotFound: true);
-        m_Player_SwapCharacter3 = m_Player.FindAction("SwapCharacter3", throwIfNotFound: true);
         m_Player_Ability = m_Player.FindAction("Ability", throwIfNotFound: true);
+        m_Player_SwapCharacter = m_Player.FindAction("SwapCharacter", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -965,10 +945,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_SwapCharacter1;
-    private readonly InputAction m_Player_SwapCharacter2;
-    private readonly InputAction m_Player_SwapCharacter3;
     private readonly InputAction m_Player_Ability;
+    private readonly InputAction m_Player_SwapCharacter;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -993,21 +971,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "Player/SwapCharacter1".
-        /// </summary>
-        public InputAction @SwapCharacter1 => m_Wrapper.m_Player_SwapCharacter1;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/SwapCharacter2".
-        /// </summary>
-        public InputAction @SwapCharacter2 => m_Wrapper.m_Player_SwapCharacter2;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/SwapCharacter3".
-        /// </summary>
-        public InputAction @SwapCharacter3 => m_Wrapper.m_Player_SwapCharacter3;
-        /// <summary>
         /// Provides access to the underlying input action "Player/Ability".
         /// </summary>
         public InputAction @Ability => m_Wrapper.m_Player_Ability;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SwapCharacter".
+        /// </summary>
+        public InputAction @SwapCharacter => m_Wrapper.m_Player_SwapCharacter;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1043,18 +1013,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @SwapCharacter1.started += instance.OnSwapCharacter1;
-            @SwapCharacter1.performed += instance.OnSwapCharacter1;
-            @SwapCharacter1.canceled += instance.OnSwapCharacter1;
-            @SwapCharacter2.started += instance.OnSwapCharacter2;
-            @SwapCharacter2.performed += instance.OnSwapCharacter2;
-            @SwapCharacter2.canceled += instance.OnSwapCharacter2;
-            @SwapCharacter3.started += instance.OnSwapCharacter3;
-            @SwapCharacter3.performed += instance.OnSwapCharacter3;
-            @SwapCharacter3.canceled += instance.OnSwapCharacter3;
             @Ability.started += instance.OnAbility;
             @Ability.performed += instance.OnAbility;
             @Ability.canceled += instance.OnAbility;
+            @SwapCharacter.started += instance.OnSwapCharacter;
+            @SwapCharacter.performed += instance.OnSwapCharacter;
+            @SwapCharacter.canceled += instance.OnSwapCharacter;
         }
 
         /// <summary>
@@ -1075,18 +1039,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @SwapCharacter1.started -= instance.OnSwapCharacter1;
-            @SwapCharacter1.performed -= instance.OnSwapCharacter1;
-            @SwapCharacter1.canceled -= instance.OnSwapCharacter1;
-            @SwapCharacter2.started -= instance.OnSwapCharacter2;
-            @SwapCharacter2.performed -= instance.OnSwapCharacter2;
-            @SwapCharacter2.canceled -= instance.OnSwapCharacter2;
-            @SwapCharacter3.started -= instance.OnSwapCharacter3;
-            @SwapCharacter3.performed -= instance.OnSwapCharacter3;
-            @SwapCharacter3.canceled -= instance.OnSwapCharacter3;
             @Ability.started -= instance.OnAbility;
             @Ability.performed -= instance.OnAbility;
             @Ability.canceled -= instance.OnAbility;
+            @SwapCharacter.started -= instance.OnSwapCharacter;
+            @SwapCharacter.performed -= instance.OnSwapCharacter;
+            @SwapCharacter.canceled -= instance.OnSwapCharacter;
         }
 
         /// <summary>
@@ -1409,33 +1367,19 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "SwapCharacter1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwapCharacter1(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "SwapCharacter2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwapCharacter2(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "SwapCharacter3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwapCharacter3(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Ability" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAbility(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SwapCharacter" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwapCharacter(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

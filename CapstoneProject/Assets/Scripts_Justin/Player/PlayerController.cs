@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private Camera playerCamera;
     private List<GameObject> charactersListPC;
     private EntityManager currentCharacter;
+    private int currentCharacterIndex;
     private bool isAttacking;
 
     //public Transform mouseObject;
@@ -34,7 +35,8 @@ public class PlayerController : MonoBehaviour
     public void Start()
     {
         charactersListPC = swappingManager.charactersList;
-        swappingManager.SwapCharacterEvent += OnCharacterSwap;
+        currentCharacterIndex = 0;
+        swappingManager.SwapCharacterEvent += OnCharacterSwapForced;
         if(checkpointController == null)
             Debug.LogError("Checkpoint Controller not set in Player Controller on player");
     }
@@ -48,13 +50,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        swappingManager.SwapCharacterEvent -= OnCharacterSwap;
-        swappingManager.SwapCharacterEvent += OnCharacterSwap;
+        swappingManager.SwapCharacterEvent -= OnCharacterSwapForced;
+        swappingManager.SwapCharacterEvent += OnCharacterSwapForced;
     }
 
     private void OnDisable()
     {
-        swappingManager.SwapCharacterEvent -= OnCharacterSwap;
+        swappingManager.SwapCharacterEvent -= OnCharacterSwapForced;
     }
 
     public void HealAllCharacters(float healAmount)
@@ -134,10 +136,25 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// Triggers when the player swaps to the left or right character. Uses the existing swapping methods so as to not break existing systems
+    /// </summary>
+    /// <param name="input"></param>
+    private void OnSwapCharacter(InputValue input)
+    {
+        int newCharacterIndex = currentCharacterIndex;
+        float pressedValue = input.Get<float>();
+        newCharacterIndex += (int)pressedValue;
+        if (newCharacterIndex < 0) newCharacterIndex = charactersListPC.Count - 1;
+        else if (newCharacterIndex >= charactersListPC.Count) newCharacterIndex = 0;
+        Debug.Log($"New character index: {newCharacterIndex}");
+        OnCharacterSwapForced(newCharacterIndex + 1);
+    }
+
+    /// <summary>
     /// Triggers when the swapping manager forces the player to swap (likely after death)
     /// </summary>
     /// <param name="characterNum">The character number to swap to</param>
-    private void OnCharacterSwap(int characterNum)
+    private void OnCharacterSwapForced(int characterNum)
     {
         switch(characterNum)
         {
@@ -154,7 +171,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Triggers when the character 1 (Zoom) hotkey is pressed
+    /// Swaps to the first character (Zoom)
     /// </summary>
     private void OnSwapCharacter1()
     {
@@ -176,13 +193,14 @@ public class PlayerController : MonoBehaviour
         zoom.SetActive(true);
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
         currentCharacter = entity;
+        currentCharacterIndex = 0;
         // Deactivate the other characters
         charactersListPC[1].SetActive(false);
         charactersListPC[2].SetActive(false);
     }
 
     /// <summary>
-    /// Triggers when the character 2 (Boom) hotkey is pressed
+    /// Swaps to the second character (Boom)
     /// </summary>
     /// <param name="input"></param>
     private void OnSwapCharacter2()
@@ -204,13 +222,14 @@ public class PlayerController : MonoBehaviour
         boom.SetActive(true);
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
         currentCharacter = entity;
+        currentCharacterIndex = 1;
         // Deactivate the other characters
         charactersListPC[0].SetActive(false);
         charactersListPC[2].SetActive(false);
     }
 
     /// <summary>
-    /// Triggers when the character 3 (Gloom) hotkey is pressed
+    /// Swaps to the third character (Gloom)
     /// </summary>
     /// <param name="input"></param>
     private void OnSwapCharacter3()
@@ -231,6 +250,7 @@ public class PlayerController : MonoBehaviour
         gloom.SetActive(true);
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
         currentCharacter = entity;
+        currentCharacterIndex = 2;
         // Deactivate the other characters
         charactersListPC[0].SetActive(false);
         charactersListPC[1].SetActive(false);
