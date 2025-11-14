@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 /// <summary>
@@ -19,6 +20,10 @@ public class GroundPoundAbility : Ability
     //VFX
     private float duration = 1f;
     private GameObject vfxInstance;
+
+    //SCREEN SHAKE WIP
+    public float shakeIntensity = 0f;
+    public float shakeDuration = 0f;
 
 
     public override AbilityMovement[] UseAbility(Vector2 horizontalDirection)
@@ -59,6 +64,7 @@ public class GroundPoundAbility : Ability
                     enemy.TakeDamage(damage, element);
                 }
                 currentCooldown = cooldown;
+                FindFirstObjectByType<CameraController>()?.ShakeCamera(shakeIntensity, shakeDuration);
             }
         }
     }
