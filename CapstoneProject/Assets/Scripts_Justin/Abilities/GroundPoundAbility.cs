@@ -17,7 +17,6 @@ public class GroundPoundAbility : Ability
     private float currentCoyoteTime;
 
     //VFX
-    private float duration = 1f;
     private GameObject vfxInstance;
 
 

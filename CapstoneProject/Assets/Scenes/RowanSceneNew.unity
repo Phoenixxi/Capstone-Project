@@ -779,7 +779,7 @@ Transform:
   m_GameObject: {fileID: 540842957}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 27.289, y: 5.920001, z: 7.166746}
+  m_LocalPosition: {x: 27.44, y: 6.380001, z: -5.1502533}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1138,8 +1138,8 @@ Transform:
   m_GameObject: {fileID: 932412885}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.11, y: 8.86, z: 15.73}
-  m_LocalScale: {x: 1, y: 20.109, z: 1}
+  m_LocalPosition: {x: 15.11, y: 3.77, z: 15.73}
+  m_LocalScale: {x: 2.1005, y: 25.948559, z: 1.9027}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1245,6 +1245,18 @@ PrefabInstance:
       propertyPath: gloomElementVFX
       value: 
       objectReference: {fileID: 8811259248243762920, guid: acbdf77e4dce3774b8d74f0bb95b7371, type: 3}
+    - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: boomZoomReactionVFX
+      value: 
+      objectReference: {fileID: 2974473035401064883, guid: 5bd66edc516a3ff4184b1634d6046994, type: 3}
+    - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: boomGloomReactionVFX
+      value: 
+      objectReference: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
+    - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: gloomZoomReactionVFX
+      value: 
+      objectReference: {fileID: 5505204827928493914, guid: ebbb5fe267c8d0f41bbd39ff39470767, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1357,7 +1369,7 @@ Transform:
   m_GameObject: {fileID: 1144122129}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 27.289, y: 5.920001, z: 7.166746}
+  m_LocalPosition: {x: 27.44, y: 6.380001, z: -5.1502533}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1427,15 +1439,15 @@ PrefabInstance:
       objectReference: {fileID: 803997804}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.289
+      value: 27.44
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.92
+      value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.827
+      value: 3.51
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1483,7 +1495,7 @@ PrefabInstance:
       objectReference: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: taggedElement
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: zoomAttackVFX
@@ -1499,7 +1511,7 @@ PrefabInstance:
       objectReference: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: defaultElement
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: gloomVFXPrefab
@@ -1579,7 +1591,7 @@ GameObject:
   - component: {fileID: 1313336645}
   - component: {fileID: 1313336644}
   - component: {fileID: 1313336643}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1701,7 +1713,7 @@ GameObject:
   - component: {fileID: 1454609559}
   - component: {fileID: 1454609558}
   - component: {fileID: 1454609557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
