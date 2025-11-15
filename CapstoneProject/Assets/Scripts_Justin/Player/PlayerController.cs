@@ -230,6 +230,12 @@ public class PlayerController : MonoBehaviour
         //Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
         //boom.transform.position = currentLocation.position;
 
+        //Figure out last active character and play kicking out VFX
+        if(charactersListPC[0].activeSelf == true)  // Zoom last active
+            Instantiate(SwitchOffZoom, gameObject.transform.position, Quaternion.identity);
+        if(charactersListPC[2].activeSelf == true)  // Gloom last active
+            Instantiate(SwitchOffGloom, gameObject.transform.position, Quaternion.identity);
+
         // Activate Boom
         boom.SetActive(true);
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
@@ -257,6 +263,12 @@ public class PlayerController : MonoBehaviour
 
         //Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
         //gloom.transform.position = currentLocation.position;
+
+        //Figure out last active character and play kicking out VFX
+        if(charactersListPC[0].activeSelf == true)  // Zoom last active
+            Instantiate(SwitchOffZoom, gameObject.transform.position, Quaternion.identity);
+        if(charactersListPC[1].activeSelf == true)  // Boom last active
+            Instantiate(SwitchOffBoom, gameObject.transform.position, Quaternion.identity);
 
         // Activate Gloom
         gloom.SetActive(true);

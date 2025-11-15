@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 315301265994828868}
   - component: {fileID: 4553272894893175781}
   - component: {fileID: 6667054290480721205}
+  - component: {fileID: 1185599379329089921}
   m_Layer: 0
   m_Name: VFX_SwitchOff_Zoom
   m_TagString: Untagged
@@ -4905,6 +4906,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1185599379329089921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194000099236636175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f29932f2310cc4418332139ba337e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXInstance
 --- !u!1 &439363772498734776
 GameObject:
   m_ObjectHideFlags: 0
