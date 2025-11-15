@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SwappingManager swappingManager;
     [SerializeField] private LayerMask aimLayerMask;
     [SerializeField] public CheckpointController checkpointController;
+
+    [Header("Character Swapping VFX")]
+    [SerializeField] private GameObject SwitchOffZoom;
+    [SerializeField] private GameObject SwitchOffBoom;
+    [SerializeField] private GameObject SwitchOffGloom;
     
     //[Header("Movement Settings")]
     //[SerializeField] private float movementSpeed = 1f;
@@ -189,11 +194,18 @@ public class PlayerController : MonoBehaviour
         //Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
         //zoom.transform.position = currentLocation.position;
 
+        //Figure out last active character and play kicking out VFX
+        if(charactersListPC[1].activeSelf == true)  // Boom last active
+            Instantiate(SwitchOffBoom, gameObject.transform.position, Quaternion.identity);
+        if(charactersListPC[2].activeSelf == true)  // Gloom last active
+            Instantiate(SwitchOffGloom, gameObject.transform.position, Quaternion.identity);
+
         //Activate Zoom
         zoom.SetActive(true);
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
         currentCharacter = entity;
         currentCharacterIndex = 0;
+        
         // Deactivate the other characters
         charactersListPC[1].SetActive(false);
         charactersListPC[2].SetActive(false);
