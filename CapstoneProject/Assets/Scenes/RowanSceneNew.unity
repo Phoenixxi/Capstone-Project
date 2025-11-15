@@ -779,7 +779,7 @@ Transform:
   m_GameObject: {fileID: 540842957}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 27.44, y: 6.380001, z: -5.1502533}
+  m_LocalPosition: {x: 27.44, y: 6.3800015, z: 3.2897465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1256,7 +1256,7 @@ PrefabInstance:
     - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: gloomZoomReactionVFX
       value: 
-      objectReference: {fileID: 5505204827928493914, guid: ebbb5fe267c8d0f41bbd39ff39470767, type: 3}
+      objectReference: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1369,7 +1369,7 @@ Transform:
   m_GameObject: {fileID: 1144122129}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 27.44, y: 6.380001, z: -5.1502533}
+  m_LocalPosition: {x: 27.44, y: 6.3800015, z: 3.2897465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1397,6 +1397,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 2084217589}
+    - target: {fileID: 3301841785260470896, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: zoomVFXPrefab
+      value: 
+      objectReference: {fileID: 5696736467478265624, guid: b028adf04c4ff9a4b8251dc327ab671a, type: 3}
     - target: {fileID: 3968515568990736517, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: healthText
       value: 
@@ -1447,7 +1451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.51
+      value: 11.95
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalRotation.w
