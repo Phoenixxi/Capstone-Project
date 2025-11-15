@@ -232,7 +232,7 @@ MonoBehaviour:
   boomJumpVFX: {fileID: 2374949704436431568, guid: 1b52b88992560014184545c4faa3e9bb, type: 3}
   boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
   boomZoomReactionVFX: {fileID: 2974473035401064883, guid: 5bd66edc516a3ff4184b1634d6046994, type: 3}
-  gloomZoomReactionVFX: {fileID: 5505204827928493914, guid: ebbb5fe267c8d0f41bbd39ff39470767, type: 3}
+  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
@@ -372,7 +372,7 @@ MonoBehaviour:
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
   boomZoomReactionVFX: {fileID: 2974473035401064883, guid: 5bd66edc516a3ff4184b1634d6046994, type: 3}
-  gloomZoomReactionVFX: {fileID: 5505204827928493914, guid: ebbb5fe267c8d0f41bbd39ff39470767, type: 3}
+  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
@@ -399,7 +399,7 @@ MonoBehaviour:
   dashPhasingLayers:
     serializedVersion: 2
     m_Bits: 2048
-  zoomVFXPrefab: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
+  zoomVFXPrefab: {fileID: 3063913735928104104, guid: 9bbed800212252442ad713c40b7cbecc, type: 3}
   animator: {fileID: 9124373181119756861}
 --- !u!1 &3153298784655456344
 GameObject:
@@ -589,7 +589,7 @@ MonoBehaviour:
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
   boomZoomReactionVFX: {fileID: 2974473035401064883, guid: 5bd66edc516a3ff4184b1634d6046994, type: 3}
-  gloomZoomReactionVFX: {fileID: 5505204827928493914, guid: ebbb5fe267c8d0f41bbd39ff39470767, type: 3}
+  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
@@ -852,6 +852,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2112
   checkpointController: {fileID: 0}
+  SwitchOffZoom: {fileID: 194000099236636175, guid: f8cdb00adfb5c834984d220c91b562df, type: 3}
+  SwitchOffBoom: {fileID: 7523342597919943425, guid: 2fc185409fc4e024b88f31b080577564, type: 3}
+  SwitchOffGloom: {fileID: 8974518114030650362, guid: e75fe1437d65427479430551f2c944d9, type: 3}
 --- !u!143 &2384383547745438605
 CharacterController:
   m_ObjectHideFlags: 0
