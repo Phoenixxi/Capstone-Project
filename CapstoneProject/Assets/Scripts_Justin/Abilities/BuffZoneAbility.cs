@@ -12,6 +12,7 @@ public class BuffZoneAbility : Ability
     [SerializeField] private float duration;
     [SerializeField] private float damageRate;
     [SerializeField] private float attackCooldownMultiplier;
+    [SerializeField] public Animator animator;
     //TODO Implement buffing component
 
 
@@ -19,6 +20,7 @@ public class BuffZoneAbility : Ability
     {
         if (currentCooldown > 0f || abilityInUse) return Array.Empty<AbilityMovement>();
         Vector3 spawnLocation = new Vector3(transform.position.x, transform.position.y + BuffZone.SPAWN_OFFSET, transform.position.z);
+        animator.SetTrigger("UseAbility");
         BuffZone buffZone = Instantiate(buffZonePrefab, spawnLocation, Quaternion.identity).GetComponent<BuffZone>();
         buffZone.SetRadius(radius);
         buffZone.SetDamage(damage);

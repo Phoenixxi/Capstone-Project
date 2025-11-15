@@ -18,7 +18,6 @@ public class DashAbility : Ability
     private float currentDashTimer;
     private float dashTimer;
 
-    private float duration = 1f;
     private GameObject vfxInstance;
 
     public override AbilityMovement[] UseAbility(Vector2 horizontalDirection)
