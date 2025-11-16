@@ -38,7 +38,6 @@ public class GroundPoundAbility : Ability
     protected override void Update()
     {
         base.Update();
-        Debug.Log($"Is grounded: {entity.isGrounded}");
         if(abilityInUse)
         {
             if(!entity.isGrounded)
