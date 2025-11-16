@@ -4,7 +4,7 @@ using lilGuysNamespace;
 
 public class AbilityCooldownDisplay : MonoBehaviour
 {
-    [Serialized] public Image cooldownImage;
+    [SerializeField] public Image cooldownImage;
 
     float maxCooldown;
     float currentCooldown;
