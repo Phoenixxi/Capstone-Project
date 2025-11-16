@@ -11,10 +11,12 @@ public class GroundPoundAbility : Ability
     [SerializeField] private float fallSpeed;
     [SerializeField] private float slamRadius;
     [SerializeField] private float coyoteTime;
+    [SerializeField] private float landingFreezeTime;
     [SerializeField] private LayerMask slamLayerMask;
     [SerializeField] private GameObject boomVFXPrefab;
     [SerializeField] public Animator animator;
     private float currentCoyoteTime;
+    private float currentLandingFreezeTime;
 
     //VFX
     private GameObject vfxInstance;
@@ -26,28 +28,31 @@ public class GroundPoundAbility : Ability
         animator.SetTrigger("GroundPound");
         abilityInUse = true;
         currentCoyoteTime = 0f;
+        currentLandingFreezeTime = 0f;
         movements[0] = new AbilityMovement(Vector3.zero);
         movements[1] = new AbilityMovement(Vector3.down * fallSpeed);
+        movements[2] = new AbilityMovement(Vector3.down);
         return movements;
     }
 
     protected override void Update()
     {
         base.Update();
+        Debug.Log($"Is grounded: {entity.isGrounded}");
         if(abilityInUse)
         {
             if(!entity.isGrounded)
             {
                 currentCoyoteTime += Time.deltaTime;
                 if (currentCoyoteTime >= coyoteTime) movements[0].Complete();
-            } else
+            } else if (!movements[1].HasEnded())
             {
                 animator.SetTrigger("Grounded");
                 //VFX
                 vfxInstance = Instantiate(boomVFXPrefab, transform.position, Quaternion.identity);
 
                 movements[1].Complete();
-                abilityInUse = false;
+                //abilityInUse = false;
                 Ray sphereRay = new Ray(transform.position, Vector3.down);
                 RaycastHit[] hitEnemies = Physics.SphereCastAll(sphereRay, slamRadius, 0.1f, slamLayerMask);
                 foreach (RaycastHit hitEntity in hitEnemies)
@@ -57,7 +62,16 @@ public class GroundPoundAbility : Ability
                     if (enemy == null) continue;
                     enemy.TakeDamage(damage, element);
                 }
-                currentCooldown = cooldown;
+                //currentCooldown = cooldown;
+            } else
+            {
+                currentLandingFreezeTime += Time.deltaTime;
+                if(currentLandingFreezeTime >= landingFreezeTime)
+                {
+                    currentCooldown = cooldown;
+                    abilityInUse = false;
+                    movements[2].Complete();
+                }
             }
         }
     }
@@ -74,6 +88,6 @@ public class GroundPoundAbility : Ability
         base.Awake();
         if(boomVFXPrefab == null)
             Debug.LogError("Boom VFX Prefab is not assigned in the inspector for Boom > GroundPoundAbility");
-        movements = new AbilityMovement[2];
+        movements = new AbilityMovement[3];
     }
 }
