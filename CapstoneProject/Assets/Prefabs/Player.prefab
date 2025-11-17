@@ -256,6 +256,7 @@ MonoBehaviour:
   fallSpeed: 25
   slamRadius: 3
   coyoteTime: 0.4
+  landingFreezeTime: 0.2
   slamLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -614,6 +615,7 @@ MonoBehaviour:
   duration: 10
   damageRate: 0.5
   attackCooldownMultiplier: 0.5
+  movementFreezeTime: 1
   animator: {fileID: 6305530704846346651}
 --- !u!1 &5182977827765358829
 GameObject:
