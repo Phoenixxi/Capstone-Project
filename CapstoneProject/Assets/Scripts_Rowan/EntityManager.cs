@@ -294,7 +294,10 @@ public class EntityManager : MonoBehaviour
             currentHitAttackVFX = Instantiate(zoomHitVFX, vfxHitAnchor.position, Quaternion.identity, vfxHitAnchor);
         }
 
-        if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
+        //if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
+        OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
+        OnEntityHurtEvent?.Invoke();
+
         //Instantiate(damageNumberVFXPrefab, transform);
     }
 
