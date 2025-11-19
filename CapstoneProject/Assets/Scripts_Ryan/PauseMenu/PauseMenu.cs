@@ -1,14 +1,14 @@
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
-    [Header("Background Game Object in Children")]
-    [SerializeField] private GameObject Background;
-    [Header("Continue Button in Children")]
-    [SerializeField] private GameObject ContinueBtn;
     [Header("The Player Object in the Scene")]
     [SerializeField] private GameObject Player;
+    [Header("The UI Elements")]
+    [SerializeField] private List<GameObject> UIElements;
     private PlayerInput playerInput;
     private bool isPaused;
 
@@ -34,8 +34,10 @@ public class PauseMenu : MonoBehaviour
 
     private void SetActive(bool active)
     {
-        Background.SetActive(active);
-        ContinueBtn.SetActive(active);
+        foreach(var UIElement in UIElements)
+        {
+            UIElement.SetActive(active);
+        }
     }
 
     public void Pause()
@@ -54,5 +56,19 @@ public class PauseMenu : MonoBehaviour
             playerInput.actions.FindActionMap("Player").Disable();
             Time.timeScale = 0f;
         }
+    }
+
+    public void Quit()
+    {
+        Debug.Log("quit");
+#if UNITY_STANDALONE
+        {
+            Application.Quit();
+        }
+#elif UNITY_EDITOR
+        {
+            EditorApplication.isPlaying = false;
+        }
+#endif
     }
 }
