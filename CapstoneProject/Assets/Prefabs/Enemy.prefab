@@ -705,6 +705,7 @@ GameObject:
   - component: {fileID: 5192659738883732383}
   - component: {fileID: 1021343216094007474}
   - component: {fileID: 7721774693254816096}
+  - component: {fileID: 8082946562697497187}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
@@ -805,6 +806,10 @@ MonoBehaviour:
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
   zoomAttackVFX: {fileID: 0}
+  boomJumpVFX: {fileID: 0}
+  boomGloomReactionVFX: {fileID: 0}
+  boomZoomReactionVFX: {fileID: 0}
+  gloomZoomReactionVFX: {fileID: 0}
   zoomHitVFX: {fileID: 1104788038885962465, guid: 884793ef423f0bd4b87a15b4fc838421, type: 3}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
@@ -918,6 +923,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnHealthPack
   healthPack: {fileID: 7900407561360032804, guid: 1136974112e701245be1b96d7f7ff093, type: 3}
   healthPackChance: 25
+--- !u!114 &8082946562697497187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543563098658516984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d60b64fe3e7a3441ad03e58f5ff1320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
+  jumpSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  hurtSound:
+    sound: {fileID: 8300000, guid: 093f72c70e62a6f48ba404a4a298beb8, type: 3}
+    volume: 0.25
+    soundCooldown: 0.3
 --- !u!1 &7785730262722911322
 GameObject:
   m_ObjectHideFlags: 0
