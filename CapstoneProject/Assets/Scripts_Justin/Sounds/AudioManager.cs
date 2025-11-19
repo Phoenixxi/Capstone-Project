@@ -17,9 +17,11 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="sound">The sound to play</param>
     /// <param name="volume">The volume to play the sound at. Should be between 0 and 1</param>
-    public void PlaySound(AudioClip sound, float volume)
+    public void PlaySound(Sound sound)
     {
-        staticAudioSource.PlayOneShot(sound, volume);
+        if (!sound.CanPlay()) return;
+        sound.ResetCooldown();
+        staticAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
     }
 
     /// <summary>
@@ -27,9 +29,11 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="sound">The sound to play</param>
     /// <param name="volume">The volume to play the sound at. Should be between 0 and 1</param>
-    public void PlaySoundRandom(AudioClip sound, float volume)
+    public void PlaySoundRandom(Sound sound)
     {
+        if (!sound.CanPlay()) return;
+        sound.ResetCooldown();
         randomAudioSource.pitch = Random.Range(randomPitchLowerBound, randomPitchUpperBound);
-        randomAudioSource.PlayOneShot(sound, volume);
+        randomAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
     }
 }

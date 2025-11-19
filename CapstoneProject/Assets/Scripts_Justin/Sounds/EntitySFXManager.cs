@@ -5,17 +5,13 @@ using UnityEngine;
 public class EntitySFXManager : MonoBehaviour
 {
     [Header("Sounds")]
-    [SerializeField] private AudioClip jumpSound;
-    [SerializeField]
-    [Range(0, 1)] private float jumpVolume;
+    [SerializeField] private Sound jumpSound;
 
-    [SerializeField] private AudioClip hurtSound;
-    [SerializeField]
-    [Range(0, 1)] private float hurtVolume;
+
+    [SerializeField] private Sound hurtSound;
 
     private EntityManager entity;
     private AudioManager manager;
-
 
     private void Awake()
     {
@@ -37,11 +33,11 @@ public class EntitySFXManager : MonoBehaviour
 
     private void PlayJumpSound()
     {
-        manager.PlaySound(jumpSound, jumpVolume);
+        manager.PlaySound(jumpSound);
     }
 
     private void PlayHurtSound()
     {
-        manager.PlaySoundRandom(hurtSound, hurtVolume);
+        manager.PlaySoundRandom(hurtSound);
     }
 }

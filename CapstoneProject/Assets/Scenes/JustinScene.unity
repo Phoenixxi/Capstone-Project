@@ -1203,10 +1203,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d60b64fe3e7a3441ad03e58f5ff1320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
-  jumpSound: {fileID: 0}
-  jumpVolume: 0
-  hurtSound: {fileID: 8300000, guid: 093f72c70e62a6f48ba404a4a298beb8, type: 3}
-  hurtVolume: 0.25
+  jumpSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  hurtSound:
+    sound: {fileID: 8300000, guid: 093f72c70e62a6f48ba404a4a298beb8, type: 3}
+    volume: 0.25
+    soundCooldown: 0.3
 --- !u!1 &743775089
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,6 +3163,14 @@ PrefabInstance:
       propertyPath: staticAudioSrc
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3718056476381582310, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: jumpSound.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
+    - target: {fileID: 3718056476381582310, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: jumpSound.volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3968515568990736517, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: healthText
       value: 
@@ -3243,6 +3255,14 @@ PrefabInstance:
       propertyPath: staticAudioSrc
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5715397534336310825, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: jumpSound.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
+    - target: {fileID: 5715397534336310825, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: jumpSound.volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
       value: 
@@ -3253,6 +3273,14 @@ PrefabInstance:
       objectReference: {fileID: 769566055}
     - target: {fileID: 8422964845708979061, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: jumpVolume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8422964845708979061, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: jumpSound.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
+    - target: {fileID: 8422964845708979061, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: jumpSound.volume
       value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
