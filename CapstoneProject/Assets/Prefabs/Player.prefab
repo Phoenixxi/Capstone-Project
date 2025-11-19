@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 8708904835094065169}
   - component: {fileID: 6099202190651621813}
   - component: {fileID: 7478264160224895753}
+  - component: {fileID: 3718056476381582310}
   m_Layer: 10
   m_Name: Boom
   m_TagString: Player
@@ -262,6 +263,20 @@ MonoBehaviour:
     m_Bits: 2048
   boomVFXPrefab: {fileID: 5780632897753931835, guid: 89f3093e4bd654448b352f2dc630790b, type: 3}
   animator: {fileID: 220673775427230319}
+--- !u!114 &3718056476381582310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711543835817741233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d60b64fe3e7a3441ad03e58f5ff1320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
+  audioSrc: {fileID: 933398137950306032}
+  jumpSound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
 --- !u!1 &2838086303824349459
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +321,7 @@ GameObject:
   - component: {fileID: 7617289105161180958}
   - component: {fileID: 7850124068460452317}
   - component: {fileID: 3301841785260470896}
+  - component: {fileID: 5715397534336310825}
   m_Layer: 10
   m_Name: Zoom
   m_TagString: Player
@@ -402,6 +418,20 @@ MonoBehaviour:
     m_Bits: 2048
   zoomVFXPrefab: {fileID: 3063913735928104104, guid: 9bbed800212252442ad713c40b7cbecc, type: 3}
   animator: {fileID: 9124373181119756861}
+--- !u!114 &5715397534336310825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3098750437766999248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d60b64fe3e7a3441ad03e58f5ff1320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
+  audioSrc: {fileID: 933398137950306032}
+  jumpSound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
 --- !u!1 &3153298784655456344
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +554,7 @@ GameObject:
   - component: {fileID: 2716587646394959634}
   - component: {fileID: 4069364185334456115}
   - component: {fileID: 4328091491385667142}
+  - component: {fileID: 8422964845708979061}
   m_Layer: 10
   m_Name: Gloom
   m_TagString: Player
@@ -617,6 +648,20 @@ MonoBehaviour:
   attackCooldownMultiplier: 0.5
   movementFreezeTime: 1
   animator: {fileID: 6305530704846346651}
+--- !u!114 &8422964845708979061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4096034835489068672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d60b64fe3e7a3441ad03e58f5ff1320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
+  audioSrc: {fileID: 933398137950306032}
+  jumpSound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
 --- !u!1 &5182977827765358829
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +824,7 @@ GameObject:
   - component: {fileID: 4070096453353980523}
   - component: {fileID: 2384383547745438605}
   - component: {fileID: 2027696141315316360}
+  - component: {fileID: 933398137950306032}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -902,6 +948,103 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!82 &933398137950306032
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5316081044738082790}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.25
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5583875979716774749
 GameObject:
   m_ObjectHideFlags: 0

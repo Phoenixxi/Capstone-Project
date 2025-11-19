@@ -92,6 +92,11 @@ public class EntityManager : MonoBehaviour
 
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
+    //Events designed for making playing sounds easier
+    public Action OnEntityHurtEvent;
+    public Action OnJumpEvent;
+    public Action OnEntityKilledEvent;
+
 
 
     // Initialization =======================================================================================================================   
@@ -208,6 +213,7 @@ public class EntityManager : MonoBehaviour
             currentExtraJumps--;
         }
         movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
+        OnJumpEvent?.Invoke();
     }
 
 
