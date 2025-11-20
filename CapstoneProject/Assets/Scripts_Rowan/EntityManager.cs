@@ -65,8 +65,15 @@ public class EntityManager : MonoBehaviour
     [Header("Player Attack VFX")]
     [SerializeField] private GameObject zoomAttackVFX;
 
+
     [Header("Boom Only")]
     [SerializeField] private GameObject boomJumpVFX;    
+
+    [Header("Elemental Reactions: ENEMY ONLY")]
+    [SerializeField] public GameObject boomGloomReactionVFX;
+    [SerializeField] private GameObject boomZoomReactionVFX;
+    [SerializeField] private GameObject gloomZoomReactionVFX;
+
 
     [Header("On Hit Effect: ENEMY ONLY")]
     [SerializeField] private GameObject zoomHitVFX;
@@ -84,6 +91,12 @@ public class EntityManager : MonoBehaviour
     private Transform vfxHitAnchor;
 
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
+
+    //Events designed for making playing sounds easier
+    public Action OnEntityHurtEvent;
+    public Action OnJumpEvent;
+    public Action OnEntityKilledEvent;
+
 
 
     // Initialization =======================================================================================================================   
@@ -200,6 +213,7 @@ public class EntityManager : MonoBehaviour
             currentExtraJumps--;
         }
         movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
+        OnJumpEvent?.Invoke();
     }
 
 
@@ -280,7 +294,10 @@ public class EntityManager : MonoBehaviour
             currentHitAttackVFX = Instantiate(zoomHitVFX, vfxHitAnchor.position, Quaternion.identity, vfxHitAnchor);
         }
 
-        if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
+        //if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
+        OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
+        OnEntityHurtEvent?.Invoke();
+
         //Instantiate(damageNumberVFXPrefab, transform);
     }
 
@@ -318,6 +335,7 @@ public class EntityManager : MonoBehaviour
     }
 
 
+
     /// <summary>
     /// Signaled when a reaction occurs between two different elements
     /// </summary>
@@ -325,12 +343,12 @@ public class EntityManager : MonoBehaviour
     /// <param name="incomingDmg">The amount of damage being delt to the enemy before reaction.</param>
     private void Reaction( ElementType initiatingElement, float incomingDmg)
     {  
-        // ZOOM x BOOM
+        // ZOOM x BOOM // Dmg multiplier
         if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Boom || initiatingElement == ElementType.Boom))
         {
             float newHealth = currentHealth - (incomingDmg * dmgMultiplier);
             ShowDamageNumber((int)(incomingDmg * dmgMultiplier), initiatingElement);
-            Debug.Log("currentHealth: " + currentHealth + " incomingDmg: " + incomingDmg + " incomingxdmgMult: " + (incomingDmg * dmgMultiplier));
+            Instantiate(boomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
             if(newHealth <= 0)
             {
                 EntityHasDied();
@@ -340,7 +358,7 @@ public class EntityManager : MonoBehaviour
             currentHealth = newHealth;
             taggedElement = defaultElement;
         }
-        // ZOOM x GLOOM
+        // ZOOM x GLOOM  // Slow
         else if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
         {
              Debug.Log("in zoomxgloom");
@@ -351,11 +369,11 @@ public class EntityManager : MonoBehaviour
             var effectable = gameObject.GetComponent<IEffectable>();
             if (effectable != null && data != null)
             {
-                Debug.Log("ApplySlow called");
+                Instantiate(gloomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
                 effectable.ApplySlow(data);
             }
         }
-        // BOOM x GLOOM
+        // BOOM x GLOOM  // DOT 
         else
         {
             currentHealth -= incomingDmg;
@@ -364,6 +382,7 @@ public class EntityManager : MonoBehaviour
             var effectable = gameObject.GetComponent<IEffectable>();
             if (effectable != null && data != null)
             {
+                Instantiate(boomGloomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
                 effectable.ApplyEffect(data);
             }
         }
@@ -449,8 +468,8 @@ public class EntityManager : MonoBehaviour
         Debug.Log("Entity has died.");
         isAlive = false;
         ClearVFX(ref currentElementalVFXInstance);
-
-        if(this.gameObject.CompareTag("Enemy"))
+        OnEntityKilledEvent?.Invoke();
+        if (this.gameObject.CompareTag("Enemy"))
         {
             SpawnHealthPack spawnPack = GetComponent<SpawnHealthPack>();
             spawnPack.Spawn(gameObject.transform.position);

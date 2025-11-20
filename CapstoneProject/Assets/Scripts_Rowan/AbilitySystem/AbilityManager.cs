@@ -43,20 +43,7 @@ public class AbilityManager : MonoBehaviour, IEffectable
         this.data = data;
         applyingDOT = true;
         HandleEffect();
-        // PARTICLE EFFECTS HERE
-
-        // if(data.movementPenalty > 0)
-        //     currentMovementSpeed = movementSpeed / data.movementPenalty;
-
-        // if(effectParticles != null)
-        //     Destroy(effectParticles);
-        // effectParticles = Instantiate(data.ParticleEffects, transform);
-
-        // var ps = effectParticles.GetComponent<ParticleSystem>();
-        // if(ps != null)
-        // {
-        //     Destroy(effectParticles, ps.main.duration + ps.main.startLifetime.constantMax);
-        // }
+       
     } 
 
     public void ApplySlow(AbilityData data)
@@ -80,11 +67,6 @@ public class AbilityManager : MonoBehaviour, IEffectable
         navMeshAgent.speed = startingMovementSpeed;   // reset speed back to original
         currentMovementSpeed = startingMovementSpeed;
         
-        // if(effectParticles != null)
-        // {
-        //     Destroy(effectParticles);
-        //     effectParticles = null;
-        // }
     }
 
 

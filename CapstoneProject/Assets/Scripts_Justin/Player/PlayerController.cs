@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SwappingManager swappingManager;
     [SerializeField] private LayerMask aimLayerMask;
     [SerializeField] public CheckpointController checkpointController;
+
+    [Header("Character Swapping VFX")]
+    [SerializeField] private GameObject SwitchOffZoom;
+    [SerializeField] private GameObject SwitchOffBoom;
+    [SerializeField] private GameObject SwitchOffGloom;
     
     //[Header("Movement Settings")]
     //[SerializeField] private float movementSpeed = 1f;
@@ -143,11 +148,16 @@ public class PlayerController : MonoBehaviour
     {
         int newCharacterIndex = currentCharacterIndex;
         float pressedValue = input.Get<float>();
-        newCharacterIndex += (int)pressedValue;
-        if (newCharacterIndex < 0) newCharacterIndex = charactersListPC.Count - 1;
-        else if (newCharacterIndex >= charactersListPC.Count) newCharacterIndex = 0;
+        do
+        {
+            newCharacterIndex += (int)pressedValue;
+            if (newCharacterIndex < 0) newCharacterIndex = charactersListPC.Count - 1;
+            else if (newCharacterIndex >= charactersListPC.Count) newCharacterIndex = 0;
+
+        }
+        while (!charactersListPC[newCharacterIndex].GetComponent<EntityManager>().isAlive);
         Debug.Log($"New character index: {newCharacterIndex}");
-        OnCharacterSwapForced(newCharacterIndex + 1);
+        if(newCharacterIndex != currentCharacterIndex) OnCharacterSwapForced(newCharacterIndex + 1);
     }
 
     /// <summary>
@@ -189,11 +199,18 @@ public class PlayerController : MonoBehaviour
         //Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
         //zoom.transform.position = currentLocation.position;
 
+        //Figure out last active character and play kicking out VFX
+        if(charactersListPC[1].activeSelf == true)  // Boom last active
+            Instantiate(SwitchOffBoom, gameObject.transform.position, Quaternion.identity);
+        if(charactersListPC[2].activeSelf == true)  // Gloom last active
+            Instantiate(SwitchOffGloom, gameObject.transform.position, Quaternion.identity);
+
         //Activate Zoom
         zoom.SetActive(true);
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
         currentCharacter = entity;
         currentCharacterIndex = 0;
+        
         // Deactivate the other characters
         charactersListPC[1].SetActive(false);
         charactersListPC[2].SetActive(false);
@@ -217,6 +234,12 @@ public class PlayerController : MonoBehaviour
 
         //Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
         //boom.transform.position = currentLocation.position;
+
+        //Figure out last active character and play kicking out VFX
+        if(charactersListPC[0].activeSelf == true)  // Zoom last active
+            Instantiate(SwitchOffZoom, gameObject.transform.position, Quaternion.identity);
+        if(charactersListPC[2].activeSelf == true)  // Gloom last active
+            Instantiate(SwitchOffGloom, gameObject.transform.position, Quaternion.identity);
 
         // Activate Boom
         boom.SetActive(true);
@@ -245,6 +268,12 @@ public class PlayerController : MonoBehaviour
 
         //Transform currentLocation = swappingManager.GetCurrentCharacterTransform();
         //gloom.transform.position = currentLocation.position;
+
+        //Figure out last active character and play kicking out VFX
+        if(charactersListPC[0].activeSelf == true)  // Zoom last active
+            Instantiate(SwitchOffZoom, gameObject.transform.position, Quaternion.identity);
+        if(charactersListPC[1].activeSelf == true)  // Boom last active
+            Instantiate(SwitchOffBoom, gameObject.transform.position, Quaternion.identity);
 
         // Activate Gloom
         gloom.SetActive(true);
