@@ -253,6 +253,8 @@ MonoBehaviour:
   cooldown: 8
   damage: 50
   element: 2
+  screenShakeIntensity: 1
+  screenShakeDuration: 0.4
   entity: {fileID: 2384383547745438605}
   fallSpeed: 25
   slamRadius: 3
@@ -275,10 +277,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d60b64fe3e7a3441ad03e58f5ff1320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
-  jumpSound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
-  jumpVolume: 0
-  hurtSound: {fileID: 0}
-  hurtVolume: 0
+  jumpSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  hurtSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  deathSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
 --- !u!1 &2838086303824349459
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +421,8 @@ MonoBehaviour:
   cooldown: 5
   damage: 30
   element: 1
+  screenShakeIntensity: 0
+  screenShakeDuration: 0
   distance: 7
   speed: 28
   dashHurtbox: {fileID: 2144076071337602479}
@@ -432,10 +444,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d60b64fe3e7a3441ad03e58f5ff1320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
-  jumpSound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
-  jumpVolume: 0
-  hurtSound: {fileID: 0}
-  hurtVolume: 0
+  jumpSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  hurtSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  deathSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
 --- !u!1 &3153298784655456344
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +665,8 @@ MonoBehaviour:
   cooldown: 25
   damage: 5
   element: 3
+  screenShakeIntensity: 0
+  screenShakeDuration: 0
   buffZonePrefab: {fileID: 408079023155133850, guid: 38f39e8b5ba4fed42afee22c1cbe220a, type: 3}
   radius: 10
   duration: 10
@@ -664,10 +686,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d60b64fe3e7a3441ad03e58f5ff1320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
-  jumpSound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
-  jumpVolume: 0
-  hurtSound: {fileID: 0}
-  hurtVolume: 0
+  jumpSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  hurtSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  deathSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
 --- !u!1 &5182977827765358829
 GameObject:
   m_ObjectHideFlags: 0

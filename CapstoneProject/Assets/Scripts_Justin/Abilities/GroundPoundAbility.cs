@@ -21,10 +21,6 @@ public class GroundPoundAbility : Ability
     //VFX
     private GameObject vfxInstance;
 
-    //SCREEN SHAKE WIP
-    public float shakeIntensity = 0f;
-    public float shakeDuration = 0f;
-
 
     public override AbilityMovement[] UseAbility(Vector2 horizontalDirection)
     {
@@ -65,6 +61,7 @@ public class GroundPoundAbility : Ability
                     if (enemy == null) continue;
                     enemy.TakeDamage(damage, element);
                 }
+                cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
             } else
             {
                 currentLandingFreezeTime += Time.deltaTime;
