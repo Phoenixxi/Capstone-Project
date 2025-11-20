@@ -468,8 +468,8 @@ public class EntityManager : MonoBehaviour
         Debug.Log("Entity has died.");
         isAlive = false;
         ClearVFX(ref currentElementalVFXInstance);
-
-        if(this.gameObject.CompareTag("Enemy"))
+        OnEntityKilledEvent?.Invoke();
+        if (this.gameObject.CompareTag("Enemy"))
         {
             SpawnHealthPack spawnPack = GetComponent<SpawnHealthPack>();
             spawnPack.Spawn(gameObject.transform.position);

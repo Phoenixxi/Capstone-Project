@@ -6,9 +6,8 @@ public class EntitySFXManager : MonoBehaviour
 {
     [Header("Sounds")]
     [SerializeField] private Sound jumpSound;
-
-
     [SerializeField] private Sound hurtSound;
+    [SerializeField] private Sound deathSound;
 
     private EntityManager entity;
     private AudioManager manager;
@@ -23,12 +22,14 @@ public class EntitySFXManager : MonoBehaviour
     {
         entity.OnJumpEvent += PlayJumpSound;
         entity.OnEntityHurtEvent += PlayHurtSound;
+        entity.OnEntityKilledEvent += PlayDeathSound;
     }
 
     private void OnDisable()
     {
         entity.OnJumpEvent -= PlayJumpSound;
         entity.OnEntityHurtEvent -= PlayHurtSound;
+        entity.OnEntityKilledEvent -= PlayDeathSound;
     }
 
     private void PlayJumpSound()
@@ -39,5 +40,10 @@ public class EntitySFXManager : MonoBehaviour
     private void PlayHurtSound()
     {
         manager.PlaySoundRandom(hurtSound);
+    }
+
+    private void PlayDeathSound()
+    {
+        manager.PlaySound(deathSound);
     }
 }

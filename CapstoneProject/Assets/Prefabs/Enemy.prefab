@@ -943,6 +943,10 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: 093f72c70e62a6f48ba404a4a298beb8, type: 3}
     volume: 0.25
     soundCooldown: 0.3
+  deathSound:
+    sound: {fileID: 8300000, guid: f650f79943f68ca48b27f7e244902130, type: 3}
+    volume: 0.25
+    soundCooldown: 0
 --- !u!1 &7785730262722911322
 GameObject:
   m_ObjectHideFlags: 0
