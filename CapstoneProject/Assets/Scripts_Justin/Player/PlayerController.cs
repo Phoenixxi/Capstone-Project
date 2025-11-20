@@ -148,11 +148,16 @@ public class PlayerController : MonoBehaviour
     {
         int newCharacterIndex = currentCharacterIndex;
         float pressedValue = input.Get<float>();
-        newCharacterIndex += (int)pressedValue;
-        if (newCharacterIndex < 0) newCharacterIndex = charactersListPC.Count - 1;
-        else if (newCharacterIndex >= charactersListPC.Count) newCharacterIndex = 0;
+        do
+        {
+            newCharacterIndex += (int)pressedValue;
+            if (newCharacterIndex < 0) newCharacterIndex = charactersListPC.Count - 1;
+            else if (newCharacterIndex >= charactersListPC.Count) newCharacterIndex = 0;
+
+        }
+        while (!charactersListPC[newCharacterIndex].GetComponent<EntityManager>().isAlive);
         Debug.Log($"New character index: {newCharacterIndex}");
-        OnCharacterSwapForced(newCharacterIndex + 1);
+        if(newCharacterIndex != currentCharacterIndex) OnCharacterSwapForced(newCharacterIndex + 1);
     }
 
     /// <summary>
