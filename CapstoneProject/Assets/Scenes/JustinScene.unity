@@ -2801,8 +2801,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
     - target: {fileID: 3718056476381582310, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: deathSound.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
+    - target: {fileID: 3718056476381582310, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: jumpSound.volume
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718056476381582310, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: deathSound.volume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3968515568990736517, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: healthText
@@ -2893,8 +2901,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
     - target: {fileID: 5715397534336310825, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: deathSound.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
+    - target: {fileID: 5715397534336310825, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: jumpSound.volume
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715397534336310825, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: deathSound.volume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6099202190651621813, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: swappingManager
@@ -2913,8 +2929,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
     - target: {fileID: 8422964845708979061, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: deathSound.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
+    - target: {fileID: 8422964845708979061, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: jumpSound.volume
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8422964845708979061, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: deathSound.volume
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
