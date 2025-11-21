@@ -117,13 +117,14 @@ GameObject:
   - component: {fileID: 5821253890961691129}
   - component: {fileID: 246158637383924952}
   - component: {fileID: 7099143680982487584}
+  - component: {fileID: 118284829212211562}
   m_Layer: 5
   m_Name: CooldownScreenZoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5821253890961691129
 RectTransform:
   m_ObjectHideFlags: 0
@@ -181,6 +182,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &118284829212211562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768421092423721036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c5debbd63a2224483c407dd2e5956b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityCooldownDisplay
+  cooldownImage: {fileID: 7099143680982487584}
+  entityManager: {fileID: 0}
 --- !u!1 &2025473813217246889
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +897,18 @@ PrefabInstance:
     - target: {fileID: 5630440012582904756, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307163445340274688, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 56ef8e4a1ff8a054bbaa64293d1ac97b, type: 2}
+    - target: {fileID: 7307163445340274688, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6149957299478297517, guid: 56ef8e4a1ff8a054bbaa64293d1ac97b, type: 2}
+    - target: {fileID: 7307163445340274688, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

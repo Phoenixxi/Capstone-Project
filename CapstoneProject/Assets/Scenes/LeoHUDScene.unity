@@ -616,6 +616,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 118284829212211562, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: entityManager
+      value: 
+      objectReference: {fileID: 35319397}
     - target: {fileID: 1743358255627159938, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: m_Name
       value: HUDCanvas

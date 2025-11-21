@@ -14,23 +14,7 @@ public class PlayerHealthBar : MonoBehaviour
     private float currentHP;
     private Coroutine healthFillCoroutine;
     
-    //public Image healthBarBoom, healthBarGloom, healthBarZoom;
-    //public float healthZoom, maxHealthZoom = 100;
 
-    /*
-    CharacterStatus boom, gloom, zoom;
-
-    private class CharacterStatus
-    {
-        public Image hpBar;
-        public float hp, maxhp = 100;
-
-        public CharacterStatus(Image bar)
-        {
-            hpBar = bar;
-        }
-    }
-    */
     void Start()
     {
         //maxHP = entityManager.maxHealth;
@@ -97,12 +81,6 @@ public class PlayerHealthBar : MonoBehaviour
     {
         healthBar.color = Color.Lerp(Color.red, Color.green, currentHP / maxHP);
     }
-    /*
-    private void updateHPBarFill(CharacterStatus x)
-    {
-        x.hpBar.fillAmount = Mathf.Lerp(x.hpBar.fillAmount, x.hp / x.maxhp, lerpTime);
-    }
-    */
 
     private void OnDestroy()
     {
