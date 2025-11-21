@@ -7,18 +7,23 @@ using ElementType = lilGuysNamespace.EntityData.ElementType;
 /// </summary>
 public class Hurtbox : MonoBehaviour
 {
+    [SerializeField] private float screenShakeIntensity;
+    [SerializeField] private float screenShakeDuration;
+    private bool hasShakenScreen = false;
     private float activeTime;
     private float currentActiveTime;
     private HashSet<EntityManager> hitEntities;
     private int damage;
     private Collider meleeCollider;
     private ElementType element;
+    private CameraController cameraController;
 
     private void Awake()
     {
         meleeCollider = GetComponent<Collider>();
         meleeCollider.enabled = false;
         enabled = false;
+        cameraController = FindFirstObjectByType<CameraController>();
     }
 
     private void OnEnable()
@@ -33,6 +38,7 @@ public class Hurtbox : MonoBehaviour
     {
         Debug.Log("Hurtbox deactivated");
         meleeCollider.enabled = false;
+        hasShakenScreen = false;
     }
 
     private void Update()
@@ -70,7 +76,12 @@ public class Hurtbox : MonoBehaviour
         EntityManager hitEntity = other.gameObject.GetComponent<EntityManager>();
         if (hitEntity == null || hitEntities.Contains(hitEntity)) return;
         hitEntities.Add(hitEntity);
-        hitEntity.TakeDamage(damage, ElementType.Zoom);    
+        hitEntity.TakeDamage(damage, ElementType.Zoom);
+        if(!hasShakenScreen)
+        {
+            cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
+            hasShakenScreen = true;
+        }
     }
 }
  

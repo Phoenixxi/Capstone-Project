@@ -11,17 +11,21 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float projectileLifetime;
 
     [SerializeField] private AbilityData data;
+    [SerializeField] private float screenShakeIntensity;
+    [SerializeField] private float screenShakeDuration;
 
     private Rigidbody projectile;
     private int damage;
     private EntityData.ElementType elementType = EntityData.ElementType.Normal;
     private float currentLifetime;
+    private CameraController cameraController;
 
 
     private void Awake()
     {
         projectile = GetComponent<Rigidbody>();
         currentLifetime = 0f;
+        cameraController = FindFirstObjectByType<CameraController>();
     }
 
     private void Update()
@@ -64,6 +68,7 @@ public class Projectile : MonoBehaviour
         if (hitEntity != null) {
             hitEntity.data = data;  //Sends the DOT data to entity's manager
             hitEntity.TakeDamage(damage, elementType);
+            cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
         }
 
         Destroy(gameObject);

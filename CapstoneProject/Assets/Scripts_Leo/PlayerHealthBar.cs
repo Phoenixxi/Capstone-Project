@@ -1,15 +1,19 @@
+using System.Collections;
+using System.Runtime.InteropServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using lilGuysNamespace;
+using ElementType = lilGuysNamespace.EntityData.ElementType;
 
 public class PlayerHealthBar : MonoBehaviour
 {
-    public EntityManager entityManager;
-    public Image healthBar;
+    [SerializeField] private EntityManager entityManager;
+    [SerializeField] private Image healthBar;
 
-    float maxhp = 100;
-    float hp;
-    float lerpTime;
+    private float maxHP;
+    private float currentHP;
+    private Coroutine healthFillCoroutine;
+    
     //public Image healthBarBoom, healthBarGloom, healthBarZoom;
     //public float healthZoom, maxHealthZoom = 100;
 
@@ -29,36 +33,69 @@ public class PlayerHealthBar : MonoBehaviour
     */
     void Start()
     {
-        maxhp = entityManager.maxHealth;
-        hp = maxhp;
+        //maxHP = entityManager.maxHealth;
+        //currentHP = maxHP;
+        entityManager.OnHealthUpdatedEvent += UpdateHealth;
     }
 
-    private void Update()
+    //I replaced this with the event-based functionality seen below, but I kept the method commented in case you wanted to compare
+    //private void Update()
+    //{
+    //    //I tried a try catch block to see if we could avoid the other characters' health starting out appearing empty by 
+    //    //having it not update when currentHealth is void, but it didn't do anything.
+    //    try
+    //    {
+    //        lerpTime = 4f * Time.deltaTime;
+    //        currentHP = entityManager.currentHealth;
+
+    //        UpdateHPFill();
+    //        UpdateColor();
+
+    //        healthBarZoom.fillAmount = Mathf.Lerp(healthBarZoom.fillAmount, healthZoom / maxHealthZoom, (2f * Time.deltaTime));
+    //        updateHPBarFill(zoom);
+    //    }
+    //    catch { }
+    //}
+
+    private void UpdateHealth(float currentHealth, float maxHealth, ElementType element)
     {
-        //I tried a try catch block to see if we could avoid the other characters' health starting out appearing empty by 
-        //having it not update when currentHealth is void, but it didn't do anything.
-        try
+        maxHP = maxHealth;
+        currentHP = currentHealth;
+
+        UpdateHPFill();
+        UpdateColor();
+    }
+
+    private void UpdateHPFill()
+    {
+        //healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, currentHP / maxHP, lerpTime);
+        if (healthFillCoroutine != null) StopCoroutine(healthFillCoroutine);
+        healthFillCoroutine = StartCoroutine(UpdateHPFillCoroutine(currentHP, maxHP));
+
+    }
+
+    /// <summary>
+    /// Gradually updates the health bar fill to match the player's current amount of health. This will run until the fill amount is correct, or the coroutine is stopped
+    /// </summary>
+    /// <param name="currentHealth">The player's new amount of health</param>
+    /// <param name="maxHealth">The maximum amount of health the player has</param>
+    /// <returns></returns>
+    private IEnumerator UpdateHPFillCoroutine(float currentHealth, float maxHealth)
+    {
+        float currentLerpTime = 0f;
+        float healthRatio = currentHealth / maxHealth;
+        float startingFill = healthBar.fillAmount;
+        while(healthBar.fillAmount != healthRatio)
         {
-            lerpTime = 4f * Time.deltaTime;
-            hp = entityManager.currentHealth;
-
-            updateHPFill();
-            updateColor();
-
-            //healthBarZoom.fillAmount = Mathf.Lerp(healthBarZoom.fillAmount, healthZoom / maxHealthZoom, (2f * Time.deltaTime));
-            //updateHPBarFill(zoom);
+            currentLerpTime += Time.deltaTime * 4f;
+            healthBar.fillAmount = Mathf.Lerp(startingFill, healthRatio, currentLerpTime);
+            yield return null;
         }
-        catch { }
     }
 
-    private void updateHPFill()
+    private void UpdateColor()
     {
-        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, hp / maxhp, lerpTime);
-    }
-
-    private void updateColor()
-    {
-        healthBar.color = Color.Lerp(Color.red, Color.green, hp / maxhp);
+        healthBar.color = Color.Lerp(Color.red, Color.green, currentHP / maxHP);
     }
     /*
     private void updateHPBarFill(CharacterStatus x)
@@ -66,4 +103,9 @@ public class PlayerHealthBar : MonoBehaviour
         x.hpBar.fillAmount = Mathf.Lerp(x.hpBar.fillAmount, x.hp / x.maxhp, lerpTime);
     }
     */
+
+    private void OnDestroy()
+    {
+        if (entityManager != null) entityManager.OnHealthUpdatedEvent -= UpdateHealth;
+    }
 }

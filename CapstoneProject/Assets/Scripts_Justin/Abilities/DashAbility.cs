@@ -17,17 +17,16 @@ public class DashAbility : Ability
 
     private float currentDashTimer;
     private float dashTimer;
-
-    private float duration = 1f;
+    
     private GameObject vfxInstance;
+    private Transform vfxAnchor;
 
     public override AbilityMovement[] UseAbility(Vector2 horizontalDirection)
     {
         if (currentCooldown > 0f || abilityInUse) return Array.Empty<AbilityMovement>();
         animator.SetTrigger("Dash");
         // VFX
-        vfxInstance = Instantiate(zoomVFXPrefab, transform.position, Quaternion.identity);
-        StartCoroutine(RemoveAfterDuration(duration));
+        vfxInstance = Instantiate(zoomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
 
         abilityInUse = true;
         dashHurtbox.Activate(dashTimer);
@@ -46,6 +45,7 @@ public class DashAbility : Ability
             Debug.LogError("Zoom VFX Prefab is not assigned in the inspector for Zoom > DashAbility");
         
         movements = new AbilityMovement[1];
+        vfxAnchor = transform.Find("VFXanchor");
         currentDashTimer = 0f;
         dashTimer = distance / speed;
         dashHurtbox.SetHurtboxDamage(damage);
@@ -66,18 +66,4 @@ public class DashAbility : Ability
         }
     }
 
-    private System.Collections.IEnumerator RemoveAfterDuration(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        ClearVFX();
-    }
-
-    private void ClearVFX()
-    {
-        if (vfxInstance != null)
-        {
-            Destroy(vfxInstance);
-            vfxInstance = null;
-        }
-    }
 }

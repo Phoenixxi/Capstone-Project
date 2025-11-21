@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 952259180898105580}
   - component: {fileID: 1139701342048628677}
   - component: {fileID: 4544033456481089295}
+  - component: {fileID: -8763524841718921739}
   m_Layer: 0
   m_Name: VFX_JumpPuff
   m_TagString: Untagged
@@ -4895,6 +4896,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-8763524841718921739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374949704436431568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f29932f2310cc4418332139ba337e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXInstance
 --- !u!1 &8259472368187090378
 GameObject:
   m_ObjectHideFlags: 0

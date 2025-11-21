@@ -10,16 +10,20 @@ public abstract class Ability : MonoBehaviour
     [SerializeField] protected float cooldown;
     [SerializeField] protected int damage;
     [SerializeField] protected ElementType element;
+    [SerializeField] protected float screenShakeIntensity;
+    [SerializeField] protected float screenShakeDuration;
 
     protected bool abilityInUse;
     protected float currentCooldown;
     protected AbilityMovement[] movements;
     protected float disabledTime = 0f;
+    protected CameraController cameraController;
 
     protected virtual void Awake()
     {
         abilityInUse = false;
         currentCooldown = 0f;
+        cameraController = FindFirstObjectByType<CameraController>();
     }
 
     protected virtual void Update()
