@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         charactersListPC = swappingManager.charactersList;
         currentCharacterIndex = 0;
         swappingManager.SwapCharacterEvent += OnCharacterSwapForced;
+        foreach (GameObject character in charactersListPC) character.GetComponent<EntityManager>().SetHealthToFull();
         if(checkpointController == null)
             Debug.LogError("Checkpoint Controller not set in Player Controller on player");
     }

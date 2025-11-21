@@ -128,6 +128,11 @@ public class EntityManager : MonoBehaviour
         if (entityMovement.isGrounded) currentExtraJumps = extraJumps;
     }
 
+    public void SetHealthToFull()
+    {
+        currentHealth = maxHealth;
+    }
+
     private void CreateWeapon()
     {
         //TODO Replace default element with the entity-specific one
