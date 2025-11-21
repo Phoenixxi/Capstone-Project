@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject Player;
     [Header("The UI Elements")]
     [SerializeField] private List<GameObject> UIElements;
+    [Header("The UI Elements that need to persist, \nbut disappear when paused")]
+    [SerializeField] private List<GameObject> UIElementsPersistent;
     [SerializeField] private PlayerInput input;
     private PlayerInput playerInput;
     private bool isPaused;
@@ -42,6 +44,11 @@ public class PauseMenu : MonoBehaviour
         foreach(var UIElement in UIElements)
         {
             UIElement.SetActive(active);
+        }
+
+        foreach(var UIElement in UIElementsPersistent)
+        {
+            UIElement.SetActive(!active);
         }
     }
 
