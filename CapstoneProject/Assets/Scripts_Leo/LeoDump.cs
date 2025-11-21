@@ -46,4 +46,36 @@ public class LeoDump
         x.hpBar.fillAmount = Mathf.Lerp(x.hpBar.fillAmount, x.hp / x.maxhp, lerpTime);
     }
     */
+
+    /** Ability UI Scraps **/
+    /*
+    [SerializeField] private Image cooldownImage;
+    //[SerializeField] private EntityManager entityManager;
+    [SerializeField] private string charName;
+    //[SerializeField] private Ability ability;
+
+    private Type abilitySubClass;
+    private Dictionary<string, Type> abilities = new Dictionary<string, Type>();
+
+    //public Ability Ability { get => ability; set => ability = value; }
+
+
+    void Start()
+    {
+        //ability = entityManager.GetAbility();
+
+        
+        abilities.add("Boom", typeof(GroundPoundAbility));
+        abilities.add("Gloom", typeof(BuffZoneAbility));
+        abilities.add("Zoom", typeof(DashAbility));
+
+        abilitySubClass = abilities[charName];
+    }
+
+    void Update()
+    {
+        cooldownImage.fillAmount = abilitySubClass.GetCooldownRatio(); 
+
+    }
+    */
 }
