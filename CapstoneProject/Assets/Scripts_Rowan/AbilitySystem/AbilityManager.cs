@@ -16,7 +16,8 @@ public class AbilityManager : MonoBehaviour, IEffectable
     private AbilityData data;
     private AbilityData slowData;
     
-    //private GameObject effectParticles;
+    private float currentEffectTime = 0f;
+    private float lastTickTime = 0f;
 
     private void Start()
     {
@@ -30,19 +31,19 @@ public class AbilityManager : MonoBehaviour, IEffectable
     void Update()
     {
         if(data != null && applyingDOT)
-            HandleEffect();
+            HandleDot();
 
         if(data != null && applyingSlow)
             HandleSlow();
     }
 
 
-    public void ApplyEffect(AbilityData data)
+    public void ApplyDot(AbilityData data)
     {
         RemoveEffect();
         this.data = data;
         applyingDOT = true;
-        HandleEffect();
+        HandleDot();
        
     } 
 
@@ -54,8 +55,6 @@ public class AbilityManager : MonoBehaviour, IEffectable
         HandleSlow();
     }
 
-    private float currentEffectTime = 0f;
-    private float lastTickTime = 0f;
 
     public void RemoveEffect()
     {
@@ -70,7 +69,7 @@ public class AbilityManager : MonoBehaviour, IEffectable
     }
 
 
-    public void HandleEffect()
+    public void HandleDot()
     {
         currentEffectTime += Time.deltaTime;
         if(currentEffectTime >= data.effectLifeTime)

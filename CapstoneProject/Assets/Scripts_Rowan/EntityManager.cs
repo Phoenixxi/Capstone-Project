@@ -238,6 +238,7 @@ public class EntityManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        ShowDamageNumber((int)damage, ElementType.Normal);
 
         if (currentHealth <= 0)
         {
@@ -246,10 +247,7 @@ public class EntityManager : MonoBehaviour
             isAlive = false;
             return;
         }
-        else
-        {
-            Debug.Log("Entity took damage. Current health: " + currentHealth);
-        }
+
     }
 
     /// <summary>
@@ -278,7 +276,7 @@ public class EntityManager : MonoBehaviour
                 if (gameObject.CompareTag("Enemy"))
                     ApplyElementalVFX(element);
             }
-            else    // entity is already tagged and they were hit with different element, start a reaction
+            else if(taggedElement != ElementType.Normal && taggedElement != element)    // entity is already tagged and they were hit with different element, start a reaction
             {
                 Reaction(element, damage);
             }
@@ -348,6 +346,7 @@ public class EntityManager : MonoBehaviour
         {
             float newHealth = currentHealth - (incomingDmg * dmgMultiplier);
             ShowDamageNumber((int)(incomingDmg * dmgMultiplier), initiatingElement);
+            taggedElement = defaultElement;
             Instantiate(boomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
             if(newHealth <= 0)
             {
@@ -356,16 +355,13 @@ public class EntityManager : MonoBehaviour
             }
             // If entity survived, set new health and reset their tagged element to default
             currentHealth = newHealth;
-            taggedElement = defaultElement;
         }
         // ZOOM x GLOOM  // Slow
         else if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
         {
-             Debug.Log("in zoomxgloom");
             currentHealth -= incomingDmg;
             ShowDamageNumber((int)incomingDmg, initiatingElement);
             taggedElement = defaultElement; // Reset tag to default/starting element
-
             var effectable = gameObject.GetComponent<IEffectable>();
             if (effectable != null && data != null)
             {
@@ -374,7 +370,7 @@ public class EntityManager : MonoBehaviour
             }
         }
         // BOOM x GLOOM  // DOT 
-        else
+        else if((taggedElement == ElementType.Boom || initiatingElement == ElementType.Boom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
         {
             currentHealth -= incomingDmg;
             ShowDamageNumber((int)incomingDmg, initiatingElement);
@@ -383,7 +379,7 @@ public class EntityManager : MonoBehaviour
             if (effectable != null && data != null)
             {
                 Instantiate(boomGloomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-                effectable.ApplyEffect(data);
+                effectable.ApplyDot(data);
             }
         }
 
