@@ -25,6 +25,7 @@ public class BuffZoneAbility : Ability
         animator.SetTrigger("UseAbility");
         currentFreezeTimer = 0f;
         movements[0] = new AbilityMovement(Vector3.zero);
+        cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
         return movements;
     }
 
