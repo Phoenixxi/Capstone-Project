@@ -294,7 +294,19 @@ public class EntityManager : MonoBehaviour
 
         if(gameObject.CompareTag("Enemy"))
         {
-            currentHitAttackVFX = Instantiate(zoomHitVFX, vfxHitAnchor.position, Quaternion.identity, vfxHitAnchor);
+            switch(element)
+            {
+                case ElementType.Zoom:
+                    currentHitAttackVFX = Instantiate(zoomHitVFX, vfxHitAnchor.position, Quaternion.identity, vfxHitAnchor);
+                    break;
+                case ElementType.Boom:
+                    currentHitAttackVFX = Instantiate(boomHitVFX, vfxHitAnchor.position, Quaternion.identity, vfxHitAnchor);
+                    break;
+                case ElementType.Gloom:
+                    currentHitAttackVFX = Instantiate(gloomHitVFX, vfxHitAnchor.position, Quaternion.identity, vfxHitAnchor);
+                    break;
+            }
+            
         }
 
         //if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
