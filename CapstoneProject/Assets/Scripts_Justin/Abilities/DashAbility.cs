@@ -28,15 +28,10 @@ public class DashAbility : Ability
         animator.SetTrigger("Dash");
         // VFX
         if(horizontalDirection.x < 0f)
-        {
-            Debug.Log("Dashing Left");
-            Instantiate(zoomVFXPrefabL, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-        }
+            vfxInstance = Instantiate(zoomVFXPrefabL, vfxAnchor.position, Quaternion.identity);
         else
-        {
-            Debug.Log("Dashing Right");
-            Instantiate(zoomVFXPrefabR, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-        }
+            vfxInstance = Instantiate(zoomVFXPrefabR, vfxAnchor.position, Quaternion.identity);
+        
 
         abilityInUse = true;
         dashHurtbox.Activate(dashTimer);

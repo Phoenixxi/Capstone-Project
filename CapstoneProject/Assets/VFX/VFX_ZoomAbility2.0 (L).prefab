@@ -9799,6 +9799,7 @@ GameObject:
   - component: {fileID: 814005295213641703}
   - component: {fileID: 4604622184175999840}
   - component: {fileID: 4053886843692125619}
+  - component: {fileID: 8482216929774041708}
   m_Layer: 0
   m_Name: VFX_ZoomAbility2.0 (L)
   m_TagString: Untagged
@@ -14627,6 +14628,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8482216929774041708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425092679732311833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f29932f2310cc4418332139ba337e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXInstance
 --- !u!1 &7079453821709875887
 GameObject:
   m_ObjectHideFlags: 0
