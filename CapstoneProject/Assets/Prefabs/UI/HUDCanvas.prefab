@@ -849,12 +849,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682905518344837947, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
       propertyPath: UIElements.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1682905518344837947, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
       propertyPath: 'UIElements.Array.data[4]'
       value: 
-      objectReference: {fileID: 6574851547793272681}
+      objectReference: {fileID: 6235746253031114242}
     - target: {fileID: 1682905518344837947, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
       propertyPath: 'UIElements.Array.data[5]'
       value: 
@@ -891,5 +891,10 @@ PrefabInstance:
 --- !u!224 &1330088461742618989 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1027009297442658094, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
+  m_PrefabInstance: {fileID: 2032750620721835587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6235746253031114242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5385203197401950273, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
   m_PrefabInstance: {fileID: 2032750620721835587}
   m_PrefabAsset: {fileID: 0}
