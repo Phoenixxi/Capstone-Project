@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -9,8 +10,11 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject Player;
     [Header("The UI Elements")]
     [SerializeField] private List<GameObject> UIElements;
+    [SerializeField] private PlayerInput input;
     private PlayerInput playerInput;
     private bool isPaused;
+
+    public event EventHandler unPaused;
 
     void Awake()
     {
@@ -24,6 +28,7 @@ public class PauseMenu : MonoBehaviour
             Player = GameObject.Find("Player");
         }
         playerInput = Player.GetComponent<PlayerInput>();
+        input.SwitchCurrentActionMap("UI");
         SetActive(false);
     }
 
@@ -48,6 +53,7 @@ public class PauseMenu : MonoBehaviour
             isPaused = false;
             playerInput.actions.FindActionMap("Player").Enable();
             Time.timeScale = 1f;
+            unPaused?.Invoke(this, EventArgs.Empty);
         }
         else
         {
@@ -60,15 +66,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-        Debug.Log("quit");
-#if UNITY_STANDALONE
-        {
-            Application.Quit();
-        }
-#elif UNITY_EDITOR
-        {
-            EditorApplication.isPlaying = false;
-        }
-#endif
+        Application.Quit();
     }
 }
