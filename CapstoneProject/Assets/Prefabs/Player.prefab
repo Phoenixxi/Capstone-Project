@@ -175,7 +175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8708904835094065169
 Transform:
   m_ObjectHideFlags: 0
@@ -233,8 +233,8 @@ MonoBehaviour:
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
   zoomAttackVFX: {fileID: 0}
   boomJumpVFX: {fileID: 2374949704436431568, guid: 1b52b88992560014184545c4faa3e9bb, type: 3}
-  boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
-  boomZoomReactionVFX: {fileID: 2974473035401064883, guid: 5bd66edc516a3ff4184b1634d6046994, type: 3}
+  boomGloomReactionVFX: {fileID: 0}
+  boomZoomReactionVFX: {fileID: 0}
   gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
@@ -401,8 +401,8 @@ MonoBehaviour:
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
   zoomAttackVFX: {fileID: 9090841650386813736, guid: 92d39f934e68ef0448973eb9d44c27da, type: 3}
   boomJumpVFX: {fileID: 0}
-  boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
-  boomZoomReactionVFX: {fileID: 2974473035401064883, guid: 5bd66edc516a3ff4184b1634d6046994, type: 3}
+  boomGloomReactionVFX: {fileID: 0}
+  boomZoomReactionVFX: {fileID: 0}
   gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
@@ -432,7 +432,8 @@ MonoBehaviour:
   dashPhasingLayers:
     serializedVersion: 2
     m_Bits: 2048
-  zoomVFXPrefab: {fileID: 3063913735928104104, guid: 9bbed800212252442ad713c40b7cbecc, type: 3}
+  zoomVFXPrefabR: {fileID: 3425092679732311833, guid: fecac85ca3e13a643812e34aaacad6eb, type: 3}
+  zoomVFXPrefabL: {fileID: 3425092679732311833, guid: 59500cd2b5496db4fa25415f4e6bd518, type: 3}
   animator: {fileID: 9124373181119756861}
 --- !u!114 &5715397534336310825
 MonoBehaviour:
@@ -587,7 +588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2716587646394959634
 Transform:
   m_ObjectHideFlags: 0
@@ -635,7 +636,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 906674667207298780}
   attackCooldown: 0.1
   weaponDamage: 5
-  projectile: {fileID: 1261911922668259766, guid: 637209b7dfeebc24fbc5ef65a7365db4, type: 3}
+  projectile: {fileID: 1748878758445358261, guid: 45a94188cda1633449f8e28e121da538, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
@@ -645,8 +646,8 @@ MonoBehaviour:
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
   zoomAttackVFX: {fileID: 0}
   boomJumpVFX: {fileID: 0}
-  boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
-  boomZoomReactionVFX: {fileID: 2974473035401064883, guid: 5bd66edc516a3ff4184b1634d6046994, type: 3}
+  boomGloomReactionVFX: {fileID: 0}
+  boomZoomReactionVFX: {fileID: 0}
   gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
