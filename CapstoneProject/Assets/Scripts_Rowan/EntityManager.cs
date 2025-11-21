@@ -466,6 +466,7 @@ public class EntityManager : MonoBehaviour
     private void EntityHasDied()
     {
         currentHealth = 0;
+        OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
         Debug.Log("Entity has died.");
         isAlive = false;
         ClearVFX(ref currentElementalVFXInstance);
@@ -488,6 +489,7 @@ public class EntityManager : MonoBehaviour
 
     public void Heal(float heal)
     {
+        isAlive = true;
         currentHealth += heal;
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
