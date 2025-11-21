@@ -12,7 +12,8 @@ public class DashAbility : Ability
     [SerializeField] private Hurtbox dashHurtbox;
     [SerializeField] private Collider entityCollision;
     [SerializeField] private LayerMask dashPhasingLayers;
-    [SerializeField] private GameObject zoomVFXPrefab;
+    [SerializeField] private GameObject zoomVFXPrefabR;
+    [SerializeField] private GameObject zoomVFXPrefabL;
     [SerializeField] public Animator animator;
 
     private float currentDashTimer;
@@ -26,7 +27,11 @@ public class DashAbility : Ability
         if (currentCooldown > 0f || abilityInUse) return Array.Empty<AbilityMovement>();
         animator.SetTrigger("Dash");
         // VFX
-        vfxInstance = Instantiate(zoomVFXPrefab, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+        if(horizontalDirection.x < 0f)
+            vfxInstance = Instantiate(zoomVFXPrefabL, vfxAnchor.position, Quaternion.identity);
+        else
+            vfxInstance = Instantiate(zoomVFXPrefabR, vfxAnchor.position, Quaternion.identity);
+        
 
         abilityInUse = true;
         dashHurtbox.Activate(dashTimer);
@@ -41,8 +46,8 @@ public class DashAbility : Ability
     protected override void Awake()
     {
         base.Awake();
-        if(zoomVFXPrefab == null)
-            Debug.LogError("Zoom VFX Prefab is not assigned in the inspector for Zoom > DashAbility");
+        if(zoomVFXPrefabR == null || zoomVFXPrefabL == null)
+            Debug.LogError("Zoom VFX Dash is not assigned in the inspector for Zoom > DashAbility");
         
         movements = new AbilityMovement[1];
         vfxAnchor = transform.Find("VFXanchor");
