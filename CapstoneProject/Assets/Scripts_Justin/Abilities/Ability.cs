@@ -44,8 +44,8 @@ public abstract class Ability : MonoBehaviour
 
     protected void OnEnable()
     {
-        float lostTIme = Time.time - disabledTime;
-        if (currentCooldown > 0f) currentCooldown -= lostTIme;
+        float lostTime = Time.time - disabledTime;
+        if (currentCooldown > 0f) currentCooldown -= lostTime;
     }
 
     /// <summary>
@@ -54,4 +54,14 @@ public abstract class Ability : MonoBehaviour
     /// <param name="horizontalDirection">Normalized vector that indicates the entity's horizontal movement direction at the time of activation</param>
     /// <returns>An array of AbilityMovements that are associated with this ability</returns>
     public abstract AbilityMovement[] UseAbility(Vector2 horizontalDirection);
+
+    /// <summary>
+    /// Calculates the current ratio of cooldown time remaining : maximum cooldown time for use in UI
+    /// </summary>
+    /// <returns>A float representing the proportion of the base cooldown time remaining before the ability can be used again</returns>
+    public float GetCooldownRatio()
+    {
+        if (!abilityInUse && currentCooldown > 0) return currentCooldown / cooldown;
+        else return 0f;
+    }
 }

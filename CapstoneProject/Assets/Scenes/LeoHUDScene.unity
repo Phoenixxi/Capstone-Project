@@ -209,6 +209,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed522ae092ed8140925d1dbc796d1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!114 &554136236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3301841785260470896, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+  m_PrefabInstance: {fileID: 35319396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e404a19f4ab2547a5d737f097f026c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DashAbility
 --- !u!1 &940773996
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +627,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 118284829212211562, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: entityManager
+      value: 
+      objectReference: {fileID: 35319397}
     - target: {fileID: 1743358255627159938, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: m_Name
       value: HUDCanvas
@@ -624,6 +639,10 @@ PrefabInstance:
       propertyPath: entityManager
       value: 
       objectReference: {fileID: 35319398}
+    - target: {fileID: 2786667046581015818, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: ability
+      value: 
+      objectReference: {fileID: 554136236}
     - target: {fileID: 3146075125379219559, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: entityManager
       value: 

@@ -1,23 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using lilGuysNamespace;
+using System;
+using System.Collections.Generic;
 
 public class AbilityCooldownDisplay : MonoBehaviour
 {
-    [SerializeField] public Image cooldownImage;
-
-    float maxCooldown;
-    float currentCooldown;
-
-    void Start()
-    {
-        // set maxCooldown to base cooldown of relevant ability;
-        // set currentCooldown to current cooldown of relevant ability;
-    }
+    [SerializeField] private Image cooldownImage;
+    [SerializeField] private Ability ability;
 
     void Update()
     {
-        // set currentCooldown to current cooldown of relevant ability;
-        cooldownImage.fillAmount = currentCooldown / maxCooldown;
+        cooldownImage.fillAmount = ability.GetCooldownRatio();
     }
 }

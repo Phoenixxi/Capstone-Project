@@ -9721,6 +9721,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed522ae092ed8140925d1dbc796d1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!114 &1413218847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4328091491385667142, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+  m_PrefabInstance: {fileID: 1413218839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413218840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a654bf0e9db944ba85a5dd0cacef36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffZoneAbility
+--- !u!114 &1413218849 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7478264160224895753, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+  m_PrefabInstance: {fileID: 1413218839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413218841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d459c3c7b53139439fc118b9f336031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundPoundAbility
 --- !u!114 &1413218851 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
@@ -9732,6 +9754,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed522ae092ed8140925d1dbc796d1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!114 &1413218854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3301841785260470896, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+  m_PrefabInstance: {fileID: 1413218839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413218842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e404a19f4ab2547a5d737f097f026c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DashAbility
 --- !u!1 &1414114830
 GameObject:
   m_ObjectHideFlags: 0
@@ -13618,6 +13651,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 118284829212211562, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: entityManager
+      value: 
+      objectReference: {fileID: 1413218851}
+    - target: {fileID: 207556237678178124, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: ability
+      value: 
+      objectReference: {fileID: 1413218847}
     - target: {fileID: 1743358255627159938, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -13626,10 +13667,18 @@ PrefabInstance:
       propertyPath: entityManager
       value: 
       objectReference: {fileID: 1413218845}
+    - target: {fileID: 2786667046581015818, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: ability
+      value: 
+      objectReference: {fileID: 1413218854}
     - target: {fileID: 3146075125379219559, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: entityManager
       value: 
       objectReference: {fileID: 245611159}
+    - target: {fileID: 3345615513956351176, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: ability
+      value: 
+      objectReference: {fileID: 1413218849}
     - target: {fileID: 5352398081182767363, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -13708,6 +13757,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5352398081182767363, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983846639972596862, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8210312426775414696, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}

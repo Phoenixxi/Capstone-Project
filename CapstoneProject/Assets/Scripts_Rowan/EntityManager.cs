@@ -466,9 +466,7 @@ public class EntityManager : MonoBehaviour
     {
         weapon.RestoreBaseFireRate();
     }
-
-
-
+    
 
 
     // Healing / Entity Death =======================================================================================================================
