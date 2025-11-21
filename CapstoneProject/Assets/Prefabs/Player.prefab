@@ -66,6 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88f375b4bba0c24b94da205b04e3d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+  screenShakeIntensity: 1
+  screenShakeDuration: 0.2
 --- !u!1 &1330741119533229141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,6 +1445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88f375b4bba0c24b94da205b04e3d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+  screenShakeIntensity: 0
+  screenShakeDuration: 0
 --- !u!1 &8548868309109931021
 GameObject:
   m_ObjectHideFlags: 0
