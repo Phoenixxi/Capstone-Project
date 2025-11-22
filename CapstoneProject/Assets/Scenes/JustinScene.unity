@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &213407593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7266794485179713766, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+  m_PrefabInstance: {fileID: 1072102682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &218786343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,6 +1668,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 111784440538437791, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: boomIcon
+      value: 
+      objectReference: {fileID: 1522514211}
+    - target: {fileID: 111784440538437791, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: zoomIcon
+      value: 
+      objectReference: {fileID: 1073594413}
+    - target: {fileID: 111784440538437791, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: gloomIcon
+      value: 
+      objectReference: {fileID: 213407593}
     - target: {fileID: 1743358255627159938, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: m_Name
       value: HUDCanvas
@@ -1675,6 +1692,10 @@ PrefabInstance:
       propertyPath: entityManager
       value: 
       objectReference: {fileID: 1662300228}
+    - target: {fileID: 3514391920677262753, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5352398081182767363, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1755,15 +1776,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6863597387793229766, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8210312426775414696, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
       propertyPath: entityManager
       value: 
       objectReference: {fileID: 460585710}
-    m_RemovedComponents: []
+    - target: {fileID: 8739841493910397239, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 111784440538437791, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+    - {fileID: 5219861813271441876, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+    - {fileID: 3230424406064157060, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1771057807557117083, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1144328826}
   m_SourcePrefab: {fileID: 100100000, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+--- !u!1 &1073594413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 675815378728935730, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+  m_PrefabInstance: {fileID: 1072102682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1103931901 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4096034835489068672, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
@@ -1919,6 +1959,26 @@ MonoBehaviour:
   AmplitudeGain: 0
   FrequencyGain: 5
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!1 &1144328822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1771057807557117083, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+  m_PrefabInstance: {fileID: 1072102682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1144328826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144328822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c5debbd63a2224483c407dd2e5956b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityCooldownDisplay
+  zoomIcon: {fileID: 1073594413}
+  boomIcon: {fileID: 1522514211}
+  gloomIcon: {fileID: 213407593}
 --- !u!1 &1454609556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2262,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1522514211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5983846639972596862, guid: bb37633308bf1544ea119ff8aa121e29, type: 3}
+  m_PrefabInstance: {fileID: 1072102682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1576099300
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,29 +3,33 @@ using UnityEngine.UI;
 using lilGuysNamespace;
 using System;
 using System.Collections.Generic;
+using DG.Tweening.Plugins;
 
 public class AbilityCooldownDisplay : MonoBehaviour
 {
-    [SerializeField] private Image cooldownImage;
-    [SerializeField] private Ability ability;
-    [SerializeField] private SwappingManager swapper;
+    //[SerializeField] private Ability ability;
+    //[SerializeField] private SwappingManager swapper;
     [SerializeField] private GameObject zoomIcon;
     [SerializeField] private GameObject boomIcon;
     [SerializeField] private GameObject gloomIcon;
+    private Image cooldownImage;
 
     void Start()
     {
-        swapper.DeathSwapEvent += SwapAbilityIcon;
+        //swapper.DeathSwapEvent += SwapAbilityIcon;
+        SwapAbilityIcon(1);
     }
 
     private void OnEnable()
     {
         FindFirstObjectByType<PlayerController>().CharacterSwapEvent += SwapAbilityIcon;
+        Ability.OnCooldownChangedEvent += UpdateCooldown;
     }
 
     private void OnDisable()
     {
         FindFirstObjectByType<PlayerController>().CharacterSwapEvent -= SwapAbilityIcon;
+        Ability.OnCooldownChangedEvent -= UpdateCooldown;
     }
 
     private void SwapAbilityIcon(int characterNum)
@@ -34,18 +38,35 @@ public class AbilityCooldownDisplay : MonoBehaviour
         {
             case 1:
                 Debug.Log("Zoom swapped to");
+                zoomIcon.SetActive(true);
+                boomIcon.SetActive(false);
+                gloomIcon.SetActive(false);
+                cooldownImage = zoomIcon.transform.GetChild(0).GetComponent<Image>();
                 break;
             case 2:
                 Debug.Log("Boom swapped to");
+                zoomIcon.SetActive(false);
+                boomIcon.SetActive(true);
+                gloomIcon.SetActive(false);
+                cooldownImage = boomIcon.transform.GetChild(0).GetComponent<Image>();
                 break;
             case 3:
                 Debug.Log("Gloom swapped to");
+                zoomIcon.SetActive(false);
+                boomIcon.SetActive(false);
+                gloomIcon.SetActive(true);
+                cooldownImage = gloomIcon.transform.GetChild(0).GetComponent<Image>();
                 break;
         }
     }
 
-    void Update()
+    //void Update()
+    //{
+    //    cooldownImage.fillAmount = ability.GetCooldownRatio();
+    //}
+
+    private void UpdateCooldown(float currentCooldown, float cooldown)
     {
-        cooldownImage.fillAmount = ability.GetCooldownRatio();
+        cooldownImage.fillAmount = currentCooldown / cooldown;
     }
 }

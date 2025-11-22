@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 
@@ -19,6 +20,8 @@ public abstract class Ability : MonoBehaviour
     protected float disabledTime = 0f;
     protected CameraController cameraController;
 
+    public static Action<float, float> OnCooldownChangedEvent;
+
     protected virtual void Awake()
     {
         abilityInUse = false;
@@ -30,6 +33,7 @@ public abstract class Ability : MonoBehaviour
     {
         if (!abilityInUse && currentCooldown > 0) currentCooldown -= Time.deltaTime;
         else currentCooldown = 0f;
+        OnCooldownChangedEvent?.Invoke(currentCooldown, cooldown);
     }
 
     public bool AbilityInUse()
