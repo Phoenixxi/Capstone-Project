@@ -583,6 +583,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2113378421503788461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4716244844690263895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5417808363700569149}
+  - component: {fileID: 6419737336778976282}
+  - component: {fileID: 179661534023469032}
+  m_Layer: 0
+  m_Name: EnemyShadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5417808363700569149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716244844690263895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.92437, y: 0.824, z: 1.3708799}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2113378421503788461}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6419737336778976282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716244844690263895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: 3b2e15db7eed9874e9f9c31f02749400, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.893
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 2.055}
+  m_Size: {x: 1, y: 1, z: 4.11}
+  m_FadeFactor: 1
+  version: 1
+  m_DecalLayerMask: 1
+--- !u!114 &179661534023469032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716244844690263895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cff73f2afe5eba46a846b82ff58ef35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowScale
+  player: {fileID: 2113378421503788461}
+  heightOffset: 0.1
+  baseScale: 0.68
+  minScale: 0.6
+  maxHeight: 5
+  startingAlpha: 0.8
+  minAlpha: 0.2
 --- !u!1 &5094408285399476842
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +806,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5417808363700569149}
   - {fileID: 7722578723575890076}
   - {fileID: 605558586999146582}
   - {fileID: 1618604057760933167}
@@ -805,6 +886,9 @@ MonoBehaviour:
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
+  zoomDeathVFX: {fileID: 0}
+  boomDeathVFX: {fileID: 0}
+  gloomDeathVFX: {fileID: 0}
   zoomAttackVFX: {fileID: 0}
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
