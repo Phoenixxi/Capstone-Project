@@ -9,9 +9,13 @@ public class EntitySFXManager : MonoBehaviour
     [SerializeField] private Sound jumpSound;
     [SerializeField] private Sound hurtSound;
     [SerializeField] private Sound deathSound;
-    [SerializeField] private Sound zoomHitSound;
-    [SerializeField] private Sound boomHitSound;
-    [SerializeField] private Sound gloomHitSound;
+    [SerializeField] private Sound zoomBoomReactionSound;
+    [SerializeField] private Sound zoomGloomReactionSound;
+    [SerializeField] private Sound boomGloomReactionSound;
+    [SerializeField] private Sound zoomAttackSound;
+    [SerializeField] private Sound boomAttackSound;
+    [SerializeField] private Sound gloomAttackSound;
+    [SerializeField] private Sound normalAttackSound;
     
 
     private EntityManager entity;
@@ -28,6 +32,8 @@ public class EntitySFXManager : MonoBehaviour
         entity.OnJumpEvent += PlayJumpSound;
         entity.OnEntityHurtEvent += PlayHurtSound;
         entity.OnEntityKilledEvent += PlayDeathSound;
+        entity.OnElementReactionEvent += PlayElementReactionSound;
+        entity.OnEntityAttackEvent += PlayAttackSound;
     }
 
     private void OnDisable()
@@ -35,6 +41,7 @@ public class EntitySFXManager : MonoBehaviour
         entity.OnJumpEvent -= PlayJumpSound;
         entity.OnEntityHurtEvent -= PlayHurtSound;
         entity.OnEntityKilledEvent -= PlayDeathSound;
+        entity.OnEntityAttackEvent -= PlayAttackSound;
     }
 
     private void PlayJumpSound()
@@ -42,25 +49,51 @@ public class EntitySFXManager : MonoBehaviour
         manager.PlaySound(jumpSound);
     }
 
-    private void PlayHurtSound(ElementType element)
+    private void PlayHurtSound()
     {
         manager.PlaySoundRandom(hurtSound);
-        switch (element)
-        {
-            case ElementType.Zoom:
-                manager.PlaySoundRandom(zoomHitSound);
-                break;
-            case ElementType.Boom:
-                manager.PlaySoundRandom(boomHitSound);
-                break;
-            case ElementType.Gloom:
-                manager.PlaySoundRandom(gloomHitSound);
-                break;
-        }
     }
 
     private void PlayDeathSound()
     {
         manager.PlaySound(deathSound);
+    }
+
+    private void PlayElementReactionSound(int reactionNum)
+    {
+        switch (reactionNum)
+        {
+            //ZOOM X BOOM
+            case 1:
+                manager.PlaySound(zoomBoomReactionSound);
+                break;
+            //ZOOM X GLOOM
+            case 2:
+                manager.PlaySound(zoomGloomReactionSound);
+                break;
+            //BOOM X GLOOM
+            case 3:
+                manager.PlaySound(boomGloomReactionSound);
+                break;
+        }
+    }
+
+    private void PlayAttackSound(ElementType element)
+    {
+        switch(element)
+        {
+            case ElementType.Zoom:
+                manager.PlaySoundRandom(zoomAttackSound);
+                break;
+            case ElementType.Boom:
+                manager.PlaySoundRandom(boomAttackSound);
+                break;
+            case ElementType.Gloom:
+                manager.PlaySoundRandom(gloomAttackSound);
+                break;
+            default:
+                manager.PlaySoundRandom(normalAttackSound);
+                break;
+        }
     }
 }

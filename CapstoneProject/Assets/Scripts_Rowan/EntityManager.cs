@@ -97,9 +97,11 @@ public class EntityManager : MonoBehaviour
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
     //Events designed for making playing sounds easier
-    public Action<ElementType> OnEntityHurtEvent;
+    public Action OnEntityHurtEvent;
     public Action OnJumpEvent;
     public Action OnEntityKilledEvent;
+    public Action<int> OnElementReactionEvent;
+    public Action<ElementType> OnEntityAttackEvent;
 
 
 
@@ -316,7 +318,7 @@ public class EntityManager : MonoBehaviour
 
         //if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
-        OnEntityHurtEvent?.Invoke(element);
+        OnEntityHurtEvent?.Invoke();
 
         //Instantiate(damageNumberVFXPrefab, transform);
     }
@@ -377,6 +379,7 @@ public class EntityManager : MonoBehaviour
             }
             // If entity survived, set new health and reset their tagged element to default
             currentHealth = newHealth;
+            OnElementReactionEvent?.Invoke(1);
         }
         // ZOOM x GLOOM  // Slow
         else if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
@@ -390,6 +393,7 @@ public class EntityManager : MonoBehaviour
                 Instantiate(gloomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
                 effectable.ApplySlow(data);
             }
+            OnElementReactionEvent?.Invoke(2);
         }
         // BOOM x GLOOM  // DOT 
         else if((taggedElement == ElementType.Boom || initiatingElement == ElementType.Boom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
@@ -403,6 +407,7 @@ public class EntityManager : MonoBehaviour
                 Instantiate(boomGloomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
                 effectable.ApplyDot(data);
             }
+            OnElementReactionEvent?.Invoke(3);
         }
 
         if (gameObject.CompareTag("Enemy"))
@@ -425,6 +430,7 @@ public class EntityManager : MonoBehaviour
         bool attacked = weapon.Attack();
         if(attacked)
         {
+            OnEntityAttackEvent?.Invoke(defaultElement);
             animator.SetTrigger("Shoot");
             if(gameObject.CompareTag("Enemy")) return;
             if(entityName == "Zoom")
