@@ -251,7 +251,7 @@ public class EntityManager : MonoBehaviour
     {
         currentHealth -= damage;
         ShowDamageNumber((int)damage, ElementType.Normal);
-
+        OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -259,7 +259,7 @@ public class EntityManager : MonoBehaviour
             isAlive = false;
             return;
         }
-
+        OnEntityHurtEvent?.Invoke();
     }
 
     /// <summary>
