@@ -18,6 +18,7 @@ public class DashAbility : Ability
 
     private float currentDashTimer;
     private float dashTimer;
+    [SerializeField] private GameObject playerVFXAnchor;
     
     private GameObject vfxInstance;
     private Transform vfxAnchor;
@@ -28,9 +29,9 @@ public class DashAbility : Ability
         animator.SetTrigger("Dash");
         // VFX
         if(horizontalDirection.x < 0f)
-            vfxInstance = Instantiate(zoomVFXPrefabL, vfxAnchor.position, Quaternion.identity);
+            vfxInstance = Instantiate(zoomVFXPrefabL, vfxAnchor.position, Quaternion.identity, playerVFXAnchor.transform);
         else
-            vfxInstance = Instantiate(zoomVFXPrefabR, vfxAnchor.position, Quaternion.identity);
+            vfxInstance = Instantiate(zoomVFXPrefabR, vfxAnchor.position, Quaternion.identity, playerVFXAnchor.transform);
         
 
         abilityInUse = true;

@@ -62,7 +62,7 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private GameObject boomElementVFX;
     [SerializeField] private GameObject gloomElementVFX;
 
-    [Header("Player Attack VFX")]
+    [Header("Zoom only")]
     [SerializeField] private GameObject zoomAttackVFX;
 
 
@@ -107,6 +107,7 @@ public class EntityManager : MonoBehaviour
         CreateWeapon();
         ability = GetComponent<Ability>();
         movementQueue = new Queue<AbilityMovement>();
+        
 
         // Set tagged element to default if default != normal
         if (defaultElement != ElementType.Normal) 
@@ -433,7 +434,7 @@ public class EntityManager : MonoBehaviour
                 }
                 else
                 {
-                    currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
+                    currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity);
                 }   
             }
         }
