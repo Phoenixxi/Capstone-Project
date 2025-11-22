@@ -15,6 +15,7 @@ public class EntitySFXManager : MonoBehaviour
     [SerializeField] private Sound zoomAttackSound;
     [SerializeField] private Sound boomAttackSound;
     [SerializeField] private Sound gloomAttackSound;
+    [SerializeField] private Sound normalAttackSound;
     
 
     private EntityManager entity;
@@ -32,6 +33,7 @@ public class EntitySFXManager : MonoBehaviour
         entity.OnEntityHurtEvent += PlayHurtSound;
         entity.OnEntityKilledEvent += PlayDeathSound;
         entity.OnElementReactionEvent += PlayElementReactionSound;
+        entity.OnEntityAttackEvent += PlayAttackSound;
     }
 
     private void OnDisable()
@@ -39,6 +41,7 @@ public class EntitySFXManager : MonoBehaviour
         entity.OnJumpEvent -= PlayJumpSound;
         entity.OnEntityHurtEvent -= PlayHurtSound;
         entity.OnEntityKilledEvent -= PlayDeathSound;
+        entity.OnEntityAttackEvent -= PlayAttackSound;
     }
 
     private void PlayJumpSound()
@@ -46,21 +49,9 @@ public class EntitySFXManager : MonoBehaviour
         manager.PlaySound(jumpSound);
     }
 
-    private void PlayHurtSound(ElementType element)
+    private void PlayHurtSound()
     {
         manager.PlaySoundRandom(hurtSound);
-        //switch (element)
-        //{
-        //    case ElementType.Zoom:
-        //        manager.PlaySoundRandom(zoomHitSound);
-        //        break;
-        //    case ElementType.Boom:
-        //        manager.PlaySoundRandom(boomHitSound);
-        //        break;
-        //    case ElementType.Gloom:
-        //        manager.PlaySoundRandom(gloomHitSound);
-        //        break;
-        //}
     }
 
     private void PlayDeathSound()
@@ -83,6 +74,25 @@ public class EntitySFXManager : MonoBehaviour
             //BOOM X GLOOM
             case 3:
                 manager.PlaySound(boomGloomReactionSound);
+                break;
+        }
+    }
+
+    private void PlayAttackSound(ElementType element)
+    {
+        switch(element)
+        {
+            case ElementType.Zoom:
+                manager.PlaySoundRandom(zoomAttackSound);
+                break;
+            case ElementType.Boom:
+                manager.PlaySoundRandom(boomAttackSound);
+                break;
+            case ElementType.Gloom:
+                manager.PlaySoundRandom(gloomAttackSound);
+                break;
+            default:
+                manager.PlaySoundRandom(normalAttackSound);
                 break;
         }
     }

@@ -291,6 +291,34 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
     volume: 0.4
     soundCooldown: 0
+  zoomBoomReactionSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  zoomGloomReactionSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  boomGloomReactionSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  zoomAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  boomAttackSound:
+    sound: {fileID: 8300000, guid: 4a77df370b51cf148a024f78b0c1c128, type: 3}
+    volume: 0.05
+    soundCooldown: 0
+  gloomAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  normalAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
 --- !u!1 &2838086303824349459
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +487,34 @@ MonoBehaviour:
   deathSound:
     sound: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
     volume: 0.39
+    soundCooldown: 0
+  zoomBoomReactionSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  zoomGloomReactionSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  boomGloomReactionSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  zoomAttackSound:
+    sound: {fileID: 8300000, guid: 36d945c7717ce0140b3f2a1a439cebcb, type: 3}
+    volume: 0.05
+    soundCooldown: 0
+  boomAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  gloomAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  normalAttackSound:
+    sound: {fileID: 0}
+    volume: 1
     soundCooldown: 0
 --- !u!1 &3153298784655456344
 GameObject:
@@ -701,6 +757,34 @@ MonoBehaviour:
   deathSound:
     sound: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
     volume: 0.4
+    soundCooldown: 0
+  zoomBoomReactionSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  zoomGloomReactionSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  boomGloomReactionSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  zoomAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  boomAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  gloomAttackSound:
+    sound: {fileID: 8300000, guid: fc41fb103ad51924da8a00e4c15c0274, type: 3}
+    volume: 0.05
+    soundCooldown: 0
+  normalAttackSound:
+    sound: {fileID: 0}
+    volume: 1
     soundCooldown: 0
 --- !u!1 &5182977827765358829
 GameObject:

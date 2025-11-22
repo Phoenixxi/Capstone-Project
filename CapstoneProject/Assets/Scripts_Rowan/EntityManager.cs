@@ -93,10 +93,11 @@ public class EntityManager : MonoBehaviour
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
     //Events designed for making playing sounds easier
-    public Action<ElementType> OnEntityHurtEvent;
+    public Action OnEntityHurtEvent;
     public Action OnJumpEvent;
     public Action OnEntityKilledEvent;
     public Action<int> OnElementReactionEvent;
+    public Action<ElementType> OnEntityAttackEvent;
 
 
 
@@ -313,7 +314,7 @@ public class EntityManager : MonoBehaviour
 
         //if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
-        OnEntityHurtEvent?.Invoke(element);
+        OnEntityHurtEvent?.Invoke();
 
         //Instantiate(damageNumberVFXPrefab, transform);
     }
@@ -425,6 +426,7 @@ public class EntityManager : MonoBehaviour
         bool attacked = weapon.Attack();
         if(attacked)
         {
+            OnEntityAttackEvent?.Invoke(defaultElement);
             animator.SetTrigger("Shoot");
             if(gameObject.CompareTag("Enemy")) return;
             if(entityName == "Zoom")
