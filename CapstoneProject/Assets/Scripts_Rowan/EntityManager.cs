@@ -93,7 +93,7 @@ public class EntityManager : MonoBehaviour
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
     //Events designed for making playing sounds easier
-    public Action OnEntityHurtEvent;
+    public Action<ElementType> OnEntityHurtEvent;
     public Action OnJumpEvent;
     public Action OnEntityKilledEvent;
 
@@ -312,7 +312,7 @@ public class EntityManager : MonoBehaviour
 
         //if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
-        OnEntityHurtEvent?.Invoke();
+        OnEntityHurtEvent?.Invoke(element);
 
         //Instantiate(damageNumberVFXPrefab, transform);
     }

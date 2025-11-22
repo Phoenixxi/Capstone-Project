@@ -226,7 +226,7 @@ MonoBehaviour:
   projectile: {fileID: 6651309793707353424, guid: 0dffba5cf90551846801208955cec684, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
-  damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
+  damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
@@ -280,16 +280,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
   jumpSound:
-    sound: {fileID: 0}
-    volume: 1
+    sound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
+    volume: 0.1
     soundCooldown: 0
   hurtSound:
-    sound: {fileID: 0}
-    volume: 1
-    soundCooldown: 0
+    sound: {fileID: 8300000, guid: dca61efa361b40e4fb37c4f79dcb3383, type: 3}
+    volume: 0.2
+    soundCooldown: 0.2
   deathSound:
-    sound: {fileID: 0}
-    volume: 1
+    sound: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
+    volume: 0.4
     soundCooldown: 0
 --- !u!1 &2838086303824349459
 GameObject:
@@ -394,7 +394,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   meleeHurtbox: {fileID: 7404555418333511468}
   hurtboxActivationTime: 0.2
-  damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
+  damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
@@ -449,16 +449,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
   jumpSound:
-    sound: {fileID: 0}
-    volume: 1
+    sound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
+    volume: 0.25
     soundCooldown: 0
   hurtSound:
-    sound: {fileID: 0}
-    volume: 1
-    soundCooldown: 0
+    sound: {fileID: 8300000, guid: dca61efa361b40e4fb37c4f79dcb3383, type: 3}
+    volume: 0.2
+    soundCooldown: 0.2
   deathSound:
-    sound: {fileID: 0}
-    volume: 1
+    sound: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
+    volume: 0.39
     soundCooldown: 0
 --- !u!1 &3153298784655456344
 GameObject:
@@ -640,7 +640,7 @@ MonoBehaviour:
   projectile: {fileID: 1748878758445358261, guid: 45a94188cda1633449f8e28e121da538, type: 3}
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
-  damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
+  damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
@@ -691,16 +691,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
   jumpSound:
-    sound: {fileID: 0}
-    volume: 1
+    sound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
+    volume: 0.1
     soundCooldown: 0
   hurtSound:
-    sound: {fileID: 0}
-    volume: 1
-    soundCooldown: 0
+    sound: {fileID: 8300000, guid: dca61efa361b40e4fb37c4f79dcb3383, type: 3}
+    volume: 0.2
+    soundCooldown: 0.2
   deathSound:
-    sound: {fileID: 0}
-    volume: 1
+    sound: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
+    volume: 0.4
     soundCooldown: 0
 --- !u!1 &5182977827765358829
 GameObject:
