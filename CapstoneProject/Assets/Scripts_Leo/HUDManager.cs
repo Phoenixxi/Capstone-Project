@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class HUDManager : MonoBehaviour
 {
     [SerializeField] private SwappingManager swapper;
@@ -24,7 +24,8 @@ public class HUDManager : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            cooldowns[i].SetActive(i == charNum);
+            //cooldowns[i].SetActive(i == charNum);
+            cooldowns[i].enabled = i == charNum;
             //if (i == charNum) cooldowns[i].Enable();
         }
     }
