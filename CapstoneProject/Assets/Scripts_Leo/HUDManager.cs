@@ -7,7 +7,7 @@ public class HUDManager : MonoBehaviour
 
     void Start()
     {
-        swapper.SwapCharacterEvent += OnCharacterSwap;
+        swapper.DeathSwapEvent += OnCharacterSwap;
     }
 
     void Update()

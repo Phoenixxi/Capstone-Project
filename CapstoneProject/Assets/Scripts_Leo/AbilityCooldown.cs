@@ -15,7 +15,17 @@ public class AbilityCooldownDisplay : MonoBehaviour
 
     void Start()
     {
-        swapper.SwapCharacterEvent += SwapAbilityIcon;
+        swapper.DeathSwapEvent += SwapAbilityIcon;
+    }
+
+    private void OnEnable()
+    {
+        FindFirstObjectByType<PlayerController>().CharacterSwapEvent += SwapAbilityIcon;
+    }
+
+    private void OnDisable()
+    {
+        FindFirstObjectByType<PlayerController>().CharacterSwapEvent -= SwapAbilityIcon;
     }
 
     private void SwapAbilityIcon(int characterNum)

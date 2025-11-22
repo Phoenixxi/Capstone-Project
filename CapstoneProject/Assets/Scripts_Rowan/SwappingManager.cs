@@ -8,7 +8,7 @@ public class SwappingManager : MonoBehaviour
 {
     [SerializeField] public List<GameObject> charactersList;
     public string currentCharacter;
-    public Action<int> SwapCharacterEvent;
+    public Action<int> DeathSwapEvent;
 
     void Start()
     {
@@ -44,7 +44,7 @@ public class SwappingManager : MonoBehaviour
                 //character.transform.position = currentLocation.position;
                 //character.SetActive(true);
                 //self.SetActive(false);
-                if (SwapCharacterEvent != null) SwapCharacterEvent(i + 1);
+                if (DeathSwapEvent != null) DeathSwapEvent(i + 1);
                 return;
             }
         }

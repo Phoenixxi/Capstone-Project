@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using lilGuysNamespace;
 using UnityEngine.SceneManagement;
+using System;
 
 /// <summary>
 /// Takes in input from the player and performs the associated action. Logic is mostly limited to movement and aiming, with combat logic to be handled by other classes
@@ -36,12 +37,14 @@ public class PlayerController : MonoBehaviour
     private bool isAttacking;
 
     //public Transform mouseObject;
+    public Action<int> CharacterSwapEvent;
+
 
     public void Start()
     {
         charactersListPC = swappingManager.charactersList;
         currentCharacterIndex = 0;
-        swappingManager.SwapCharacterEvent += OnCharacterSwapForced;
+        swappingManager.DeathSwapEvent += OnCharacterSwapForced;
         foreach (GameObject character in charactersListPC) character.GetComponent<EntityManager>().SetHealthToFull();
         if(checkpointController == null)
             Debug.LogError("Checkpoint Controller not set in Player Controller on player");
@@ -56,13 +59,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        swappingManager.SwapCharacterEvent -= OnCharacterSwapForced;
-        swappingManager.SwapCharacterEvent += OnCharacterSwapForced;
+        swappingManager.DeathSwapEvent -= OnCharacterSwapForced;
+        swappingManager.DeathSwapEvent += OnCharacterSwapForced;
     }
 
     private void OnDisable()
     {
-        swappingManager.SwapCharacterEvent -= OnCharacterSwapForced;
+        swappingManager.DeathSwapEvent -= OnCharacterSwapForced;
     }
 
     public void HealAllCharacters(float healAmount)
@@ -179,6 +182,7 @@ public class PlayerController : MonoBehaviour
                 OnSwapCharacter3();
                 break;
         }
+        CharacterSwapEvent?.Invoke(characterNum);
     }
 
     /// <summary>
