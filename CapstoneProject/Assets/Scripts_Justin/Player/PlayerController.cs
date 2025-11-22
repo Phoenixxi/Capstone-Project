@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SwappingManager swappingManager;
     [SerializeField] private LayerMask aimLayerMask;
     [SerializeField] public CheckpointController checkpointController;
+    [SerializeField] private UIPlayerSwap uiPlayerSwap;
 
     [Header("Character Swapping VFX")]
     [SerializeField] private GameObject SwitchOffZoom;
@@ -152,6 +153,15 @@ public class PlayerController : MonoBehaviour
     {
         int newCharacterIndex = currentCharacterIndex;
         float pressedValue = input.Get<float>();
+        if(uiPlayerSwap != null)
+        {
+            if(pressedValue == -1) // Q
+                uiPlayerSwap.swapImageLocation(-1);
+            if(pressedValue == 1) // E
+                uiPlayerSwap.swapImageLocation(1);
+        }
+        else{Debug.LogError("uiPlayerSwap not set in player controller");}
+
         do
         {
             newCharacterIndex += (int)pressedValue;

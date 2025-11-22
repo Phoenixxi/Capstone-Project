@@ -12,7 +12,6 @@ public class AbilityCooldownDisplay : MonoBehaviour
     [SerializeField] private GameObject zoomIcon;
     [SerializeField] private GameObject boomIcon;
     [SerializeField] private GameObject gloomIcon;
-    
     private Image cooldownImage;
 
     void Start()
