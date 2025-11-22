@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
         }
         while (!charactersListPC[newCharacterIndex].GetComponent<EntityManager>().isAlive);
-        Debug.Log($"New character index: {newCharacterIndex}");
+        //Debug.Log($"New character index: {newCharacterIndex}");
         if(newCharacterIndex != currentCharacterIndex) OnCharacterSwapForced(newCharacterIndex + 1);
     }
 

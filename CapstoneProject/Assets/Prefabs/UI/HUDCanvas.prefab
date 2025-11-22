@@ -90,9 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityCooldownDisplay
   cooldownImage: {fileID: 6863597387793229766}
-  entityManager: {fileID: 0}
-  charName: 
   ability: {fileID: 0}
+  swapper: {fileID: 0}
 --- !u!1 &1743358255627159938
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,9 +288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityCooldownDisplay
   cooldownImage: {fileID: 7099143680982487584}
-  entityManager: {fileID: 0}
-  charName: 
   ability: {fileID: 0}
+  swapper: {fileID: 0}
 --- !u!1 &1771057807557117083
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +470,7 @@ RectTransform:
   m_GameObject: {fileID: 2025473813217246889}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45854, y: 0.45854, z: 0.45854}
+  m_LocalScale: {x: 0.26864195, y: 0.26864195, z: 0.26864195}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1810421603547124403}
@@ -480,7 +478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 260, y: 20}
+  m_AnchoredPosition: {x: 172, y: 20}
   m_SizeDelta: {x: 474, y: 474}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3484476646016952216
@@ -548,7 +546,7 @@ RectTransform:
   m_GameObject: {fileID: 3112948336999752548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45854, y: 0.45854, z: 0.45854}
+  m_LocalScale: {x: 0.2674574, y: 0.2674574, z: 0.2674574}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 509789666839943852}
@@ -556,7 +554,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -260, y: 20}
+  m_AnchoredPosition: {x: -171, y: 20}
   m_SizeDelta: {x: 474, y: 474}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4889010728229212678
@@ -856,9 +854,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityCooldownDisplay
   cooldownImage: {fileID: 3514391920677262753}
-  entityManager: {fileID: 0}
-  charName: 
   ability: {fileID: 0}
+  swapper: {fileID: 0}
 --- !u!1 &6007397632380962133
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +958,7 @@ RectTransform:
   m_GameObject: {fileID: 6574851547793272681}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45854, y: 0.45854, z: 0.45854}
+  m_LocalScale: {x: 0.28782362, y: 0.28782362, z: 0.28782362}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9118864653955045032}
@@ -1191,9 +1188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityCooldownDisplay
   cooldownImage: {fileID: 8739841493910397239}
-  entityManager: {fileID: 0}
-  charName: 
   ability: {fileID: 0}
+  swapper: {fileID: 0}
 --- !u!1 &7635859548677207906
 GameObject:
   m_ObjectHideFlags: 0
