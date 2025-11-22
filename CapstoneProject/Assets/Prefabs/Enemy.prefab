@@ -947,6 +947,30 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: f650f79943f68ca48b27f7e244902130, type: 3}
     volume: 0.25
     soundCooldown: 0
+  zoomBoomReactionSound:
+    sound: {fileID: 8300000, guid: 4e9de55bdd577d249af5fb3e7c68b30b, type: 3}
+    volume: 0.2
+    soundCooldown: 0.2
+  zoomGloomReactionSound:
+    sound: {fileID: 8300000, guid: 4788e27e50f9d48449789ea3013d20b8, type: 3}
+    volume: 0.2
+    soundCooldown: 0.2
+  boomGloomReactionSound:
+    sound: {fileID: 8300000, guid: a5f5f109abee84944a0fcf85e621e1c3, type: 3}
+    volume: 0.2
+    soundCooldown: 0.2
+  zoomAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  boomAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  gloomAttackSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
 --- !u!1 &7785730262722911322
 GameObject:
   m_ObjectHideFlags: 0
