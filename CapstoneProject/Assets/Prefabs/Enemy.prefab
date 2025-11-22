@@ -689,6 +689,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2113378421503788461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6917290414476061198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5800835657916460556}
+  - component: {fileID: 5794310662704781760}
+  - component: {fileID: 8446811705618808091}
+  m_Layer: 0
+  m_Name: ShadowEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5800835657916460556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917290414476061198}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.26, y: 0.09, z: -0.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2113378421503788461}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5794310662704781760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917290414476061198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: 3b2e15db7eed9874e9f9c31f02749400, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.893
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 2.055}
+  m_Size: {x: 1, y: 1, z: 4.11}
+  m_FadeFactor: 1
+  version: 1
+  m_DecalLayerMask: 1
+--- !u!114 &8446811705618808091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917290414476061198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cff73f2afe5eba46a846b82ff58ef35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowScale
+  player: {fileID: 2113378421503788461}
+  heightOffset: 0.1
+  baseScale: 0.63
+  minScale: 0.6
+  maxHeight: 5
+  startingAlpha: 0.4
+  minAlpha: 0.2
 --- !u!1 &7543563098658516984
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +806,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5800835657916460556}
   - {fileID: 7722578723575890076}
   - {fileID: 605558586999146582}
   - {fileID: 1618604057760933167}
@@ -946,6 +1027,18 @@ MonoBehaviour:
   deathSound:
     sound: {fileID: 8300000, guid: f650f79943f68ca48b27f7e244902130, type: 3}
     volume: 0.25
+    soundCooldown: 0
+  zoomHitSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  boomHitSound:
+    sound: {fileID: 0}
+    volume: 1
+    soundCooldown: 0
+  gloomHitSound:
+    sound: {fileID: 0}
+    volume: 1
     soundCooldown: 0
 --- !u!1 &7785730262722911322
 GameObject:

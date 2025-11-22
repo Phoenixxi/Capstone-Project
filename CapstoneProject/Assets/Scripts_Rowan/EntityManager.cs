@@ -62,10 +62,14 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private GameObject boomElementVFX;
     [SerializeField] private GameObject gloomElementVFX;
 
+    [Header("All Characters Only")]
+    [SerializeField] private GameObject zoomDeathVFX;
+    [SerializeField] private GameObject boomDeathVFX;
+    [SerializeField] private GameObject gloomDeathVFX;
+
+
     [Header("Zoom only")]
     [SerializeField] private GameObject zoomAttackVFX;
-
-
     [Header("Boom Only")]
     [SerializeField] private GameObject boomJumpVFX;    
 
@@ -491,10 +495,25 @@ public class EntityManager : MonoBehaviour
             Destroy(gameObject); 
         }
 
-        if (this.gameObject.CompareTag("Player"))
+        if(this.gameObject.CompareTag("Player"))
         {
+            Vector3 lastPlayerPosition = gameObject.transform.position;
+            switch(entityName)
+            {
+                case "Zoom":
+                    Instantiate(zoomDeathVFX, lastPlayerPosition, Quaternion.identity);
+                    break;
+                case "Boom":
+                    Instantiate(boomDeathVFX, lastPlayerPosition, Quaternion.identity);
+                    break;
+                case "Gloom":
+                    Instantiate(gloomDeathVFX, lastPlayerPosition, Quaternion.identity);
+                    break;
+            }
+            
             swappingManager.PlayerHasDied(gameObject);
         }
+
     }
 
 
