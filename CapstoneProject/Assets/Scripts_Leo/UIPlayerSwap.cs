@@ -13,23 +13,25 @@ public class UIPlayerSwap : MonoBehaviour
     [SerializeField] private Transform topTransform;
     [SerializeField] private Transform middleTransform;
     [SerializeField] private Transform bottomTransform;
+    
+    // [Header("Scales")]
+    // [SerializeField] private Transform topScale;
+    // [SerializeField] private Transform middleScale;
+    // [SerializeField] private Transform bottomScale;
+
+
+    private int currentState = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        topTransform = gloomImage.transform;
-        middleTransform = zoomImage.transform;
-        bottomTransform = boomImage.transform;
+        // topTransform = gloomImage.transform;
+        // middleTransform = zoomImage.transform;
+        // bottomTransform = boomImage.transform;
 
     }
 
     public void swapImageLocation(int charNum)
     {
-        int currentState = getCurrentState();
-        if(currentState == -1)
-        {
-            Debug.LogError("Something went wrong with getting the middle image!");
-            return;
-        }
         
         switch (currentState)
         {
@@ -57,20 +59,11 @@ public class UIPlayerSwap : MonoBehaviour
         }
     }
 
-    private int getCurrentState()
-    {
-        if(zoomImage.transform == middleTransform)
-            return 1;
-        if(boomImage.transform == middleTransform)
-            return 2;
-        if(gloomImage.transform == middleTransform)
-            return 3;
-        else
-            return -1;    
-    }
 
     private void stateOne()
     {
+        Debug.Log("in state 1");
+        currentState = 1;
         gloomImage.transform.position = topTransform.transform.position;
         zoomImage.transform.position = middleTransform.transform.position;
         boomImage.transform.position = bottomTransform.transform.position;
@@ -78,6 +71,8 @@ public class UIPlayerSwap : MonoBehaviour
 
     private void stateTwo()
     {
+        Debug.Log("in state 2");
+        currentState = 2;
         zoomImage.transform.position = topTransform.transform.position;
         boomImage.transform.position = middleTransform.transform.position;
         gloomImage.transform.position = bottomTransform.transform.position;
@@ -85,6 +80,8 @@ public class UIPlayerSwap : MonoBehaviour
 
     private void stateThree()
     {
+        Debug.Log("in state 3");
+        currentState = 3;
         boomImage.transform.position = topTransform.transform.position;
         gloomImage.transform.position = middleTransform.transform.position;
         zoomImage.transform.position =  bottomTransform.transform.position;
