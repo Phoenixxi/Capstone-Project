@@ -12,7 +12,7 @@ public class DialogueController : MonoBehaviour
     
     void Start()
     {
-        
+        NextSentence();
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class DialogueController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.DownArrow))
         {
-
+            NextSentence();
         }
     }
 
