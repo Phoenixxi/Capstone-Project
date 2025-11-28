@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -16,29 +17,34 @@ public class DialogueManager : MonoBehaviour
 
     public bool isDialogueActive = false;
 
-    public float typingSpeed = 0.2f;
+    public float typingSpeed = 100.0f;
 
     public Animator animator;
 
+    [SerializeField] private PlayerInput playerInput;
+
     private void Awake()
     {
-        // UNIQUE INSTANCE
         if (Instance == null)
             Instance = this;
 
-        // INITIALIZE QUEUE
         lines = new Queue<DialogueLine>();
     }
 
     private void Start()
     {
-        // MAKE SURE UI STARTS HIDDEN
         animator.Play("hide");
+
+        if (playerInput == null)
+            playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
         isDialogueActive = true;
+
+        // Disable Player Movement
+        playerInput.actions.FindActionMap("Player").Disable();
 
         animator.Play("show");
 
@@ -81,7 +87,12 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         isDialogueActive = false;
+
+        // Re-enable Player Movement
+        playerInput.actions.FindActionMap("Player").Enable();
+
         animator.Play("hide");
     }
 }
+
 
