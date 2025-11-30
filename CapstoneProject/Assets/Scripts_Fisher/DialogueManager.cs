@@ -113,7 +113,8 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator TypeSentence(DialogueLine dialogueLine, TextMeshProUGUI activeText)
     {
-        Debug.Log("Typing to: " + activeText.name + " | Line: " + dialogueLine.line);
+        Debug.Log("Typing to: " + activeText.name + " | Line: " + dialogueLine.line);in
+
         activeText.text = "";
         foreach (char letter in dialogueLine.line.ToCharArray())
         {
@@ -129,7 +130,7 @@ public class DialogueManager : MonoBehaviour
 
         player.GetComponent<PlayerController>().SetCanMove(true);
 
-        // Reset backgrounds and text (optional)
+        // Reset backgrounds and text 
         dialogueBackground.gameObject.SetActive(true);
         tutorialBackground.gameObject.SetActive(false);
         dialogueText.gameObject.SetActive(true);
