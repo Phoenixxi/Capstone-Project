@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     public RawImage tutorialBackground;     // tutorial background
     public TextMeshProUGUI dialogueText;    // Default dialogue text
     public TextMeshProUGUI tutorialText;    // tutorial text
-    public VideoClip videoClip;
+    public VideoClip videoClip; 
 
 
     public float typingSpeed = 0.01f;
@@ -78,13 +78,14 @@ public class DialogueManager : MonoBehaviour
 
         DialogueLine currentLine = lines.Dequeue();
 
-        // Update icon, name, text color
+        // Update icon and name 
         characterIcon.sprite = currentLine.character.icon;
         characterName.text = currentLine.character.name;
 
 
         TextMeshProUGUI activeText;
 
+        //change background
         if (currentLine.character.useTutorialBackground)
         {
             dialogueBackground.gameObject.SetActive(false);
@@ -96,6 +97,8 @@ public class DialogueManager : MonoBehaviour
             tutorialBackground.gameObject.SetActive(false);
         }
 
+
+        //change text depending on background
         if (currentLine.character.useTutorialText)
         {
             dialogueText.gameObject.SetActive(false);
@@ -109,8 +112,11 @@ public class DialogueManager : MonoBehaviour
             activeText = dialogueText;
         }
 
+        //change text color
         activeText.color = currentLine.character.textColor;
 
+
+        //change video
         if (currentLine.character.videoClip != null && currentLine.character.videoClip.name != "fix")
         {
             tutorialVideoPlayer.gameObject.SetActive(true);
@@ -126,7 +132,7 @@ public class DialogueManager : MonoBehaviour
         }
 
 
-        // Start typing coroutine
+        
         StopAllCoroutines();
         StartCoroutine(TypeSentence(currentLine, activeText));
     }
