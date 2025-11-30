@@ -14,9 +14,9 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI characterName;
 
     public RawImage dialogueBackground;     // Default dialogue background
-    public RawImage tutorialBackground;     // Alternate tutorial background
+    public RawImage tutorialBackground;     // tutorial background
     public TextMeshProUGUI dialogueText;    // Default dialogue text
-    public TextMeshProUGUI tutorialText;    // Alternate dialogue text
+    public TextMeshProUGUI tutorialText;    // tutorial text
 
     [Header("Dialogue Settings")]
     public float typingSpeed = 0.01f;
@@ -77,7 +77,7 @@ public class DialogueManager : MonoBehaviour
         characterIcon.sprite = currentLine.character.icon;
         characterName.text = currentLine.character.name;
 
-        // Determine which background and text box to use
+        
         TextMeshProUGUI activeText;
 
         if (currentLine.character.useAlternateBackground)
