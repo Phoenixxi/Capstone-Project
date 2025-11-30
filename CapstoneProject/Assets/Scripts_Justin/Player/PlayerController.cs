@@ -99,8 +99,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     private void OnMove(InputValue input)
     {
-        if (!canMove) return;
-        Debug.Log("hello");
+        if (!canMove) return; //for dialogue
         movementInput = input.Get<Vector2>().normalized;
         currentCharacter.SetInputDirection(movementInput);
 
@@ -110,8 +109,8 @@ public class PlayerController : MonoBehaviour
     /// Triggers when the jump button is pressed
     /// </summary>
     private void OnJump()
-    {
-        if (!canMove) return;
+    { 
+        if (!canMove) return; //for dialogue
         currentCharacter.Jump();
     }
 
@@ -144,7 +143,7 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log(input.Get());
         //currentCharacter.Attack(aimDirection.transform.forward, transform.position);
-        if (!canMove) return;
+        if (!canMove) return; //for dialogue
         bool pressed = input.Get<float>() == 1f ? true : false;
         isAttacking = pressed;
     }

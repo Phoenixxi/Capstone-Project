@@ -4,31 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
-using UnityEngine.Video;
-
-
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
+    [Header("UI Elements")]
     public Image characterIcon;
-    public TextMeshProUGUI charactername;
-    public TextMeshProUGUI dialogueArea;
+    public TextMeshProUGUI characterName;
 
-    private Queue<DialogueLine> lines;
+    public RawImage dialogueBackground;     // Default dialogue background
+    public RawImage tutorialBackground;     // Alternate tutorial background
+    public TextMeshProUGUI dialogueText;    // Default dialogue text
+    public TextMeshProUGUI tutorialText;    // Alternate dialogue text
 
-    public bool isDialogueActive = false;
-
+    [Header("Dialogue Settings")]
     public float typingSpeed = 0.01f;
 
-    public Animator animator;
+    [HideInInspector] public bool isDialogueActive = false;
 
-    //public VideoPlayer dialogueVideo;
-
-    [SerializeField] private PlayerInput playerInput;
-
-    [SerializeField] private GameObject player;
+    private Queue<DialogueLine> lines;
+    private PlayerInput playerInput;
+    private GameObject player;
 
     private void Awake()
     {
@@ -40,41 +37,24 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-
         player = GameObject.Find("Player");
+        playerInput = player.GetComponent<PlayerInput>();
 
         gameObject.SetActive(false);
-        animator.Play("hide");
-
-
-        //dialogueVideo.time = 0;
-        //dialogueVideo.Play();
-
-        if (playerInput == null)
-            playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
-
         isDialogueActive = false;
-
-
-        //dialogueVideo.Pause();
-
-
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
+        if (player == null) player = GameObject.Find("Player");
+
         isDialogueActive = true;
         gameObject.SetActive(true);
 
-        // Disable Player Movement
+        // Disable player movement
         player.GetComponent<PlayerController>().SetCanMove(false);
 
-        animator.Play("show");
-
         lines.Clear();
-
-        //dialogueVideo.Play();
-
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
         {
             lines.Enqueue(dialogueLine);
@@ -92,38 +72,67 @@ public class DialogueManager : MonoBehaviour
         }
 
         DialogueLine currentLine = lines.Dequeue();
-        characterIcon.sprite = currentLine.character.icon;
-        charactername.text = currentLine.character.name;
-        dialogueArea.color = currentLine.character.textColor;
 
+        // Update icon, name, text color
+        characterIcon.sprite = currentLine.character.icon;
+        characterName.text = currentLine.character.name;
+
+        // Determine which background and text box to use
+        TextMeshProUGUI activeText;
+
+        if (currentLine.character.useAlternateBackground)
+        {
+            dialogueBackground.gameObject.SetActive(false);
+            tutorialBackground.gameObject.SetActive(true);
+        }
+        else
+        {
+            dialogueBackground.gameObject.SetActive(true);
+            tutorialBackground.gameObject.SetActive(false);
+        }
+
+        if (currentLine.character.useAlternateText)
+        {
+            dialogueText.gameObject.SetActive(false);
+            tutorialText.gameObject.SetActive(true);
+            activeText = tutorialText;
+        }
+        else
+        {
+            dialogueText.gameObject.SetActive(true);
+            tutorialText.gameObject.SetActive(false);
+            activeText = dialogueText;
+        }
+
+        activeText.color = currentLine.character.textColor;
+
+        // Start typing coroutine
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(currentLine));
+        StartCoroutine(TypeSentence(currentLine, activeText));
     }
 
-    IEnumerator TypeSentence(DialogueLine dialogueLine)
+    private IEnumerator TypeSentence(DialogueLine dialogueLine, TextMeshProUGUI activeText)
     {
-        dialogueArea.text = "";
+        Debug.Log("Typing to: " + activeText.name + " | Line: " + dialogueLine.line);
+        activeText.text = "";
         foreach (char letter in dialogueLine.line.ToCharArray())
         {
-            dialogueArea.text += letter;
-            yield return null;
+            activeText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
         }
     }
 
-    void EndDialogue()
+    private void EndDialogue()
     {
         isDialogueActive = false;
         gameObject.SetActive(false);
 
         player.GetComponent<PlayerController>().SetCanMove(true);
 
-        //dialogueVideo.Stop();
-        //dialogueVideo.time = 0;
-
-
-
-        animator.Play("hide");
+        // Reset backgrounds and text (optional)
+        dialogueBackground.gameObject.SetActive(true);
+        tutorialBackground.gameObject.SetActive(false);
+        dialogueText.gameObject.SetActive(true);
+        tutorialText.gameObject.SetActive(false);
     }
 }
-
-

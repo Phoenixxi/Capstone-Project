@@ -7,6 +7,9 @@ public class DialougeCharacter
     public string name;
     public Sprite icon;
     public Color textColor = Color.white;
+
+    public bool useAlternateBackground = false;
+    public bool useAlternateText = false;
 }
 
 [System.Serializable]
@@ -33,10 +36,11 @@ public class DialogueTrigger : MonoBehaviour
         DialogueManager.Instance.StartDialogue(dialogue);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
+            Debug.Log("hello");
             TriggerDialogue();
         }
     }
