@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.Video;
+
+
 
 public class DialogueManager : MonoBehaviour
 {
@@ -21,7 +24,11 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
+    public VideoPlayer dialogueVideo;
+
     [SerializeField] private PlayerInput playerInput;
+
+    [SerializeField] private GameObject player;
 
     private void Awake()
     {
@@ -33,22 +40,40 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+
+        player = GameObject.Find("Player");
+
+        gameObject.SetActive(false);
         animator.Play("hide");
+
+        
+        dialogueVideo.time = 0;
+        dialogueVideo.Play();
 
         if (playerInput == null)
             playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+
+        isDialogueActive = false;
+
+
+        dialogueVideo.Pause();
+
+
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
         isDialogueActive = true;
+        gameObject.SetActive(true);
 
         // Disable Player Movement
-        playerInput.actions.FindActionMap("Player").Disable();
+        player.GetComponent<PlayerController>().SetCanMove(false);
 
         animator.Play("show");
 
         lines.Clear();
+
+        dialogueVideo.Play();
 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
         {
@@ -87,9 +112,14 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         isDialogueActive = false;
+        gameObject.SetActive(false);
 
-        // Re-enable Player Movement
-        playerInput.actions.FindActionMap("Player").Enable();
+        player.GetComponent<PlayerController>().SetCanMove(true);
+
+        dialogueVideo.Stop();
+        dialogueVideo.time = 0;
+
+        
 
         animator.Play("hide");
     }

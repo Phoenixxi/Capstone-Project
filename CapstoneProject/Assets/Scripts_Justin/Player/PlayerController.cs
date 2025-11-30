@@ -99,6 +99,8 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     private void OnMove(InputValue input)
     {
+        if (!canMove) return;
+        Debug.Log("hello");
         movementInput = input.Get<Vector2>().normalized;
         currentCharacter.SetInputDirection(movementInput);
 
@@ -109,6 +111,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnJump()
     {
+        if (!canMove) return;
         currentCharacter.Jump();
     }
 
@@ -141,6 +144,7 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log(input.Get());
         //currentCharacter.Attack(aimDirection.transform.forward, transform.position);
+        if (!canMove) return;
         bool pressed = input.Get<float>() == 1f ? true : false;
         isAttacking = pressed;
     }
@@ -304,6 +308,16 @@ public class PlayerController : MonoBehaviour
     {
         currentCharacter.UseAbility(movementInput);
     }
+
+    private bool canMove = true;
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+        movementInput = Vector2.zero;
+        currentCharacter.SetInputDirection(Vector2.zero);
+    }
+
 
     private void Update()
     {
