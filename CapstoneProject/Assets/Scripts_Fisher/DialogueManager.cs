@@ -20,11 +20,11 @@ public class DialogueManager : MonoBehaviour
 
     public bool isDialogueActive = false;
 
-    public float typingSpeed = 100.0f;
+    public float typingSpeed = 0.01f;
 
     public Animator animator;
 
-    public VideoPlayer dialogueVideo;
+    //public VideoPlayer dialogueVideo;
 
     [SerializeField] private PlayerInput playerInput;
 
@@ -46,9 +46,9 @@ public class DialogueManager : MonoBehaviour
         gameObject.SetActive(false);
         animator.Play("hide");
 
-        
-        dialogueVideo.time = 0;
-        dialogueVideo.Play();
+
+        //dialogueVideo.time = 0;
+        //dialogueVideo.Play();
 
         if (playerInput == null)
             playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
@@ -56,7 +56,7 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
 
 
-        dialogueVideo.Pause();
+        //dialogueVideo.Pause();
 
 
     }
@@ -73,7 +73,7 @@ public class DialogueManager : MonoBehaviour
 
         lines.Clear();
 
-        dialogueVideo.Play();
+        //dialogueVideo.Play();
 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
         {
@@ -94,6 +94,7 @@ public class DialogueManager : MonoBehaviour
         DialogueLine currentLine = lines.Dequeue();
         characterIcon.sprite = currentLine.character.icon;
         charactername.text = currentLine.character.name;
+        dialogueArea.color = currentLine.character.textColor;
 
         StopAllCoroutines();
         StartCoroutine(TypeSentence(currentLine));
@@ -105,7 +106,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in dialogueLine.line.ToCharArray())
         {
             dialogueArea.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            yield return null;
         }
     }
 
@@ -116,10 +117,10 @@ public class DialogueManager : MonoBehaviour
 
         player.GetComponent<PlayerController>().SetCanMove(true);
 
-        dialogueVideo.Stop();
-        dialogueVideo.time = 0;
+        //dialogueVideo.Stop();
+        //dialogueVideo.time = 0;
 
-        
+
 
         animator.Play("hide");
     }

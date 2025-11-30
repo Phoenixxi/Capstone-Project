@@ -6,6 +6,7 @@ public class DialougeCharacter
 {
     public string name;
     public Sprite icon;
+    public Color textColor = Color.white;
 }
 
 [System.Serializable]
