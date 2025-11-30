@@ -9,7 +9,7 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
-    [Header("UI Elements")]
+    
     public Image characterIcon;
     public TextMeshProUGUI characterName;
 
@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;    // Default dialogue text
     public TextMeshProUGUI tutorialText;    // tutorial text
 
-    [Header("Dialogue Settings")]
+    
     public float typingSpeed = 0.01f;
 
     [HideInInspector] public bool isDialogueActive = false;
@@ -80,7 +80,7 @@ public class DialogueManager : MonoBehaviour
         
         TextMeshProUGUI activeText;
 
-        if (currentLine.character.useAlternateBackground)
+        if (currentLine.character.useTutorialBackground)
         {
             dialogueBackground.gameObject.SetActive(false);
             tutorialBackground.gameObject.SetActive(true);
@@ -91,7 +91,7 @@ public class DialogueManager : MonoBehaviour
             tutorialBackground.gameObject.SetActive(false);
         }
 
-        if (currentLine.character.useAlternateText)
+        if (currentLine.character.useTutorialText)
         {
             dialogueText.gameObject.SetActive(false);
             tutorialText.gameObject.SetActive(true);
@@ -113,7 +113,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator TypeSentence(DialogueLine dialogueLine, TextMeshProUGUI activeText)
     {
-        Debug.Log("Typing to: " + activeText.name + " | Line: " + dialogueLine.line);in
+        Debug.Log("Typing to: " + activeText.name + " | Line: " + dialogueLine.line);
 
         activeText.text = "";
         foreach (char letter in dialogueLine.line.ToCharArray())

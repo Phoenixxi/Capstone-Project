@@ -8,8 +8,8 @@ public class DialougeCharacter
     public Sprite icon;
     public Color textColor = Color.white;
 
-    public bool useAlternateBackground = false;
-    public bool useAlternateText = false;
+    public bool useTutorialBackground = false;
+    public bool useTutorialText = false;
 }
 
 [System.Serializable]
