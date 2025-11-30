@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.Video;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,13 +13,15 @@ public class DialogueManager : MonoBehaviour
     
     public Image characterIcon;
     public TextMeshProUGUI characterName;
+ 
 
     public RawImage dialogueBackground;     // Default dialogue background
     public RawImage tutorialBackground;     // tutorial background
     public TextMeshProUGUI dialogueText;    // Default dialogue text
     public TextMeshProUGUI tutorialText;    // tutorial text
+    public VideoClip videoClip;
 
-    
+
     public float typingSpeed = 0.01f;
 
     [HideInInspector] public bool isDialogueActive = false;
@@ -26,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueLine> lines;
     private PlayerInput playerInput;
     private GameObject player;
+    [SerializeField] private VideoPlayer tutorialVideoPlayer;
 
     private void Awake()
     {
@@ -42,6 +46,7 @@ public class DialogueManager : MonoBehaviour
 
         gameObject.SetActive(false);
         isDialogueActive = false;
+        tutorialVideoPlayer.GetComponent<RawImage>().enabled = false;
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -77,7 +82,7 @@ public class DialogueManager : MonoBehaviour
         characterIcon.sprite = currentLine.character.icon;
         characterName.text = currentLine.character.name;
 
-        
+
         TextMeshProUGUI activeText;
 
         if (currentLine.character.useTutorialBackground)
@@ -105,6 +110,21 @@ public class DialogueManager : MonoBehaviour
         }
 
         activeText.color = currentLine.character.textColor;
+
+        if (currentLine.character.videoClip != null && currentLine.character.videoClip.name != "fix")
+        {
+            tutorialVideoPlayer.gameObject.SetActive(true);
+            tutorialVideoPlayer.clip = currentLine.character.videoClip;
+            tutorialVideoPlayer.Play();
+
+        }
+        else
+        {
+            tutorialVideoPlayer.Stop();
+            tutorialVideoPlayer.gameObject.SetActive(false);
+            tutorialVideoPlayer.GetComponent<RawImage>().enabled = false;
+        }
+
 
         // Start typing coroutine
         StopAllCoroutines();
@@ -135,5 +155,8 @@ public class DialogueManager : MonoBehaviour
         tutorialBackground.gameObject.SetActive(false);
         dialogueText.gameObject.SetActive(true);
         tutorialText.gameObject.SetActive(false);
+        tutorialVideoPlayer.GetComponent<RawImage>().enabled = false;
+
+
     }
 }

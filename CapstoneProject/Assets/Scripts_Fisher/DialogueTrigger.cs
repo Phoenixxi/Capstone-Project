@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
+
 
 [System.Serializable]
 public class DialougeCharacter
@@ -7,6 +9,8 @@ public class DialougeCharacter
     public string name;
     public Sprite icon;
     public Color textColor = Color.white;
+    public VideoClip videoClip;
+
 
     public bool useTutorialBackground = false;
     public bool useTutorialText = false;
