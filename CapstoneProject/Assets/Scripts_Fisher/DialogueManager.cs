@@ -9,16 +9,16 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
-    [Header("UI Elements")]
+    
     public Image characterIcon;
     public TextMeshProUGUI characterName;
 
     public RawImage dialogueBackground;     // Default dialogue background
-    public RawImage tutorialBackground;     // Alternate tutorial background
+    public RawImage tutorialBackground;     // tutorial background
     public TextMeshProUGUI dialogueText;    // Default dialogue text
-    public TextMeshProUGUI tutorialText;    // Alternate dialogue text
+    public TextMeshProUGUI tutorialText;    // tutorial text
 
-    [Header("Dialogue Settings")]
+    
     public float typingSpeed = 0.01f;
 
     [HideInInspector] public bool isDialogueActive = false;
@@ -77,10 +77,10 @@ public class DialogueManager : MonoBehaviour
         characterIcon.sprite = currentLine.character.icon;
         characterName.text = currentLine.character.name;
 
-        // Determine which background and text box to use
+        
         TextMeshProUGUI activeText;
 
-        if (currentLine.character.useAlternateBackground)
+        if (currentLine.character.useTutorialBackground)
         {
             dialogueBackground.gameObject.SetActive(false);
             tutorialBackground.gameObject.SetActive(true);
@@ -91,7 +91,7 @@ public class DialogueManager : MonoBehaviour
             tutorialBackground.gameObject.SetActive(false);
         }
 
-        if (currentLine.character.useAlternateText)
+        if (currentLine.character.useTutorialText)
         {
             dialogueText.gameObject.SetActive(false);
             tutorialText.gameObject.SetActive(true);
@@ -114,6 +114,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator TypeSentence(DialogueLine dialogueLine, TextMeshProUGUI activeText)
     {
         Debug.Log("Typing to: " + activeText.name + " | Line: " + dialogueLine.line);
+
         activeText.text = "";
         foreach (char letter in dialogueLine.line.ToCharArray())
         {
@@ -129,7 +130,7 @@ public class DialogueManager : MonoBehaviour
 
         player.GetComponent<PlayerController>().SetCanMove(true);
 
-        // Reset backgrounds and text (optional)
+        // Reset backgrounds and text 
         dialogueBackground.gameObject.SetActive(true);
         tutorialBackground.gameObject.SetActive(false);
         dialogueText.gameObject.SetActive(true);
