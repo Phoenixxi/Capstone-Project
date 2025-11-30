@@ -323,14 +323,31 @@ public class PlayerController : MonoBehaviour
         UpdateMouseAim();
         if(isAttacking) currentCharacter.Attack(aimDirection.transform.forward, transform.position);
         if (transform.position.y <= -10) {
-            if(checkpointController != null)
-            {
-                Vector3 location = checkpointController.RecentCheckpointLocation();
-                transform.position = location;
-            } else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+            //if(checkpointController != null)
+            //{
+            //    Vector3 location = checkpointController.RecentCheckpointLocation();
+            //    transform.position = location;
+            //} else
+            //{
+            //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //}
+            SendToCheckpoint();
+        }
+    }
+
+    /// <summary>
+    /// Sends the player back to the previous checkpoint if a checkpoint controller exists, otherwise reloads the scene
+    /// </summary>
+    public void SendToCheckpoint()
+    {
+        if (checkpointController != null)
+        {
+            Vector3 location = checkpointController.RecentCheckpointLocation();
+            transform.position = location;
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
