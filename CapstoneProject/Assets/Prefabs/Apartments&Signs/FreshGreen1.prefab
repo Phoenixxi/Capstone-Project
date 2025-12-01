@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7648328417595746722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5087864517555886489}
+  m_Layer: 0
+  m_Name: FreshGreen1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5087864517555886489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648328417595746722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.90711, y: 9.67, z: -58.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5298147096907155}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &547305962412747384
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5087864517555886489}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.09289
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.5075378
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7592176494039799249, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cd50b3fea3303ab48ab589663f54205c, type: 2}
+    - target: {fileID: -7592176494039799249, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c075475d53cc5954691eb152bb7e01d4, type: 2}
+    - target: {fileID: -7432614319767579086, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cd50b3fea3303ab48ab589663f54205c, type: 2}
+    - target: {fileID: -7432614319767579086, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c075475d53cc5954691eb152bb7e01d4, type: 2}
+    - target: {fileID: -2310973142016591503, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ff9aeb6e2756544c96edfbf23d7114e, type: 2}
+    - target: {fileID: 919132149155446097, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: m_Name
+      value: FreshGreanLeafMarket (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270135408588971641, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ff9aeb6e2756544c96edfbf23d7114e, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+--- !u!4 &5298147096907155 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 34fe85a3ca2d5414094368bae6329732, type: 3}
+  m_PrefabInstance: {fileID: 547305962412747384}
+  m_PrefabAsset: {fileID: 0}

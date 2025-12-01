@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     //public Transform mouseObject;
     public Action<int> CharacterSwapEvent;
+    public Action<bool> AbilityScreenPressedEvent;
 
 
     public void Start()
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     private void OnMove(InputValue input)
     {
+        if (!canMove) return; //for dialogue
         movementInput = input.Get<Vector2>().normalized;
         currentCharacter.SetInputDirection(movementInput);
 
@@ -108,7 +110,8 @@ public class PlayerController : MonoBehaviour
     /// Triggers when the jump button is pressed
     /// </summary>
     private void OnJump()
-    {
+    { 
+        if (!canMove) return; //for dialogue
         currentCharacter.Jump();
     }
 
@@ -141,6 +144,7 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log(input.Get());
         //currentCharacter.Attack(aimDirection.transform.forward, transform.position);
+        if (!canMove) return; //for dialogue
         bool pressed = input.Get<float>() == 1f ? true : false;
         isAttacking = pressed;
     }
@@ -305,19 +309,52 @@ public class PlayerController : MonoBehaviour
         currentCharacter.UseAbility(movementInput);
     }
 
+    private bool canMove = true;
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+        movementInput = Vector2.zero;
+        currentCharacter.SetInputDirection(Vector2.zero);
+    }
+
+
     private void Update()
     {
         UpdateMouseAim();
         if(isAttacking) currentCharacter.Attack(aimDirection.transform.forward, transform.position);
         if (transform.position.y <= -10) {
-            if(checkpointController != null)
-            {
-                Vector3 location = checkpointController.RecentCheckpointLocation();
-                transform.position = location;
-            } else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+            //if(checkpointController != null)
+            //{
+            //    Vector3 location = checkpointController.RecentCheckpointLocation();
+            //    transform.position = location;
+            //} else
+            //{
+            //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //}
+            SendToCheckpoint();
         }
+    }
+
+    /// <summary>
+    /// Sends the player back to the previous checkpoint if a checkpoint controller exists, otherwise reloads the scene
+    /// </summary>
+    public void SendToCheckpoint()
+    {
+        if (checkpointController != null)
+        {
+            Vector3 location = checkpointController.RecentCheckpointLocation();
+            transform.position = location;
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    private void OnAbilityScreen(InputValue input) 
+    {
+        float pressedValue = input.Get<float>();
+        AbilityScreenPressedEvent?.Invoke(pressedValue == 1f);
     }
 }
