@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -9,9 +10,7 @@ public class DialougeCharacter
     public Sprite icon;
     public Color textColor = Color.white;
     public VideoClip videoClip;
-
-    public bool useTutorialBackground = false;
-    public bool useTutorialText = false;
+    public bool isTutorial;
 }
 
 [System.Serializable]

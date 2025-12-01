@@ -8,65 +8,49 @@ using UnityEngine.Video;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager Instance;
-
-
-    public Image characterIcon;
-    public TextMeshProUGUI characterName;
-
-
-    public RawImage dialogueBackground;
-    public RawImage tutorialBackground;
-    public TextMeshProUGUI dialogueText;
-    public TextMeshProUGUI tutorialText;
-    public VideoClip videoClip;
-
-
-    public float typingSpeed = 0.01f;
-
-    [HideInInspector] public bool isDialogueActive = false;
-
-    private Queue<DialogueLine> lines;
-    private PlayerInput playerInput;
-    private GameObject player;
-    [SerializeField] private VideoPlayer tutorialVideoPlayer;
-
+    public static DialogueManager Instance; //Singleton
+ 
+    public Image characterIcon; //Character image
+    public TextMeshProUGUI characterName; //Character name
+    public TextMeshProUGUI dialogueTextArea; //dialogue area
+    public TextMeshProUGUI tutorialTextArea;
+    public GameObject DialogueBG;
+    public GameObject TutorialBG;
+    public VideoPlayer videoPlayer;
+    public Button continuteBtn;
+ 
+    private Queue<DialogueLine> lines; //queue of lines, characters, text color, video clip
+    
+    public bool isDialogueActive = false; //self explanatory
+ 
+    public float typingSpeed = 0.01f; //typing speed
+ 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
-
+ 
         lines = new Queue<DialogueLine>();
+
+        HideElements(true);
     }
-
-    private void Start()
-    {
-        player = GameObject.Find("Player");
-        playerInput = player.GetComponent<PlayerInput>();
-
-        gameObject.SetActive(false);
-        isDialogueActive = false;
-        dialogueText.gameObject.SetActive(true);
-    }
-
+ 
     public void StartDialogue(Dialogue dialogue)
     {
-        if (player == null) player = GameObject.Find("Player");
-
         isDialogueActive = true;
-        gameObject.SetActive(true);
-
-        player.GetComponent<PlayerController>().SetCanMove(false);
-
+ 
         lines.Clear();
+ 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
         {
             lines.Enqueue(dialogueLine);
         }
 
+        continuteBtn.gameObject.SetActive(true);
+ 
         DisplayNextDialogueLine();
     }
-
+ 
     public void DisplayNextDialogueLine()
     {
         if (lines.Count == 0)
@@ -75,79 +59,66 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        StopAllCoroutines();
+ 
         DialogueLine currentLine = lines.Dequeue();
+
+        if(currentLine.character.isTutorial) Tutorial(currentLine);
+        else Dialogue(currentLine);
+    }
+
+    private void Dialogue(DialogueLine currentLine)
+    {
+        DialogueBG.SetActive(true);
+        TutorialBG.SetActive(false);
 
         characterIcon.sprite = currentLine.character.icon;
         characterName.text = currentLine.character.name;
 
-        TextMeshProUGUI activeText;
-
-        if (currentLine.character.useTutorialBackground)
-        {
-            dialogueBackground.gameObject.SetActive(false);
-            tutorialBackground.gameObject.SetActive(true);
-        }
-        else
-        {
-            dialogueBackground.gameObject.SetActive(true);
-            tutorialBackground.gameObject.SetActive(false);
-        }
-
-        if (currentLine.character.useTutorialText)
-        {
-            dialogueText.gameObject.SetActive(false);
-            tutorialText.gameObject.SetActive(true);
-            activeText = tutorialText;
-        }
-        else
-        {
-            dialogueText.gameObject.SetActive(true);
-            tutorialText.gameObject.SetActive(false);
-            activeText = dialogueText;
-        }
-
-        activeText.color = currentLine.character.textColor;
-
-        if (currentLine.character.videoClip != null)
-        {
-            tutorialVideoPlayer.gameObject.SetActive(true);
-            tutorialVideoPlayer.clip = currentLine.character.videoClip;
-            tutorialVideoPlayer.Play();
-
-        }
-        else
-        {
-            tutorialVideoPlayer.Stop();
-            tutorialVideoPlayer.gameObject.SetActive(false);
-            tutorialVideoPlayer.GetComponent<RawImage>().enabled = false;
-        }
-
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(currentLine, activeText));
+        StartCoroutine(TypeSentence(currentLine, dialogueTextArea));
     }
 
-    private IEnumerator TypeSentence(DialogueLine dialogueLine, TextMeshProUGUI activeText)
+    private void Tutorial(DialogueLine currentLine)
     {
-        Debug.Log("Typing to: " + activeText.name + " | Line: " + dialogueLine.line);
+        DialogueBG.SetActive(false);
+        TutorialBG.SetActive(true);
 
-        activeText.text = "";
+        videoPlayer.clip = currentLine.character.videoClip;
+
+        videoPlayer.Prepare();
+        videoPlayer.prepareCompleted += OnVideoPrepared;
+
+        StartCoroutine(TypeSentence(currentLine, tutorialTextArea));
+    }
+
+    private void OnVideoPrepared(VideoPlayer vp)
+    {
+        vp.prepareCompleted -= OnVideoPrepared;
+        vp.Play();
+    }
+ 
+    IEnumerator TypeSentence(DialogueLine dialogueLine, TextMeshProUGUI dialogueArea)
+    {
+        dialogueArea.text = "";
         foreach (char letter in dialogueLine.line.ToCharArray())
         {
-            activeText.text += letter;
+            dialogueArea.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
     }
-
-    private void EndDialogue()
+ 
+    void EndDialogue()
     {
         isDialogueActive = false;
-        gameObject.SetActive(false);
+        videoPlayer.Stop();
+        HideElements(true);
+    }
 
-        player.GetComponent<PlayerController>().SetCanMove(true);
-
-        dialogueBackground.gameObject.SetActive(true);
-        tutorialBackground.gameObject.SetActive(false);
-        dialogueText.gameObject.SetActive(true);
-        tutorialText.gameObject.SetActive(false);
+    private void HideElements(bool hide)
+    {
+        foreach(Transform child in transform)
+        {
+            child.gameObject.SetActive(!hide);
+        }
     }
 }
