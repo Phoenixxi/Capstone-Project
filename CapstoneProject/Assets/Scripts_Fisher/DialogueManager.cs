@@ -20,10 +20,11 @@ public class DialogueManager : MonoBehaviour
     public Button continuteBtn;
  
     private Queue<DialogueLine> lines; //queue of lines, characters, text color, video clip
-    
-    public bool isDialogueActive = false; //self explanatory
  
-    public float typingSpeed = 0.01f; //typing speed
+    public float typingSpeed = 1f; //typing speed
+
+    private PlayerInput playerInput;
+    private GameObject dialogueTrigger;
  
     private void Awake()
     {
@@ -34,11 +35,20 @@ public class DialogueManager : MonoBehaviour
 
         HideElements(true);
     }
- 
-    public void StartDialogue(Dialogue dialogue)
+
+    void Start()
     {
-        isDialogueActive = true;
- 
+        GameObject Player = GameObject.Find("Player");
+        playerInput = Player.GetComponent<PlayerInput>();
+    }
+
+    public void StartDialogue(Dialogue dialogue, GameObject trigger)
+    {
+        playerInput.actions.FindActionMap("Player").Disable();
+        playerInput.actions.FindActionMap("UI").Disable();
+
+        dialogueTrigger = trigger;
+
         lines.Clear();
  
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
@@ -63,7 +73,7 @@ public class DialogueManager : MonoBehaviour
  
         DialogueLine currentLine = lines.Dequeue();
 
-        if(currentLine.character.isTutorial) Tutorial(currentLine);
+        if(currentLine.tutorial.isTutorial) Tutorial(currentLine);
         else Dialogue(currentLine);
     }
 
@@ -83,7 +93,7 @@ public class DialogueManager : MonoBehaviour
         DialogueBG.SetActive(false);
         TutorialBG.SetActive(true);
 
-        videoPlayer.clip = currentLine.character.videoClip;
+        videoPlayer.clip = currentLine.tutorial.videoClip;
 
         videoPlayer.Prepare();
         videoPlayer.prepareCompleted += OnVideoPrepared;
@@ -109,9 +119,11 @@ public class DialogueManager : MonoBehaviour
  
     void EndDialogue()
     {
-        isDialogueActive = false;
         videoPlayer.Stop();
         HideElements(true);
+        Destroy(dialogueTrigger);
+        playerInput.actions.FindActionMap("Player").Enable();
+        playerInput.actions.FindActionMap("UI").Enable();
     }
 
     private void HideElements(bool hide)
