@@ -13,7 +13,6 @@ public class PauseMenu : MonoBehaviour
     [Header("The UI Elements that need to persist, \nbut disappear when paused")]
     [SerializeField] private List<GameObject> UIElementsPersistent;
     [SerializeField] private List<GameObject> HelpMenu;
-    [SerializeField] private PlayerInput input;
     private PlayerInput playerInput;
     private bool isPaused;
 
@@ -31,11 +30,12 @@ public class PauseMenu : MonoBehaviour
             Player = GameObject.Find("Player");
         }
         playerInput = Player.GetComponent<PlayerInput>();
-        input.SwitchCurrentActionMap("UI");
+        PlayerController playerController = Player.GetComponent<PlayerController>();
+        playerController.Pause += OnPause;
         SetActive(false);
     }
 
-    private void OnPause(InputValue input)
+    private void OnPause()
     {
         Pause();
     }

@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public Action<int> CharacterSwapEvent;
     public Action<bool> AbilityScreenPressedEvent;
 
+    public Action Pause;
 
     public void Start()
     {
@@ -356,5 +357,10 @@ public class PlayerController : MonoBehaviour
     {
         float pressedValue = input.Get<float>();
         AbilityScreenPressedEvent?.Invoke(pressedValue == 1f);
+    }
+
+    private void OnPause(InputValue input)
+    {
+        Pause?.Invoke();
     }
 }
