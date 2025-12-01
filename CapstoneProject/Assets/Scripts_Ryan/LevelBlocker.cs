@@ -31,23 +31,6 @@ public class LevelBlocker : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        List<int> indexes = new List<int>();
-        for(int i = 0; i < enemies.Count; i++)
-        {
-            if(enemies[i] == null)
-                indexes.Add(i);
-        }
-
-        foreach(int i in indexes)
-        {
-            enemies.RemoveAt(indexes[i]);
-        }
-
-        allowedToMoveOn = enemies.Count > 0 ? false : true;
-    }
-
     void OnEnemyDeath()
     {
         enemies.RemoveAt(0);
