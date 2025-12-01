@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     //public Transform mouseObject;
     public Action<int> CharacterSwapEvent;
+    public Action<bool> AbilityScreenPressedEvent;
 
 
     public void Start()
@@ -349,5 +350,11 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+    private void OnAbilityScreen(InputValue input) 
+    {
+        float pressedValue = input.Get<float>();
+        AbilityScreenPressedEvent?.Invoke(pressedValue == 1f);
     }
 }

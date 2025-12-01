@@ -50,6 +50,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AbilityScreen",
+                    "type": "Value",
+                    "id": "121710ae-508a-428c-9d3a-d0c6b746d950",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -173,6 +182,17 @@
                     "action": "SwapCharacter",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a14ebc14-ac13-44c8-b94a-133e64dfd3eb",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilityScreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
