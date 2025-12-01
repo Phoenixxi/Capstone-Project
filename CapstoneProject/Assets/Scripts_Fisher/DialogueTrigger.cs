@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-
 [System.Serializable]
 public class DialougeCharacter
 {
@@ -10,7 +9,6 @@ public class DialougeCharacter
     public Sprite icon;
     public Color textColor = Color.white;
     public VideoClip videoClip;
-
 
     public bool useTutorialBackground = false;
     public bool useTutorialText = false;
@@ -28,11 +26,10 @@ public class DialogueLine
 public class Dialogue
 {
     public List<DialogueLine> dialogueLines = new List<DialogueLine>();
-  
 }
+
 public class DialogueTrigger : MonoBehaviour
 {
-
     public Dialogue dialogue;
 
     public void TriggerDialogue()

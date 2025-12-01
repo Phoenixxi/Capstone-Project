@@ -10,16 +10,18 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
+
     public Image characterIcon;
     public TextMeshProUGUI characterName;
 
+
     public RawImage dialogueBackground;
     public RawImage tutorialBackground;
-
     public TextMeshProUGUI dialogueText;
     public TextMeshProUGUI tutorialText;
-
     public VideoClip videoClip;
+
+
     public float typingSpeed = 0.01f;
 
     [HideInInspector] public bool isDialogueActive = false;
@@ -27,12 +29,13 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueLine> lines;
     private PlayerInput playerInput;
     private GameObject player;
-
     [SerializeField] private VideoPlayer tutorialVideoPlayer;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+            Instance = this;
+
         lines = new Queue<DialogueLine>();
     }
 
@@ -40,16 +43,15 @@ public class DialogueManager : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerInput = player.GetComponent<PlayerInput>();
+
         gameObject.SetActive(false);
         isDialogueActive = false;
-
-        tutorialVideoPlayer.GetComponent<RawImage>().enabled = false;
+        dialogueText.gameObject.SetActive(true);
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
-        if (player == null)
-            player = GameObject.Find("Player");
+        if (player == null) player = GameObject.Find("Player");
 
         isDialogueActive = true;
         gameObject.SetActive(true);
@@ -106,11 +108,12 @@ public class DialogueManager : MonoBehaviour
 
         activeText.color = currentLine.character.textColor;
 
-        if (currentLine.character.videoClip != null && currentLine.character.videoClip.name != "fix")
+        if (currentLine.character.videoClip != null)
         {
             tutorialVideoPlayer.gameObject.SetActive(true);
             tutorialVideoPlayer.clip = currentLine.character.videoClip;
             tutorialVideoPlayer.Play();
+
         }
         else
         {
@@ -128,11 +131,10 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Typing to: " + activeText.name + " | Line: " + dialogueLine.line);
 
         activeText.text = "";
-
         foreach (char letter in dialogueLine.line.ToCharArray())
         {
             activeText.text += letter;
-            yield break;
+            yield return new WaitForSeconds(typingSpeed);
         }
     }
 
@@ -145,10 +147,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogueBackground.gameObject.SetActive(true);
         tutorialBackground.gameObject.SetActive(false);
-
         dialogueText.gameObject.SetActive(true);
         tutorialText.gameObject.SetActive(false);
-
-        tutorialVideoPlayer.GetComponent<RawImage>().enabled = false;
     }
 }
