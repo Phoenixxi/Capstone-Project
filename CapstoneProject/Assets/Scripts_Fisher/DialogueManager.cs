@@ -21,7 +21,7 @@ public class DialogueManager : MonoBehaviour
  
     private Queue<DialogueLine> lines; //queue of lines, characters, text color, video clip
  
-    public float typingSpeed = 1f; //typing speed
+    public float typingSpeed = 0.00001f; //typing speed
 
     private PlayerInput playerInput;
     private GameObject dialogueTrigger;
