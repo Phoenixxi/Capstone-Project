@@ -1,9 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Simple script for handling the truck hazard's behavior
+/// Simple script for handling the hazard's behavior
 /// </summary>
-public class Truck : MonoBehaviour
+public class Hazard : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
