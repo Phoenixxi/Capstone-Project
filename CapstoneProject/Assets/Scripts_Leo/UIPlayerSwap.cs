@@ -1,7 +1,7 @@
 using UnityEngine;
 using lilGuysNamespace;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using System.Collections;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 using UnityEngine.AI;
@@ -9,9 +9,9 @@ using System;
 
 public class UIPlayerSwap : MonoBehaviour
 {
-    [SerializeField] private GameObject zoomImage;
-    [SerializeField] private GameObject boomImage;
-    [SerializeField] private GameObject gloomImage;
+    [SerializeField] private GameObject zoomIcon;
+    [SerializeField] private GameObject boomIcon;
+    [SerializeField] private GameObject gloomIcon;
     [SerializeField] private GameObject zoomHealthRing;
     [SerializeField] private GameObject boomHealthRing;
     [SerializeField] private GameObject gloomHealthRing;
@@ -26,15 +26,52 @@ public class UIPlayerSwap : MonoBehaviour
     // [SerializeField] private Transform middleScale;
     // [SerializeField] private Transform bottomScale;
 
+    private Image zoomImage;
+    private Image boomImage;
+    private Image gloomImage;
+
+    private bool zoomDead = false;
+    private bool boomDead = false;
+    private bool gloomDead = false;
+
+    Color blackColor = new Color(0.25f, 0.25f, 0.25f);
 
     private int currentState = 1;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        // topTransform = gloomImage.transform;
-        // middleTransform = zoomImage.transform;
-        // bottomTransform = boomImage.transform;
+        zoomImage = zoomIcon.GetComponent<Image>();
+        boomImage = boomIcon.GetComponent<Image>();
+        gloomImage = gloomIcon.GetComponent<Image>();
+    }
 
+    
+    public void AllPlayersHealed()
+    {
+        zoomDead = false;
+        zoomImage.color = Color.white;
+        boomDead = false;
+        boomImage.color = Color.white;
+        gloomDead = false;
+        gloomImage.color = Color.white;
+    }
+
+    public void zoomDied()
+    {
+        zoomDead = true;
+        zoomImage.color = blackColor;
+    }
+
+    public void boomDied()
+    {
+        boomDead = true;
+        boomImage.color = blackColor;
+    }
+
+    public void gloomDied()
+    {
+        gloomDead = true;
+        gloomImage.color = blackColor;
     }
 
     public void swapImageLocation(int charNum)
@@ -43,53 +80,47 @@ public class UIPlayerSwap : MonoBehaviour
         switch (currentState)
         {
             case 1:
-                if(charNum == -1)
+                if(charNum == -1 && !gloomDead)
                     stateThree();
-                else if(charNum == 1)
+                else if(charNum == 1 && !boomDead)
                     stateTwo();
                 break;
             case 2:
-                if(charNum == -1)
+                if(charNum == -1 && !zoomDead)
                     stateOne();
-                else if(charNum == 1)
+                else if(charNum == 1 && !gloomDead)
                     stateThree();
                 break;
             case 3:
-                if(charNum == -1)
+                if(charNum == -1 && !boomDead)
                     stateTwo();
-                else if(charNum == 1)
+                else if(charNum == 1 && !zoomDead)
                     stateOne();
                 break;
         }
     }
 
-
-    private void stateOne()
+    public void stateOne()
     {
-        Debug.Log("in state 1");
         currentState = 1;
-        gloomImage.transform.position = topTransform.transform.position;
-        zoomImage.transform.position = middleTransform.transform.position;
-        boomImage.transform.position = bottomTransform.transform.position;
+        gloomIcon.transform.position = topTransform.transform.position;
+        zoomIcon.transform.position = middleTransform.transform.position;
+        boomIcon.transform.position = bottomTransform.transform.position;
     }
 
-    private void stateTwo()
+    public void stateTwo()
     {
-        Debug.Log("in state 2");
         currentState = 2;
-        zoomImage.transform.position = topTransform.transform.position;
-        boomImage.transform.position = middleTransform.transform.position;
-        //Image boomImageColor = boomImage.GetComponent<Image>();
-        //boomImageColor.color = Color.gray;
-        gloomImage.transform.position = bottomTransform.transform.position;
+        zoomIcon.transform.position = topTransform.transform.position;
+        boomIcon.transform.position = middleTransform.transform.position;
+        gloomIcon.transform.position = bottomTransform.transform.position;
     }
 
-    private void stateThree()
+    public void stateThree()
     {
-        Debug.Log("in state 3");
         currentState = 3;
-        boomImage.transform.position = topTransform.transform.position;
-        gloomImage.transform.position = middleTransform.transform.position;
-        zoomImage.transform.position =  bottomTransform.transform.position;
+        boomIcon.transform.position = topTransform.transform.position;
+        gloomIcon.transform.position = middleTransform.transform.position;
+        zoomIcon.transform.position =  bottomTransform.transform.position;
     }
 }

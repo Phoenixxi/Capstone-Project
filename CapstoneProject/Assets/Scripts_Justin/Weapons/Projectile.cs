@@ -64,7 +64,6 @@ public class Projectile : MonoBehaviour
         Debug.Log($"Hit {other}", other);
         EntityManager hitEntity = other.gameObject.GetComponent<EntityManager>();
         if (hitEntity == null) hitEntity = other.gameObject.GetComponentInChildren<EntityManager>();
-        Debug.Log(hitEntity, hitEntity);
         if (hitEntity != null) {
             hitEntity.data = data;  //Sends the DOT data to entity's manager
             hitEntity.TakeDamage(damage, elementType);

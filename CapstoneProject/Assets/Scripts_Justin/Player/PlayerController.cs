@@ -73,14 +73,13 @@ public class PlayerController : MonoBehaviour
 
     public void HealAllCharacters(float healAmount)
     {
+        uiPlayerSwap.AllPlayersHealed();
 
-       
         foreach(GameObject character in charactersListPC)
         {
             EntityManager entity = character.GetComponentInChildren<EntityManager>();
             entity.Heal(healAmount);
         }
-        
     }
 
      public void TakeDamageWrapper(float damage)
@@ -188,12 +187,15 @@ public class PlayerController : MonoBehaviour
         switch(characterNum)
         {
             case 1:
+                uiPlayerSwap.stateOne();
                 OnSwapCharacter1();
                 break;
             case 2:
+                uiPlayerSwap.stateTwo();
                 OnSwapCharacter2();
                 break;
             case 3:
+                uiPlayerSwap.stateThree();
                 OnSwapCharacter3();
                 break;
         }

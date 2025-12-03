@@ -9,6 +9,7 @@ public class SwappingManager : MonoBehaviour
     [SerializeField] public List<GameObject> charactersList;
     public string currentCharacter;
     public Action<int> DeathSwapEvent;
+    [SerializeField] public UIPlayerSwap uiPlayerSwap;
 
     void Start()
     {
@@ -35,15 +36,25 @@ public class SwappingManager : MonoBehaviour
     public void PlayerHasDied(GameObject self)
     {
         Debug.Log($"{self} has died", self);
+        if(uiPlayerSwap == null)
+        {
+            Debug.LogError("UIPlayer Swap not set in Swapping Manager");
+            return;
+        }
+        
+        if(charactersList[0] == self)
+            uiPlayerSwap.zoomDied();
+        if(charactersList[1] == self)
+            uiPlayerSwap.boomDied();
+        if(charactersList[2] == self)
+            uiPlayerSwap.gloomDied();
+
+        
         for(int i = 0; i < charactersList.Count; i++)
         {
             if(charactersList[i] != self && charactersList[i].GetComponent<EntityManager>().isAlive)
             {
                 Debug.Log("Swapping to: " + charactersList[i].name);
-                //Transform currentLocation = self.transform;
-                //character.transform.position = currentLocation.position;
-                //character.SetActive(true);
-                //self.SetActive(false);
                 if (DeathSwapEvent != null) DeathSwapEvent(i + 1);
                 return;
             }
