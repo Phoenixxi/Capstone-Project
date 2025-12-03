@@ -136,6 +136,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilityScreen"",
+                    ""type"": ""Value"",
+                    ""id"": ""121710ae-508a-428c-9d3a-d0c6b746d950"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -259,6 +268,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""SwapCharacter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a14ebc14-ac13-44c8-b94a-133e64dfd3eb"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -869,6 +889,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Ability = m_Player.FindAction("Ability", throwIfNotFound: true);
         m_Player_SwapCharacter = m_Player.FindAction("SwapCharacter", throwIfNotFound: true);
+        m_Player_AbilityScreen = m_Player.FindAction("AbilityScreen", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -968,6 +989,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Ability;
     private readonly InputAction m_Player_SwapCharacter;
+    private readonly InputAction m_Player_AbilityScreen;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -999,6 +1021,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/SwapCharacter".
         /// </summary>
         public InputAction @SwapCharacter => m_Wrapper.m_Player_SwapCharacter;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AbilityScreen".
+        /// </summary>
+        public InputAction @AbilityScreen => m_Wrapper.m_Player_AbilityScreen;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1040,6 +1066,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SwapCharacter.started += instance.OnSwapCharacter;
             @SwapCharacter.performed += instance.OnSwapCharacter;
             @SwapCharacter.canceled += instance.OnSwapCharacter;
+            @AbilityScreen.started += instance.OnAbilityScreen;
+            @AbilityScreen.performed += instance.OnAbilityScreen;
+            @AbilityScreen.canceled += instance.OnAbilityScreen;
         }
 
         /// <summary>
@@ -1066,6 +1095,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SwapCharacter.started -= instance.OnSwapCharacter;
             @SwapCharacter.performed -= instance.OnSwapCharacter;
             @SwapCharacter.canceled -= instance.OnSwapCharacter;
+            @AbilityScreen.started -= instance.OnAbilityScreen;
+            @AbilityScreen.performed -= instance.OnAbilityScreen;
+            @AbilityScreen.canceled -= instance.OnAbilityScreen;
         }
 
         /// <summary>
@@ -1412,6 +1444,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwapCharacter(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AbilityScreen" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbilityScreen(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

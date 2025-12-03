@@ -65,7 +65,7 @@ public class AbilityManager : MonoBehaviour, IEffectable
         lastTickTime = 0f;
         navMeshAgent.speed = startingMovementSpeed;   // reset speed back to original
         currentMovementSpeed = startingMovementSpeed;
-        
+        entityManager.ResetAttackRate();
     }
 
 
@@ -100,8 +100,11 @@ public class AbilityManager : MonoBehaviour, IEffectable
         if(data == null)
             return;
 
-        if(data.movementPenalty > 0)
+        if (data.movementPenalty > 0)
+        {
             currentMovementSpeed = startingMovementSpeed / data.movementPenalty;
+            entityManager.ApplyAttackCooldownMutliplier(data.movementPenalty);
+        }
 
         navMeshAgent.speed = currentMovementSpeed;
     }
