@@ -12,8 +12,12 @@ public class PlayerHealthBar : MonoBehaviour
 
     private float maxHP;
     private float currentHP;
+    private float healthRatio;
     private Coroutine healthFillCoroutine;
-    
+
+    private Color32 healthyColor = new Color32(73, 236, 146, 255); //Green
+    private Color32 sicklyColor = new Color32(254, 254, 89, 255); //Yellow
+    private Color32 dyingColor = new Color32(254, 134, 195, 255); //Red/Pink
 
     void Start()
     {
@@ -67,7 +71,7 @@ public class PlayerHealthBar : MonoBehaviour
     private IEnumerator UpdateHPFillCoroutine(float currentHealth, float maxHealth)
     {
         float currentLerpTime = 0f;
-        float healthRatio = currentHealth / maxHealth;
+        healthRatio = currentHealth / maxHealth;
         float startingFill = healthBar.fillAmount;
         while(healthBar.fillAmount != healthRatio)
         {
@@ -79,7 +83,13 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void UpdateColor()
     {
-        healthBar.color = Color.Lerp(Color.red, Color.green, currentHP / maxHP);
+        //healthBar.color = Color.Lerp(Color.red, Color.green, currentHP / maxHP);
+        healthBar.color = healthRatio switch
+        {
+            < 0.2f => dyingColor,
+            < 0.5f => sicklyColor,
+            _ => healthyColor
+        };
     }
 
     private void OnDestroy()
