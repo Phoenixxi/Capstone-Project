@@ -1,4 +1,11 @@
 using UnityEngine;
+using lilGuysNamespace;
+using System.Collections.Generic;
+using UnityEngine.UIElements;
+using System.Collections;
+using ElementType = lilGuysNamespace.EntityData.ElementType;
+using UnityEngine.AI;
+using System;
 
 public class UIPlayerSwap : MonoBehaviour
 {
@@ -36,21 +43,18 @@ public class UIPlayerSwap : MonoBehaviour
         switch (currentState)
         {
             case 1:
-                Debug.Log("inside case 1");
                 if(charNum == -1)
                     stateThree();
                 else if(charNum == 1)
                     stateTwo();
                 break;
             case 2:
-                Debug.Log("inside case 2");
                 if(charNum == -1)
                     stateOne();
                 else if(charNum == 1)
                     stateThree();
                 break;
             case 3:
-                Debug.Log("inside case 3");
                 if(charNum == -1)
                     stateTwo();
                 else if(charNum == 1)
@@ -75,6 +79,8 @@ public class UIPlayerSwap : MonoBehaviour
         currentState = 2;
         zoomImage.transform.position = topTransform.transform.position;
         boomImage.transform.position = middleTransform.transform.position;
+        //Image boomImageColor = boomImage.GetComponent<Image>();
+        //boomImageColor.color = Color.gray;
         gloomImage.transform.position = bottomTransform.transform.position;
     }
 

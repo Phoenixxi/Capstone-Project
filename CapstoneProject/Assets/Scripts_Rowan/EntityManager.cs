@@ -164,7 +164,7 @@ public class EntityManager : MonoBehaviour
         animator.SetFloat("Speed", movementVelocity.magnitude);
         animator.SetFloat("JumpVelocity", movementVelocity.y);
         animator.SetBool("isJumpingUp", movementVelocity.y > 0);
-        animator.SetBool("isJumpingDown", movementVelocity.y < -2.1f);
+        animator.SetBool("isJumpingDown", movementVelocity.y < -3f);
         spriteRenderer.flipX = movementVelocity.x < 0f;
         entityMovement.Move(movementVelocity * Time.deltaTime);
     }
