@@ -324,7 +324,7 @@ public class PlayerController : MonoBehaviour
     {
         UpdateMouseAim();
         if(isAttacking) currentCharacter.Attack(aimDirection.transform.forward, transform.position);
-        if (transform.position.y <= -10) {
+        if (transform.position.y <= -22) {
             //if(checkpointController != null)
             //{
             //    Vector3 location = checkpointController.RecentCheckpointLocation();
