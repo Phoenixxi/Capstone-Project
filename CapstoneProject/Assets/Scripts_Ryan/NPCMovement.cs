@@ -9,6 +9,9 @@ public class NPCMovement : MonoBehaviour
     [Header("Lower the number, the faster the npc will move")]
     [SerializeField]
     private float duration;
+    [Header("Go back or forth? (Make false if you want the NPC to go in a circle)")]
+    [SerializeField]
+    private bool pingpong;
 
     private float t = 0f;
     private Spline spline;
@@ -26,7 +29,8 @@ public class NPCMovement : MonoBehaviour
             transform.position = spline.EvaluatePosition(t);
         });
 
-        tw.SetLoops(-1, LoopType.Yoyo);
+        if(pingpong) tw.SetLoops(-1, LoopType.Yoyo);
+        else tw.SetLoops(-1);
         tw.SetEase(Ease.Linear);
     }
 }
