@@ -9,7 +9,7 @@ public class NPCMovement : MonoBehaviour
     [Header("Lower the number, the faster the npc will move")]
     [SerializeField]
     private float duration;
-    [Header("Go back or forth? (Make false if you want the NPC to go in a circle)")]
+    [Header("Go back and forth? (Make false if you want the NPC to go in a circle)")]
     [SerializeField]
     private bool pingpong;
 
