@@ -1,57 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Ensure we can access the namespace where ElementType etc. might be defined, just in case.
+// 确保引用你的命名空间
 using lilGuysNamespace;
 
 public class AcidZone : MonoBehaviour
 {
     // ==========================================
-    // Configuration
+    // 配置区域
     // ==========================================
 
     [Header("Damage Settings")]
-    [Tooltip("Amount of damage dealt to the player per interval.")]
-    public float damageAmount = 5.0f; // Set to 5 as requested
-
-    [Tooltip("Time in seconds between damage ticks.")]
+    public float damageAmount = 5.0f;
     public float damageInterval = 1.0f;
 
     [Header("Visual Effects")]
-    [Tooltip("The particle effect prefab to spawn when player enters acid.")]
     public GameObject bubblePrefab;
-
-    [Tooltip("The color to tint the player when inside acid.")]
-    public Color acidColor = new Color(0.2f, 1f, 0.2f, 1f); // Light Green
+    public Color acidColor = new Color(0.2f, 1f, 0.2f, 1f); // 酸液颜色（绿）
 
     // ==========================================
-    // Internal State
+    // 内部状态
     // ==========================================
-
-    // Tracks the next time damage should be dealt for each specific player object
     private Dictionary<GameObject, float> nextDamageTimes = new Dictionary<GameObject, float>();
 
-    // Stores the original color of the player to restore it later
-    private Dictionary<GameObject, Color> originalColors = new Dictionary<GameObject, Color>();
+    // 我们不再需要记录原始颜色了，因为我们决定离开时总是变回白色
+    // private Dictionary<GameObject, Color> originalColors = new Dictionary<GameObject, Color>();
+    // 但为了逻辑兼容，我们只用来记录"谁变色了"，防止重复变色
+    private HashSet<GameObject> tintedObjects = new HashSet<GameObject>();
+
+    private Dictionary<GameObject, IEnumerator> activeCoroutines = new Dictionary<GameObject, IEnumerator>();
 
     // ==========================================
-    // Unity Events
+    // 核心逻辑
     // ==========================================
 
-    // Using OnTriggerStay to handle character swapping (Q/E) inside the pool correctly
     private void OnTriggerStay(Collider other)
     {
-        // Only interact with objects tagged as "Player"
         if (other.CompareTag("Player"))
         {
             GameObject playerObj = other.gameObject;
 
-            // --- 1. Visual: Handle Color Change ---
-            // Ensures the player turns green even if they swapped characters inside the pool
+            // 1. 视觉：变绿 (哪怕是隐藏的物体也要变)
             HandleColorChange(playerObj);
 
-            // --- 2. Logic: Handle Damage ---
-            HandleDamage(playerObj);
+            // 2. 逻辑：开始扣血协程 (参考 BuffZone 逻辑)
+            if (!activeCoroutines.ContainsKey(playerObj))
+            {
+                // 尝试在自身、父物体、子物体上找 EntityManager
+                EntityManager entity = playerObj.GetComponent<EntityManager>();
+                if (entity == null) entity = playerObj.GetComponentInParent<EntityManager>();
+                if (entity == null) entity = playerObj.GetComponentInChildren<EntityManager>();
+
+                if (entity != null)
+                {
+                    IEnumerator damageRoutine = DamagePlayerCoroutine(entity);
+                    activeCoroutines.Add(playerObj, damageRoutine);
+                    StartCoroutine(damageRoutine);
+                }
+            }
         }
     }
 
@@ -61,85 +67,57 @@ public class AcidZone : MonoBehaviour
         {
             GameObject playerObj = other.gameObject;
 
-            // Restore the player's original color
+            // 1. 视觉：强制变回白色 (Fix Blue Issue)
             RestoreColor(playerObj);
 
-            // Destroy bubble effects (looking for clones created by this script)
-            var bubbles = playerObj.GetComponentsInChildren<ParticleSystem>();
-            foreach (var b in bubbles)
+            // 2. 逻辑：停止扣血
+            if (activeCoroutines.ContainsKey(playerObj))
             {
-                if (b.name.Contains("Clone")) Destroy(b.gameObject);
-            }
-
-            // Clean up damage timer
-            if (nextDamageTimes.ContainsKey(playerObj))
-            {
-                nextDamageTimes.Remove(playerObj);
+                // 移除后，协程里的 while 循环条件失效，自动停止
+                activeCoroutines.Remove(playerObj);
             }
         }
     }
 
     // ==========================================
-    // Core Logic Methods
+    // 协程逻辑
     // ==========================================
 
-    private void HandleDamage(GameObject playerObj)
+    private IEnumerator DamagePlayerCoroutine(EntityManager entity)
     {
-        // Initialize timer if not present
-        if (!nextDamageTimes.ContainsKey(playerObj))
+        // 只要玩家还在字典里且不为空，就一直扣血
+        while (entity != null && activeCoroutines.ContainsKey(entity.gameObject))
         {
-            nextDamageTimes[playerObj] = Time.time;
-        }
-
-        // Check if it is time to deal damage
-        if (Time.time >= nextDamageTimes[playerObj])
-        {
-            // CRITICAL FIX: Look for EntityManager on the object OR its parent
-            // This fixes issues where the Collider is on a child object
-            EntityManager entity = playerObj.GetComponent<EntityManager>();
-            if (entity == null)
-            {
-                entity = playerObj.GetComponentInParent<EntityManager>();
-            }
-
-            if (entity != null)
-            {
-                // Call the specific TakeDamage method from your provided EntityManager script
-                entity.TakeDamage(damageAmount);
-
-                // Debug log to confirm it's working (remove later if too noisy)
-                Debug.Log($"Acid dealt {damageAmount} damage to {entity.name}");
-            }
-            else
-            {
-                // If this logs, the player object is missing the EntityManager script
-                Debug.LogError($"AcidZone found a Player tag on {playerObj.name}, but could not find 'EntityManager' script on it or its parent!");
-            }
-
-            // Reset the timer for the next tick
-            nextDamageTimes[playerObj] = Time.time + damageInterval;
+            entity.TakeDamage(damageAmount);
+            // Debug.Log($"Acid dealt {damageAmount} damage to {entity.name}");
+            yield return new WaitForSeconds(damageInterval);
         }
     }
+
+    // ==========================================
+    // 视觉辅助函数 (核心修改在 RestoreColor)
+    // ==========================================
 
     private void HandleColorChange(GameObject playerObj)
     {
-        Renderer[] renderers = playerObj.GetComponentsInChildren<Renderer>();
+        // 这里的 (true) 很重要，确保即使切换角色导致物体隐藏，也能被找到
+        Renderer[] renderers = playerObj.GetComponentsInChildren<Renderer>(true);
+
         foreach (var r in renderers)
         {
-            // Ignore particle system renderers
+            // 排除粒子特效，只变身子
             if (r != null && !(r is ParticleSystemRenderer))
             {
-                // If the color hasn't been changed to acid color yet
-                if (r.material.color != acidColor)
+                // 如果还没变色
+                if (!tintedObjects.Contains(playerObj) || r.material.color != acidColor)
                 {
-                    // Store original color if not already stored
-                    if (!originalColors.ContainsKey(playerObj))
-                        originalColors[playerObj] = r.material.color;
+                    // 标记该物体已变色
+                    tintedObjects.Add(playerObj);
 
-                    // Apply acid color
+                    // 变绿
                     r.material.color = acidColor;
 
-                    // Spawn bubbles if not present
+                    // 生成泡泡
                     if (playerObj.GetComponentInChildren<ParticleSystem>() == null && bubblePrefab != null)
                     {
                         GameObject bubble = Instantiate(bubblePrefab, playerObj.transform.position, Quaternion.identity);
@@ -153,15 +131,28 @@ public class AcidZone : MonoBehaviour
 
     private void RestoreColor(GameObject playerObj)
     {
-        if (originalColors.ContainsKey(playerObj))
+        // 同样的 (true)，确保能找到那个被隐藏的旧角色
+        Renderer[] renderers = playerObj.GetComponentsInChildren<Renderer>(true);
+
+        foreach (var r in renderers)
         {
-            Renderer[] renderers = playerObj.GetComponentsInChildren<Renderer>();
-            foreach (var r in renderers)
+            if (r != null && !(r is ParticleSystemRenderer))
             {
-                if (r != null && !(r is ParticleSystemRenderer))
-                    r.material.color = originalColors[playerObj];
+                // 【核心修复】：不要试图还原旧颜色，直接强制变为白色！
+                // 在 Unity 中，材质球的默认颜色（让贴图正常显示的颜色）永远是白色。
+                // 这解决了"变成蓝色"的问题。
+                r.material.color = Color.white;
             }
-            originalColors.Remove(playerObj);
         }
+
+        // 销毁生成的泡泡
+        var bubbles = playerObj.GetComponentsInChildren<ParticleSystem>(true);
+        foreach (var b in bubbles)
+        {
+            if (b.name.Contains("Clone")) Destroy(b.gameObject);
+        }
+
+        // 移除记录
+        tintedObjects.Remove(playerObj);
     }
 }
