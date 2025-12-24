@@ -2,20 +2,19 @@
 using System.Linq;
 using UnityEngine;
 
-// ⚠️ 注意：类名现在叫 Portal，必须和你的文件名 Portal.cs 一样！
-public class Portal : MonoBehaviour
+public class AutoColorPortal : MonoBehaviour
 {
-    // 定义颜色通道
     public enum PortalChannel
     {
         Red, Blue, Green, Yellow, Purple, Cyan
     }
 
     [Header("📢 设置")]
-    [Tooltip("选择颜色，自动连接场景里另一个同色的门")]
+    [Tooltip("选择颜色，脚本会自动连接场景里另一个同色的门")]
     public PortalChannel portalColor = PortalChannel.Red;
 
     [Header("🎨 视觉")]
+    [Tooltip("把圆盘模型拖到这里，自动改颜色")]
     public MeshRenderer portalRenderer;
 
     [Header("⏱️ 动画设置")]
@@ -31,7 +30,7 @@ public class Portal : MonoBehaviour
     public float flightDuration = 0.8f;
 
     // --- 内部变量 ---
-    private Portal linkedTarget;
+    private AutoColorPortal linkedTarget;
     private bool isCoolingDown = false;
     private Collider myCollider;
 
@@ -60,8 +59,7 @@ public class Portal : MonoBehaviour
 
     public void FindMyPartner()
     {
-        // Unity 6 API: FindObjectsByType
-        var allPortals = FindObjectsByType<Portal>(FindObjectsSortMode.None);
+        var allPortals = FindObjectsByType<AutoColorPortal>(FindObjectsSortMode.None);
         foreach (var portal in allPortals)
         {
             if (portal != this && portal.portalColor == this.portalColor)
@@ -91,23 +89,11 @@ public class Portal : MonoBehaviour
 
         if (other.CompareTag("Player") && !isCoolingDown && linkedTarget != null)
         {
-            Rigidbody rb = other.GetComponent<Rigidbody>();
-            float speedX = 0f;
-
-            if (rb != null)
-            {
-                // Unity 6: linearVelocity
-                speedX = rb.linearVelocity.x;
-            }
-
-            // 如果速度太小，默认向右
-            if (Mathf.Abs(speedX) < 0.1f) speedX = 1f;
-
-            StartCoroutine(TeleportProcess(other.gameObject, speedX));
+            StartCoroutine(TeleportProcess(other.gameObject));
         }
     }
 
-    private IEnumerator TeleportProcess(GameObject player, float speedX)
+    private IEnumerator TeleportProcess(GameObject player)
     {
         // 1. 禁用控制
         CharacterController cc = player.GetComponent<CharacterController>();
@@ -119,7 +105,7 @@ public class Portal : MonoBehaviour
         Vector3 startPos = player.transform.position;
         float timer = 0f;
 
-        // --- Phase 1: 吸入变小 ---
+        // --- 第一阶段：吸入变小 ---
         while (timer < animationDuration)
         {
             timer += Time.deltaTime;
@@ -130,14 +116,19 @@ public class Portal : MonoBehaviour
         }
         player.transform.localScale = Vector3.zero;
 
-        // --- Phase 2: 传送 ---
+        // --- 第二阶段：传送 ---
         linkedTarget.StartCooldown();
         player.transform.position = linkedTarget.transform.position;
 
-        // --- Phase 3: 计算横版方向 (向左 or 向右) ---
-        Vector3 throwDir = (speedX >= 0) ? Vector3.right : Vector3.left;
+        // --- 第三阶段：🔥 获取目标门的 X 轴方向 🔥 ---
+        // 直接读取出口门 (linkedTarget) 的 transform.right (红轴方向)
+        // 如果你的门旋转了，这个方向就会变
+        Vector3 portalRight = linkedTarget.transform.right;
 
-        // --- Phase 4: 边飞边变大 ---
+        // 强制归一化成纯粹的 左(-1) 或 右(1)，防止门歪了导致斜着飞
+        Vector3 throwDir = (portalRight.x >= 0) ? Vector3.right : Vector3.left;
+
+        // --- 第四阶段：同时变大 + 弹射 ---
         Coroutine throwRoutine = StartCoroutine(ThrowPlayerSideScroll(player, linkedTarget, throwDir));
 
         timer = 0f;
@@ -152,27 +143,23 @@ public class Portal : MonoBehaviour
 
         yield return throwRoutine;
 
-        // --- Phase 5: 恢复控制 ---
+        // --- 第五阶段：恢复控制 ---
         if (cc) cc.enabled = true;
-        if (rb)
-        {
-            rb.isKinematic = false;
-            rb.linearVelocity = Vector3.zero;
-        }
+        if (rb) rb.isKinematic = false;
     }
 
-    private IEnumerator ThrowPlayerSideScroll(GameObject player, Portal originPortal, Vector3 direction)
+    private IEnumerator ThrowPlayerSideScroll(GameObject player, AutoColorPortal originPortal, Vector3 direction)
     {
         float elapsed = 0f;
         Vector3 p0 = originPortal.transform.position;
 
-        // 终点
+        // 计算落点
         Vector3 p2 = p0 + (direction * throwDistance);
 
-        // 最高点
+        // 控制点(最高点)
         Vector3 p1 = p0 + (direction * (throwDistance / 2)) + (Vector3.up * throwHeight);
 
-        // 记录 Z 轴防止飞歪
+        // 锁死 Z 轴
         float fixedZ = player.transform.position.z;
 
         while (elapsed < flightDuration)
@@ -182,8 +169,6 @@ public class Portal : MonoBehaviour
 
             // 贝塞尔曲线
             Vector3 position = Mathf.Pow(1 - t, 2) * p0 + 2 * (1 - t) * t * p1 + Mathf.Pow(t, 2) * p2;
-
-            // 锁定 Z 轴
             position.z = fixedZ;
 
             player.transform.position = position;
@@ -215,6 +200,11 @@ public class Portal : MonoBehaviour
         {
             Gizmos.color = channelColors.ContainsKey(portalColor) ? channelColors[portalColor] : Color.white;
             Gizmos.DrawLine(transform.position, linkedTarget.transform.position);
+
+            // 画出当前门的弹出方向，方便你调试
+            Vector3 dir = transform.right.x >= 0 ? Vector3.right : Vector3.left;
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawRay(transform.position, dir * 2f);
         }
     }
 }
