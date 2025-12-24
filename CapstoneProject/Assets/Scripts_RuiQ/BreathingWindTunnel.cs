@@ -1,130 +1,129 @@
 ﻿using UnityEngine;
-using System.Collections;
 using lilGuysNamespace;
 
 public class BreathingWindTunnel : MonoBehaviour
 {
-    [Header("🌬️ 风力设置")]
-    [Tooltip("向上推的速度")]
-    public float blowSpeed = 12f;
-    [Tooltip("向下吸的速度")]
-    public float suckSpeed = 12f;
+    [Header("📍 范围检测")]
+    public Vector3 detectionSize = new Vector3(3f, 5f, 3f);
+    public Vector3 centerOffset = Vector3.zero;
 
-    [Header("⏱️ 呼吸循环")]
-    public float blowTime = 3f;
-    public float restTime = 2f;
-    public float suckTime = 3f;
+    [Header("📏 激活条件 (脚下踩空才飞)")]
+    [Tooltip("脚下多少米悬空才触发？建议 0.5 - 1.0")]
+    public float activationHeight = 0.8f;
+    public LayerMask groundLayer = 1;
+
+    [Header("🚀 无限喷射参数")]
+    [Tooltip("起步初速度：\n一旦触发，直接给你这个速度，绝不含糊。\n保证你瞬间从“下落”变成“起飞”。建议 15。")]
+    public float initialKickSpeed = 15f;
+
+    [Tooltip("加速度：\n每秒增加的速度。\n因为没有最大速度限制，这个值决定了你变快的节奏。\n建议 30-50。")]
+    public float acceleration = 40f;
 
     [Header("✨ 特效")]
     public ParticleSystem upParticles;
-    public ParticleSystem downParticles;
 
-    // 内部状态
-    private enum WindState { Resting, BlowingUp, SuckingDown }
-    private WindState currentState = WindState.BlowingUp;
-
-    // 🔥 关键修改：用来记录当前在风洞里的玩家
-    private CharacterController activePlayerCC;
+    private Transform playerTransform;
+    private CharacterController playerCC;
+    private EntityManager playerManager;
+    private bool isPlayerInside = false;
+    private bool isAirborneEnough = false;
 
     void Start()
     {
-        // 自动补全组件
-        var box = GetComponent<BoxCollider>();
-        if (box == null) box = gameObject.AddComponent<BoxCollider>();
-        if (!box.isTrigger) box.isTrigger = true;
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            playerTransform = playerObj.transform;
+            playerCC = playerObj.GetComponent<CharacterController>();
+            playerManager = playerObj.GetComponent<EntityManager>();
 
-        var rb = GetComponent<Rigidbody>();
-        if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
-        rb.isKinematic = true;
-        rb.useGravity = false;
+            if (playerCC == null) playerCC = playerObj.GetComponentInChildren<CharacterController>();
+            if (playerManager == null) playerManager = playerObj.GetComponentInChildren<EntityManager>();
+        }
 
-        StartCoroutine(BreathingCycle());
+        if (upParticles != null) upParticles.Play();
+        if (GetComponent<Rigidbody>()) Destroy(GetComponent<Rigidbody>());
+        if (groundLayer == 0 || groundLayer == 1) groundLayer = ~0;
     }
 
-    // 🔥 关键修改：把推人的逻辑搬到了 Update 里
-    // Update 是跟渲染帧率同步的，每秒60帧或者144帧，非常丝滑
     void Update()
     {
-        // 只有当玩家在风洞里，且风洞不在休息时，才推
-        if (activePlayerCC != null && currentState != WindState.Resting)
+        if (playerTransform == null || playerManager == null) return;
+
+        // 1. 范围检测
+        Vector3 localPos = transform.InverseTransformPoint(playerTransform.position);
+        localPos -= centerOffset;
+        bool insideX = Mathf.Abs(localPos.x) <= detectionSize.x * 0.5f;
+        bool insideY = Mathf.Abs(localPos.y) <= detectionSize.y * 0.5f;
+        bool insideZ = Mathf.Abs(localPos.z) <= detectionSize.z * 0.5f;
+
+        isPlayerInside = (insideX && insideY && insideZ);
+
+        if (!isPlayerInside)
         {
-            Vector3 moveDir = Vector3.zero;
-
-            if (currentState == WindState.BlowingUp)
-            {
-                moveDir = Vector3.up * blowSpeed;
-            }
-            else if (currentState == WindState.SuckingDown)
-            {
-                moveDir = Vector3.down * suckSpeed;
-            }
-
-            // 使用 Time.deltaTime 确保平滑
-            activePlayerCC.Move(moveDir * Time.deltaTime);
+            isAirborneEnough = false;
+            return;
         }
-    }
 
-    IEnumerator BreathingCycle()
-    {
-        while (true)
+        // 2. 悬空检测
+        // 只有脚下 activationHeight 范围内没有地，才算“踩空”
+        bool hitGround = Physics.Raycast(playerTransform.position, Vector3.down, activationHeight, groundLayer);
+        isAirborneEnough = !hitGround;
+
+        // 如果脚下有地，直接 Return，让玩家正常走路/跳跃
+        if (!isAirborneEnough) return;
+
+        // ================= 🚀 无限加速逻辑 =================
+
+        Vector3 currentVel = playerManager.GetMovementVelocity();
+        float currentY = currentVel.y;
+
+        // 3. 第一步：消除下坠，保证起步
+        // 如果当前是在往下掉，或者向上速度还不如初速度快
+        // 直接暴力覆盖为 initialKickSpeed
+        if (currentY < initialKickSpeed)
         {
-            // 1. 向上吹
-            currentState = WindState.BlowingUp;
-            if (upParticles) upParticles.Play();
-            yield return new WaitForSeconds(blowTime);
-            if (upParticles) upParticles.Stop();
-
-            // 2. 休息
-            currentState = WindState.Resting;
-            yield return new WaitForSeconds(restTime);
-
-            // 3. 向下吸
-            currentState = WindState.SuckingDown;
-            if (downParticles) downParticles.Play();
-            yield return new WaitForSeconds(suckTime);
-            if (downParticles) downParticles.Stop();
-
-            // 4. 休息
-            currentState = WindState.Resting;
-            yield return new WaitForSeconds(restTime);
+            // 用 MoveTowards 快速拉升 (几乎瞬间)，防止瞬移感太强，但必须极快
+            currentY = Mathf.MoveTowards(currentY, initialKickSpeed, acceleration * 10f * Time.deltaTime);
         }
-    }
-
-    // 进入风洞：登记玩家
-    void OnTriggerEnter(Collider other)
-    {
-        CharacterController cc = other.GetComponent<CharacterController>();
-        // 兼容性查找
-        if (cc == null) cc = other.GetComponentInParent<CharacterController>();
-        if (cc == null) cc = other.GetComponentInChildren<CharacterController>();
-
-        if (cc != null)
+        else
         {
-            activePlayerCC = cc;
+            // 4. 第二步：无限叠加
+            // 只要已经在向上了，就每一帧都加 acceleration
+            // 没有 maxWindSpeed 限制！没有封顶！
+            // 只要你在风洞里待得越久，你就会飞得越快，直到光速。
+            currentY += acceleration * Time.deltaTime;
         }
-    }
 
-    // 离开风洞：注销玩家
-    void OnTriggerExit(Collider other)
-    {
-        CharacterController cc = other.GetComponent<CharacterController>();
-        if (cc == null) cc = other.GetComponentInParent<CharacterController>();
-        if (cc == null) cc = other.GetComponentInChildren<CharacterController>();
-
-        // 只有当离开的人是当前记录的人时，才清空
-        if (cc != null && cc == activePlayerCC)
-        {
-            activePlayerCC = null;
-        }
+        // 5. 应用
+        playerManager.SetMovementVelocity(new Vector3(currentVel.x, currentY, currentVel.z));
     }
 
     void OnDrawGizmos()
     {
-        Gizmos.color = new Color(0, 1, 1, 0.3f);
-        if (GetComponent<BoxCollider>())
-        {
-            Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.DrawCube(GetComponent<BoxCollider>().center, GetComponent<BoxCollider>().size);
-        }
+        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
+        Gizmos.color = isPlayerInside ? Color.green : new Color(1, 0, 0, 0.3f);
+        Gizmos.DrawCube(centerOffset, detectionSize);
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube(centerOffset, detectionSize);
+    }
+
+    void OnGUI()
+    {
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 24;
+        if (isPlayerInside)
+            style.normal.textColor = isAirborneEnough ? Color.green : Color.yellow;
+        else
+            style.normal.textColor = Color.red;
+
+        string statusText = "不在风洞";
+        if (isPlayerInside) statusText = isAirborneEnough ? "🚀 无限加速中" : "🚶 地面待机";
+
+        float velY = playerManager != null ? playerManager.GetMovementVelocity().y : 0;
+
+        // 显示当前速度，你会看到这个数字无限上涨
+        GUI.Label(new Rect(20, 20, 900, 100),
+            $"{statusText} | 当前速度: {velY:F1} (无上限)", style);
     }
 }
