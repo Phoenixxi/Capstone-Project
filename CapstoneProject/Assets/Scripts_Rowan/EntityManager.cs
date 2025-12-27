@@ -130,6 +130,7 @@ public class EntityManager : MonoBehaviour
 
     void Update()
     {
+        if (entityMovement == null || !entityMovement.enabled || !gameObject.activeInHierarchy) return;//prevent crash
         if (movementQueue.Count > 0) HandleQueueMovement();
         else HandleDefaultMovement();
         if (entityMovement.isGrounded) currentExtraJumps = extraJumps;
