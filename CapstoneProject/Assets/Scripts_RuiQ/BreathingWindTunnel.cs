@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using lilGuysNamespace;
 
 public class BreathingWindTunnel : MonoBehaviour
@@ -8,19 +9,33 @@ public class BreathingWindTunnel : MonoBehaviour
     public Vector3 centerOffset = Vector3.zero;
 
     [Header("📏 激活条件 (脚下踩空才飞)")]
-    [Tooltip("脚下多少米悬空才触发？建议 0.5 - 1.0")]
+    [Tooltip("脚下多少米悬空才触发？建议 0.8")]
     public float activationHeight = 0.8f;
-    public LayerMask groundLayer = 1;
+    public LayerMask groundLayer = ~0; // 默认检测所有层
 
-    [Header("🚀 无限喷射参数")]
-    [Tooltip("起步初速度：\n一旦触发，直接给你这个速度，绝不含糊。\n保证你瞬间从“下落”变成“起飞”。建议 15。")]
-    public float initialKickSpeed = 15f;
+    [Header("🌬️ 呼吸节奏")]
+    [Tooltip("向上喷射持续多久？(秒)")]
+    public float blowDuration = 2.5f;
+    [Tooltip("缓降休息持续多久？(秒)")]
+    public float sinkDuration = 3f;
 
-    [Tooltip("加速度：\n每秒增加的速度。\n因为没有最大速度限制，这个值决定了你变快的节奏。\n建议 30-50。")]
-    public float acceleration = 40f;
+    [Header("🚀 飞行参数")]
+    [Tooltip("向上喷射时的加速度：\n填 40，保证起飞有力。")]
+    public float blowAcceleration = 40f;
+
+    [Tooltip("向上喷射的最大速度：\n填 50，防止飞太快崩游戏。")]
+    public float maxBlowSpeed = 50f;
+
+    [Tooltip("缓降时的恒定速度 (必须是负数)：\n填 -3。\n这就是你要的“抵消重力”。\n在休息阶段，你的速度会被锁死在 -3，匀速下降，绝不会越来越快。")]
+    public float sinkSpeed = -3f;
 
     [Header("✨ 特效")]
     public ParticleSystem upParticles;
+    public ParticleSystem weakParticles; // 建议给缓降也加个弱弱的特效
+
+    // 内部状态
+    private enum WindState { Blowing, Sinking }
+    private WindState currentState = WindState.Blowing;
 
     private Transform playerTransform;
     private CharacterController playerCC;
@@ -30,25 +45,22 @@ public class BreathingWindTunnel : MonoBehaviour
 
     void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-        {
-            playerTransform = playerObj.transform;
-            playerCC = playerObj.GetComponent<CharacterController>();
-            playerManager = playerObj.GetComponent<EntityManager>();
-
-            if (playerCC == null) playerCC = playerObj.GetComponentInChildren<CharacterController>();
-            if (playerManager == null) playerManager = playerObj.GetComponentInChildren<EntityManager>();
-        }
-
-        if (upParticles != null) upParticles.Play();
+        FindActivePlayer();
         if (GetComponent<Rigidbody>()) Destroy(GetComponent<Rigidbody>());
-        if (groundLayer == 0 || groundLayer == 1) groundLayer = ~0;
+
+        // 启动呼吸循环
+        StartCoroutine(BreathCycle());
     }
 
     void Update()
     {
-        if (playerTransform == null || playerManager == null) return;
+        // 🛡️ 防崩溃：如果玩家被禁用了，直接停止
+        if (playerCC == null || playerManager == null || !playerCC.gameObject.activeInHierarchy)
+        {
+            FindActivePlayer();
+            if (playerCC == null) return;
+        }
+        if (!playerCC.enabled) return;
 
         // 1. 范围检测
         Vector3 localPos = transform.InverseTransformPoint(playerTransform.position);
@@ -65,38 +77,92 @@ public class BreathingWindTunnel : MonoBehaviour
             return;
         }
 
-        // 2. 悬空检测
-        // 只有脚下 activationHeight 范围内没有地，才算“踩空”
+        // 2. 悬空检测 (智能锁)
+        // 只有脚下 activationHeight 范围内没有东西，才算“踩空”
         bool hitGround = Physics.Raycast(playerTransform.position, Vector3.down, activationHeight, groundLayer);
         isAirborneEnough = !hitGround;
 
-        // 如果脚下有地，直接 Return，让玩家正常走路/跳跃
+        // 如果脚下有地，直接 Return，让玩家正常走路，风洞完全不干涉！
         if (!isAirborneEnough) return;
 
-        // ================= 🚀 无限加速逻辑 =================
+        // ================= 🌬️ 核心物理逻辑 =================
 
         Vector3 currentVel = playerManager.GetMovementVelocity();
         float currentY = currentVel.y;
 
-        // 3. 第一步：消除下坠，保证起步
-        // 如果当前是在往下掉，或者向上速度还不如初速度快
-        // 直接暴力覆盖为 initialKickSpeed
-        if (currentY < initialKickSpeed)
+        if (currentState == WindState.Blowing)
         {
-            // 用 MoveTowards 快速拉升 (几乎瞬间)，防止瞬移感太强，但必须极快
-            currentY = Mathf.MoveTowards(currentY, initialKickSpeed, acceleration * 10f * Time.deltaTime);
+            // --- 🔥 呼气阶段 (向上喷射) ---
+
+            // 如果是从下落状态刚转过来，先给一个强力的反向修正，消除坠落惯性
+            if (currentY < 0)
+            {
+                currentY = Mathf.MoveTowards(currentY, maxBlowSpeed, blowAcceleration * 2f * Time.deltaTime);
+            }
+            else
+            {
+                // 正常加速
+                currentY = Mathf.MoveTowards(currentY, maxBlowSpeed, blowAcceleration * Time.deltaTime);
+            }
         }
         else
         {
-            // 4. 第二步：无限叠加
-            // 只要已经在向上了，就每一帧都加 acceleration
-            // 没有 maxWindSpeed 限制！没有封顶！
-            // 只要你在风洞里待得越久，你就会飞得越快，直到光速。
-            currentY += acceleration * Time.deltaTime;
+            // --- 🍃 吸气阶段 (抵消重力的缓降) ---
+
+            // 这里的逻辑是：
+            // 如果你现在的速度比 sinkSpeed (-3) 还要快 (比如你还在往上冲)，那就让重力自然把你拉下来。
+            // 但是！一旦你的速度掉到了 -3，我就开启“反重力引擎”，强行顶住你。
+
+            if (currentY > sinkSpeed)
+            {
+                // 此时你还在上升或者慢速下落，我们让重力自然发挥，或者稍微给点阻力让过渡平滑
+                // 这里用 MoveTowards 让速度慢慢降到 -3
+                currentY = Mathf.MoveTowards(currentY, sinkSpeed, 10f * Time.deltaTime);
+            }
+            else
+            {
+                // ⚠️ 关键点：防止越来越快 ⚠️
+                // 此时重力想把你拉到 -10, -20...
+                // 我们直接锁死在 -3。这就在物理上等同于“风力 = 重力”。
+                currentY = sinkSpeed;
+            }
         }
 
-        // 5. 应用
+        // 应用速度
         playerManager.SetMovementVelocity(new Vector3(currentVel.x, currentY, currentVel.z));
+    }
+
+    // 🔄 呼吸循环
+    IEnumerator BreathCycle()
+    {
+        while (true)
+        {
+            // 1. 喷射模式
+            currentState = WindState.Blowing;
+            if (upParticles) upParticles.Play();
+            if (weakParticles) weakParticles.Stop();
+            yield return new WaitForSeconds(blowDuration);
+
+            // 2. 缓降模式
+            currentState = WindState.Sinking;
+            if (upParticles) upParticles.Stop();
+            if (weakParticles) weakParticles.Play(); // 此时可以播放一个微弱的气流特效
+            yield return new WaitForSeconds(sinkDuration);
+        }
+    }
+
+    void FindActivePlayer()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null && playerObj.activeInHierarchy)
+        {
+            playerTransform = playerObj.transform;
+            playerCC = playerObj.GetComponent<CharacterController>();
+            playerManager = playerObj.GetComponent<EntityManager>();
+
+            if (playerCC == null) playerCC = playerObj.GetComponentInChildren<CharacterController>();
+            if (playerManager == null) playerManager = playerObj.GetComponentInChildren<EntityManager>();
+        }
     }
 
     void OnDrawGizmos()
@@ -110,20 +176,23 @@ public class BreathingWindTunnel : MonoBehaviour
 
     void OnGUI()
     {
+        if (playerManager == null || !playerCC.gameObject.activeInHierarchy) return;
+
         GUIStyle style = new GUIStyle();
         style.fontSize = 24;
+
         if (isPlayerInside)
             style.normal.textColor = isAirborneEnough ? Color.green : Color.yellow;
         else
             style.normal.textColor = Color.red;
 
-        string statusText = "不在风洞";
-        if (isPlayerInside) statusText = isAirborneEnough ? "🚀 无限加速中" : "🚶 地面待机";
+        string stateText = "⏸️ 地面待机";
+        if (isPlayerInside && isAirborneEnough)
+        {
+            stateText = currentState == WindState.Blowing ? "💨 向上喷射" : "🍃 恒速缓降";
+        }
 
-        float velY = playerManager != null ? playerManager.GetMovementVelocity().y : 0;
-
-        // 显示当前速度，你会看到这个数字无限上涨
-        GUI.Label(new Rect(20, 20, 900, 100),
-            $"{statusText} | 当前速度: {velY:F1} (无上限)", style);
+        float velY = playerManager.GetMovementVelocity().y;
+        GUI.Label(new Rect(20, 20, 900, 100), $"{stateText} | 速度: {velY:F1}", style);
     }
 }
