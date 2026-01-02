@@ -4,23 +4,26 @@ using System.Collections.Generic;
 public class TrapSpawner : MonoBehaviour
 {
     [Header("🔧 Settings")]
-    [Tooltip("Drag your Hole_Trap prefab here.")]
-    public GameObject trapPrefab; // 拖入你的陷阱预制体
+    public GameObject trapPrefab; // 拖入 Hole_Trap 预制体
+    public int trapCount = 5;     // 生成数量
 
-    [Tooltip("How many traps to spawn?")]
-    public int trapCount = 3; // 生成几个？
+    [Header("📏 Area Settings")]
+    [Tooltip("Distance from edge to avoid.")]
+    public float edgeMargin = 2.0f; // 边缘安全距离
+    public float heightOffset = 0.02f; // 稍微抬高防止Z-fighting
 
-    [Tooltip("Distance from the edge where traps WON'T spawn.")]
-    public float edgeMargin = 3.0f; // ✨ 边缘保留距离 (比如设为3，边缘3米内不生成)
+    [Header("🚫 Obstacle Avoidance (智能避障)")]
+    [Tooltip("Radius to check for obstacles. Should be slightly larger than the trap.")]
+    public float checkRadius = 1.5f; // ✨ 检测半径：陷阱有多大？这里就填多大
 
-    [Tooltip("Minimum distance between traps (to prevent overlapping).")]
-    public float minDistanceBetweenTraps = 2.0f; // 陷阱之间的最小距离，防止重叠
+    [Tooltip("What layers count as obstacles? (e.g., Default, Props, Walls)")]
+    public LayerMask obstacleLayer; // ✨ 障碍物图层：哪些东西算障碍？
 
-    [Tooltip("Height offset (lift up slightly to avoid z-fighting).")]
-    public float heightOffset = 0.02f;
+    [Tooltip("Minimum distance between traps.")]
+    public float minDistanceBetweenTraps = 2.5f; // 陷阱之间的最小距离
 
     [Header("👀 Debug")]
-    public bool showSpawnArea = true; // 在Scene窗口显示生成范围框
+    public bool showDebugGizmos = true;
 
     private List<Vector3> spawnedPositions = new List<Vector3>();
 
@@ -29,119 +32,107 @@ public class TrapSpawner : MonoBehaviour
         SpawnTraps();
     }
 
-    [ContextMenu("Spawn Now")] // 你可以在运行游戏时右键组件点这个来测试
+    [ContextMenu("Spawn Now")]
     public void SpawnTraps()
     {
-        if (trapPrefab == null)
-        {
-            Debug.LogError("❌ TrapSpawner: No Prefab assigned!");
-            return;
-        }
+        if (trapPrefab == null) return;
 
-        // Get the platform's collider (assuming it's a BoxCollider or similar)
-        Collider platformCollider = GetComponent<Collider>();
-        if (platformCollider == null)
-        {
-            Debug.LogError("❌ TrapSpawner: Platform has no Collider!");
-            return;
-        }
+        // 1. 获取生成范围 (基于平台的 Collider)
+        Collider platformCol = GetComponent<Collider>();
+        if (platformCol == null) { Debug.LogError("❌ No Collider on Platform!"); return; }
 
-        // Clear old list
+        // 清理旧列表
         spawnedPositions.Clear();
+        // 如果是编辑器模式下反复点生成，可能需要手动清理旧生成的物体(这里略过，假设运行时生成)
 
-        // Calculate valid bounds
-        Bounds bounds = platformCollider.bounds;
-
-        // Define the spawnable area (Platform Size - Margin)
-        // We use min/max world coordinates
-        float minX = bounds.min.x + edgeMargin;
-        float maxX = bounds.max.x - edgeMargin;
-        float minZ = bounds.min.z + edgeMargin;
-        float maxZ = bounds.max.z - edgeMargin;
-
-        // Y position is the top of the collider
-        float spawnY = bounds.max.y + heightOffset;
-
-        // Check if margin is too big
-        if (minX >= maxX || minZ >= maxZ)
-        {
-            Debug.LogError("❌ TrapSpawner: Edge Margin is too big! No space left in the middle.");
-            return;
-        }
+        Bounds b = platformCol.bounds;
+        float minX = b.min.x + edgeMargin;
+        float maxX = b.max.x - edgeMargin;
+        float minZ = b.min.z + edgeMargin;
+        float maxZ = b.max.z - edgeMargin;
+        float spawnY = b.max.y + heightOffset;
 
         int attempts = 0;
-        int maxAttempts = trapCount * 10; // Prevent infinite loop
+        int maxAttempts = trapCount * 20; // 防止死循环
 
         for (int i = 0; i < trapCount; i++)
         {
-            bool positionFound = false;
+            bool validPositionFound = false;
             Vector3 candidatePos = Vector3.zero;
 
-            // Try to find a position that isn't too close to others
-            while (!positionFound && attempts < maxAttempts)
+            // 尝试寻找有效位置
+            while (!validPositionFound && attempts < maxAttempts)
             {
                 attempts++;
+
+                // A. 随机取点
                 float rX = Random.Range(minX, maxX);
                 float rZ = Random.Range(minZ, maxZ);
                 candidatePos = new Vector3(rX, spawnY, rZ);
 
+                // B. 验证位置
                 if (IsPositionValid(candidatePos))
                 {
-                    positionFound = true;
+                    validPositionFound = true;
                 }
             }
 
-            if (positionFound)
+            if (validPositionFound)
             {
-                // Instantiate the trap
-                GameObject newTrap = Instantiate(trapPrefab, candidatePos, Quaternion.identity);
-
-                // Optional: Make it a child of the platform so it moves with it
-                newTrap.transform.SetParent(this.transform);
-
-                // Add to list
+                // C. 生成陷阱
+                GameObject trap = Instantiate(trapPrefab, candidatePos, Quaternion.identity);
+                trap.transform.SetParent(this.transform);
                 spawnedPositions.Add(candidatePos);
             }
             else
             {
-                Debug.LogWarning("⚠️ Could not find a spot for trap " + i);
+                Debug.LogWarning($"⚠️ Could not find empty space for trap {i}. Area might be too crowded.");
             }
         }
     }
 
+    // ✨✨✨ 核心检测逻辑 ✨✨✨
     bool IsPositionValid(Vector3 pos)
     {
-        foreach (Vector3 existingPos in spawnedPositions)
+        // 1. 检查是否和其他陷阱太近
+        foreach (var p in spawnedPositions)
         {
-            if (Vector3.Distance(pos, existingPos) < minDistanceBetweenTraps)
-            {
-                return false; // Too close to another trap
-            }
+            if (Vector3.Distance(pos, p) < minDistanceBetweenTraps) return false;
         }
-        return true;
+
+        // 2. 检查是否有障碍物 (Physics Overlap)
+        // 我们在生成点上方一点点的位置画一个球，看有没有碰到东西
+        Vector3 checkCenter = pos + Vector3.up * 1.0f; // 向上抬1米，避开地面本身
+
+        // CheckSphere: 如果球内有 obstacleLayer 层的物体，返回 true
+        if (Physics.CheckSphere(checkCenter, checkRadius, obstacleLayer))
+        {
+            return false; // 撞到障碍物了，位置无效
+        }
+
+        return true; // 一切正常
     }
 
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
-        if (!showSpawnArea) return;
+        if (!showDebugGizmos) return;
 
+        // 画出已生成的位置
+        Gizmos.color = Color.red;
+        foreach (var pos in spawnedPositions)
+        {
+            Gizmos.DrawWireSphere(pos + Vector3.up * 1.0f, checkRadius);
+        }
+
+        // 画出生成范围
         Collider col = GetComponent<Collider>();
-        if (col == null) return;
-
-        Bounds b = col.bounds;
-
-        // Calculate the inner rectangle
-        float w = b.size.x - (edgeMargin * 2);
-        float l = b.size.z - (edgeMargin * 2);
-
-        if (w <= 0 || l <= 0) return;
-
-        Gizmos.color = Color.green;
-        // Center of the valid area
-        Vector3 center = b.center;
-        center.y = b.max.y; // Draw on top
-
-        // Draw the spawn zone
-        Gizmos.DrawWireCube(center, new Vector3(w, 0.1f, l));
+        if (col != null)
+        {
+            Bounds b = col.bounds;
+            float w = b.size.x - (edgeMargin * 2);
+            float l = b.size.z - (edgeMargin * 2);
+            Gizmos.color = Color.green;
+            if (w > 0 && l > 0) Gizmos.DrawWireCube(b.center + Vector3.up * b.extents.y, new Vector3(w, 0.1f, l));
+        }
     }
 }

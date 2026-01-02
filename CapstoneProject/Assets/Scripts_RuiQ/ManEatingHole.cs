@@ -49,8 +49,8 @@ public class ManEatingHole : MonoBehaviour
     public float chewDuration = 3f;
 
     [Header("🚀 Spit Settings (Manual Physics)")]
-    public float spitForce = 20f; // ✨ 喷射初速度
-    public float gravityScale = 2.0f; // ✨ 重力倍率 (2.0 会让下落更有打击感)
+    public float spitForce = 20f;
+    public float gravityScale = 2.0f;
     [Range(0, 1)] public float spitRandomness = 0.3f;
     public float eatCooldown = 5f;
 
@@ -58,7 +58,7 @@ public class ManEatingHole : MonoBehaviour
     public ParticleSystem bloodEffect;
     public ParticleSystem spitEffect;
 
-    // --- 内部变量 ---
+    // --- Internal Variables ---
     private Transform playerRoot;
     private EntityManager currentPlayerEntity;
     private Collider currentPlayerCollider;
@@ -152,7 +152,7 @@ public class ManEatingHole : MonoBehaviour
         currentState = HoleState.Swallowing;
         smoothSpeed = 15f;
 
-        // 1. 获取组件
+        // 1. Get Components
         if (playerRoot != null)
         {
             currentPlayerEntity = playerRoot.GetComponent<EntityManager>();
@@ -162,14 +162,12 @@ public class ManEatingHole : MonoBehaviour
             currentPlayerCC = playerRoot.GetComponent<CharacterController>();
         }
 
-        // 2. 冻结
+        // 2. Freeze Player
         if (swappingManager != null) swappingManager.enabled = false;
         if (currentPlayerEntity != null) currentPlayerEntity.enabled = false;
         if (currentPlayerCC != null) currentPlayerCC.enabled = false;
         if (currentPlayerRb != null) { currentPlayerRb.linearVelocity = Vector3.zero; currentPlayerRb.isKinematic = true; }
 
-        // 关键：暂时不关Collider，不然CharacterController可能会穿地，但如果你的角色有CC，CC自带碰撞
-        // 这里为了保险，如果是RB角色，关碰撞；如果是CC角色，CC.enabled=false已经关了移动
         if (currentPlayerRb != null) currentPlayerCollider.enabled = false;
 
         originalPlayerScale = playerRoot.localScale;
@@ -178,7 +176,7 @@ public class ManEatingHole : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        // 3. 咀嚼
+        // 3. Chew
         currentState = HoleState.Chewing;
         float timer = 0f;
         while (timer < chewDuration)
@@ -190,70 +188,73 @@ public class ManEatingHole : MonoBehaviour
         }
         transform.localScale = Vector3.one;
 
-        // 4. 吐出 (手动物理模拟)
+        // 4. Spit (Manual Physics)
         currentState = HoleState.Spitting;
         smoothSpeed = 20f;
         if (spitEffect) spitEffect.Play();
 
         playerRoot.localScale = originalPlayerScale;
 
-        // A. 瞬移到空中 2米
+        // A. Teleport up
         playerRoot.position = transform.position + Vector3.up * 2.0f;
 
-        // B. 计算初速度 (模拟爆炸力)
+        // B. Calculate Initial Velocity
         Vector3 randomDir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * spitRandomness;
         Vector3 currentVelocity = (Vector3.up + randomDir).normalized * spitForce;
 
-        // C. 开始手动模拟循环
+        // C. Manual Physics Loop
         float safetyTimer = 0f;
         bool hasLanded = false;
 
-        // 临时开启 CharacterController (如果有)，方便我们用 .Move() 函数
-        // 但不要开启 EntityManager，否则它会抢控制权
-        if (currentPlayerCC != null) currentPlayerCC.enabled = true;
+        // Enable CC
+        if (currentPlayerCC != null)
+        {
+            currentPlayerCC.enabled = true;
+        }
 
-        while (!hasLanded && safetyTimer < 3.0f) // 最多飞3秒，防止死循环
+        // ✨✨✨ CRITICAL FIX: Wait 1 frame for Unity to activate CC ✨✨✨
+        yield return null;
+
+        while (!hasLanded && safetyTimer < 3.0f)
         {
             float dt = Time.deltaTime;
             safetyTimer += dt;
 
-            // 1. 应用重力
+            // Apply Gravity
             currentVelocity += Physics.gravity * gravityScale * dt;
 
-            // 2. 移动玩家
+            // Move
             Vector3 moveDelta = currentVelocity * dt;
 
-            if (currentPlayerCC != null)
+            if (currentPlayerCC != null && currentPlayerCC.enabled)
             {
-                // 使用 CC 移动 (它自带碰撞检测，最好用)
                 currentPlayerCC.Move(moveDelta);
-                hasLanded = currentPlayerCC.isGrounded; // CC 自带落地检测
+                hasLanded = currentPlayerCC.isGrounded;
             }
             else
             {
-                // 没有 CC，手动修改 Transform
+                // Fallback for non-CC characters
                 playerRoot.position += moveDelta;
 
-                // 手动射线检测落地
-                if (currentVelocity.y < 0) // 只有下落时才检测
+                if (currentVelocity.y < 0)
                 {
-                    if (Physics.Raycast(playerRoot.position + Vector3.up, Vector3.down, 1.2f)) // 简单的脚底射线
+                    if (Physics.Raycast(playerRoot.position + Vector3.up, Vector3.down, 1.2f))
                     {
                         hasLanded = true;
                     }
                 }
             }
 
-            // 如果已经掉到洞口平面以下，强制认为落地 (防止穿模)
+            // Floor check to prevent falling through map
             if (playerRoot.position.y < transform.position.y - 0.5f)
             {
                 hasLanded = true;
             }
 
-            yield return null; // 等待下一帧
+            yield return null;
         }
 
-        // 5. 落地后恢复
+        // 5. Land & Recover
         if (currentPlayerRb != null)
         {
             currentPlayerRb.isKinematic = false;
@@ -261,7 +262,6 @@ public class ManEatingHole : MonoBehaviour
             if (currentPlayerCollider != null) currentPlayerCollider.enabled = true;
         }
 
-        // 延迟一帧，确保物理安定
         yield return null;
 
         if (currentPlayerEntity != null) currentPlayerEntity.enabled = true;
@@ -286,15 +286,12 @@ public class ManEatingHole : MonoBehaviour
 
         if (target != null)
         {
-            // 优先找 CharacterController (通常是最高层级)
             CharacterController rootCC = target.GetComponentInParent<CharacterController>();
             if (rootCC != null) { playerRoot = rootCC.transform; return; }
 
-            // 其次找 Rigidbody
             Rigidbody rootRb = target.GetComponentInParent<Rigidbody>();
             if (rootRb != null) { playerRoot = rootRb.transform; return; }
 
-            // 最后找 Entity
             EntityManager rootEntity = target.GetComponentInParent<EntityManager>();
             if (rootEntity != null) { playerRoot = rootEntity.transform; return; }
 
@@ -341,8 +338,6 @@ public class ManEatingHole : MonoBehaviour
         InitializePetals();
     }
 
-    // ... 其他辅助函数 (InitializePetals, UpdatePetalColor, UpdatePetalRotation, HandleDistanceOpen, OnDrawGizmos) 保持不变，可以直接保留之前的代码 ...
-    // 为了节省篇幅，这里只列出关键变化部分，请保留之前的辅助函数代码
     void InitializePetals()
     {
         activePetals.Clear(); initialRotations.Clear(); petalRenderers.Clear();

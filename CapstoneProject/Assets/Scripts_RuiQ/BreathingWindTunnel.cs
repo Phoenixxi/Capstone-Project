@@ -4,36 +4,36 @@ using lilGuysNamespace;
 
 public class BreathingWindTunnel : MonoBehaviour
 {
-    [Header("📍 范围检测")]
+    [Header("📍 Detection Settings")]
     public Vector3 detectionSize = new Vector3(3f, 5f, 3f);
     public Vector3 centerOffset = Vector3.zero;
 
-    [Header("📏 激活条件 (脚下踩空才飞)")]
-    [Tooltip("脚下多少米悬空才触发？建议 0.8")]
+    [Header("📏 Activation Conditions (Airborne Only)")]
+    [Tooltip("How high off the ground to trigger? Recommended: 0.8")]
     public float activationHeight = 0.8f;
-    public LayerMask groundLayer = ~0; // 默认检测所有层
+    public LayerMask groundLayer = ~0; // Default: check all layers
 
-    [Header("🌬️ 呼吸节奏")]
-    [Tooltip("向上喷射持续多久？(秒)")]
+    [Header("🌬️ Breathing Rhythm")]
+    [Tooltip("Duration of the upward blow (seconds).")]
     public float blowDuration = 2.5f;
-    [Tooltip("缓降休息持续多久？(秒)")]
+    [Tooltip("Duration of the sinking/resting phase (seconds).")]
     public float sinkDuration = 3f;
 
-    [Header("🚀 飞行参数")]
-    [Tooltip("向上喷射时的加速度：\n填 40，保证起飞有力。")]
+    [Header("🚀 Flight Parameters")]
+    [Tooltip("Acceleration during upward blow.\nValue of 40 ensures strong takeoff.")]
     public float blowAcceleration = 40f;
 
-    [Tooltip("向上喷射的最大速度：\n填 50，防止飞太快崩游戏。")]
+    [Tooltip("Max upward speed.\nValue of 50 prevents physics issues.")]
     public float maxBlowSpeed = 50f;
 
-    [Tooltip("缓降时的恒定速度 (必须是负数)：\n填 -3。\n这就是你要的“抵消重力”。\n在休息阶段，你的速度会被锁死在 -3，匀速下降，绝不会越来越快。")]
+    [Tooltip("Constant sinking speed (must be negative).\nValue of -3 counteracts gravity for a slow descent.\nIn the resting phase, speed is locked to -3, never accelerating downwards.")]
     public float sinkSpeed = -3f;
 
-    [Header("✨ 特效")]
+    [Header("✨ VFX")]
     public ParticleSystem upParticles;
-    public ParticleSystem weakParticles; // 建议给缓降也加个弱弱的特效
+    public ParticleSystem weakParticles; // Recommended to add a weak effect for sinking phase
 
-    // 内部状态
+    // Internal State
     private enum WindState { Blowing, Sinking }
     private WindState currentState = WindState.Blowing;
 
@@ -46,15 +46,16 @@ public class BreathingWindTunnel : MonoBehaviour
     void Start()
     {
         FindActivePlayer();
+        // Remove Rigidbody if it exists to prevent conflicts
         if (GetComponent<Rigidbody>()) Destroy(GetComponent<Rigidbody>());
 
-        // 启动呼吸循环
+        // Start the breathing cycle
         StartCoroutine(BreathCycle());
     }
 
     void Update()
     {
-        // 🛡️ 防崩溃：如果玩家被禁用了，直接停止
+        // 🛡️ Crash prevention: stop if player is disabled or missing
         if (playerCC == null || playerManager == null || !playerCC.gameObject.activeInHierarchy)
         {
             FindActivePlayer();
@@ -62,7 +63,7 @@ public class BreathingWindTunnel : MonoBehaviour
         }
         if (!playerCC.enabled) return;
 
-        // 1. 范围检测
+        // 1. Range Detection
         Vector3 localPos = transform.InverseTransformPoint(playerTransform.position);
         localPos -= centerOffset;
         bool insideX = Mathf.Abs(localPos.x) <= detectionSize.x * 0.5f;
@@ -77,76 +78,75 @@ public class BreathingWindTunnel : MonoBehaviour
             return;
         }
 
-        // 2. 悬空检测 (智能锁)
-        // 只有脚下 activationHeight 范围内没有东西，才算“踩空”
+        // 2. Airborne Detection (Smart Lock)
+        // Only considered airborne if nothing is within activationHeight below feet
         bool hitGround = Physics.Raycast(playerTransform.position, Vector3.down, activationHeight, groundLayer);
         isAirborneEnough = !hitGround;
 
-        // 如果脚下有地，直接 Return，让玩家正常走路，风洞完全不干涉！
+        // If grounded, return immediately. Let player walk normally. The tunnel won't interfere.
         if (!isAirborneEnough) return;
 
-        // ================= 🌬️ 核心物理逻辑 =================
+        // ================= Core Physics Logic =================
 
         Vector3 currentVel = playerManager.GetMovementVelocity();
         float currentY = currentVel.y;
 
         if (currentState == WindState.Blowing)
         {
-            // --- 🔥 呼气阶段 (向上喷射) ---
+            // --- Exhale Phase (Upward Blow) ---
 
-            // 如果是从下落状态刚转过来，先给一个强力的反向修正，消除坠落惯性
+            // If switching from falling state, apply strong correction to cancel falling inertia
             if (currentY < 0)
             {
                 currentY = Mathf.MoveTowards(currentY, maxBlowSpeed, blowAcceleration * 2f * Time.deltaTime);
             }
             else
             {
-                // 正常加速
+                // Normal acceleration
                 currentY = Mathf.MoveTowards(currentY, maxBlowSpeed, blowAcceleration * Time.deltaTime);
             }
         }
         else
         {
-            // --- 🍃 吸气阶段 (抵消重力的缓降) ---
+            // --- Inhale Phase (Gravity-defying Sink) ---
 
-            // 这里的逻辑是：
-            // 如果你现在的速度比 sinkSpeed (-3) 还要快 (比如你还在往上冲)，那就让重力自然把你拉下来。
-            // 但是！一旦你的速度掉到了 -3，我就开启“反重力引擎”，强行顶住你。
+            // Logic: 
+            // If current speed > sinkSpeed (e.g., -3), let gravity work naturally or smooth it out.
+            // Once speed hits -3, lock it to create an "anti-gravity" effect.
 
             if (currentY > sinkSpeed)
             {
-                // 此时你还在上升或者慢速下落，我们让重力自然发挥，或者稍微给点阻力让过渡平滑
-                // 这里用 MoveTowards 让速度慢慢降到 -3
+                // Still rising or falling slowly, transition smoothly to sinkSpeed
                 currentY = Mathf.MoveTowards(currentY, sinkSpeed, 10f * Time.deltaTime);
             }
             else
             {
-                // ⚠️ 关键点：防止越来越快 ⚠️
-                // 此时重力想把你拉到 -10, -20...
-                // 我们直接锁死在 -3。这就在物理上等同于“风力 = 重力”。
+                // ⚠️ Key Point: Prevent acceleration accumulation ⚠️
+                // Gravity wants to pull to -10, -20...
+                // We lock it at -3. This effectively means "Wind Force = Gravity Force".
                 currentY = sinkSpeed;
             }
         }
 
-        // 应用速度
+        // Apply velocity
         playerManager.SetMovementVelocity(new Vector3(currentVel.x, currentY, currentVel.z));
     }
 
-    // 🔄 呼吸循环
+    // 🔄 Breathing Cycle
     IEnumerator BreathCycle()
     {
         while (true)
         {
-            // 1. 喷射模式
+            // 1. Blowing Mode
             currentState = WindState.Blowing;
             if (upParticles) upParticles.Play();
             if (weakParticles) weakParticles.Stop();
             yield return new WaitForSeconds(blowDuration);
 
-            // 2. 缓降模式
+            // 2. Sinking Mode
             currentState = WindState.Sinking;
             if (upParticles) upParticles.Stop();
-            if (weakParticles) weakParticles.Play(); // 此时可以播放一个微弱的气流特效
+            if (weakParticles) weakParticles.Play(); // Can play a weak airflow effect here
             yield return new WaitForSeconds(sinkDuration);
         }
     }
@@ -172,27 +172,5 @@ public class BreathingWindTunnel : MonoBehaviour
         Gizmos.DrawCube(centerOffset, detectionSize);
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(centerOffset, detectionSize);
-    }
-
-    void OnGUI()
-    {
-        if (playerManager == null || !playerCC.gameObject.activeInHierarchy) return;
-
-        GUIStyle style = new GUIStyle();
-        style.fontSize = 24;
-
-        if (isPlayerInside)
-            style.normal.textColor = isAirborneEnough ? Color.green : Color.yellow;
-        else
-            style.normal.textColor = Color.red;
-
-        string stateText = "⏸️ 地面待机";
-        if (isPlayerInside && isAirborneEnough)
-        {
-            stateText = currentState == WindState.Blowing ? "💨 向上喷射" : "🍃 恒速缓降";
-        }
-
-        float velY = playerManager.GetMovementVelocity().y;
-        GUI.Label(new Rect(20, 20, 900, 100), $"{stateText} | 速度: {velY:F1}", style);
     }
 }
