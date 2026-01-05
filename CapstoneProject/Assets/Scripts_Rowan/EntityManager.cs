@@ -25,7 +25,9 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float gravity = 10f;
     [SerializeField] private int extraJumps = 0;
+    [SerializeField] private float coyoteTime = 0.2f;
     private int currentExtraJumps;
+    private float currentCoyoteTime = 0f;
 
     [Header("Animation")]
     public Animator animator;
@@ -133,7 +135,14 @@ public class EntityManager : MonoBehaviour
         if (entityMovement == null || !entityMovement.enabled || !gameObject.activeInHierarchy) return; //prevent crash
         if (movementQueue.Count > 0) HandleQueueMovement();
         else HandleDefaultMovement();
-        if (entityMovement.isGrounded) currentExtraJumps = extraJumps;
+        if (entityMovement.isGrounded)
+        {
+            currentExtraJumps = extraJumps;
+            currentCoyoteTime = 0f;
+        } else
+        {
+            currentCoyoteTime += Time.deltaTime;
+        }
     }
 
     public void SetHealthToFull()
@@ -218,7 +227,7 @@ public class EntityManager : MonoBehaviour
     public void Jump()
     {
         //if (!entityMovement.isGrounded) return;
-        if(!entityMovement.isGrounded)
+        if(!entityMovement.isGrounded && currentCoyoteTime > coyoteTime)
         {
             if (currentExtraJumps == 0) 
                 return;
@@ -226,6 +235,7 @@ public class EntityManager : MonoBehaviour
             currentExtraJumps--;
         }
         movementVelocity.y = Mathf.Sqrt(jumpHeight * 2 * gravity);
+        currentCoyoteTime = coyoteTime;
         OnJumpEvent?.Invoke();
     }
 
