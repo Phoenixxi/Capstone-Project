@@ -264,7 +264,7 @@ public class PlayerController : MonoBehaviour
 
             //mouseObject.position = mousePosition;
 
-            mousePosition.y = aimDirection.transform.position.y;
+            //mousePosition.y = aimDirection.transform.position.y;
 
         }
 
