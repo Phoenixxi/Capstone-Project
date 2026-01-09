@@ -6,13 +6,8 @@ public enum AIStateType { Combat, Chasing, Wandering, Hover }
 public static class StateCheck
 {
     private static LayerMask layerMask = LayerMask.GetMask("Walls", "Player");
-    public static AIStateType GetNewState(AIContext aIContext)
-    {
-        if (CheckCombat(aIContext)) return AIStateType.Combat;
-        if (CheckChasing(aIContext)) return AIStateType.Chasing;
-        return AIStateType.Wandering;
-    }
-    private static bool CheckCombat(AIContext aIContext)
+
+    public static bool CheckCombat(AIContext aIContext)
     {
         Vector3 PlayerPosition = aIContext.PlayerTransform.position;
         Vector3 EnemyPosition = aIContext.EnemyTransform.position;
@@ -23,7 +18,7 @@ public static class StateCheck
         return RayCastToPlayer(EnemyPosition, directionToPlayer.normalized, AttackRange, layerMask);
     }
 
-    private static bool CheckChasing(AIContext aIContext)
+    public static bool CheckChasing(AIContext aIContext)
     {
         float DistanceToPlayer = aIContext.DistanceToPlayer;
         float LineOfSightRange = aIContext.LineOfSightRange;

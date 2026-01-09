@@ -23,5 +23,7 @@ public interface IState
     /// </summary>
     /// <param name="aIContext">Context about enemy AI conditions</param>
     /// <returns></returns>
-    void UpdateAI(AIContext aIContext);
+    AIStateType UpdateAI(AIContext aIContext);
+
+    AIStateType CheckTransition(AIContext aIContext);
 }

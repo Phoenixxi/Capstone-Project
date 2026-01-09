@@ -6,6 +6,7 @@ using UnityEngine;
 public class CombatState : IState
 {
     public bool isAttacking = false; //variable to lock the enemy in attack state
+
     public void OnEnter(AIContext aIContext)
     {
         
@@ -16,7 +17,7 @@ public class CombatState : IState
 
     }
 
-    public void UpdateAI(AIContext aIContext)
+    public AIStateType UpdateAI(AIContext aIContext)
     {
         //Grab necessary references
         EntityManager entityManager = aIContext.entityManagerEnemy;
@@ -44,5 +45,12 @@ public class CombatState : IState
             //Debug.Log("CombatState Attacking");
             isAttacking = false; //unlock the enemy from attack state
         }
+
+        return CheckTransition(aIContext);
+    }
+
+    public AIStateType CheckTransition(AIContext aIContext)
+    {
+        return AIStateType.Hover;
     }
 }

@@ -13,6 +13,7 @@ public class WanderingState : IState
         this.range = range;
         this.hovering = hovering;
     }
+
     public void OnEnter(AIContext aIContext)
     {
 
@@ -23,7 +24,7 @@ public class WanderingState : IState
         //(OPTIONAL)
     }
 
-    public void UpdateAI(AIContext aIContext)
+    public AIStateType UpdateAI(AIContext aIContext)
     {
         NavMeshAgent agent = aIContext.agent;
         Transform transform;
@@ -41,6 +42,24 @@ public class WanderingState : IState
             {
                 agent.SetDestination(point);
             }
+        }
+
+        return CheckTransition(aIContext);
+    }
+
+    public AIStateType CheckTransition(AIContext aIContext)
+    {
+        if(StateCheck.CheckCombat(aIContext))
+        {
+            return AIStateType.Combat;
+        }
+        else if(StateCheck.CheckChasing(aIContext))
+        {
+            return AIStateType.Chasing;
+        }
+        else
+        {
+            return AIStateType.Wandering;
         }
     }
 

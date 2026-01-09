@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor.Analytics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,16 +14,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float LineOfSightRange;
     private NavMeshAgent navMeshAgent; //The navmeshagent component that handles pathfinding
     private GameObject player; //The player object that the enemy AI will path towards
-    private IState CurrentState;
-    private IState wanderingState = new WanderingState();
-    private IState chasingState = new ChasingState();
-    private IState combatState = new CombatState();
-    private IState hoveringState = new WanderingState(3f, true);
+    private Dictionary<AIStateType, IState> stateDic = new Dictionary<AIStateType, IState>(); //A dictionary of all the states this enemy can be in
+    private IState CurrentState; //the current state the enemy is in
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player"); //Find the player in the world
         navMeshAgent = GetComponent<NavMeshAgent>(); //Get the navmeshagent component from this enemy
 
+        //if these variables are empty, then set them to default values
         if (AttackRange == 0)
         {
             AttackRange = 2.5f;
@@ -33,61 +32,36 @@ public class EnemyController : MonoBehaviour
             LineOfSightRange = 10f;
         }
 
-        CurrentState = new WanderingState();
+        //initialize the state dictionary
+        initializeStateDictionary();
+
+        //set the current state to be wandering
+        CurrentState = stateDic[AIStateType.Wandering];
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
+        //initialize the AIContext
         initializeAIContext();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (CurrentState.GetType() == typeof(CombatState))
-        {
-            CombatState cs = (CombatState)CurrentState;
-            if (cs.isAttacking) return;
-            
-            ChangeUpdate(hoveringState);
-            return;
-        }
-
-        IState newState;
-        switch (StateCheck.GetNewState(aIContext))
-        {
-            default:
-                newState = wanderingState;
-                break;
-            case AIStateType.Chasing:
-                newState = chasingState;
-                break;
-            case AIStateType.Combat:
-                newState = combatState;
-                break;
-            case AIStateType.Hover:
-                newState = hoveringState;
-                break;
-        }
-
-        ChangeUpdate(newState);
+        //update the enemy with the current action and get the new state after doing said action
+        IState newState = stateDic[CurrentState.UpdateAI(aIContext)];
+        
+        //check if we need to change states
+        changeState(newState);
     }
     
-    private void ChangeUpdate(IState newState)
+    private void changeState(IState newState)
     {
         if (newState.GetType() != CurrentState.GetType())
         {
-            changeState(newState);
+            CurrentState.OnExit(aIContext);
+            CurrentState = newState;
+            CurrentState.OnEnter(aIContext);
         }
-
-        CurrentState.UpdateAI(aIContext);
-    }
-    
-    private void changeState(IState new_state)
-    {
-        CurrentState.OnExit(aIContext);
-        CurrentState = new_state;
-        CurrentState.OnEnter(aIContext);
     }
 
     /// <summary>
@@ -99,8 +73,22 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.speed = newVelocity;
     }
 
+    /// <summary>
+    /// Initializes the AIContext object with things the AI needs to know to make their own decisions
+    /// </summary>
     private void initializeAIContext()
     {
         aIContext = new AIContext(navMeshAgent, transform, player.transform, AttackRange, LineOfSightRange);
+    }
+
+    /// <summary>
+    /// Initialize the dictionary with all the states this enemy can be in
+    /// </summary>
+    private void initializeStateDictionary()
+    {
+        stateDic.Add(AIStateType.Combat, new CombatState());
+        stateDic.Add(AIStateType.Chasing, new ChasingState());
+        stateDic.Add(AIStateType.Wandering, new WanderingState());
+        stateDic.Add(AIStateType.Hover, new WanderingState(3f, true));
     }
 }
