@@ -51,6 +51,7 @@ public class CombatState : IState
 
     public AIStateType CheckTransition(AIContext aIContext)
     {
-        return AIStateType.Hover;
+        return AIStateType.Combat;
+        //return AIStateType.Hover;
     }
 }
