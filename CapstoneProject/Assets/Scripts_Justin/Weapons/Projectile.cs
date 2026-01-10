@@ -7,28 +7,28 @@ using lilGuysNamespace;
 public class Projectile : MonoBehaviour
 {
     [Header("Projectile Settings")]
-    [SerializeField] private float projectileSpeed;
-    [SerializeField] private float projectileLifetime;
+    [SerializeField] protected float projectileSpeed;
+    [SerializeField] protected float projectileLifetime;
 
-    [SerializeField] private AbilityData data;
-    [SerializeField] private float screenShakeIntensity;
-    [SerializeField] private float screenShakeDuration;
+    [SerializeField] protected AbilityData data;
+    [SerializeField] protected float screenShakeIntensity;
+    [SerializeField] protected float screenShakeDuration;
 
-    private Rigidbody projectile;
-    private int damage;
-    private EntityData.ElementType elementType = EntityData.ElementType.Normal;
-    private float currentLifetime;
-    private CameraController cameraController;
+    protected Rigidbody projectile;
+    protected int damage;
+    protected EntityData.ElementType elementType = EntityData.ElementType.Normal;
+    protected float currentLifetime;
+    protected CameraController cameraController;
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         projectile = GetComponent<Rigidbody>();
         currentLifetime = 0f;
         cameraController = FindFirstObjectByType<CameraController>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         currentLifetime += Time.deltaTime;
         if (currentLifetime >= projectileLifetime) Destroy(gameObject);
@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
     /// Sets the new movement direction for this projectile
     /// </summary>
     /// <param name="newDirection">The direction the projectile should move in. Note that the vector is expected to be normalized</param>
-    public void ChangeMoveDirection(Vector3 newDirection)
+    public virtual void ChangeMoveDirection(Vector3 newDirection)
     {
         projectile.linearVelocity = newDirection * projectileSpeed;
     }
@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(UnityEngine.Collider other)
+    protected virtual void OnTriggerEnter(UnityEngine.Collider other)
     {
         Debug.Log($"Hit {other}", other);
         EntityManager hitEntity = other.gameObject.GetComponent<EntityManager>();
