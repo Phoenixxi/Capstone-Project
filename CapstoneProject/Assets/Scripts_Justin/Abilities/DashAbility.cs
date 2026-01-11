@@ -35,7 +35,7 @@ public class DashAbility : Ability
         
 
         abilityInUse = true;
-        dashHurtbox.Activate(dashTimer);
+        dashHurtbox.Activate(dashTimer, true);
         Vector3 movementVector;
         if (horizontalDirection == Vector2.zero) movementVector = Vector3.right * speed; 
         else movementVector = new Vector3(horizontalDirection.x, 0f, horizontalDirection.y) * speed;

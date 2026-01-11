@@ -14,12 +14,13 @@ public class MeleeWeapon : Weapon
         this.hurtbox = hurtbox;
         this.hurtboxActiveTime = hurtboxActiveTime;
         hurtbox.SetHurtboxDamage(damage);
+        hurtbox.SetElementType(element);
     }
 
     public override bool Attack()
     {
         if (!HasCooldownExpired()) return false;
-        hurtbox.Activate(hurtboxActiveTime);
+        hurtbox.Activate(hurtboxActiveTime, false);
         lastAttackTime = Time.time;
         return true;
     }
