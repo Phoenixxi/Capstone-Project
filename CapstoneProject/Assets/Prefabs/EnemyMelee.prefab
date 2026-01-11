@@ -876,13 +876,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2113378421503788461}
   - component: {fileID: 7493769958297259037}
-  - component: {fileID: 6001685213739500416}
   - component: {fileID: 8039355975360593558}
   - component: {fileID: 5053508518923957891}
   - component: {fileID: 5192659738883732383}
   - component: {fileID: 1021343216094007474}
   - component: {fileID: 7721774693254816096}
   - component: {fileID: 8082946562697497187}
+  - component: {fileID: 5827315293812075330}
   m_Layer: 11
   m_Name: EnemyMelee
   m_TagString: Enemy
@@ -933,20 +933,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
---- !u!114 &6001685213739500416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7543563098658516984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20e083ef273799f44befc0f38f813eab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  AttackRange: 1
-  LineOfSightRange: 10
 --- !u!114 &8039355975360593558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,6 +1144,20 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: 7098aef7ffc37374cb603e3b43ec253a, type: 3}
     volume: 0.05
     soundCooldown: 0
+--- !u!114 &5827315293812075330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543563098658516984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681882f8f7fb4477d89bdfbdde921cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyControllerProjectile
+  AttackRange: 1
+  LineOfSightRange: 10
 --- !u!1 &7785730262722911322
 GameObject:
   m_ObjectHideFlags: 0

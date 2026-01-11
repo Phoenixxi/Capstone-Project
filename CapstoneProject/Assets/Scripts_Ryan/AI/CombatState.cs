@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class CombatState : IState
+public abstract class CombatState : IState
 {
     public bool isAttacking = false; //variable to lock the enemy in attack state
 
@@ -49,8 +49,5 @@ public class CombatState : IState
         return CheckTransition(aIContext);
     }
 
-    public AIStateType CheckTransition(AIContext aIContext)
-    {
-        return AIStateType.Hover;
-    }
+    public abstract AIStateType CheckTransition(AIContext aIContext);
 }

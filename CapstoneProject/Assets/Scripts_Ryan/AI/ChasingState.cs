@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
 
-public class ChasingState : IState
+public abstract class ChasingState : IState
 {
     public void OnEnter(AIContext aIContext)
     {
@@ -26,20 +26,6 @@ public class ChasingState : IState
         return CheckTransition(aIContext);
     }
 
-    public AIStateType CheckTransition(AIContext aIContext)
-    {
-        if(StateCheck.CheckCombat(aIContext))
-        {
-            return AIStateType.Combat;
-        }
-        else if(StateCheck.CheckChasing(aIContext))
-        {
-            return AIStateType.Chasing;
-        }
-        else
-        {
-            return AIStateType.Wandering;
-        }
-    }
+    public abstract AIStateType CheckTransition(AIContext aIContext);
 
 }

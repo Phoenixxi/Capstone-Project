@@ -3,16 +3,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
 
-public class WanderingState : IState
+public abstract class WanderingState : IState
 {
-    private float range;
-    private bool hovering;
-
-    public WanderingState(float range = 3f, bool hovering = false)
-    {
-        this.range = range;
-        this.hovering = hovering;
-    }
+    protected float range;
+    protected bool hovering;
 
     public void OnEnter(AIContext aIContext)
     {
@@ -47,21 +41,7 @@ public class WanderingState : IState
         return CheckTransition(aIContext);
     }
 
-    public AIStateType CheckTransition(AIContext aIContext)
-    {
-        if(StateCheck.CheckCombat(aIContext))
-        {
-            return AIStateType.Combat;
-        }
-        else if(StateCheck.CheckChasing(aIContext))
-        {
-            return AIStateType.Chasing;
-        }
-        else
-        {
-            return AIStateType.Wandering;
-        }
-    }
+    public abstract AIStateType CheckTransition(AIContext aIContext);
 
     /// <summary>
     /// Picks a random point for the AI to go to
