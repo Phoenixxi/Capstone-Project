@@ -16,7 +16,7 @@ public abstract class EnemyController : MonoBehaviour
     protected GameObject player; //The player object that the enemy AI will path towards
     protected Dictionary<AIStateType, IState> stateDic = new Dictionary<AIStateType, IState>(); //A dictionary of all the states this enemy can be in
     protected IState CurrentState; //the current state the enemy is in
-    protected void Awake()
+    protected virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player"); //Find the player in the world
         navMeshAgent = GetComponent<NavMeshAgent>(); //Get the navmeshagent component from this enemy

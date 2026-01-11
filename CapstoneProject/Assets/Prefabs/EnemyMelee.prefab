@@ -882,7 +882,7 @@ GameObject:
   - component: {fileID: 1021343216094007474}
   - component: {fileID: 7721774693254816096}
   - component: {fileID: 8082946562697497187}
-  - component: {fileID: 5827315293812075330}
+  - component: {fileID: 2181290064072314983}
   m_Layer: 11
   m_Name: EnemyMelee
   m_TagString: Enemy
@@ -1144,7 +1144,7 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: 7098aef7ffc37374cb603e3b43ec253a, type: 3}
     volume: 0.05
     soundCooldown: 0
---- !u!114 &5827315293812075330
+--- !u!114 &2181290064072314983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1153,11 +1153,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7543563098658516984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 681882f8f7fb4477d89bdfbdde921cc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bd57a0072fdf49cc94b2f4f3381e7c1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyControllerProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyControllerMelee
   AttackRange: 1
   LineOfSightRange: 10
+  DelaySeconds: 10
 --- !u!1 &7785730262722911322
 GameObject:
   m_ObjectHideFlags: 0
