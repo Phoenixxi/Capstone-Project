@@ -3277,6 +3277,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed522ae092ed8140925d1dbc796d1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!114 &2114600226 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2403709008299852728, guid: be2e39893183a4e368ca19e3325a8162, type: 3}
+  m_PrefabInstance: {fileID: 7060130027018572060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e048513498ecc4ef1af8af9a04eba75d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobSpawner
 --- !u!1 &2124384419 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
@@ -3357,9 +3368,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3302643271184818697, guid: dbb4232c5d639ec45ab36a802b542708, type: 3}
+      propertyPath: MobSpawner.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3302643271184818697, guid: dbb4232c5d639ec45ab36a802b542708, type: 3}
       propertyPath: 'enemies.Array.data[0]'
       value: 
       objectReference: {fileID: 248002980}
+    - target: {fileID: 3302643271184818697, guid: dbb4232c5d639ec45ab36a802b542708, type: 3}
+      propertyPath: 'MobSpawner.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2114600226}
     - target: {fileID: 5332170202411834034, guid: dbb4232c5d639ec45ab36a802b542708, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.24
