@@ -123,7 +123,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Contrast: 1
+    - _Contrast: 0.95
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -134,12 +134,13 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Height_Power: 5
+    - _Height_Power: 6
+    - _Height_Steps: 30
     - _Hue: 0
-    - _LOD_Threshold: 2
-    - _Max: 1
+    - _LOD_Threshold: 10
+    - _Max: 1.5
     - _Metallic: 0
-    - _Min: 0.3
+    - _Min: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
