@@ -28,7 +28,11 @@ public class CameraController : MonoBehaviour
         if(currentShakeTimer > 0)
         {
             currentShakeTimer -= Time.deltaTime;
-            if (currentShakeTimer <= 0f) perlin.AmplitudeGain = 0f;
+            if (currentShakeTimer <= 0f)
+            {
+                perlin.AmplitudeGain = 0f;
+                currentInensity = 0f;
+            }
         }
     }
 }
