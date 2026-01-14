@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
   screenShakeIntensity: 1
   screenShakeDuration: 0.2
+  layerMaskType: 0
 --- !u!1 &1330741119533229141
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +807,7 @@ MonoBehaviour:
   isAlive: 1
   data: {fileID: 0}
   movementSpeed: 7.5
-  jumpHeight: 2
+  jumpHeight: 4
   gravity: 25
   extraJumps: 0
   coyoteTime: 0.1
@@ -1660,6 +1661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
   screenShakeIntensity: 0
   screenShakeDuration: 0
+  layerMaskType: 0
 --- !u!1 &8548868309109931021
 GameObject:
   m_ObjectHideFlags: 0
