@@ -319,14 +319,17 @@ public class PlayerController : MonoBehaviour
         if (uiPlayerSwap != null)
 
         {
+            if (currentCharacter.AbilityInUse()) return;
+            {
+                if (pressedValue == -1) // Q
 
-            if (pressedValue == -1) // Q
+                    uiPlayerSwap.swapImageLocation(-1);
 
-                uiPlayerSwap.swapImageLocation(-1);
+                if (pressedValue == 1) // E
 
-            if (pressedValue == 1) // E
+                    uiPlayerSwap.swapImageLocation(1);
+            }
 
-                uiPlayerSwap.swapImageLocation(1);
 
         }
 

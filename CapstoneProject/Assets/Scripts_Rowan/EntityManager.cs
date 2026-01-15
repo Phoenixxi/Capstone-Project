@@ -50,7 +50,7 @@ public class EntityManager : MonoBehaviour
     private Vector3 movementVelocity;
     private Ability ability;
     //Keeps track of movements associated with abilities; if this queue is not empty, these movements must be performed before standard movements can
-    private Queue<AbilityMovement> movementQueue;
+    public Queue<AbilityMovement> movementQueue;
 
     // DESIGNERS: Adjust fields here
     private float dmgMultiplier = 2.0f;
