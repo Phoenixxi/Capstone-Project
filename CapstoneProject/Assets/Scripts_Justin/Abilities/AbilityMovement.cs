@@ -5,8 +5,8 @@ using UnityEngine;
 /// </summary>
 public class AbilityMovement
 {
-    private Vector3 movement;
-    private bool hasEnded;
+    protected Vector3 movement;
+    protected bool hasEnded;
     
 
     public AbilityMovement(Vector3 movement)
@@ -28,7 +28,7 @@ public class AbilityMovement
     /// Returns whether or not this movement has ended
     /// </summary>
     /// <returns></returns>
-    public bool HasEnded()
+    public virtual bool HasEnded()
     {
         return hasEnded;
     }

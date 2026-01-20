@@ -9,6 +9,10 @@ public class Projectile : MonoBehaviour
     [Header("Projectile Settings")]
     [SerializeField] protected float projectileSpeed;
     [SerializeField] protected float projectileLifetime;
+    [SerializeField] protected bool causesKnockback = false;
+    [SerializeField] protected bool orientationInfluencesKnockback = true; //Determines whether the raw knockback vector will be used or if it'll change based on projectile direction
+    [SerializeField] protected Vector3 knockback = Vector3.zero;
+    [SerializeField] protected float knockbackDuration = 0f;
 
     [SerializeField] protected AbilityData data;
     [SerializeField] protected float screenShakeIntensity;
@@ -66,7 +70,29 @@ public class Projectile : MonoBehaviour
         if (hitEntity == null) hitEntity = other.gameObject.GetComponentInChildren<EntityManager>();
         if (hitEntity != null) {
             hitEntity.data = data;  //Sends the DOT data to entity's manager
-            hitEntity.TakeDamage(damage, elementType);
+            if(causesKnockback)
+            {
+                KnockbackMovement movement;
+                if(orientationInfluencesKnockback)
+                {
+                    //Quaternion projectileRotation = Quaternion.FromToRotation(knockback.normalized, projectile.linearVelocity.normalized);
+                    //Vector3 direction = projectileRotation * knockback;
+                    Vector3 baseDirection = projectile.linearVelocity.normalized;
+                    Vector3 forwardDirection = baseDirection * knockback.x;
+                    Vector3 upDirection = Quaternion.AngleAxis(90f, Vector3.right) * baseDirection * knockback.y;
+                    Vector3 sideDirection = Quaternion.AngleAxis(90f, Vector3.up) * baseDirection * knockback.z;
+                    Vector3 finalDirection = (baseDirection + upDirection + sideDirection) * knockback.magnitude;
+                    movement = new KnockbackMovement(finalDirection, Time.time, knockbackDuration);
+                } else
+                {
+                    movement = new KnockbackMovement(knockback, Time.time, knockbackDuration);
+                }
+                hitEntity.TakeDamage(damage, elementType, movement);
+
+            } else
+            {
+                hitEntity.TakeDamage(damage, elementType);
+            }
             cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
         }
 

@@ -190,7 +190,11 @@ public class EntityManager : MonoBehaviour
             movementQueue.Dequeue();
             if (movementQueue.Count == 0) movementVelocity.y = 0f;
         }
-        else entityMovement.Move(currentMovement.GetMovementVelocity() * Time.deltaTime);
+        else
+        {
+            Debug.Log($"Moving in direction {currentMovement.GetMovementVelocity()}");
+            entityMovement.Move(currentMovement.GetMovementVelocity() * Time.deltaTime);
+        }
     }
 
     /// <summary>
@@ -332,6 +336,18 @@ public class EntityManager : MonoBehaviour
         OnEntityHurtEvent?.Invoke();
 
         //Instantiate(damageNumberVFXPrefab, transform);
+    }
+
+    /// <summary>
+    /// Called when the entity is attacked (with either a weapon or an ability)
+    /// </summary>
+    /// <param name="damage">The damage dealt by the attack</param>
+    /// <param name="element">The element applied by the attack</param>
+    /// <param name="knockback">The knockback/movement that should be applied from the attack</param>
+    public void TakeDamage(float damage, ElementType element, KnockbackMovement knockback)
+    {
+        movementQueue.Enqueue(knockback);
+        TakeDamage(damage, element);
     }
 
     private void ShowDamageNumber(int damage, ElementType element)
