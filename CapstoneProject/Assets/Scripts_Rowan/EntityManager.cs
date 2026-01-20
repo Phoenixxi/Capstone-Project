@@ -192,7 +192,6 @@ public class EntityManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Moving in direction {currentMovement.GetMovementVelocity()}");
             entityMovement.Move(currentMovement.GetMovementVelocity() * Time.deltaTime);
         }
     }
@@ -559,6 +558,15 @@ public class EntityManager : MonoBehaviour
 
         Debug.Log("Entity healed. Current health: " + currentHealth);
         if(OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
+    }
+
+    /// <summary>
+    /// Returns whether or not this entity is hindered. Being "hindered" refers to times when
+    /// the entity must complete one or more movements before they can resume normnal behavior
+    /// </summary>
+    /// <returns></returns>
+    public bool IsHindered() {
+        return movementQueue.Count > 0;
     }
     
 }
