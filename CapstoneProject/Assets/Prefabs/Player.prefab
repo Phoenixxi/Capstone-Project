@@ -351,6 +351,8 @@ MonoBehaviour:
   attackCooldown: 0.8
   weaponDamage: 22
   projectile: {fileID: 6651309793707353424, guid: 8ded5923393d96c43b2b1d4371ac045f, type: 3}
+  hasLifesteal: 0
+  lifestealPercentage: 1
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
   damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
@@ -551,6 +553,8 @@ MonoBehaviour:
   attackCooldown: 0.25
   weaponDamage: 9
   projectile: {fileID: 0}
+  hasLifesteal: 0
+  lifestealPercentage: 1
   meleeHurtbox: {fileID: 7404555418333511468}
   hurtboxActivationTime: 0.2
   damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
@@ -829,6 +833,8 @@ MonoBehaviour:
   attackCooldown: 0.14
   weaponDamage: 2
   projectile: {fileID: 1748878758445358261, guid: 45a94188cda1633449f8e28e121da538, type: 3}
+  hasLifesteal: 1
+  lifestealPercentage: 0.5
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
   damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}

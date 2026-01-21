@@ -1,5 +1,6 @@
 using UnityEngine;
 using lilGuysNamespace;
+using System;
 
 /// <summary>
 /// Handles behavior for projectiles fired by the player and enemies
@@ -23,6 +24,8 @@ public class Projectile : MonoBehaviour
     protected EntityData.ElementType elementType = EntityData.ElementType.Normal;
     protected float currentLifetime;
     protected CameraController cameraController;
+
+    public Action<int> OnProjectileHitEntity;
 
 
     protected virtual void Awake()
@@ -94,8 +97,8 @@ public class Projectile : MonoBehaviour
                 hitEntity.TakeDamage(damage, elementType);
             }
             cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
+            OnProjectileHitEntity?.Invoke(damage);
         }
-
         Destroy(gameObject);
 
     }
