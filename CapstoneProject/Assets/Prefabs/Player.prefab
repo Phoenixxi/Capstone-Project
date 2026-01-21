@@ -346,6 +346,8 @@ MonoBehaviour:
   gravity: 25
   extraJumps: 1
   coyoteTime: 0.1
+  canHover: 0
+  hoverPercentage: 0
   animator: {fileID: 220673775427230319}
   spriteRenderer: {fileID: 8565393368811770842}
   attackCooldown: 0.8
@@ -548,6 +550,8 @@ MonoBehaviour:
   gravity: 25
   extraJumps: 0
   coyoteTime: 0.1
+  canHover: 0
+  hoverPercentage: 0
   animator: {fileID: 9124373181119756861}
   spriteRenderer: {fileID: 5794985083641099209}
   attackCooldown: 0.25
@@ -828,6 +832,8 @@ MonoBehaviour:
   gravity: 25
   extraJumps: 0
   coyoteTime: 0.1
+  canHover: 1
+  hoverPercentage: 0.1
   animator: {fileID: 6305530704846346651}
   spriteRenderer: {fileID: 906674667207298780}
   attackCooldown: 0.14

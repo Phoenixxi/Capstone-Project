@@ -74,6 +74,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isAttacking;
 
+    private bool hoverButtonPressed;
+
 
 
     //public Transform mouseObject;
@@ -228,6 +230,17 @@ public class PlayerController : MonoBehaviour
 
         currentCharacter.Jump();
 
+    }
+
+    /// <summary>
+    /// Triggers when the player interacts with the hover button
+    /// </summary>
+    /// <param name="input"></param>
+    private void OnHover(InputValue input)
+    {
+        if (input.isPressed) Debug.Log("Start Hovering");
+        else Debug.Log("Stop Hovering");
+        hoverButtonPressed = input.isPressed;
     }
 
 
@@ -656,7 +669,7 @@ public class PlayerController : MonoBehaviour
         UpdateMouseAim();
 
         if (isAttacking) currentCharacter.Attack(aimDirection.transform.forward, transform.position);
-
+        currentCharacter.ToggleHover(hoverButtonPressed);
         if (transform.position.y <= -22)
         {
 

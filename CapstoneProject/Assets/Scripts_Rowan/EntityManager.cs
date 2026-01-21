@@ -26,8 +26,11 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private float gravity = 10f;
     [SerializeField] private int extraJumps = 0;
     [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private bool canHover = false;
+    [SerializeField] private float hoverPercentage = 0.5f;
     private int currentExtraJumps;
     private float currentCoyoteTime = 0f;
+    private bool isHovering;
 
     [Header("Animation")]
     public Animator animator;
@@ -170,10 +173,13 @@ public class EntityManager : MonoBehaviour
     private void HandleDefaultMovement()
     {
         if (usesNavAgent) return;
-        if (entityMovement.isGrounded && movementVelocity.y < 0) 
+        if (entityMovement.isGrounded && movementVelocity.y < 0)
             movementVelocity.y = -2f;
         movementVelocity.y -= gravity * Time.deltaTime;
-        animator.SetFloat("Speed", movementVelocity.magnitude);
+        if (canHover && isHovering && movementVelocity.y < -gravity * hoverPercentage)
+            movementVelocity.y = -gravity * hoverPercentage;
+        else
+            animator.SetFloat("Speed", movementVelocity.magnitude);
         animator.SetFloat("JumpVelocity", movementVelocity.y);
         animator.SetBool("isJumpingUp", movementVelocity.y > 0);
         animator.SetBool("isJumpingDown", movementVelocity.y < -3f);
@@ -244,6 +250,16 @@ public class EntityManager : MonoBehaviour
         OnJumpEvent?.Invoke();
     }
 
+    /// <summary>
+    /// Toggles whether or not this entity is hovering. If the entity is grounded, its hovering status
+    /// will be set to false regardless of input.
+    /// </summary>
+    /// <param name="isHovering">What status to toggles the entity's hovering to</param>
+    public void ToggleHover(bool isHovering)
+    {
+        if (entityMovement.isGrounded || !canHover) this.isHovering = false;
+        else this.isHovering = isHovering;
+    }
 
 
     // Abilities / Damage / Attacking ====================================================================================================================
