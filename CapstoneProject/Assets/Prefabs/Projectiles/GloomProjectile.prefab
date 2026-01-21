@@ -159,8 +159,8 @@ MonoBehaviour:
   projectileLifetime: 0.25
   causesKnockback: 1
   orientationInfluencesKnockback: 1
-  knockback: {x: 0, y: 0, z: 20}
-  knockbackDuration: 1
+  knockback: {x: 5, y: 0, z: 0}
+  knockbackDuration: 0.25
   data: {fileID: 11400000, guid: 523c74c1d6101e6448d0152c017d2b95, type: 2}
   screenShakeIntensity: 0
   screenShakeDuration: 0
