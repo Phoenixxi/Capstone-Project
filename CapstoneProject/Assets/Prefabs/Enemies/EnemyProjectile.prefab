@@ -861,11 +861,17 @@ MonoBehaviour:
   gravity: 10
   extraJumps: 0
   coyoteTime: 0.2
+  canHover: 0
+  hoverPercentage: 0.5
   animator: {fileID: 4432518792157287831}
   spriteRenderer: {fileID: 0}
   attackCooldown: 1
   weaponDamage: 5
   projectile: {fileID: 1261911922668259766, guid: 4bc40664c52c7214bacf434f48890942, type: 3}
+  hasLifesteal: 0
+  lifestealPercentage: 1
+  projectileCount: 1
+  perBulletSpread: 0
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
@@ -921,7 +927,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!212 &1021343216094007474
 SpriteRenderer:
   m_ObjectHideFlags: 0

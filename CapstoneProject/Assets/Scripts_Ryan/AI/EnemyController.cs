@@ -12,6 +12,7 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected float AttackRange;
     [Header("Enemy Line Of Sight Range. \n The larger the number, the farther the player can be spotted. \n Default is 10")]
     [SerializeField] protected float LineOfSightRange;
+    protected EntityManager entityManager; //The entity manager of this enemy
     protected NavMeshAgent navMeshAgent; //The navmeshagent component that handles pathfinding
     protected GameObject player; //The player object that the enemy AI will path towards
     protected Dictionary<AIStateType, IState> stateDic = new Dictionary<AIStateType, IState>(); //A dictionary of all the states this enemy can be in
@@ -20,6 +21,7 @@ public abstract class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player"); //Find the player in the world
         navMeshAgent = GetComponent<NavMeshAgent>(); //Get the navmeshagent component from this enemy
+        entityManager = GetComponent<EntityManager>(); //Get the entity manager component
 
         //if these variables are empty, then set them to default values
         if (AttackRange == 0)
@@ -47,6 +49,14 @@ public abstract class EnemyController : MonoBehaviour
 
     protected void Update()
     {
+        if(entityManager.movementQueue.Count > 0)
+        {
+            navMeshAgent.enabled = false;
+            navMeshAgent.Warp(transform.position);
+            return;
+        }
+
+        navMeshAgent.enabled = true;
         //update the enemy with the current action and get the new state after doing said action
         IState newState = stateDic[CurrentState.UpdateAI(aIContext)];
         
