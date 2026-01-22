@@ -11,39 +11,83 @@ public class RangedWeapon : Weapon
     private Projectile projectileScript;
     private Vector3 attackDirection;
     private Vector3 currentLocation;
+
     private bool hasLifesteal;
     private float lifeStealPercentage;
     private PlayerController player;
 
-    public RangedWeapon(float attackCooldown, int damage, ElementType element, GameObject projectile, bool hasLifesteal = false, float lifeStealPercentage = 1) : base(attackCooldown, damage, element)
+    private int projectileCount;
+    private float perBulletSpread; //Treated as degrees
+
+    public RangedWeapon(float attackCooldown, int damage, ElementType element, GameObject projectile, bool hasLifesteal = false, float lifeStealPercentage = 1,
+        int projectileCount = 1, float perBulletSpread = 0f) : base(attackCooldown, damage, element)
     {
         this.projectile = projectile;
         attackDirection = Vector3.zero;
         this.hasLifesteal = hasLifesteal;
         if (hasLifesteal) player = Object.FindFirstObjectByType<PlayerController>();
         this.lifeStealPercentage = lifeStealPercentage;
+        this.projectileCount = projectileCount;
+        this.perBulletSpread = perBulletSpread;
     }
 
     public override bool Attack()
     {
         if (!HasCooldownExpired()) return false;
-        Vector3 projectileSpawnOffset = attackDirection * 0f;
+        int currentProjectileNum = 0;
+        if(projectileCount % 2 != 0)
+        {
+            SpawnProjectile();
+            currentProjectileNum++;
+        }
+        float currentAngle = perBulletSpread;
+        while(currentProjectileNum < projectileCount)
+        {
+            SpawnProjectile(Quaternion.AngleAxis(currentAngle, Vector3.up));
+            SpawnProjectile(Quaternion.AngleAxis(-currentAngle, Vector3.up));
+            currentProjectileNum += 2;
+        }
+        //Vector3 projectileSpawnOffset = attackDirection * 0f;
+        //Vector3 projectileSpawnPosition = currentLocation + projectileSpawnOffset;
+        //projectileScript = GameObject.Instantiate(projectile, projectileSpawnPosition, Quaternion.identity).GetComponent<Projectile>();
+
+        //if (projectileScript == null)
+        //{
+        //    Debug.LogError($"Projectile {projectile} is missing Projectile Monobehavior Script. Make sure the GameObject being used has a Projectile script attatched to it.");
+        //    return false;
+        //}
+
+        //projectileScript.SetProjectileDamage(damage);
+        //projectileScript.SetProjectileElement(element);
+        //projectileScript.ChangeMoveDirection(attackDirection);
+        lastAttackTime = Time.time;
+        //if (hasLifesteal) projectileScript.OnProjectileHitEntity += GiveLifesteal;
+        return true;
+        //Debug.Log("Projectile fired!");
+    }
+
+    /// <summary>
+    /// Spawns a projectile and assigns it with the appropriate characteristics.
+    /// </summary>
+    /// <param name="rotation">The angle the projectile spawns at relative to the aiming direction. Leave empty if only firing in a straight line</param>
+    private void SpawnProjectile(Quaternion? rotation = null)
+    {
+        Vector3 adjustedAttackDirection = (rotation != null) ? (Quaternion)rotation * attackDirection : attackDirection;
+        Vector3 projectileSpawnOffset = adjustedAttackDirection * 0f;
         Vector3 projectileSpawnPosition = currentLocation + projectileSpawnOffset;
         projectileScript = GameObject.Instantiate(projectile, projectileSpawnPosition, Quaternion.identity).GetComponent<Projectile>();
 
         if (projectileScript == null)
         {
             Debug.LogError($"Projectile {projectile} is missing Projectile Monobehavior Script. Make sure the GameObject being used has a Projectile script attatched to it.");
-            return false;
+            return;
         }
 
         projectileScript.SetProjectileDamage(damage);
         projectileScript.SetProjectileElement(element);
-        projectileScript.ChangeMoveDirection(attackDirection);
-        lastAttackTime = Time.time;
+        //projectileScript.ChangeMoveDirection(attackDirection);
+        projectileScript.ChangeMoveDirection(adjustedAttackDirection);
         if (hasLifesteal) projectileScript.OnProjectileHitEntity += GiveLifesteal;
-        return true;
-        //Debug.Log("Projectile fired!");
     }
 
     /// <summary>

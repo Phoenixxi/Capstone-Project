@@ -44,6 +44,8 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private GameObject projectile;
     [SerializeField] private bool hasLifesteal;
     [SerializeField] private float lifestealPercentage = 1;
+    [SerializeField] private int projectileCount = 1;
+    [SerializeField] private float perBulletSpread = 0f;
 
     [Header("Melee Weapon Settings: Keep Empty If Not Using")]
     [SerializeField] private Hurtbox meleeHurtbox;
@@ -158,7 +160,7 @@ public class EntityManager : MonoBehaviour
     private void CreateWeapon()
     {
         //TODO Replace default element with the entity-specific one
-        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, hasLifesteal, lifestealPercentage);
+        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, hasLifesteal, lifestealPercentage, projectileCount, perBulletSpread);
         else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime);
         else Debug.LogError($"Neither a melee nor ranged weapon could be assigned to {gameObject}. Make sure either the Projectile or Hurtbox fields have a value");
     }
