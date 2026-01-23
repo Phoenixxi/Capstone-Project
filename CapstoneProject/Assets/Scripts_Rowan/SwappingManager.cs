@@ -20,6 +20,16 @@ public class SwappingManager : MonoBehaviour
         currentCharacter = "zoom";
     }
 
+    private void OnEnable()
+    {
+        RangedWeapon.OnLifestealHit += ApplyLifesteal;
+    }
+
+    private void OnDisable()
+    {
+        RangedWeapon.OnLifestealHit -= ApplyLifesteal;
+    }
+
     public Transform GetCurrentCharacterTransform()
     {
         foreach (GameObject character in charactersList)
@@ -61,6 +71,16 @@ public class SwappingManager : MonoBehaviour
         }
         Debug.Log("All characters are dead.");
         SceneManager.LoadScene("GameOver");
+    }
+
+    /// <summary>
+    /// Applies healing to Boom and Gloom
+    /// </summary>
+    /// <param name="amount">The amount of healing to give to Zoom and Boom</param>
+    private void ApplyLifesteal(float amount)
+    {
+        charactersList[0].GetComponent<EntityManager>().Heal(amount);
+        charactersList[1].GetComponent<EntityManager>().Heal(amount);
     }
 
 }

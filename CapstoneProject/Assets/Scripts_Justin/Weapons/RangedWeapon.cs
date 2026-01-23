@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
@@ -19,13 +20,15 @@ public class RangedWeapon : Weapon
     private int projectileCount;
     private float perBulletSpread; //Treated as degrees
 
+    public static Action<float> OnLifestealHit;
+
     public RangedWeapon(float attackCooldown, int damage, ElementType element, GameObject projectile, bool hasLifesteal = false, float lifeStealPercentage = 1,
         int projectileCount = 1, float perBulletSpread = 0f) : base(attackCooldown, damage, element)
     {
         this.projectile = projectile;
         attackDirection = Vector3.zero;
         this.hasLifesteal = hasLifesteal;
-        if (hasLifesteal) player = Object.FindFirstObjectByType<PlayerController>();
+        if (hasLifesteal) player = UnityEngine.Object.FindFirstObjectByType<PlayerController>();
         this.lifeStealPercentage = lifeStealPercentage;
         this.projectileCount = projectileCount;
         this.perBulletSpread = perBulletSpread;
@@ -108,6 +111,7 @@ public class RangedWeapon : Weapon
     /// <param name="damage"></param>
     private void GiveLifesteal(int damage)
     {
-        player.HealAllCharacters((float)damage * lifeStealPercentage);
+        //player.HealAllCharacters((float)damage * lifeStealPercentage);
+        OnLifestealHit?.Invoke((float)damage * lifeStealPercentage);
     }
 }
