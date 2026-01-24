@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 5511162175959046467}
   - component: {fileID: 8797875168539556490}
   - component: {fileID: 6326039404140970345}
-  m_Layer: 18
+  m_Layer: 3
   m_Name: DialogueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 7017822454517335265}
   - component: {fileID: 4145401364550733294}
   - component: {fileID: 5154764699064698099}
-  m_Layer: 18
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,3 +504,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCMovement
   splineContainer: {fileID: 5217325394872951367}
   duration: 10
+  pingpong: 0
