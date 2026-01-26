@@ -73,7 +73,8 @@ public class DialogueManager : MonoBehaviour
  
         DialogueLine currentLine = lines.Dequeue();
 
-        if(currentLine.tutorial.isTutorial) Tutorial(currentLine);
+        if(currentLine.tutorial.isTutorial) 
+            Tutorial(currentLine);
         else Dialogue(currentLine);
     }
 

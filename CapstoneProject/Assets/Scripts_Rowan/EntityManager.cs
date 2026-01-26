@@ -540,8 +540,6 @@ public class EntityManager : MonoBehaviour
         OnEntityKilledEvent?.Invoke();
         if (this.gameObject.CompareTag("Enemy"))
         {
-            SpawnHealthPack spawnPack = GetComponent<SpawnHealthPack>();
-            spawnPack.Spawn(gameObject.transform.position);
             Vector3 lastEnemyPosition = gameObject.transform.position;
             currentEnemyDeathVFX = Instantiate(enemyDeathVFX, lastEnemyPosition, Quaternion.identity);
             Destroy(gameObject); 
