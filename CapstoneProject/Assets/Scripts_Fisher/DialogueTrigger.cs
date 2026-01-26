@@ -16,7 +16,7 @@ public class DialougeCharacter
 public class DialogueTutorial
 {
     [Header("Control icon for tutorial")]
-    public Sprite icon;
+    public VideoClip videoClip;
     [Header("Set true if dialogue is a tutorial")]
     public bool isTutorial;
 }
