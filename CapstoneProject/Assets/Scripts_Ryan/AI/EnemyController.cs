@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Analytics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
+using UnityEngine.TextCore.Text;
 
 public abstract class EnemyController : MonoBehaviour
 {
@@ -12,11 +14,13 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected float AttackRange;
     [Header("Enemy Line Of Sight Range. \n The larger the number, the farther the player can be spotted. \n Default is 10")]
     [SerializeField] protected float LineOfSightRange;
+    [SerializeField] protected CharacterController characterController;
     protected EntityManager entityManager; //The entity manager of this enemy
     protected NavMeshAgent navMeshAgent; //The navmeshagent component that handles pathfinding
     protected GameObject player; //The player object that the enemy AI will path towards
     protected Dictionary<AIStateType, IState> stateDic = new Dictionary<AIStateType, IState>(); //A dictionary of all the states this enemy can be in
     protected IState CurrentState; //the current state the enemy is in
+
     protected virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player"); //Find the player in the world
@@ -49,11 +53,13 @@ public abstract class EnemyController : MonoBehaviour
 
     protected void Update()
     {
-        if(entityManager.movementQueue.Count > 0)
+        bool grounded = isGrounded();
+        if(entityManager.movementQueue.Count > 0 || !grounded)
         {
-            Debug.Log("Yo theres something in the movement queue");
             navMeshAgent.enabled = false;
             navMeshAgent.Warp(transform.position);
+            if(!grounded)
+                applyGravity();
             return;
         }
 
@@ -90,6 +96,16 @@ public abstract class EnemyController : MonoBehaviour
     protected void initializeAIContext()
     {
         aIContext = new AIContext(navMeshAgent, transform, player.transform, AttackRange, LineOfSightRange);
+    }
+
+    protected bool isGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, characterController.height/2 + 0.1f, LayerMask.GetMask("Ground"));
+    }
+
+    protected void applyGravity()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y - entityManager.getGravity() * Time.deltaTime, transform.position.z);
     }
 
     /// <summary>

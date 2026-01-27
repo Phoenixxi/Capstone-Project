@@ -13,5 +13,9 @@ public class Hazard : MonoBehaviour
             other.GetComponent<PlayerController>().SendToCheckpoint();
             //TODO Play truck-hitting sound
         }
+        else if(other.gameObject.tag == "Enemy")
+        {
+            Destroy(other);
+        }
     }
 }

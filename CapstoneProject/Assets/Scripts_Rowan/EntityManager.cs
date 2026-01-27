@@ -587,4 +587,8 @@ public class EntityManager : MonoBehaviour
         return movementQueue.Count > 0;
     }
     
+    public float getGravity()
+    {
+        return gravity;
+    }
 }
