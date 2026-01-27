@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class WanderingStateMelee : WanderingState
+public class WanderStateTutorialChasingEnemy : WanderingState
 {
-    public WanderingStateMelee(float range = 3f, bool hovering = false)
+    public WanderStateTutorialChasingEnemy(float range = 3f, bool hovering = false)
     {
         this.range = range;
         this.hovering = hovering;
@@ -10,11 +10,7 @@ public class WanderingStateMelee : WanderingState
 
     public override AIStateType CheckTransition(AIContext aIContext)
     {
-        if(StateCheck.CheckCombat(aIContext))
-        {
-            return AIStateType.Combat;
-        }
-        else if(StateCheck.CheckChasing(aIContext))
+        if(StateCheck.CheckChasing(aIContext))
         {
             return AIStateType.Chasing;
         }
