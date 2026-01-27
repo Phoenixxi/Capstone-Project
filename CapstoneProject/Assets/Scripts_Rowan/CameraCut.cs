@@ -25,7 +25,7 @@ public class CameraCut : MonoBehaviour
 
     IEnumerator waitTime()
     {
-        /// wait 5 seconds
+        /// wait 2.5 seconds
         yield return new WaitForSeconds(2.5f);
         // reset cameras
         mainCamera.SetActive(true);
