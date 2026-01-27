@@ -51,6 +51,7 @@ public abstract class EnemyController : MonoBehaviour
     {
         if(entityManager.movementQueue.Count > 0)
         {
+            Debug.Log("Yo theres something in the movement queue");
             navMeshAgent.enabled = false;
             navMeshAgent.Warp(transform.position);
             return;
