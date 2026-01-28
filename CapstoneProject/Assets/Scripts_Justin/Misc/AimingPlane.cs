@@ -12,12 +12,13 @@ public class AimingPlane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.isGrounded)
+        if(!player.isGrounded && player.transform.position.y >= currentY)
         {
-            currentY = player.transform.position.y;
-        } else if(player.transform.position.y >= currentY)
+            transform.position = new Vector3(player.transform.position.x, currentY, player.transform.position.z);
+        } else
         {
-            transform.position = new Vector3(transform.position.x, currentY, transform.position.z);
+            transform.position = player.transform.position;
+            currentY = transform.position.y;
         }
     }
 }
