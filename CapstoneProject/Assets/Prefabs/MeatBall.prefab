@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc3ba1be0c1e0748bed030caaf9657a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallingHazard
+  gravityScale: 4
+  initialDownwardSpeed: 2
   shatterEffect: {fileID: 0}
   autoDestroyTime: 5
 --- !u!54 &-3712710602538456171
