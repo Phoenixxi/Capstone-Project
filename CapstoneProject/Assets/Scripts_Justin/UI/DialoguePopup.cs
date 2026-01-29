@@ -10,7 +10,7 @@ using UnityEngine;
 public class DialoguePopup : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
-    [SerializeField] private CanvasGroup transparency;
+    //[SerializeField] private CanvasGroup transparency;
 
     [Header("Dialogue Popup Settings")]
     [SerializeField] private float fadeTime;
@@ -20,8 +20,8 @@ public class DialoguePopup : MonoBehaviour
 
     private void Awake()
     {
-        transparency.alpha = 0f;
-        text.text = dialogue;
+       // transparency.alpha = 0f;
+       // text.text = dialogue;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,12 +43,12 @@ public class DialoguePopup : MonoBehaviour
     /// <returns></returns>
     private IEnumerator FadeText(float alpha)
     {
-        float startingAlpha = transparency.alpha;
+        //float startingAlpha = transparency.alpha;
         float currentTime = 0f;
         while(currentTime <= fadeTime)
         {
             currentTime += Time.deltaTime;
-            transparency.alpha = Mathf.Lerp(startingAlpha, alpha, currentTime / fadeTime);
+            //transparency.alpha = Mathf.Lerp(startingAlpha, alpha, currentTime / fadeTime);
             yield return null;
         }
     }

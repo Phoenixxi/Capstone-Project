@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject TutorialBG;
     public VideoPlayer videoPlayer;
     public Button continuteBtn;
+    public GameObject leftClickAnim;
  
     private Queue<DialogueLine> lines; //queue of lines, characters, text color, video clip
  
@@ -82,6 +83,7 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueBG.SetActive(true);
         TutorialBG.SetActive(false);
+        leftClickAnim.SetActive(true);
 
         characterIcon.sprite = currentLine.character.icon;
         characterName.text = currentLine.character.name;
