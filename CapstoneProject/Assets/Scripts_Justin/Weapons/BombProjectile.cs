@@ -8,6 +8,8 @@ public class BombProjectile : Projectile
     [SerializeField] protected LayerMask validCollisions; //Defines what will cause the bomb to explode, not who will be damaged by them
     [SerializeField] protected LayerMask explosionTargets;
     [SerializeField] protected float explosionRadius = 3;
+    [SerializeField] protected float innerScreenShakeRadius; //Distancec at which the player will receive the full screen shake amount
+    [SerializeField] protected float outerScreenShakeRadius; //The maximum distance away from the bomb the player can be to still get screenshot; screen shake strength decreases with distance
     //TODO Add fields for VFX and SFX
 
     protected override void Update()
@@ -65,8 +67,28 @@ public class BombProjectile : Projectile
                 hitEntity.TakeDamage(damage, elementType);
             }
         }
-        cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
+        //cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
+        ShakeScreen();
         Destroy(gameObject);
+    }
+
+    private void ShakeScreen()
+    {
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+        Vector3 playerPos = player.transform.position;
+        float explosionDistance = Vector3.Distance(playerPos, transform.position);
+        if(explosionDistance <= innerScreenShakeRadius)
+        {
+            cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
+            Debug.Log("Received max screen shake");
+        } else if(explosionDistance <= outerScreenShakeRadius)
+        {
+            float adjustedRadius = outerScreenShakeRadius - innerScreenShakeRadius;
+            float adjustedDistance = explosionDistance - innerScreenShakeRadius;
+            float intensityPercentage = 1 - (adjustedDistance / adjustedRadius);
+            cameraController.ShakeCamera(screenShakeIntensity * intensityPercentage, screenShakeDuration);
+            Debug.Log($"Received {intensityPercentage} percent screen shake");
+        }
     }
 
     private void OnDrawGizmos()

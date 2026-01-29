@@ -154,6 +154,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BombProjectile
   projectileSpeed: 20
   projectileLifetime: 3
+  causesKnockback: 0
+  orientationInfluencesKnockback: 1
+  knockback: {x: 0, y: 0, z: 0}
+  knockbackDuration: 0
   data: {fileID: 11400000, guid: 523c74c1d6101e6448d0152c017d2b95, type: 2}
   screenShakeIntensity: 2
   screenShakeDuration: 0.3
@@ -164,3 +168,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   explosionRadius: 3
+  innerScreenShakeRadius: 5
+  outerScreenShakeRadius: 15
