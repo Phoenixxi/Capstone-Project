@@ -17,6 +17,7 @@ public class FallingHazard : MonoBehaviour
     [Header("Settings")]
     [Tooltip("Destroy the ball automatically after this time.")]
     public float autoDestroyTime = 5f;
+    public float damage;
 
     private Rigidbody rb;
 
@@ -63,6 +64,7 @@ public class FallingHazard : MonoBehaviour
             // ================================================================
             // TODO: [PROGRAMMER] DAMAGE LOGIC HERE
             // ================================================================
+            collision.gameObject.GetComponentInChildren<EntityManager>().TakeDamage(damage, lilGuysNamespace.EntityData.ElementType.Normal);
             Debug.Log("HIT PLAYER");
 
             PlayShatterEffect();
