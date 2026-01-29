@@ -15,7 +15,11 @@ public class Hazard : MonoBehaviour
         }
         else if(other.gameObject.tag == "Enemy")
         {
-            Destroy(other);
+            EntityManager manager = other.GetComponent<EntityManager>();
+            if(manager.isAlive)
+            {
+                manager.EntityHasDied();
+            }
         }
     }
 }

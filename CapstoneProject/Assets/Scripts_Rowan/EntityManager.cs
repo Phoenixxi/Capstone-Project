@@ -550,7 +550,7 @@ public class EntityManager : MonoBehaviour
     /// <summary>
     /// Called when the entity's health has reached 0 or less
     /// </summary>
-    private void EntityHasDied()
+    public void EntityHasDied()
     {
         currentHealth = 0;
         isAlive = false;
