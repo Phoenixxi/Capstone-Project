@@ -21,7 +21,12 @@ public class WinTrigger : MonoBehaviour
             fade.alpha = Mathf.Lerp(0f, 1f, currentFadeTime / fadeDuration);
             yield return null;
         }
-        //SceneManager.LoadScene("WinScreen");
-        SceneManager.LoadScene("Level2-Rework");
+        if (SceneManager.GetActiveScene().name == "Level2-Rework")
+        {
+            SceneManager.LoadScene("WinScreen");
+        } else
+        {
+            SceneManager.LoadScene("Level2-Rework");
+        }
     }
 }
