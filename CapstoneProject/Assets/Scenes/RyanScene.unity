@@ -1307,10 +1307,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 712247495023353320, guid: a8c24ef19a3d2ec43a55e93086ac65de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8c24ef19a3d2ec43a55e93086ac65de, type: 3}
 --- !u!1 &1168589408
 GameObject:
@@ -1497,10 +1494,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3411336409048802701, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
 --- !u!1001 &1217357154
 PrefabInstance:
@@ -3554,7 +3548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2403709008299852728, guid: be2e39893183a4e368ca19e3325a8162, type: 3}
       propertyPath: MeleeCount
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2403709008299852728, guid: be2e39893183a4e368ca19e3325a8162, type: 3}
       propertyPath: ProjectileCount

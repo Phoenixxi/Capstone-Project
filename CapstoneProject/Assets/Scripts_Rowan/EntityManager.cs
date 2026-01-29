@@ -286,7 +286,7 @@ public class EntityManager : MonoBehaviour
         currentHealth -= damage;
         ShowDamageNumber((int)damage, ElementType.Normal);
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && isAlive)
         {
             currentHealth = 0;
             EntityHasDied();
@@ -304,7 +304,7 @@ public class EntityManager : MonoBehaviour
     public void TakeDamage(float damage, ElementType element)
     {
         float newHealth = currentHealth - damage;
-        if (newHealth <= 0)
+        if (newHealth <= 0 && isAlive)
         {
             ShowDamageNumber((int)damage, element);
             EntityHasDied();
@@ -418,7 +418,7 @@ public class EntityManager : MonoBehaviour
             ShowDamageNumber((int)(incomingDmg * dmgMultiplier), initiatingElement);
             taggedElement = defaultElement;
             Instantiate(boomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-            if(newHealth <= 0)
+            if(newHealth <= 0 && isAlive)
             {
                 EntityHasDied();
                 return;
@@ -533,9 +533,9 @@ public class EntityManager : MonoBehaviour
     private void EntityHasDied()
     {
         currentHealth = 0;
+        isAlive = false;
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
         Debug.Log("Entity has died.");
-        isAlive = false;
         ClearVFX(ref currentElementalVFXInstance);
         OnEntityKilledEvent?.Invoke();
         if (this.gameObject.CompareTag("Enemy"))
