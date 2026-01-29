@@ -22,6 +22,8 @@ public class LevelBlocker : MonoBehaviour
     private bool allowedToMoveOn;
     private FlashingArrow arrow;
 
+    private int count = 0;
+
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
@@ -66,6 +68,8 @@ public class LevelBlocker : MonoBehaviour
 
     void OnEnemyDeath()
     {
+        count++;
+        UnityEngine.Debug.Log($"Count: {count}");
         entityManagers.RemoveAt(entityManagers.Count-1);
         if(entityManagers.Count == 0)
         {
