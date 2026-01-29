@@ -4985,11 +4985,11 @@ PrefabInstance:
       objectReference: {fileID: 1585327693}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 370.52
+      value: 459.22
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.63
+      value: 6.09
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19238,160 +19238,6 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
---- !u!1 &772629519
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 772629524}
-  - component: {fileID: 772629523}
-  - component: {fileID: 772629522}
-  - component: {fileID: 772629521}
-  - component: {fileID: 772629520}
-  m_Layer: 0
-  m_Name: EndDialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &772629520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772629519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3558185502edf2146abf08760754561a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  dialogue:
-    dialogueLines:
-    - character:
-        name: Zoom
-        icon: {fileID: 21300000, guid: 68bffe26f24c7864ca2127bcafed0158, type: 3}
-      tutorial:
-        videoClip: {fileID: 0}
-        isTutorial: 0
-      line: Once the boss finally gets impleted this game is going to be so cool
-    - character:
-        name: Boom
-        icon: {fileID: 21300000, guid: 884827607f9a5a042bd33f89f0935c70, type: 3}
-      tutorial:
-        videoClip: {fileID: 0}
-        isTutorial: 0
-      line: Ya I can't wait to see all the new boss mechanics
-    - character:
-        name: Gloom
-        icon: {fileID: 21300000, guid: 24aca14554ce7ef45a7c26c6a85ef1b1, type: 3}
-      tutorial:
-        videoClip: {fileID: 0}
-        isTutorial: 0
-      line: We aren't allowed to add more mechanics...
-    - character:
-        name: Boom
-        icon: {fileID: 21300000, guid: 1a156bcf83b730f41af2e34719ad4d89, type: 3}
-      tutorial:
-        videoClip: {fileID: 0}
-        isTutorial: 0
-      line: We aren't allowed to add more mechanics...
---- !u!65 &772629521
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772629519}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &772629522
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772629519}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &772629523
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772629519}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &772629524
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772629519}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 473.2, y: 7.15, z: 10.49}
-  m_LocalScale: {x: 26.415504, y: 3.904154, z: 26.552023}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &795757148
 GameObject:
   m_ObjectHideFlags: 0
@@ -19776,7 +19622,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809173835}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -19834,8 +19680,8 @@ Transform:
   m_GameObject: {fileID: 809173835}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 192.37, y: 58.86, z: -18.69}
-  m_LocalScale: {x: 2.247935, y: 2.247935, z: 2.247935}
+  m_LocalPosition: {x: 192.78, y: 60.1, z: -18.69}
+  m_LocalScale: {x: 3.4420383, y: 4.861834, z: 6.803441}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -22267,7 +22113,7 @@ Transform:
   m_GameObject: {fileID: 985002359}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15940057, y: 0, z: 0, w: 0.98721397}
-  m_LocalPosition: {x: 370.52, y: 11.283957, z: -28.860014}
+  m_LocalPosition: {x: 459.22, y: 9.743957, z: -28.860014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42899,7 +42745,7 @@ Transform:
   m_GameObject: {fileID: 2103376022}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15940057, y: -0, z: -0, w: 0.98721397}
-  m_LocalPosition: {x: 370.52, y: 11.283957, z: -28.860014}
+  m_LocalPosition: {x: 459.22, y: 9.743957, z: -28.860014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44836,6 +44682,5 @@ SceneRoots:
   - {fileID: 1790732359}
   - {fileID: 21109450}
   - {fileID: 1545072086}
-  - {fileID: 772629524}
   - {fileID: 402895640}
   - {fileID: 14364121}
