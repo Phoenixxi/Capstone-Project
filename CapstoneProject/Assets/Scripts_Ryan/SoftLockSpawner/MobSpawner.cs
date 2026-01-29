@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class MobSpawner : MonoBehaviour
 {
+    [SerializeField] private GameObject RangeVisualizer;
     [SerializeField] private Transform ProjectileEnemyPrefab;
     [SerializeField] private Transform MeleeEnemyPrefab;
     [SerializeField] private int ProjectileCount;
@@ -22,6 +23,8 @@ public class MobSpawner : MonoBehaviour
         {
             Debug.LogError($"{gameObject.name} is not above a navmesh ground. Please put it above a navmesh ground object");
         }
+
+        RangeVisualizer.gameObject.SetActive(false);
     }
 
     public List<EntityManager> SpawnEnemies()
