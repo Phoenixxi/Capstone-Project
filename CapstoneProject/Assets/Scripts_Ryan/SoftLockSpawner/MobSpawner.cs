@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,6 +10,19 @@ public class MobSpawner : MonoBehaviour
     [SerializeField] private int ProjectileCount;
     [SerializeField] private int MeleeCount;
     [SerializeField] private int range;
+
+    void Awake()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, -Vector3.up, out hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
+        {
+            transform.position = new Vector3(transform.position.x, hit.collider.transform.position.y + 0.5f, transform.position.z);
+        }
+        else
+        {
+            Debug.LogError($"{gameObject.name} is not above a navmesh ground. Please put it above a navmesh ground object");
+        }
+    }
 
     public List<EntityManager> SpawnEnemies()
     {
@@ -43,19 +57,22 @@ public class MobSpawner : MonoBehaviour
     /// <returns></returns>
     private void RandomPoint(Vector3 center, float range, out Vector3 result)
     {
-        Vector2 vector2 = Random.insideUnitCircle * range;
+        Vector2 vector2 = UnityEngine.Random.insideUnitCircle * range;
         Vector3 randomPoint = center + new Vector3(vector2.x, 0f, vector2.y);
+        Debug.Log($"This is random point: {randomPoint}");
         NavMeshHit hit;
 
         //Navmesh.SamplePosition finds the nearest navigable (walkable) point on the NavMesh
         //within a given radius
-        if (NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomPoint, out hit, 1f, NavMesh.AllAreas))
         {
             //if there is a point on the navmesh near randomPoint
             //that the AI can walk to, return that result
             result = hit.position;
             return;
         }
+
+        Debug.Log("Didn't cause sample position");
 
         result = center;
         return;
