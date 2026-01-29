@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 // 确保引用你的命名空间
 using lilGuysNamespace;
+using System;
 
 public class AcidZone : MonoBehaviour
 {
@@ -50,7 +51,6 @@ public class AcidZone : MonoBehaviour
                 EntityManager entity = playerObj.GetComponent<EntityManager>();
                 if (entity == null) entity = playerObj.GetComponentInParent<EntityManager>();
                 if (entity == null) entity = playerObj.GetComponentInChildren<EntityManager>();
-
                 if (entity != null)
                 {
                     IEnumerator damageRoutine = DamagePlayerCoroutine(entity);
@@ -86,9 +86,11 @@ public class AcidZone : MonoBehaviour
     private IEnumerator DamagePlayerCoroutine(EntityManager entity)
     {
         // 只要玩家还在字典里且不为空，就一直扣血
-        while (entity != null && activeCoroutines.ContainsKey(entity.gameObject))
+        Debug.Log($"Damage coroutine started on {entity.gameObject}");
+        while (entity != null && activeCoroutines.ContainsKey(entity.transform.parent.gameObject))
         {
-            entity.TakeDamage(damageAmount);
+            entity.TakeDamage(damageAmount, EntityData.ElementType.Normal);
+            Debug.Log($"Acid damaged entity");
             // Debug.Log($"Acid dealt {damageAmount} damage to {entity.name}");
             yield return new WaitForSeconds(damageInterval);
         }
