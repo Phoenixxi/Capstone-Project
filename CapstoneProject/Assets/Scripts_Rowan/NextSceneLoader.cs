@@ -21,7 +21,7 @@ public class NextSceneLoader : MonoBehaviour
 
     IEnumerator LoadAsyncScene()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync("Level01_LouieScene");
 
         while(!loadOperation.isDone)
