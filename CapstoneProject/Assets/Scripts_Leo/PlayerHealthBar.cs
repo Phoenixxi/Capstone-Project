@@ -19,7 +19,7 @@ public class PlayerHealthBar : MonoBehaviour
     private Color32 sicklyColor = new Color32(254, 254, 89, 255); //Yellow
     private Color32 dyingColor = new Color32(254, 134, 195, 255); //Red/Pink
 
-    void Start()
+    private void OnEnable()
     {
         //maxHP = entityManager.maxHealth;
         //currentHP = maxHP;
@@ -92,7 +92,7 @@ public class PlayerHealthBar : MonoBehaviour
         };
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (entityManager != null) entityManager.OnHealthUpdatedEvent -= UpdateHealth;
     }

@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class CharacterDescription : MonoBehaviour
 {
     [SerializeField] private GameObject ui;
+    private PlayerController pc;
 
     //void Update()
     //{
@@ -11,15 +12,20 @@ public class CharacterDescription : MonoBehaviour
     //    ui.SetActive(Keyboard.current.tabKey.isPressed);
     //}
 
+    void Awake()
+    {
+        pc = FindFirstObjectByType<PlayerController>();
+    }
+
     private void OnEnable()
     {
-        FindFirstObjectByType<PlayerController>().AbilityScreenPressedEvent += ToggleScreen;
+        pc.AbilityScreenPressedEvent += ToggleScreen;
         ui.SetActive(false);
     }
 
     private void OnDisable()
     {
-        FindFirstObjectByType<PlayerController>().AbilityScreenPressedEvent -= ToggleScreen;
+        pc.AbilityScreenPressedEvent -= ToggleScreen;
     }
 
     private void ToggleScreen(bool isEnabled)
