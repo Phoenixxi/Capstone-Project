@@ -478,7 +478,7 @@ public class EntityManager : MonoBehaviour
         {
             OnEntityAttackEvent?.Invoke(defaultElement);
             animator.SetTrigger("Shoot");
-            if(gameObject.CompareTag("Enemy")) return;
+            if(gameObject.CompareTag("Enemy") && entityName != "EnemyMelee") return;
             if(entityName == "Zoom")
             {
                 if(vfxAnchor.childCount > 0)
@@ -493,7 +493,27 @@ public class EntityManager : MonoBehaviour
                     currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity);
                 }   
             }
+            if(entityName == "EnemyMelee")
+            {
+                StartCoroutine(MeleeEnemyAttackDelay()); 
+            }
         }
+    }
+
+    IEnumerator MeleeEnemyAttackDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if(vfxAnchor.childCount > 0)
+        {
+            for(int i = 0; i < vfxAnchor.childCount; i++)
+            {
+                Destroy(vfxAnchor.GetChild(i).gameObject);
+            }
+        }
+        else
+        {
+            currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity);
+        }  
     }
 
 
