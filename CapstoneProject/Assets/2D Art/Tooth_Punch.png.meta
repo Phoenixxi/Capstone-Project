@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -95,12 +95,342 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Tooth_Punch_0
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 7774
+        width: 1673
+        height: 1706
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d2685be40d0954594f2925170c8ed7
+      internalID: -224750809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_1
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 7774
+        width: 1670
+        height: 1706
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a6d5de777298548a79cdb4490fd7b5
+      internalID: 60292684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_2
+      rect:
+        serializedVersion: 2
+        x: 3935
+        y: 7774
+        width: 1673
+        height: 1706
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64ba6d8c32b4c83439fb90ad37ae8a11
+      internalID: 1914598241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_3
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 5857
+        width: 1368
+        height: 1439
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fb25d46e81909f4d82f08725f8b9948
+      internalID: 836707023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_4
+      rect:
+        serializedVersion: 2
+        x: 2360
+        y: 5857
+        width: 1373
+        height: 1439
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c6f9bcc87cec114ea29badd3668d5e4
+      internalID: 731370355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_6
+      rect:
+        serializedVersion: 2
+        x: 4422
+        y: 5853
+        width: 1161
+        height: 1476
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4701f5aa59898534a92d7894a969dada
+      internalID: -513197983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_9
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 3935
+        width: 1159
+        height: 1472
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ab6d2d0c42c845468104941271ff63a
+      internalID: -1590335075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_10
+      rect:
+        serializedVersion: 2
+        x: 2055
+        y: 3914
+        width: 1383
+        height: 1671
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e17ea8cf7954c2d4d9e9cea63e2c8a1c
+      internalID: -707554525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_11
+      rect:
+        serializedVersion: 2
+        x: 4263
+        y: 3907
+        width: 1021
+        height: 1546
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c6bdccd2c7410740bcfe89ba5b7d038
+      internalID: -807057173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_13
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 1985
+        width: 1021
+        height: 1547
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15c395e115409e149ba42f8a756280e5
+      internalID: -71245706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_14
+      rect:
+        serializedVersion: 2
+        x: 2261
+        y: 1985
+        width: 1102
+        height: 1533
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f75a9495a82ad42b6271abcefa9c33
+      internalID: 545631785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_15
+      rect:
+        serializedVersion: 2
+        x: 4183
+        y: 1985
+        width: 1101
+        height: 1533
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dee3f3bb37ded94c9ef75efa2e86645
+      internalID: -959125300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_16
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 63
+        width: 1103
+        height: 1538
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b916d3cf95c50644afdea560fffd9d8
+      internalID: -787126086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_17
+      rect:
+        serializedVersion: 2
+        x: 2172
+        y: 73
+        width: 1280
+        height: 1598
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e02d466e6b2622c439d293e77a6f739a
+      internalID: 1544917328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tooth_Punch_18
+      rect:
+        serializedVersion: 2
+        x: 4090
+        y: 73
+        width: 1283
+        height: 1598
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a4de5ee2697557428f17f3f44fd012b
+      internalID: -1346636892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9c8a98a25d3b0f143aa6126e425aca6a
     internalID: 0
     vertices: []
     indices: 
@@ -108,8 +438,29 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
-    nameFileIdTable: {}
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":100.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Tooth_Punch_0: -224750809
+      Tooth_Punch_1: 60292684
+      Tooth_Punch_10: -707554525
+      Tooth_Punch_11: -807057173
+      Tooth_Punch_12: 1077751095
+      Tooth_Punch_13: -71245706
+      Tooth_Punch_14: 545631785
+      Tooth_Punch_15: -959125300
+      Tooth_Punch_16: -787126086
+      Tooth_Punch_17: 1544917328
+      Tooth_Punch_18: -1346636892
+      Tooth_Punch_2: 1914598241
+      Tooth_Punch_3: 836707023
+      Tooth_Punch_4: 731370355
+      Tooth_Punch_5: -2012676528
+      Tooth_Punch_6: -513197983
+      Tooth_Punch_7: -31777890
+      Tooth_Punch_8: 1496314871
+      Tooth_Punch_9: -1590335075
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
