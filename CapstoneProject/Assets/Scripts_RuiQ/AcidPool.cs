@@ -44,19 +44,18 @@ public class AcidZone : MonoBehaviour
             // 1. 视觉：变绿 (哪怕是隐藏的物体也要变)
             HandleColorChange(playerObj);
 
+            // 尝试在自身、父物体、子物体上找 EntityManager
+            EntityManager entity = playerObj.GetComponent<EntityManager>();
+            if (entity == null) entity = playerObj.GetComponentInParent<EntityManager>();
+            if (entity == null) entity = playerObj.GetComponentInChildren<EntityManager>();
+
             // 2. 逻辑：开始扣血协程 (参考 BuffZone 逻辑)
-            if (!activeCoroutines.ContainsKey(playerObj))
+            if (entity != null && !activeCoroutines.ContainsKey(entity.gameObject))
             {
-                // 尝试在自身、父物体、子物体上找 EntityManager
-                EntityManager entity = playerObj.GetComponent<EntityManager>();
-                if (entity == null) entity = playerObj.GetComponentInParent<EntityManager>();
-                if (entity == null) entity = playerObj.GetComponentInChildren<EntityManager>();
-                if (entity != null)
-                {
-                    IEnumerator damageRoutine = DamagePlayerCoroutine(entity);
-                    activeCoroutines.Add(playerObj, damageRoutine);
-                    StartCoroutine(damageRoutine);
-                }
+
+                IEnumerator damageRoutine = DamagePlayerCoroutine(entity);
+                activeCoroutines.Add(entity.gameObject, damageRoutine);
+                StartCoroutine(damageRoutine);
             }
         }
     }
@@ -69,12 +68,12 @@ public class AcidZone : MonoBehaviour
 
             // 1. 视觉：强制变回白色 (Fix Blue Issue)
             RestoreColor(playerObj);
-
+            EntityManager entity = playerObj.GetComponentInChildren<EntityManager>();
             // 2. 逻辑：停止扣血
-            if (activeCoroutines.ContainsKey(playerObj))
+            if (activeCoroutines.ContainsKey(entity.gameObject))
             {
                 // 移除后，协程里的 while 循环条件失效，自动停止
-                activeCoroutines.Remove(playerObj);
+                activeCoroutines.Remove(entity.gameObject);
             }
         }
     }
@@ -86,14 +85,13 @@ public class AcidZone : MonoBehaviour
     private IEnumerator DamagePlayerCoroutine(EntityManager entity)
     {
         // 只要玩家还在字典里且不为空，就一直扣血
-        Debug.Log($"Damage coroutine started on {entity.gameObject}");
-        while (entity != null && activeCoroutines.ContainsKey(entity.transform.parent.gameObject))
+        while (entity != null && entity.isActiveAndEnabled && activeCoroutines.ContainsKey(entity.gameObject))
         {
             entity.TakeDamage(damageAmount, EntityData.ElementType.Normal);
-            Debug.Log($"Acid damaged entity");
             // Debug.Log($"Acid dealt {damageAmount} damage to {entity.name}");
             yield return new WaitForSeconds(damageInterval);
         }
+        activeCoroutines.Remove(entity.gameObject);
     }
 
     // ==========================================
