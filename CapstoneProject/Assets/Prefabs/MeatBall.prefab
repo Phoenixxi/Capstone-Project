@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 9db577098e169ee4795aaebfae84412c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc3ba1be0c1e0748bed030caaf9657a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallingHazard
-  gravityScale: 4
-  initialDownwardSpeed: 2
+  gravityScale: 1
+  initialDownwardSpeed: 3
   shatterEffect: {fileID: 0}
   autoDestroyTime: 5
   damage: 10
