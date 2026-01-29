@@ -9,8 +9,7 @@ public class LevelBlockerFront : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             levelBlocker.initializeMobs();
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
     }
 }
