@@ -137,11 +137,12 @@ Material:
     - _Height_Power: 5
     - _Height_Steps: 30
     - _Hue: 0
-    - _LOD_Threshold: 10
+    - _LOD_Threshold: 30
     - _Max: 1.5
     - _Metallic: 0
     - _Min: 1
     - _OcclusionStrength: 1
+    - _Outline_Thickness: 0.01
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -162,6 +163,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LOD_Depth: {r: 0, g: 5, b: 0, a: 0}
+    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Shadow_Color: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 3, g: 4, b: 0, a: 0}
