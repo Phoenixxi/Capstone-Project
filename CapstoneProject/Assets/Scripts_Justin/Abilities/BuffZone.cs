@@ -75,7 +75,8 @@ public class BuffZone : MonoBehaviour
         while(enemy != null && enemies.ContainsKey(enemy.gameObject))
         {
             yield return new WaitForSeconds(damageRate);
-            enemy.TakeDamage(damage, element);
+            if(enemy != null)
+                enemy.TakeDamage(damage, element);
         }
         Debug.Log("Damage coroutine ended");
     }
