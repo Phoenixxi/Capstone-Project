@@ -8,8 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CelShadeLitExampleMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 0f2dd2b67bfae684aac23b25664f5f7c,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2d316e9962e68a7418ba26d855560fe7, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ADDITIONAL_LIGHTS
   - _ADDITIONAL_LIGHT_SHADOWS
@@ -22,12 +23,14 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8e01fec77beeefc459a7ae71b7077ef0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -101,12 +104,12 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EdgeDiffuse: 0.001
+    - _EdgeDiffuse: 0
     - _EdgeDistanceAttenuation: 0.001
     - _EdgeRim: 0.001
     - _EdgeRimOffset: 0.001
     - _EdgeShadowAttenuation: 0.001
-    - _EdgeSpecular: 0.001
+    - _EdgeSpecular: 0
     - _EdgeSpecularOffset: 0.01
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -135,11 +138,12 @@ Material:
     m_Colors:
     - _Albedo: {r: 0, g: 0, b: 0, a: 0}
     - _AmbientColor: {r: 0, g: 0, b: 0, a: 1}
-    - _BaseColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!114 &4068162859695982652
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -152,4 +156,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 5
+  version: 10
