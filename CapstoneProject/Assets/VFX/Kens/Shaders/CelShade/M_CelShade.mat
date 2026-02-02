@@ -56,12 +56,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _BandA: 0.62
-    - _BandAMult: 0.48
+    - _BandAMult: -19.6
     - _BandB: 1.28
     - _BandBMult: 1.81
     - _BandC: 0
-    - _BandCMult: 2
-    - _BandSmoothness: 0.07
+    - _BandCMult: -23.22
+    - _BandContrast: 0.896
+    - _BandCountIndex: 0.59
+    - _BandSmoothness: -33.01
     - _BandsCount: 1
     - _BandsCountIndex: 1
     - _Contrast: 0.99
@@ -77,8 +79,8 @@ Material:
     - _RimAmount: 0.3
     - _RimStrength: 14.86
     - _RimThreshold: 0.6
-    - _Smoothness: 0.84
-    - _SpecularIntensity: 0.32
+    - _Smoothness: 1.06
+    - _SpecularIntensity: 0.3
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
