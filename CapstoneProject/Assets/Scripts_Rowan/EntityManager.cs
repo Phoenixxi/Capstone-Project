@@ -160,8 +160,8 @@ public class EntityManager : MonoBehaviour
     private void CreateWeapon()
     {
         //TODO Replace default element with the entity-specific one
-        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, hasLifesteal, lifestealPercentage, projectileCount, perBulletSpread);
-        else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime);
+        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, animator, hasLifesteal, lifestealPercentage, projectileCount, perBulletSpread);
+        else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime, animator);
         else Debug.LogError($"Neither a melee nor ranged weapon could be assigned to {gameObject}. Make sure either the Projectile or Hurtbox fields have a value");
     }
 
@@ -477,7 +477,11 @@ public class EntityManager : MonoBehaviour
         if(attacked)
         {
             OnEntityAttackEvent?.Invoke(defaultElement);
-            animator.SetTrigger("Shoot");
+            //animator.SetTrigger("Shoot");
+            if(gameObject.CompareTag("Player"))
+            {
+                weapon.AttackFromAnimation();
+            }
             if(gameObject.CompareTag("Enemy") && entityName != "EnemyMelee") return;
             if(entityName == "Zoom")
             {
@@ -610,5 +614,10 @@ public class EntityManager : MonoBehaviour
     public float getGravity()
     {
         return gravity;
+    }
+
+    public void AttackFromAnimation()
+    {
+        weapon.AttackFromAnimation();
     }
 }

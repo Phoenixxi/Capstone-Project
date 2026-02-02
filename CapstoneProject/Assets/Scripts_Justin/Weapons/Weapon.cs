@@ -13,20 +13,24 @@ public abstract class Weapon
     protected ElementType element;
     protected float lastAttackTime;
     protected float baseCooldown;
+    protected Animator animator;
 
-    public Weapon(float attackCooldown, int damage, ElementType element)
+    public Weapon(float attackCooldown, int damage, ElementType element, Animator animator)
     {
         this.attackCooldown = attackCooldown;
         this.damage = damage;
         this.element = element;
         baseCooldown = attackCooldown;
         lastAttackTime = 0f;
+        this.animator = animator;
     }
 
     /// <summary>
     /// Executes an attack if called after the attack cooldown has expried
     /// </summary>
     public abstract bool Attack();
+
+    public abstract void AttackFromAnimation();
 
     /// <summary>
     /// Checks whether the weapon's attack cooldown has finished

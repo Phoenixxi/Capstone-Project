@@ -9,7 +9,7 @@ public class MeleeWeapon : Weapon
     private Hurtbox hurtbox;
     private float hurtboxActiveTime;
 
-    public MeleeWeapon(float attackCooldown, int damage, ElementType element, Hurtbox hurtbox, float hurtboxActiveTime) : base(attackCooldown, damage, element)
+    public MeleeWeapon(float attackCooldown, int damage, ElementType element, Hurtbox hurtbox, float hurtboxActiveTime, Animator animator) : base(attackCooldown, damage, element, animator)
     {
         this.hurtbox = hurtbox;
         this.hurtboxActiveTime = hurtboxActiveTime;
@@ -20,8 +20,13 @@ public class MeleeWeapon : Weapon
     public override bool Attack()
     {
         if (!HasCooldownExpired()) return false;
+        animator.SetTrigger("Shoot");
+        return true;
+    }
+
+    public override void AttackFromAnimation()
+    {
         hurtbox.Activate(hurtboxActiveTime, false);
         lastAttackTime = Time.time;
-        return true;
     }
 }

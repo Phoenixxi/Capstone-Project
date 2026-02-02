@@ -22,8 +22,8 @@ public class RangedWeapon : Weapon
 
     public static Action<float> OnLifestealHit;
 
-    public RangedWeapon(float attackCooldown, int damage, ElementType element, GameObject projectile, bool hasLifesteal = false, float lifeStealPercentage = 1,
-        int projectileCount = 1, float perBulletSpread = 0f) : base(attackCooldown, damage, element)
+    public RangedWeapon(float attackCooldown, int damage, ElementType element, GameObject projectile, Animator animator, bool hasLifesteal = false, float lifeStealPercentage = 1,
+        int projectileCount = 1, float perBulletSpread = 0f) : base(attackCooldown, damage, element, animator)
     {
         this.projectile = projectile;
         attackDirection = Vector3.zero;
@@ -37,19 +37,7 @@ public class RangedWeapon : Weapon
     public override bool Attack()
     {
         if (!HasCooldownExpired()) return false;
-        int currentProjectileNum = 0;
-        if(projectileCount % 2 != 0)
-        {
-            SpawnProjectile();
-            currentProjectileNum++;
-        }
-        float currentAngle = perBulletSpread;
-        while(currentProjectileNum < projectileCount)
-        {
-            SpawnProjectile(Quaternion.AngleAxis(currentAngle, Vector3.up));
-            SpawnProjectile(Quaternion.AngleAxis(-currentAngle, Vector3.up));
-            currentProjectileNum += 2;
-        }
+        animator.SetTrigger("Shoot");
         //Vector3 projectileSpawnOffset = attackDirection * 0f;
         //Vector3 projectileSpawnPosition = currentLocation + projectileSpawnOffset;
         //projectileScript = GameObject.Instantiate(projectile, projectileSpawnPosition, Quaternion.identity).GetComponent<Projectile>();
@@ -63,7 +51,6 @@ public class RangedWeapon : Weapon
         //projectileScript.SetProjectileDamage(damage);
         //projectileScript.SetProjectileElement(element);
         //projectileScript.ChangeMoveDirection(attackDirection);
-        lastAttackTime = Time.time;
         //if (hasLifesteal) projectileScript.OnProjectileHitEntity += GiveLifesteal;
         return true;
         //Debug.Log("Projectile fired!");
@@ -113,5 +100,24 @@ public class RangedWeapon : Weapon
     {
         //player.HealAllCharacters((float)damage * lifeStealPercentage);
         OnLifestealHit?.Invoke((float)damage * lifeStealPercentage);
+    }
+
+    public override void AttackFromAnimation()
+    {
+        int currentProjectileNum = 0;
+        if(projectileCount % 2 != 0)
+        {
+            SpawnProjectile();
+            currentProjectileNum++;
+        }
+        float currentAngle = perBulletSpread;
+        while(currentProjectileNum < projectileCount)
+        {
+            SpawnProjectile(Quaternion.AngleAxis(currentAngle, Vector3.up));
+            SpawnProjectile(Quaternion.AngleAxis(-currentAngle, Vector3.up));
+            currentProjectileNum += 2;
+        }
+
+        lastAttackTime = Time.time;
     }
 }

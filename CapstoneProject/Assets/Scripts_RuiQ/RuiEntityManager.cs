@@ -120,8 +120,8 @@ public class RuiEntityManager : MonoBehaviour
 
     private void CreateWeapon()
     {
-        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile);
-        else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime);
+        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, animator);
+        else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime, animator);
         else Debug.LogError($"Neither a melee nor ranged weapon could be assigned to {gameObject}.");
     }
 
