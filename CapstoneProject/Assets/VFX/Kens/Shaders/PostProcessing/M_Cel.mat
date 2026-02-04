@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Cel
+  m_Shader: {fileID: 4800000, guid: 76446d53e6a516d459c8d490bdf5010d, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _BASECOLOR_USETEX_ON
+  - _SHADOWHIGHLIGHT_USEWORLDUV_ON
+  m_InvalidKeywords:
+  - _USEMAINLIGHT_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseColor:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColor_Tex:
+        m_Texture: {fileID: 2800000, guid: 8e01fec77beeefc459a7ae71b7077ef0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Highlight_Tex:
+        m_Texture: {fileID: 2800000, guid: 83fa986f90a766a418ae67aa2647c303, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Pattern:
+        m_Texture: {fileID: 2800000, guid: 43c8d371164c403449f1dac5b6784774, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Shadow_Tex:
+        m_Texture: {fileID: 2800000, guid: 43c8d371164c403449f1dac5b6784774, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BandAThresh: 0.75
+    - _BandCount: 0.5
+    - _BandSmoothness: 1.44
+    - _BaseColor_UseTex: 1
+    - _ClampMax: 2.37
+    - _ClampMin: 0.19
+    - _DotCapMax: 0.25
+    - _DotCapMin: -0.005
+    - _DotHigh: 2.55
+    - _DotLow: 1.8
+    - _DotThreshMax: 1.53
+    - _DotThreshMin: 0.83
+    - _DotUVScale: 5
+    - _DottingIntensity: 0.5
+    - _EnvironmentReflections: 1
+    - _Highlight_Intensity: 2
+    - _Highlight_Smoothness: 0.05
+    - _Highlight_StepMax: 6
+    - _Highlight_StepMin: 0.5
+    - _Highlight_UVRotation: 0.25
+    - _Highlight_UVScale: 8.8
+    - _LightHue: 256
+    - _LightIntensity: 0.13
+    - _Light_Alpha: 0.17
+    - _Light_Clamp: 0.41
+    - _Light_LogStrength: 1
+    - _Light_Mult: 1
+    - _PatternUVScale: 10.71
+    - _PatternUV_Rotation: 2.84
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _SSAO_Smoothness: 0.05
+    - _SSAO_Smoothness1: 0
+    - _SSAO_StepMax: 0.29
+    - _SSAO_StepMax1: 0
+    - _SSAO_StepMin: -0.19
+    - _SSAO_StepMin1: 0
+    - _ScreenUVScale: 500
+    - _ShadowHighlight_UseWorldUV: 1
+    - _Shadow_UVRotation: 0.06
+    - _Shadow_UVScale: 20.63
+    - _Shadow_UseWorldUV: 0
+    - _Smoothness: 0
+    - _SpecularHighlights: 1
+    - _Sub: 0
+    - _UseBaseColorTexture: 0
+    - _UseMainLight: 1
+    - _UseWorldUV: 0
+    - _ValueMult: 1
+    - __dirty: 0
+    m_Colors:
+    - _BaseColor: {r: 0.64779866, g: 0.4684621, b: 0.25463778, a: 1}
+    - _BaseColor_Tint: {r: 0.4528302, g: 0.272071, b: 0.18583126, a: 1}
+    - _BaseColor_Tint1: {r: 1, g: 1, b: 1, a: 0}
+    - _Color0: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
