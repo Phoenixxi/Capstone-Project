@@ -38,12 +38,25 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Acid_Brightness: 20
+    - _Foam_Amount: 1
+    - _Foam_CutOff: -0.77
+    - _Foam_Size: 50
+    - _Foam_Speed: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Small_Wave_Strength: 1
+    - _Small_Wave_Density: 9
+    - _Small_Wave_Strength: 0.228
+    - _Wave_Length: 1
+    - _Wave_Length1: 1.31
+    - _Wave_Length2: 1.34
+    - _Wave_Length3: 1.62
     - _Wave_Speed: 2
-    - _Wave_Strength: 0.05
-    m_Colors: []
+    - _Wave_Strength: 0.2
+    m_Colors:
+    - _Acid_Contrast: {r: 0.3, g: 1, b: 0, a: 0}
+    - _Color: {r: 0.40625, g: 1, b: 0, a: 1}
+    - _Foam_Color: {r: 1, g: 0.9585997, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &461749202220199947
