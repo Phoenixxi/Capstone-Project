@@ -432,7 +432,7 @@ public class PlayerController : MonoBehaviour
 
     {
 
-        if (currentCharacter.AbilityInUse()) return;
+        if (currentCharacter.AbilityInUse() && currentCharacter.isAlive) return;
 
         // Check if character is alive
 

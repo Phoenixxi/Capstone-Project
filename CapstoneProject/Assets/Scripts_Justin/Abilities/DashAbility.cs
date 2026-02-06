@@ -72,4 +72,14 @@ public class DashAbility : Ability
         }
     }
 
+    public override void Cancel()
+    {
+        if (!abilityInUse) return;
+        animator.SetTrigger("NotDash");
+        currentDashTimer = 0f;
+        movements[0].Complete();
+        abilityInUse = false;
+        entityCollision.excludeLayers -= dashPhasingLayers;
+        currentCooldown = cooldown;
+    }
 }

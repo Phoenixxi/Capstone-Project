@@ -89,4 +89,15 @@ public class GroundPoundAbility : Ability
             Debug.LogError("Boom VFX Prefab is not assigned in the inspector for Boom > GroundPoundAbility");
         movements = new AbilityMovement[3];
     }
+
+    public override void Cancel()
+    {
+        if (!abilityInUse) return;
+        movements[0].Complete();
+        movements[1].Complete();
+        movements[2].Complete();
+        animator.SetTrigger("Grounded");
+        currentCooldown = cooldown;
+        abilityInUse = false;
+    }
 }
