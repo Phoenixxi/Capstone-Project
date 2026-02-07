@@ -76,6 +76,9 @@ public class PlayerController : MonoBehaviour
 
     private bool hoverButtonPressed;
 
+    private int keyCount = 2;
+    private int secondKeyCount = 0;
+
 
 
     //public Transform mouseObject;
@@ -311,6 +314,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void DecrementKeyCount()
+    {
+        keyCount = 1;
+        secondKeyCount++;
+    }
+
 
 
     /// <summary>
@@ -325,30 +334,37 @@ public class PlayerController : MonoBehaviour
 
     {
 
-        int newCharacterIndex = currentCharacterIndex;
 
         float pressedValue = input.Get<float>();
+
+        // Cannot swap characters at this time
+        if((secondKeyCount != 3 && keyCount == 2) || (pressedValue == -1 && secondKeyCount != 3))
+        {
+            return; 
+        }
+
+
+        int newCharacterIndex = currentCharacterIndex;
 
         if (uiPlayerSwap != null)
 
         {
             if (currentCharacter.AbilityInUse()) return;
             {
-                if (pressedValue == -1) // Q
+                if (pressedValue == -1 && secondKeyCount == 3) // Q
 
                     uiPlayerSwap.swapImageLocation(-1);
 
                 if (pressedValue == 1) // E
 
                     uiPlayerSwap.swapImageLocation(1);
+                    keyCount = 2;
             }
 
 
         }
 
         else { Debug.LogError("uiPlayerSwap not set in player controller"); }
-
-
 
         do
 
