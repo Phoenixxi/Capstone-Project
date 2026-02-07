@@ -337,6 +337,12 @@ public class PlayerController : MonoBehaviour
 
         float pressedValue = input.Get<float>();
 
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Level2-Rework")
+        {
+            secondKeyCount = 3;
+        }
+        
         // Cannot swap characters at this time
         if((secondKeyCount != 3 && keyCount == 2) || (pressedValue == -1 && secondKeyCount != 3))
         {
