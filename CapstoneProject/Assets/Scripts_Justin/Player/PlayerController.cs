@@ -342,7 +342,12 @@ public class PlayerController : MonoBehaviour
         {
             secondKeyCount = 3;
         }
-        
+        else if(currentScene.name == "Level01_LouieScene")
+        {
+            if(transform.position.x > 88)
+                secondKeyCount = 3;
+        }
+
         // Cannot swap characters at this time
         if((secondKeyCount != 3 && keyCount == 2) || (pressedValue == -1 && secondKeyCount != 3))
         {
