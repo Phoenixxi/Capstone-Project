@@ -152,14 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55547edaf1de5194d8f7c7b00d31ab20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BombProjectile
-  projectileSpeed: 20
-  projectileLifetime: 1.5
+  projectileSpeed: 10
+  projectileLifetime: 1
   causesKnockback: 0
   orientationInfluencesKnockback: 1
   knockback: {x: 0, y: 0, z: 0}
   knockbackDuration: 0
   data: {fileID: 11400000, guid: 523c74c1d6101e6448d0152c017d2b95, type: 2}
-  screenShakeIntensity: 2
+  screenShakeIntensity: 0.8
   screenShakeDuration: 0.3
   validCollisions:
     serializedVersion: 2
