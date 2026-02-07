@@ -68,4 +68,9 @@ public abstract class Ability : MonoBehaviour
         if (!abilityInUse && currentCooldown > 0) return currentCooldown / cooldown;
         else return 0f;
     }
+
+    /// <summary>
+    /// Cancels this ability's execution if it is in use. Mostly used to cancel it upon a character's death
+    /// </summary>
+    public abstract void Cancel();
 }

@@ -572,6 +572,8 @@ public class EntityManager : MonoBehaviour
         if(this.gameObject.CompareTag("Player"))
         {
             Vector3 lastPlayerPosition = gameObject.transform.position;
+            movementQueue.Clear();
+            if (ability != null) ability.Cancel();
             switch(entityName)
             {
                 case "Zoom":

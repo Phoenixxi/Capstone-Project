@@ -100,7 +100,7 @@ public abstract class EnemyController : MonoBehaviour
 
     protected bool isGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, characterController.height/2 + 0.1f, LayerMask.GetMask("Ground"));
+        return Physics.Raycast(transform.position, -Vector3.up, characterController.height/2 + 0.1f, LayerMask.GetMask("Ground") | LayerMask.GetMask("Default"));
     }
 
     protected void applyGravity()

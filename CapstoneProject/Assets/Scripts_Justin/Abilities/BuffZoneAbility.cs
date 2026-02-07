@@ -66,4 +66,13 @@ public class BuffZoneAbility : Ability
         base.Awake();
         movements = new AbilityMovement[1];
     }
+
+    public override void Cancel()
+    {
+        if (!abilityInUse) return;
+        movements[0].Complete();
+        currentCooldown = cooldown;
+        abilityInUse = false;
+        //If decide to remove aura on death, add that here
+    }
 }
