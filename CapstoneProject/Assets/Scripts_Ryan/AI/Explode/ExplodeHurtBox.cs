@@ -69,7 +69,7 @@ public class ExplodeHurtBox : MonoBehaviour
 
             if(time >= duration)
             {
-                continue;
+                break;
             }
             time += Time.deltaTime;
 
