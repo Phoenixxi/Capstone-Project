@@ -335,20 +335,19 @@ public class PlayerController : MonoBehaviour
         float pressedValue = input.Get<float>();
 
         Scene currentScene = SceneManager.GetActiveScene();
-        if(currentScene.name == "Level2-Rework")
-        {
-            secondKeyCount = 3;
-        }
-        else if(currentScene.name == "Level01_LouieScene")
+        if(currentScene.name == "Level01_LouieScene")
         {
             if(transform.position.x > 88)
                 secondKeyCount = 3;
+        } else
+        {
+            secondKeyCount = 3;
         }
 
         // Cannot swap characters at this time
-        if((secondKeyCount != 3 && keyCount == 2) || (pressedValue == -1 && secondKeyCount != 3))
+        if ((secondKeyCount != 3 && keyCount == 2) || (pressedValue == -1 && secondKeyCount != 3))
         {
-            return; 
+            return;
         }
 
 
