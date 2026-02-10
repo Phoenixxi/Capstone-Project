@@ -17,7 +17,7 @@ public class RedFlashing : MonoBehaviour
         if(decrease)
         {
             canvasGroup.alpha -= Time.deltaTime*speedMultiplier;
-            if(canvasGroup.alpha <= 0.3*speedMultiplier)
+            if(canvasGroup.alpha <= 0.3)
                 decrease = false;
         }
         else if(!decrease)

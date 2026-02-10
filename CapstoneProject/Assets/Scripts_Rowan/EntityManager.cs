@@ -161,17 +161,17 @@ public class EntityManager : MonoBehaviour
 
         if(gameObject.CompareTag("Player"))
         {
-            if(currentHealth <= 10 && currentHealth > 5)
+            if(currentHealth <= 0.35f*maxHealth && 0.15f*maxHealth > 5)
             {
                 lowHealthCanvas.SetActive(true);
-                redFlashingScript.LowHealthWarning(1f);
+                redFlashingScript.LowHealthWarning(0.6f);
             }
-            if(currentHealth <= 5)
+            if(currentHealth <= 0.15f*maxHealth)
             {
                 lowHealthCanvas.SetActive(true);
-                redFlashingScript.LowHealthWarning(2f);
+                redFlashingScript.LowHealthWarning(3f);
             }
-            if(currentHealth > 10 || isAlive == false)
+            if(currentHealth > 0.35f*maxHealth || isAlive == false)
                 lowHealthCanvas.SetActive(false);
         }
 
