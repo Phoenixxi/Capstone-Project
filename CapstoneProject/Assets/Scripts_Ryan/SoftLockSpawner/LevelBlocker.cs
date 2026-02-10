@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,18 +21,23 @@ public class LevelBlocker : MonoBehaviour
     private List<EntityManager> entityManagers;
     private BoxCollider boxCollider;
     private bool allowedToMoveOn;
+    private bool triggered;
     private FlashingArrow arrow;
-
+    private EnemyCounter enemyCounter;
+    public event Action<EntityManager> EnemySpawned;
     private int count = 0;
 
     void Awake()
     {
+        triggered = false;
         boxCollider = GetComponent<BoxCollider>();
         entityManagers = new List<EntityManager>();
         if(MobSpawner == null || MobSpawner.Count == 0)
             allowedToMoveOn = false;
         else
             allowedToMoveOn = true;
+        
+        EnemySpawned += OnEnemySpawned;
     }
 
     void Start()
@@ -51,27 +57,49 @@ public class LevelBlocker : MonoBehaviour
                 arrow = null;
                 break;
         }
+
+        enemyCounter = GameObject.Find("EnemyCounter").GetComponent<EnemyCounter>();
     }
 
     public void initializeMobs()
     {
-        foreach(MobSpawner mobSpawner in MobSpawner)
+        if(!triggered)
         {
-            List<EntityManager> list = mobSpawner.SpawnEnemies();
-            foreach(EntityManager manager in list)
+            foreach(MobSpawner mobSpawner in MobSpawner)
             {
-                entityManagers.Add(manager);
-                manager.OnEntityKilledEvent += OnEnemyDeath;
+                if(mobSpawner == null)
+                {
+                    continue;
+                }
+
+                count += mobSpawner.GetMobCount();
             }
+
+            foreach(MobSpawner mobSpawner in MobSpawner)
+            {
+                if(mobSpawner == null)
+                {
+                    continue;
+                }
+
+                mobSpawner.StartCoroutine(mobSpawner.SpawnEnemiesCoroutine(EnemySpawned));
+            }
+            enemyCounter.initializeCount(count);
+            triggered = true;
         }
+    }
+
+    void OnEnemySpawned(EntityManager entityManager)
+    {
+        entityManagers.Add(entityManager);
+        entityManager.OnEntityKilledEvent += OnEnemyDeath;
     }
 
     void OnEnemyDeath()
     {
-        count++;
-        UnityEngine.Debug.Log($"Count: {count}");
-        entityManagers.RemoveAt(entityManagers.Count-1);
-        if(entityManagers.Count == 0)
+        count--;
+        enemyCounter.decreaseCount();
+        if(count <= 0)
         {
             allowedToMoveOn = true;
             boxCollider.isTrigger = true;
@@ -79,6 +107,7 @@ public class LevelBlocker : MonoBehaviour
             {
                 arrow.StartFlash();
             }
+            enemyCounter.disableText();
         }
     }
 
