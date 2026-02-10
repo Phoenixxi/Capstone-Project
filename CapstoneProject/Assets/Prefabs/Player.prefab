@@ -373,7 +373,7 @@ MonoBehaviour:
   boomJumpVFX: {fileID: 2374949704436431568, guid: 1b52b88992560014184545c4faa3e9bb, type: 3}
   boomGloomReactionVFX: {fileID: 0}
   boomZoomReactionVFX: {fileID: 0}
-  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
+  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: 99791c05788a42945a8d1fb8f98f3d04, type: 3}
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
@@ -546,7 +546,7 @@ MonoBehaviour:
   taggedElement: 1
   swappingManager: {fileID: 0}
   entityMovement: {fileID: 2384383547745438605}
-  currentHealth: 0
+  currentHealth: 50
   isAlive: 1
   data: {fileID: 0}
   movementSpeed: 7.5
@@ -581,7 +581,7 @@ MonoBehaviour:
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 0}
   boomZoomReactionVFX: {fileID: 0}
-  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
+  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: 99791c05788a42945a8d1fb8f98f3d04, type: 3}
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e404a19f4ab2547a5d737f097f026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashAbility
-  cooldown: 5
+  cooldown: 3
   damage: 30
   element: 1
   screenShakeIntensity: 0
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
   jumpSound:
     sound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
-    volume: 0.25
+    volume: 0.1
     soundCooldown: 0
   hurtSound:
     sound: {fileID: 8300000, guid: dca61efa361b40e4fb37c4f79dcb3383, type: 3}
@@ -845,7 +845,7 @@ MonoBehaviour:
   animator: {fileID: 6305530704846346651}
   spriteRenderer: {fileID: 906674667207298780}
   attackCooldown: 0.5
-  weaponDamage: 3
+  weaponDamage: 6
   projectile: {fileID: 1748878758445358261, guid: 45a94188cda1633449f8e28e121da538, type: 3}
   hasLifesteal: 1
   lifestealPercentage: 0.5
@@ -867,7 +867,7 @@ MonoBehaviour:
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 0}
   boomZoomReactionVFX: {fileID: 0}
-  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: eb685bc59c7f73e4ebe5b0da427d9d05, type: 3}
+  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: 99791c05788a42945a8d1fb8f98f3d04, type: 3}
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
@@ -884,17 +884,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a654bf0e9db944ba85a5dd0cacef36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuffZoneAbility
-  cooldown: 20
+  cooldown: 10
   damage: 2
   element: 3
   screenShakeIntensity: 0
   screenShakeDuration: 0
   buffZonePrefab: {fileID: 408079023155133850, guid: 38f39e8b5ba4fed42afee22c1cbe220a, type: 3}
-  radius: 10
-  duration: 10
+  radius: 7.5
+  duration: 5
   damageRate: 0.57
   attackCooldownMultiplier: 0.5
-  movementFreezeTime: 1
+  movementFreezeTime: 0.75
   animator: {fileID: 6305530704846346651}
 --- !u!114 &8422964845708979061
 MonoBehaviour:
@@ -1441,7 +1441,7 @@ GameObject:
   - component: {fileID: 2674484519494444496}
   - component: {fileID: 2170167916880610488}
   - component: {fileID: 2641225968413369767}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AimVisualTemp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1458,7 +1458,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.794}
-  m_LocalScale: {x: 1, y: 1.76, z: 1.68}
+  m_LocalScale: {x: 1, y: 1.76, z: 0.6902538}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2178800981379870261}

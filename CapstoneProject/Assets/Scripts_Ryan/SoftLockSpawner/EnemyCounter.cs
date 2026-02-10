@@ -11,6 +11,10 @@ public class EnemyCounter : MonoBehaviour
     {
         tmp = GetComponent<TextMeshProUGUI>();
         tmp.enabled = false;
+        if(EnemyRemainingTMP == null)
+        {
+            EnemyRemainingTMP = GameObject.Find("EnemyRemaining").GetComponent<TextMeshProUGUI>();
+        }
         EnemyRemainingTMP.enabled = false;
     }
 
