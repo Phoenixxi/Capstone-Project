@@ -297,6 +297,7 @@ public class EntityManager : MonoBehaviour
             isAlive = false;
             return;
         }
+
         OnEntityHurtEvent?.Invoke();
     }
 
@@ -354,6 +355,7 @@ public class EntityManager : MonoBehaviour
             
         }
 
+        animator.SetTrigger("FlashRed");
         //if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
         OnEntityHurtEvent?.Invoke();

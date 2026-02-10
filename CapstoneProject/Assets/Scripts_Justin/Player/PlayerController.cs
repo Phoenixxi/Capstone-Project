@@ -1,4 +1,4 @@
-﻿using Unity.VisualScripting;
+using Unity.VisualScripting;
 
 using UnityEngine;
 
@@ -320,8 +320,6 @@ public class PlayerController : MonoBehaviour
         secondKeyCount++;
     }
 
-
-
     /// <summary>
 
     /// Triggers when the player swaps to the left or right character. Uses the existing swapping methods so as to not break existing systems
@@ -333,7 +331,6 @@ public class PlayerController : MonoBehaviour
     private void OnSwapCharacter(InputValue input)
 
     {
-
 
         float pressedValue = input.Get<float>();
 
