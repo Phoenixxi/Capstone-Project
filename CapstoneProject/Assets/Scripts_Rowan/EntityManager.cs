@@ -78,6 +78,8 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private GameObject zoomDeathVFX;
     [SerializeField] private GameObject boomDeathVFX;
     [SerializeField] private GameObject gloomDeathVFX;
+    [SerializeField] private GameObject lowHealthCanvas;
+    private RedFlashing redFlashingScript;
 
 
     [Header("Zoom only")]
@@ -125,6 +127,8 @@ public class EntityManager : MonoBehaviour
         CreateWeapon();
         ability = GetComponent<Ability>();
         movementQueue = new Queue<AbilityMovement>();
+        if(gameObject.CompareTag("Player"))
+            redFlashingScript = lowHealthCanvas.GetComponent<RedFlashing>();
         
 
         // Set tagged element to default if default != normal
@@ -153,6 +157,27 @@ public class EntityManager : MonoBehaviour
         {
             currentCoyoteTime += Time.deltaTime;
         }
+
+
+        if(gameObject.CompareTag("Player"))
+        {
+            if(currentHealth <= 10 && currentHealth > 5)
+            {
+                lowHealthCanvas.SetActive(true);
+                redFlashingScript.LowHealthWarning(1f);
+            }
+            if(currentHealth <= 5)
+            {
+                lowHealthCanvas.SetActive(true);
+                redFlashingScript.LowHealthWarning(2f);
+            }
+            if(currentHealth > 10 || isAlive == false)
+                lowHealthCanvas.SetActive(false);
+        }
+
+        
+
+
     }
 
     public void SetHealthToFull()

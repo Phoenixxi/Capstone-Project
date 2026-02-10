@@ -12,24 +12,24 @@ public class RedFlashing : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LowHealthWarning(float speedMultiplier)
     {
-
         if(decrease)
         {
-            canvasGroup.alpha -= Time.deltaTime;
-            if(canvasGroup.alpha <= 0.2)
+            canvasGroup.alpha -= Time.deltaTime*speedMultiplier;
+            if(canvasGroup.alpha <= 0.3*speedMultiplier)
                 decrease = false;
         }
         else if(!decrease)
         {
-            canvasGroup.alpha += Time.deltaTime;
+            canvasGroup.alpha += Time.deltaTime*speedMultiplier;
             if(canvasGroup.alpha >= 1)
             {
                 decrease = true;
             }
         }
-        
     }
+
+
+
 }
