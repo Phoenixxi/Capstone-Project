@@ -1436,7 +1436,7 @@ Transform:
   m_GameObject: {fileID: 540842957}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22093317, y: 0, z: 0, w: 0.9752889}
-  m_LocalPosition: {x: -3.43, y: 4.8694735, z: -12.14377}
+  m_LocalPosition: {x: 33.8, y: 4.8694735, z: -36.273773}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2568,7 +2568,7 @@ Transform:
   m_GameObject: {fileID: 1144122129}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22093317, y: -0, z: -0, w: 0.9752889}
-  m_LocalPosition: {x: -3.43, y: 4.8694735, z: -12.14377}
+  m_LocalPosition: {x: 33.8, y: 4.8694735, z: -36.273773}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2783,7 +2783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1198806980
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2823,8 +2823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1d7beb093c02b49a875ac77d147be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossAttackTester
-  attack: {fileID: 0}
-  spawnPosition: {x: 0, y: 0, z: 0}
+  attack: {fileID: 3236447138608957569, guid: 9950de864d3d01e4b95943509e03bb4f, type: 3}
+  spawnPosition: {x: 31.093649, y: 0.5600009, z: -14.96}
 --- !u!4 &1198806982
 Transform:
   m_ObjectHideFlags: 0
@@ -3994,7 +3994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.43
+      value: 33.8
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4002,7 +4002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.12
+      value: -27.25
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalRotation.w
