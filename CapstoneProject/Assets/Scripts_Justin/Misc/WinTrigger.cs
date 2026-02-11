@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Steamworks;
+
 
 public class WinTrigger : MonoBehaviour
 {
@@ -24,8 +26,24 @@ public class WinTrigger : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level2-Rework")
         {
             SceneManager.LoadScene("WinScreen");
+            if (SteamClient.IsValid)
+            {
+                var achievement = new Steamworks.Data.Achievement("ACH_DefeatTheHeart");
+                if (!achievement.State)
+                {
+                    achievement.Trigger();
+                }
+            }
         } else
         {
+            if (SteamClient.IsValid)
+            {
+                var achievement = new Steamworks.Data.Achievement("ACH_BeatLevel1");
+                if (!achievement.State)
+                {
+                    achievement.Trigger();
+                }
+            }
             SceneManager.LoadScene("Level2-Rework");
         }
     }
