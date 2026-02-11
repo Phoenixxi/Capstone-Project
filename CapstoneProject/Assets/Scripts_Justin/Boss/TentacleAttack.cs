@@ -22,14 +22,14 @@ public class TentacleAttack : BossAttack
         tentacleAnim = GetComponentInChildren<Animator>();
         BossAttackEvents events = GetComponentInChildren<BossAttackEvents>();
         events.BecomeDamagingEvent += ActivateHurtbox;
-        events.AttackEndedEvent += () => { Destroy(gameObject); };
+        events.AttackEndedEvent += OnAttackEnded;
 
         hurtbox.SetHurtboxDamage(damage);
         hurtbox.SetElementType(lilGuysNamespace.EntityData.ElementType.Normal);
         base.Start();
     }
 
-    protected override void Attack()
+    public override void Attack()
     {
         if(attackType == AttackType.SLAM)
         {
@@ -45,9 +45,8 @@ public class TentacleAttack : BossAttack
         hurtbox.Activate(hurtboxActiveTime, true);
     }
 
-    //protected void FixedUpdate()
-    //{
-    //    hurtbox.transform.position = hurtboxParent.transform.position;
-    //    hurtbox.transform.rotation = hurtboxParent.transform.rotation;
-    //}
+    protected void OnAttackEnded()
+    {
+        if (!canRepeat) Destroy(gameObject);
+    }
 }

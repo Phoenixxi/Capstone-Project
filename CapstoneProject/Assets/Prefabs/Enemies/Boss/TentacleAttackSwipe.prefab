@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a886157e8142f42ab8a118fde22093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TentacleAttack
-  damage: 0
+  damage: 10
+  canRepeat: 1
   hurtbox: {fileID: 8396555980943025915}
   hurtboxActiveTime: 0.8
   attackType: 1

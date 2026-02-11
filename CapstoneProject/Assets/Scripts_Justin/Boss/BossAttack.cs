@@ -7,6 +7,7 @@ public abstract class BossAttack : MonoBehaviour
 {
     [Header("General Attack Settings")]
     [SerializeField] protected int damage;
+    [SerializeField] protected bool canRepeat; //Set to true if you don't want the attack to delete itself after finishing
     
     protected virtual void Start()
     {
@@ -16,5 +17,5 @@ public abstract class BossAttack : MonoBehaviour
     /// <summary>
     /// Triggers this attack to occur
     /// </summary>
-    protected abstract void Attack();
+    public abstract void Attack();
 }
