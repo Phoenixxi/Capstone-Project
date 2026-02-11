@@ -15,18 +15,18 @@ public class LocalizedText : MonoBehaviour
 
     void OnEnable()
     {
-        LocalizationManager.OnLanguageChanged += Refresh;
+        //LocalizationManager.OnLanguageChanged += Refresh;
         Refresh();
     }
 
     void OnDisable()
     {
-        LocalizationManager.OnLanguageChanged -= Refresh;
+        //LocalizationManager.OnLanguageChanged -= Refresh;
     }
 
     void Refresh()
     {
         // Try to replace text with translation from dictionary
-        textComp.text = LocalizationManager.GetValue(original);
+        //textComp.text = LocalizationManager.GetValue(original);
     }
 }
