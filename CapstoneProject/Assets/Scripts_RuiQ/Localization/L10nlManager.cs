@@ -1,20 +1,34 @@
-using System;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
-public static class LocalizationManager
+public class L10nManager : MonoBehaviour
 {
-    // Event to notify all UI elements when language is changed
-    public static event Action OnLanguageChanged;
-    private static LocalizationData currentData;
+    public static L10nManager Instance;
+    private Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    public TextAsset csvFile; // 拖入你翻译好的 CSV 文件
 
-    public static void SetLanguage(LocalizationData newData)
+    void Awake()
     {
-        currentData = newData;
-        OnLanguageChanged?.Invoke();
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); return; }
+        LoadCSV();
     }
 
-    public static string GetValue(string original)
+    void LoadCSV()
     {
-        if (currentData == null) return original;
-        return currentData.GetTranslation(original);
+        if (csvFile == null) return;
+        string[] lines = csvFile.text.Split('\n');
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string[] row = lines[i].Split(',');
+            if (row.Length >= 2)
+            {
+                string key = row[0].Trim().Replace("\\n", "\n");
+                string value = row[1].Trim().Replace("\\n", "\n");
+                if (!dictionary.ContainsKey(key)) dictionary.Add(key, value);
+            }
+        }
     }
+
+    public string GetText(string key) => dictionary.TryGetValue(key.Trim(), out string val) ? val : key;
 }

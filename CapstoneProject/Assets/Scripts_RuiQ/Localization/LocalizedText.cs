@@ -4,29 +4,15 @@ using TMPro;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class LocalizedText : MonoBehaviour
 {
-    private TextMeshProUGUI textComp;
+    private TextMeshProUGUI tmp;
     private string original;
 
-    void Awake()
-    {
-        textComp = GetComponent<TextMeshProUGUI>();
-        original = textComp.text; // Record the English text in Inspector
-    }
+    void Awake() => tmp = GetComponent<TextMeshProUGUI>();
 
     void OnEnable()
     {
-        LocalizationManager.OnLanguageChanged += Refresh;
-        Refresh();
-    }
-
-    void OnDisable()
-    {
-        LocalizationManager.OnLanguageChanged -= Refresh;
-    }
-
-    void Refresh()
-    {
-        // Try to replace text with translation from dictionary
-        textComp.text = LocalizationManager.GetValue(original);
+        if (L10nlManager.Instance == null) return;
+        if (string.IsNullOrEmpty(original)) original = tmp.text;
+        tmp.text = L10nlManager.Instance.GetText(original);
     }
 }
