@@ -51,6 +51,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToothAttack
   damage: 0
   canRepeat: 1
+  toothHurtbox: {fileID: 87032372639561780}
+  toothAttackTimer: 0
+  toothAttackLingerTimer: 0
 --- !u!1001 &4266676668634121512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,7 +72,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5327908689012351522, guid: a08e2407f662d9b4a8a4fd5cf1174420, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.65
+      value: 1.118
       objectReference: {fileID: 0}
     - target: {fileID: 5327908689012351522, guid: a08e2407f662d9b4a8a4fd5cf1174420, type: 3}
       propertyPath: m_LocalPosition.z
@@ -170,8 +173,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.72, y: 1.22, z: 1.46}
-  m_Center: {x: 0, y: -1.4, z: 0}
+  m_Size: {x: 1.72, y: 0.8, z: 1.46}
+  m_Center: {x: 0, y: -1.04, z: 0}
 --- !u!1001 &4975375676561551202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -190,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5327908689012351522, guid: a08e2407f662d9b4a8a4fd5cf1174420, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.65
+      value: 1.118
       objectReference: {fileID: 0}
     - target: {fileID: 5327908689012351522, guid: a08e2407f662d9b4a8a4fd5cf1174420, type: 3}
       propertyPath: m_LocalPosition.z
@@ -259,8 +262,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.72, y: 1.22, z: 1.46}
-  m_Center: {x: 0, y: -1.4, z: 0}
+  m_Size: {x: 1.72, y: 0.8, z: 1.46}
+  m_Center: {x: 0, y: -1.04, z: 0}
 --- !u!54 &8339677786524420239
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -311,7 +314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5327908689012351522, guid: a08e2407f662d9b4a8a4fd5cf1174420, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.65
+      value: 1.118
       objectReference: {fileID: 0}
     - target: {fileID: 5327908689012351522, guid: a08e2407f662d9b4a8a4fd5cf1174420, type: 3}
       propertyPath: m_LocalPosition.z
@@ -385,8 +388,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.72, y: 1.22, z: 1.46}
-  m_Center: {x: 0, y: -1.4, z: 0}
+  m_Size: {x: 1.72, y: 0.8, z: 1.46}
+  m_Center: {x: 0, y: -1.04, z: 0}
 --- !u!54 &3087001123256139688
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -469,13 +472,90 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2712476171680797990, guid: 2f5aa69252692ad4eabec21355e90b32, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4567006696280398818}
+    - targetCorrespondingSourceObject: {fileID: 2712476171680797990, guid: 2f5aa69252692ad4eabec21355e90b32, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2566587508964066275}
+    - targetCorrespondingSourceObject: {fileID: 2712476171680797990, guid: 2f5aa69252692ad4eabec21355e90b32, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 87032372639561780}
   m_SourcePrefab: {fileID: 100100000, guid: 2f5aa69252692ad4eabec21355e90b32, type: 3}
 --- !u!4 &8576706142497922197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3382051692375609244, guid: 2f5aa69252692ad4eabec21355e90b32, type: 3}
   m_PrefabInstance: {fileID: 6478958939083985673}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8956890443297031727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2712476171680797990, guid: 2f5aa69252692ad4eabec21355e90b32, type: 3}
+  m_PrefabInstance: {fileID: 6478958939083985673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &4567006696280398818
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956890443297031727}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2566587508964066275
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956890443297031727}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 8388351
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15.24, y: 0.56, z: 9.98}
+  m_Center: {x: 0, y: 0.66, z: 4.76}
+--- !u!114 &87032372639561780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956890443297031727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88f375b4bba0c24b94da205b04e3d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+  screenShakeIntensity: 0
+  screenShakeDuration: 0
+  layerMaskType: 1
 --- !u!1001 &7024340365829303113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -494,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5327908689012351522, guid: a08e2407f662d9b4a8a4fd5cf1174420, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.65
+      value: 1.118
       objectReference: {fileID: 0}
     - target: {fileID: 5327908689012351522, guid: a08e2407f662d9b4a8a4fd5cf1174420, type: 3}
       propertyPath: m_LocalPosition.z
@@ -563,8 +643,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.72, y: 1.22, z: 1.46}
-  m_Center: {x: 0, y: -1.4, z: 0}
+  m_Size: {x: 1.72, y: 0.8, z: 1.46}
+  m_Center: {x: 0, y: -1.04, z: 0}
 --- !u!54 &8510167067251324606
 Rigidbody:
   m_ObjectHideFlags: 0
