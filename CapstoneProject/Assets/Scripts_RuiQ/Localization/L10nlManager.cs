@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class L10nManager : MonoBehaviour
+public class L10nlManager : MonoBehaviour
 {
-    public static L10nManager Instance;
+    public static L10nlManager Instance;
     private Dictionary<string, string> dictionary = new Dictionary<string, string>();
     public TextAsset csvFile; // 拖入你翻译好的 CSV 文件
 
