@@ -11,7 +11,7 @@ public abstract class BossAttack : MonoBehaviour
     
     protected virtual void Start()
     {
-        Attack();
+        if(!canRepeat) Attack();
     }
 
     /// <summary>
