@@ -10,6 +10,8 @@ public class ToothAttack : BossAttack
     [SerializeField] protected Hurtbox toothHurtbox;
     [SerializeField] protected float toothAttackTimer;
     [SerializeField] protected float toothAttackLingerTimer;
+    [SerializeField] protected Animator[] molarAnimators;
+    [SerializeField] protected Animator toothAnimator;
     protected float currAttackTimer;
     protected float currLingerTimer;
 
@@ -25,7 +27,7 @@ public class ToothAttack : BossAttack
         currAttackTimer = toothAttackLingerTimer;
         currLingerTimer = toothAttackLingerTimer;
         Debug.Log("Tooth attack starting...");
-        //TODO Trigger molar animations
+        foreach (Animator molar in molarAnimators) molar.SetTrigger("Show");
     }
 
     protected void Update()
@@ -35,7 +37,7 @@ public class ToothAttack : BossAttack
             currAttackTimer -= Time.deltaTime;
             if(currAttackTimer <= 0)
             {
-                //TODO Activate hurtbox amd play animation
+                toothAnimator.SetTrigger("Show");
                 toothHurtbox.Activate(toothAttackLingerTimer, true);
                 Debug.Log("Teeth can damage!");
             }
@@ -45,6 +47,8 @@ public class ToothAttack : BossAttack
             if(currLingerTimer <= 0)
             {
                 //TODO Retract teeth
+                toothAnimator.SetTrigger("Hide");
+                foreach (Animator molar in molarAnimators) molar.SetTrigger("Hide");
                 Debug.Log("Teeth retracted");
                 if (!canRepeat) Destroy(gameObject);
             }
