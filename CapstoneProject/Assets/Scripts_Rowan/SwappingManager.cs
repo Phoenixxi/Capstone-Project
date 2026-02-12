@@ -20,15 +20,6 @@ public class SwappingManager : MonoBehaviour
         currentCharacter = "zoom";
     }
 
-    private void OnEnable()
-    {
-        RangedWeapon.OnLifestealHit += ApplyLifesteal;
-    }
-
-    private void OnDisable()
-    {
-        RangedWeapon.OnLifestealHit -= ApplyLifesteal;
-    }
 
     public Transform GetCurrentCharacterTransform()
     {
@@ -73,16 +64,5 @@ public class SwappingManager : MonoBehaviour
         SceneManager.LoadScene("GameOver");
     }
 
-    /// <summary>
-    /// Applies healing to Zoom and Boom (if they are alive)
-    /// </summary>
-    /// <param name="amount">The amount of healing to give to Zoom and Boom</param>
-    private void ApplyLifesteal(float amount)
-    {
-        EntityManager character = charactersList[0].GetComponent<EntityManager>();
-        if (character.isAlive) character.Heal(amount);
-        character = charactersList[1].GetComponent<EntityManager>();
-        if (character.isAlive) character.Heal(amount);
-    }
 
 }

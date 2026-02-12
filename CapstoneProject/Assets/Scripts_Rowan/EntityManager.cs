@@ -188,7 +188,7 @@ public class EntityManager : MonoBehaviour
     private void CreateWeapon()
     {
         //TODO Replace default element with the entity-specific one
-        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, animator, hasLifesteal, lifestealPercentage, projectileCount, perBulletSpread);
+        if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, animator, projectileCount, perBulletSpread);
         else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime, animator);
         else if(explodeHurtBox != null) weapon = new ExplodeWeapon(attackCooldown, weaponDamage, defaultElement, explodeHurtBox, animator);
         else Debug.LogError($"Neither a melee nor ranged weapon could be assigned to {gameObject}. Make sure either the Projectile or Hurtbox fields have a value");

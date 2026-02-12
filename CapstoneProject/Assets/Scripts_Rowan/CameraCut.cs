@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CameraCut : MonoBehaviour
 {
@@ -17,10 +18,20 @@ public class CameraCut : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        mainCamera.SetActive(false);
-        cutSceneCamera.SetActive(true);
-        playerInput.actions.FindActionMap("Player").Disable();
-        StartCoroutine(waitTime());
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Level2-Rework")
+        {
+            mainCamera.SetActive(false);
+            cutSceneCamera.SetActive(true);
+            Destroy(gameObject);
+        }
+        else
+        {
+            mainCamera.SetActive(false);
+            cutSceneCamera.SetActive(true);
+            playerInput.actions.FindActionMap("Player").Disable();
+            StartCoroutine(waitTime());
+        }
     }
 
     IEnumerator waitTime()
