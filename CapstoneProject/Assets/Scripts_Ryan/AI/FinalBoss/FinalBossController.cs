@@ -9,10 +9,13 @@ public class FinalBossController : MonoBehaviour
 {
     [SerializeField] private EntityManager entityManager;
     [SerializeField] private PriorityQueue<FinalBossAttacks> finalBossAttackQueue = new PriorityQueue<FinalBossAttacks>();
-    [SerializeField] private float AttackCoolDown = 5f;
+    [SerializeField] private float AttackCoolDownMin = 5f;
+    [SerializeField] private float AttackCoolDownMax = 10f;
     [SerializeField] public float DecreaseAttackCoolDownPercentage = 30f;
     [SerializeField] private float PreventDoubleAttackChancePercentage = 50f;
 
+
+    private float AttackCoolDown;
     private float timeSinceLastAttack = 0f;
     private GameObject playerGameObject;
     private FinalBossAttacks previousAttack;
@@ -21,6 +24,7 @@ public class FinalBossController : MonoBehaviour
     void Awake()
     {
         playerGameObject = GameObject.FindGameObjectWithTag("Player"); //Find the player in the world
+        AttackCoolDown = UnityEngine.Random.Range(AttackCoolDownMin, AttackCoolDownMax);
         PhaseTwo += cutAttackCoolDown;
     }
 
@@ -33,7 +37,10 @@ public class FinalBossController : MonoBehaviour
 
     private void cutAttackCoolDown()
     {
-        AttackCoolDown -= AttackCoolDown * (DecreaseAttackCoolDownPercentage/100f);
+        float mid = (AttackCoolDownMin + AttackCoolDownMax)/2;
+        mid -= mid * (DecreaseAttackCoolDownPercentage/100f);
+        AttackCoolDownMax -= mid;
+        AttackCoolDownMin = Mathf.Clamp(AttackCoolDownMin - mid, 1f, AttackCoolDownMin);
     }
 
     private void AttemptToAttack()
@@ -98,6 +105,7 @@ public class FinalBossController : MonoBehaviour
     private void Attack(FinalBossAttacks attack)
     {
         attack.Attack(playerGameObject.transform);
+        AttackCoolDown = UnityEngine.Random.Range(AttackCoolDownMin, AttackCoolDownMax);
         timeSinceLastAttack = Time.time;
     }
 

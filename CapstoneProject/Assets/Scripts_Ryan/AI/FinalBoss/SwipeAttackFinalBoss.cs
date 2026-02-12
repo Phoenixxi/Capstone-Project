@@ -18,6 +18,13 @@ public class SwipeAttackFinalBoss : FinalBossAttacks
 
         base.Awake();
     }
+
+    protected override void Start()
+    {
+        base.Start();
+        topLeftSwipe.localScale = new Vector3(-1, 1, 1);
+        bottomRightSwipe.localScale = new Vector3(-1, 1, 1);
+    }
     public override void Attack(Transform PlayerTransform)
     {
         float topDistance = Vector3.Distance(PlayerTransform.position, topMidPoint);

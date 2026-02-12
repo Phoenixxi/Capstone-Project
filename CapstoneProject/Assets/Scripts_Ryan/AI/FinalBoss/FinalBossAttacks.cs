@@ -15,6 +15,11 @@ public abstract class FinalBossAttacks : MonoBehaviour
         finalBossController.PhaseTwo += CutCoolDownDuration;
     }
 
+    protected virtual void Start()
+    {
+        
+    }
+
     void Update()
     {
         if(HasCooldownExpired())
