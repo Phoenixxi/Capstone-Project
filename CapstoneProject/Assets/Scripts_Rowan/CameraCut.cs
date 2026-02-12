@@ -21,7 +21,7 @@ public class CameraCut : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Level2-Rework")
         {
-            mainCamera.SetActive(false);
+           //mainCamera.SetActive(false);
             cutSceneCamera.SetActive(true);
             Destroy(gameObject);
         }
