@@ -5,14 +5,15 @@ using Steamworks;
 
 public class SteamIntegration : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         try
         {
             Steamworks.SteamClient.Init(4343350);
             PrintYourName();
-            UnlockOpenGameAchievement();
+            UnlockOpenGameAchievement(); 
+            Debug.Log("It worked lmao");
         }
         catch (System.Exception e)
         {
@@ -21,7 +22,7 @@ public class SteamIntegration : MonoBehaviour
             //Cant find steam_api dll?
             //Dont have permission to play app?
             
-            Debug.Log(e);
+            Debug.Log("It no work lmao");
         }
     }
 
