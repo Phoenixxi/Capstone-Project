@@ -26,7 +26,8 @@ public class FinalBossController : MonoBehaviour
 
     void Update()
     {
-        if(entityManager.currentHealth <= entityManager.maxHealth / 2) PhaseTwo?.Invoke();
+        //REMEMBER TO REMOVE THIS LINE ONCE U HAVE ENTITYMANAGER IN
+        //if(entityManager.currentHealth <= entityManager.maxHealth / 2) PhaseTwo?.Invoke();
         AttemptToAttack();
     }
 
