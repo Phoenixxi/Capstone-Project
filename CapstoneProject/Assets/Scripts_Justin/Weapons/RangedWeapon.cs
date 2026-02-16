@@ -13,23 +13,17 @@ public class RangedWeapon : Weapon
     private Vector3 attackDirection;
     private Vector3 currentLocation;
 
-    private bool hasLifesteal;
-    private float lifeStealPercentage;
     private PlayerController player;
 
     private int projectileCount;
     private float perBulletSpread; //Treated as degrees
 
-    public static Action<float> OnLifestealHit;
 
-    public RangedWeapon(float attackCooldown, int damage, ElementType element, GameObject projectile, Animator animator, bool hasLifesteal = false, float lifeStealPercentage = 1,
+    public RangedWeapon(float attackCooldown, int damage, ElementType element, GameObject projectile, Animator animator,
         int projectileCount = 1, float perBulletSpread = 0f) : base(attackCooldown, damage, element, animator)
     {
         this.projectile = projectile;
         attackDirection = Vector3.zero;
-        this.hasLifesteal = hasLifesteal;
-        if (hasLifesteal) player = UnityEngine.Object.FindFirstObjectByType<PlayerController>();
-        this.lifeStealPercentage = lifeStealPercentage;
         this.projectileCount = projectileCount;
         this.perBulletSpread = perBulletSpread;
     }
@@ -77,7 +71,6 @@ public class RangedWeapon : Weapon
         projectileScript.SetProjectileElement(element);
         //projectileScript.ChangeMoveDirection(attackDirection);
         projectileScript.ChangeMoveDirection(adjustedAttackDirection);
-        if (hasLifesteal) projectileScript.OnProjectileHitEntity += GiveLifesteal;
     }
 
     /// <summary>
@@ -92,15 +85,6 @@ public class RangedWeapon : Weapon
         this.currentLocation = entityPosition;
     }
 
-    /// <summary>
-    /// Provides the player (specifically) with lifesteal if the weapon has it enabled
-    /// </summary>
-    /// <param name="damage"></param>
-    private void GiveLifesteal(int damage)
-    {
-        //player.HealAllCharacters((float)damage * lifeStealPercentage);
-        OnLifestealHit?.Invoke((float)damage * lifeStealPercentage);
-    }
 
     public override void AttackFromAnimation()
     {

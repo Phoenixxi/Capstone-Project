@@ -94,13 +94,17 @@ public class Hurtbox : MonoBehaviour
     //dash for Zoom (CHANGE CODE IF OTHER CHARACTERS USE MELEE)
     private void OnTriggerEnter(Collider other)
     {
-        if(!isDashing) return;
+        Debug.Log($"{other.gameObject} in trigger");
+        if (!isDashing) return;
         Debug.Log($"Melee hit {other.gameObject}", other.gameObject);
         EntityManager hitEntity = other.gameObject.GetComponent<EntityManager>();
+        if (hitEntity == null) hitEntity = other.gameObject.GetComponentInChildren<EntityManager>();
+        Debug.Log($"Entity manager null: {hitEntity == null}");
+        Debug.Log($"Entity manager in hit entities: {hitEntities.Contains(hitEntity)}");
         if (hitEntity == null || hitEntities.Contains(hitEntity)) return;
+        hitEntity.TakeDamage(damage, element);
         hitEntities.Add(hitEntity);
-        hitEntity.TakeDamage(damage, ElementType.Zoom);
-        if(!hasShakenScreen)
+        if (!hasShakenScreen)
         {
             cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
             hasShakenScreen = true;
@@ -116,11 +120,14 @@ public class Hurtbox : MonoBehaviour
         {
             Debug.Log($"Melee hit {collider.gameObject}", collider.gameObject);
             EntityManager entityManager = collider.gameObject.GetComponentInChildren<EntityManager>();
-            if(entityManager == null)
+            if (entityManager == null) entityManager = collider.gameObject.GetComponent<EntityManager>();
+            if (entityManager == null)
             {
                 Debug.LogError("oh thats not good brother, there should be an entitymanager");
             }
+            else if (hitEntities.Contains(entityManager)) return;
             entityManager.TakeDamage(damage, element);
+            hitEntities.Add(entityManager);
         }
 
         if(!hasShakenScreen)

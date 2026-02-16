@@ -55,6 +55,7 @@ public class DashAbility : Ability
         currentDashTimer = 0f;
         dashTimer = distance / speed;
         dashHurtbox.SetHurtboxDamage(damage);
+        dashHurtbox.SetElementType(lilGuysNamespace.EntityData.ElementType.Zoom);
     }
 
     protected override void Update()

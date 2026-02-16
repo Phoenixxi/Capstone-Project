@@ -1,16 +1,17 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MobSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject RangeVisualizer;
     [SerializeField] private Transform ProjectileEnemyPrefab;
     [SerializeField] private Transform MeleeEnemyPrefab;
     [SerializeField] private int ProjectileCount;
     [SerializeField] private int MeleeCount;
-    [SerializeField] private int range;
+    [SerializeField] private float delay;
 
     void Awake()
     {
@@ -23,33 +24,62 @@ public class MobSpawner : MonoBehaviour
         {
             Debug.LogError($"{gameObject.name} is not above a navmesh ground. Please put it above a navmesh ground object");
         }
-
-        RangeVisualizer.gameObject.SetActive(false);
     }
 
-    public List<EntityManager> SpawnEnemies()
+    public int GetMobCount()
     {
-        List<EntityManager> enemies = new List<EntityManager>();
+        return ProjectileCount + MeleeCount;
+    }
+
+    public IEnumerator SpawnEnemiesCoroutine(System.Action<EntityManager> OnEnemySpawned)
+    {
+        List<Transform> spawnQueue = new List<Transform>();
+
         for(int i = 0; i < ProjectileCount; i++)
         {
-            Vector3 pos;
-            RandomPoint(transform.position, range, out pos);
-            Transform enemy = Instantiate(ProjectileEnemyPrefab, pos, Quaternion.identity);
-            EntityManager entityManager = enemy.GetComponentInChildren<EntityManager>();
-            enemies.Add(entityManager);
+            spawnQueue.Add(ProjectileEnemyPrefab);
         }
-
         for(int i = 0; i < MeleeCount; i++)
         {
-            Vector3 pos;
-            RandomPoint(transform.position, range, out pos);
-            Transform enemy = Instantiate(MeleeEnemyPrefab, pos, Quaternion.identity);
-            EntityManager entityManager = enemy.GetComponentInChildren<EntityManager>();
-            enemies.Add(entityManager);
+            spawnQueue.Add(MeleeEnemyPrefab);
         }
 
-        return enemies;
+        spawnQueue = spawnQueue.OrderBy(x => UnityEngine.Random.value).ToList();
+
+        for(int i = 0; i < spawnQueue.Count; i++)
+        {
+            Vector3 pos;
+            RandomPoint(transform.position, 1f, out pos);
+            Transform enemy = Instantiate(spawnQueue[i], pos, Quaternion.identity);
+            EntityManager entityManager = enemy.GetComponentInChildren<EntityManager>();
+            OnEnemySpawned?.Invoke(entityManager);
+            yield return new WaitForSeconds(delay);
+        }
     }
+
+    // public List<EntityManager> SpawnEnemies()
+    // {
+    //     List<EntityManager> enemies = new List<EntityManager>();
+    //     for(int i = 0; i < ProjectileCount; i++)
+    //     {
+    //         Vector3 pos;
+    //         RandomPoint(transform.position, range, out pos);
+    //         Transform enemy = Instantiate(ProjectileEnemyPrefab, pos, Quaternion.identity);
+    //         EntityManager entityManager = enemy.GetComponentInChildren<EntityManager>();
+    //         enemies.Add(entityManager);
+    //     }
+
+    //     for(int i = 0; i < MeleeCount; i++)
+    //     {
+    //         Vector3 pos;
+    //         RandomPoint(transform.position, range, out pos);
+    //         Transform enemy = Instantiate(MeleeEnemyPrefab, pos, Quaternion.identity);
+    //         EntityManager entityManager = enemy.GetComponentInChildren<EntityManager>();
+    //         enemies.Add(entityManager);
+    //     }
+
+    //     return enemies;
+    // }
 
     /// <summary>
     /// Picks a random point for the AI to go to
