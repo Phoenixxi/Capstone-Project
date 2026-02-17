@@ -6,7 +6,7 @@ using ElementType = lilGuysNamespace.EntityData.ElementType;
 public class EntitySFXManager : MonoBehaviour
 {
     [Header("Sounds")]
-    [SerializeField] private Sound jumpSound;
+    [SerializeField] private AudioSource jumpSound;
     [SerializeField] private Sound hurtSound;
     [SerializeField] private Sound deathSound;
     [SerializeField] private Sound zoomBoomReactionSound;
