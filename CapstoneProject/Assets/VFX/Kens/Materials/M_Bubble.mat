@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: f45207aa8f9b2f349a63470c9b6ecf0c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _FDISTORTTEX_ON
   m_InvalidKeywords:
   - _ALPHAADD_ON
   - _CADDTEXUVT_ON
@@ -99,7 +100,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f67ecb16641aa18429db04a34c2e5143, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -107,7 +108,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c3768fa46ee7b9e459657cceaed65073, type: 3}
+        m_Texture: {fileID: 2800000, guid: e8381403c548a224c9859307fd966b25, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskPlusTex:
@@ -273,7 +274,7 @@ Material:
     - _DistortAddTex: 1
     - _DistortDisTex: 0
     - _DistortDissolveTex: 0
-    - _DistortFactor: 0
+    - _DistortFactor: 0.08
     - _DistortFactorC: 1
     - _DistortMainTex: 1
     - _DistortMask: 0
@@ -288,9 +289,9 @@ Material:
     - _DistortTexDetail: 0
     - _DistortTexRotator: 0
     - _DistortTexUMirror: 0
-    - _DistortTexUSpeed: 0
+    - _DistortTexUSpeed: 0.3
     - _DistortTexVMirror: 0
-    - _DistortTexVSpeed: 0
+    - _DistortTexVSpeed: 0.3
     - _DistortTex_Uspeed: 0
     - _DistortTex_Vspeed: 0
     - _DistortUIntensity: 1
@@ -300,7 +301,7 @@ Material:
     - _FDepth: 0
     - _FDissolvePlusTex: 0
     - _FDissolveTex: 0
-    - _FDistortTex: 0
+    - _FDistortTex: 1
     - _FFnl: 0
     - _FMaskTex: 0
     - _FNLfanxiangkaiguan: 0
