@@ -888,6 +888,7 @@ MonoBehaviour:
   perBulletSpread: 0
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  explodeHurtBox: {fileID: 0}
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 2261785964360444772, guid: f2ba69326fe154b46bc7f0c88578606d, type: 3}
@@ -896,6 +897,7 @@ MonoBehaviour:
   zoomDeathVFX: {fileID: 0}
   boomDeathVFX: {fileID: 0}
   gloomDeathVFX: {fileID: 0}
+  lowHealthCanvas: {fileID: 0}
   zoomAttackVFX: {fileID: 0}
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
@@ -1028,43 +1030,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntitySFXManager
   jumpSound:
     sound: {fileID: 0}
-    volume: 1
     soundCooldown: 0
   hurtSound:
     sound: {fileID: 8300000, guid: 093f72c70e62a6f48ba404a4a298beb8, type: 3}
-    volume: 0.25
     soundCooldown: 0.3
   deathSound:
     sound: {fileID: 8300000, guid: f650f79943f68ca48b27f7e244902130, type: 3}
-    volume: 0.25
     soundCooldown: 0
   zoomBoomReactionSound:
     sound: {fileID: 8300000, guid: 4e9de55bdd577d249af5fb3e7c68b30b, type: 3}
-    volume: 0.2
     soundCooldown: 0.2
   zoomGloomReactionSound:
     sound: {fileID: 8300000, guid: 4788e27e50f9d48449789ea3013d20b8, type: 3}
-    volume: 0.2
     soundCooldown: 0.2
   boomGloomReactionSound:
     sound: {fileID: 8300000, guid: a5f5f109abee84944a0fcf85e621e1c3, type: 3}
-    volume: 0.2
     soundCooldown: 0.2
   zoomAttackSound:
     sound: {fileID: 0}
-    volume: 1
     soundCooldown: 0
   boomAttackSound:
     sound: {fileID: 0}
-    volume: 1
     soundCooldown: 0
   gloomAttackSound:
     sound: {fileID: 0}
-    volume: 1
     soundCooldown: 0
   normalAttackSound:
     sound: {fileID: 8300000, guid: 7098aef7ffc37374cb603e3b43ec253a, type: 3}
-    volume: 0.05
     soundCooldown: 0
 --- !u!114 &4105748099926472111
 MonoBehaviour:

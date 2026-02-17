@@ -8,13 +8,13 @@ using UnityEngine;
 public class Sound
 {
     [SerializeField]
-    private AudioClip sound;
-    [SerializeField]
-    [Range(0, 1)] private float volume = 1f;
+    private AudioSource sound;
+    //[SerializeField]
+    //[Range(0, 1)] private float volume = 1f;
     [SerializeField] private float soundCooldown = 0f;
     private float lastPlayedTime = 0f;
-    public AudioClip SoundClip { get => sound; }
-    public float Volume { get => volume; }
+    public AudioClip SoundClip { get => sound.clip; }
+    public float Volume { get => sound.volume; }
 
     /// <summary>
     /// Checks to see if the sound's cooldown has expired and, if so, resets it
