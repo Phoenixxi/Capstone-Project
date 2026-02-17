@@ -24,7 +24,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: f45207aa8f9b2f349a63470c9b6ecf0c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _FDEPTH_ON
   m_InvalidKeywords:
   - _DISSOLVEPLUSTEXAR_ON
   - _DISSOLVEPLUSTEXUVCLIP_ON
@@ -159,7 +160,7 @@ Material:
     - _DistortUIntensity: 1
     - _DistortVIntensity: 1
     - _Dst: 10
-    - _FDepth: 0
+    - _FDepth: 1
     - _FDissolvePlusTex: 0
     - _FDissolveTex: 0
     - _FDistortTex: 0
