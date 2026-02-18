@@ -15,6 +15,11 @@ public class BossEyeTracking : MonoBehaviour
     void Update()
     {
         transform.LookAt(playerTransform);
-        transform.Rotate(-90f, 0f, 0f, Space.Self);
+        Vector3 angleRotations = transform.rotation.eulerAngles;
+        angleRotations.x = -95;
+        transform.rotation = Quaternion.Euler(angleRotations);
+        //transform.Rotate(-90f, 0f, 0f, Space.Self);
+        //if (angleRotations.x > 270) transform.rotation = Quaternion.Euler(270, angleRotations.y, angleRotations.z);
+        Debug.Log(transform.rotation.eulerAngles.x);
     }
 }
