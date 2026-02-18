@@ -403,6 +403,8 @@ MonoBehaviour:
   slamLayerMask:
     serializedVersion: 2
     m_Bits: 2048
+  knockbackStrength: 10
+  knockbackDuration: 0.3
   boomVFXPrefab: {fileID: 5780632897753931835, guid: 89f3093e4bd654448b352f2dc630790b, type: 3}
   animator: {fileID: 220673775427230319}
 --- !u!114 &3718056476381582310

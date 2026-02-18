@@ -5061,7 +5061,7 @@ PrefabInstance:
       objectReference: {fileID: 1585327693}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 447.7
+      value: 453.4
       objectReference: {fileID: 0}
     - target: {fileID: 4736012897111735060, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17724,43 +17724,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e05abe542c13dc4284d404cdd21c362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomDropper
-  ballPrefab: {fileID: 8588622905506009674, guid: 3f581ddfffbe525489d681ea7fce23ba, type: 3}
-  spawnAreaSize: {x: 135, y: 43}
-  dropHeight: -1
+  path: {fileID: 0}
+  meatballPrefab: {fileID: 0}
   spawnInterval: 0.3
-  spawnDistribution:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.6712804
-      value: 0.99925
-      inSlope: 0.23551542
-      outSlope: 0.23551542
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.097806334
-    - serializedVersion: 3
-      time: 0.9986572
-      value: 0.50904083
-      inSlope: -0.5530413
-      outSlope: -0.5530413
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.08480127
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  dropHeight: -1
+  horizontalRange: 3
+  forwardRange: 1
 --- !u!65 &676409293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22859,7 +22828,7 @@ Transform:
   m_GameObject: {fileID: 985002359}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15940057, y: 0, z: 0, w: 0.98721397}
-  m_LocalPosition: {x: 447.7, y: 10.543956, z: -28.860012}
+  m_LocalPosition: {x: 453.4, y: 10.543956, z: -28.860012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44555,7 +44524,7 @@ Transform:
   m_GameObject: {fileID: 2103376022}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15940057, y: -0, z: -0, w: 0.98721397}
-  m_LocalPosition: {x: 447.7, y: 10.543956, z: -28.860012}
+  m_LocalPosition: {x: 453.4, y: 10.543956, z: -28.860012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
