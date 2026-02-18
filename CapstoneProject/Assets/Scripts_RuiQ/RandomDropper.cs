@@ -1,81 +1,60 @@
 ﻿using UnityEngine;
+using UnityEngine.Splines; // Required: Install Splines package
 
-public class RandomDropper : MonoBehaviour
+public class SimpleSplineRangeDropper : MonoBehaviour
 {
-    [Header("🔧 Spawning Settings")]
-    [Tooltip("The prefab of the ball/hazard to spawn.")]
-    public GameObject ballPrefab;
+    [Header("🔧 Required References")]
+    public SplineContainer path;
+    public GameObject meatballPrefab;
 
-    [Tooltip("The size of the area (Length and Width).")]
-    public Vector2 spawnAreaSize = new Vector2(20f, 5f);
+    [Header("📈 Spawn Range Settings")]
+    public float spawnInterval = 0.5f;
+    public float dropHeight = 10f;
 
-    [Tooltip("How high above this object the ball spawns.")]
-    public float dropHeight = -1.0f;
+    // The width of the "spawn ribbon" (left and right from the spline)
+    public float horizontalRange = 3f;
 
-    [Tooltip("Time interval between spawns (in seconds).")]
-    public float spawnInterval = 0.5f; // Faster spawn rate recommended for gradients
-
-    [Header("📈 Density Control")]
-    [Tooltip("Controls where balls spawn most often. X-axis (0 to 1) is Random Input, Y-axis (0 to 1) is Position Left-to-Right.")]
-    public AnimationCurve spawnDistribution = AnimationCurve.Linear(0, 0, 1, 1);
+    // The thickness of the "spawn ribbon" (forward and backward along the spline)
+    public float forwardRange = 1f;
 
     private float timer;
 
-    void Start()
-    {
-        if (ballPrefab == null) Debug.LogError("❌ Prefab missing!");
-    }
-
     void Update()
     {
-        timer += Time.deltaTime;
+        if (path == null || meatballPrefab == null) return;
 
+        timer += Time.deltaTime;
         if (timer >= spawnInterval)
         {
-            SpawnBall();
+            SpawnWithRange();
             timer = 0f;
         }
     }
 
-    void SpawnBall()
+    void SpawnWithRange()
     {
-        if (ballPrefab == null) return;
+        // 1. Pick a random point 't' on the spline (0 to 1)
+        float t = Random.value;
 
-        // 1. Get a random value between 0 and 1
-        float randomRoll = Random.value;
+        // 2. Get the base position and the forward direction (tangent) at that point
+        Vector3 basePos = path.EvaluatePosition(t);
+        Vector3 forward = ((Vector3)path.EvaluateTangent(t)).normalized;
 
-        // 2. Evaluate the curve to get the "weighted" position
-        // If the curve bows UP, more balls appear on the Right (High values).
-        // If the curve bows DOWN, more balls appear on the Left (Low values).
-        float weightedT = spawnDistribution.Evaluate(randomRoll);
+        // 3. Calculate the 'right' vector (perpendicular to the path)
+        // Using Vector3.up ensures the 'right' is always horizontal
+        Vector3 right = Vector3.Cross(Vector3.up, forward).normalized;
 
-        // 3. Map the 0-1 value to the actual world coordinates (-size/2 to +size/2)
-        // Lerp Unclamped allows going slightly outside if curve goes above 1, but usually 0-1 is best.
-        float randomX = Mathf.Lerp(-spawnAreaSize.x / 2, spawnAreaSize.x / 2, weightedT);
+        // 4. Generate random offsets within the defined range
+        float randomRight = Random.Range(-horizontalRange, horizontalRange);
+        float randomForward = Random.Range(-forwardRange, forwardRange);
 
-        // Z is still random uniform (optional: can use another curve for Z if needed)
-        float randomZ = Random.Range(-spawnAreaSize.y / 2, spawnAreaSize.y / 2);
+        // 5. Combine everything to get the final spawn position
+        // Base point + height + side offset + forward offset
+        Vector3 finalSpawnPos = basePos
+                                + (Vector3.up * dropHeight)
+                                + (right * randomRight)
+                                + (forward * randomForward);
 
-        Vector3 spawnPos = new Vector3(transform.position.x + randomX, transform.position.y + dropHeight, transform.position.z + randomZ);
-
-        Instantiate(ballPrefab, spawnPos, Quaternion.identity);
-    }
-
-    // Visualization: Shows the density gradient using lines
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Vector3 center = new Vector3(transform.position.x, transform.position.y + dropHeight, transform.position.z);
-        Gizmos.DrawWireCube(center, new Vector3(spawnAreaSize.x, 1, spawnAreaSize.y));
-
-        // Visualize the "Heavy" side with red lines
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        for (int i = 0; i < 20; i++)
-        {
-            float t = spawnDistribution.Evaluate(i / 19f);
-            float x = Mathf.Lerp(-spawnAreaSize.x / 2, spawnAreaSize.x / 2, t);
-            Vector3 linePos = new Vector3(transform.position.x + x, transform.position.y + dropHeight, transform.position.z);
-            Gizmos.DrawLine(linePos + Vector3.back * 2, linePos + Vector3.forward * 2);
-        }
+        Instantiate(meatballPrefab, finalSpawnPos, Quaternion.identity);
     }
 }

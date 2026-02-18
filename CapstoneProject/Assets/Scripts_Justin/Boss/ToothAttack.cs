@@ -24,6 +24,7 @@ public class ToothAttack : BossAttack
 
     public override void Attack()
     {
+        IsAttacking = true;
         currAttackTimer = toothAttackLingerTimer;
         currLingerTimer = toothAttackLingerTimer;
         Debug.Log("Tooth attack starting...");
@@ -46,7 +47,7 @@ public class ToothAttack : BossAttack
             currLingerTimer -= Time.deltaTime;
             if(currLingerTimer <= 0)
             {
-                //TODO Retract teeth
+                IsAttacking = false;
                 toothAnimator.SetTrigger("Hide");
                 foreach (Animator molar in molarAnimators) molar.SetTrigger("Hide");
                 Debug.Log("Teeth retracted");

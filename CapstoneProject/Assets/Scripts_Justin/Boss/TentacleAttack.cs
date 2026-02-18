@@ -31,6 +31,7 @@ public class TentacleAttack : BossAttack
 
     public override void Attack()
     {
+        IsAttacking = true;
         if(attackType == AttackType.SLAM)
         {
             tentacleAnim.SetTrigger("Slam");
@@ -47,6 +48,7 @@ public class TentacleAttack : BossAttack
 
     protected void OnAttackEnded()
     {
+        IsAttacking = false;
         if (!canRepeat) Destroy(gameObject);
     }
 }
