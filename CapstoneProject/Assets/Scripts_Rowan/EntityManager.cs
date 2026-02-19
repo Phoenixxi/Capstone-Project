@@ -410,6 +410,18 @@ public class EntityManager : MonoBehaviour
         TakeDamage(damage, element);
     }
 
+    /// <summary>
+    /// Called when the entity is attacked (with eitehr a weapon or an ability)
+    /// </summary>
+    /// <param name="damage">The damage dealt by the attack</param>
+    /// <param name="element">The element applied by the attack</param>
+    /// <param name="movements">The sequence of knockbacks/movements that should be applied from the attack</param>
+    public void TakeDamage(float damage, ElementType element, KnockbackMovement[] movements)
+    {
+        foreach (var movement in movements) movementQueue.Enqueue(movement);
+        TakeDamage(damage, element);
+    }
+
     private void ShowDamageNumber(int damage, ElementType element)
     {
         DamageNumber damageNumber = Instantiate(damageNumberVFXPrefab, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
