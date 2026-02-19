@@ -12,6 +12,7 @@ public class ToothAttack : BossAttack
     [SerializeField] protected float toothAttackLingerTimer;
     [SerializeField] protected Animator[] molarAnimators;
     [SerializeField] protected Animator toothAnimator;
+    [SerializeField] protected Animator uiAnimator;
     protected float currAttackTimer;
     protected float currLingerTimer;
 
@@ -19,6 +20,7 @@ public class ToothAttack : BossAttack
     {
         toothHurtbox.SetElementType(lilGuysNamespace.EntityData.ElementType.Normal);
         toothHurtbox.SetHurtboxDamage(damage);
+        uiAnimator = GetComponentInChildren<Animator>();
         base.Start();
     }
 
@@ -29,6 +31,7 @@ public class ToothAttack : BossAttack
         currLingerTimer = toothAttackLingerTimer;
         Debug.Log("Tooth attack starting...");
         foreach (Animator molar in molarAnimators) molar.SetTrigger("Show");
+        uiAnimator.SetTrigger("Attacking");
     }
 
     protected void Update()
