@@ -3792,6 +3792,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8c24ef19a3d2ec43a55e93086ac65de, type: 3}
+--- !u!4 &1147918871 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+  m_PrefabInstance: {fileID: 1256178759}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1168589408
 GameObject:
   m_ObjectHideFlags: 0
@@ -4284,6 +4289,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1256178759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 59597493258283062, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 935795894028963136, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579068161505193190, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_Name
+      value: ToothAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921693636649093483, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141929590750534463, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 89.98021
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270525821516392202, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.58036137
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610470273475063640, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 259af1229845c5641bef40d4ebe918b6, type: 3}
 --- !u!1001 &1271022296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6780,6 +6862,7 @@ GameObject:
   - component: {fileID: 2146745060}
   - component: {fileID: 2146745059}
   - component: {fileID: 2146745064}
+  - component: {fileID: 2146745066}
   - component: {fileID: 2146745065}
   m_Layer: 0
   m_Name: FinalBossTemp
@@ -6804,7 +6887,6 @@ MonoBehaviour:
   AttackCoolDownMin: 5
   AttackCoolDownMax: 10
   DecreaseAttackCoolDownPercentage: 30
-  PreventDoubleAttackChancePercentage: 50
 --- !u!65 &2146745060
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6911,7 +6993,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlamAttackFinalBoss
   CoolDownDuration: 3
   finalBossController: {fileID: 0}
-  priority: 1
+  maxRecoveryTime: 15
+  Chance: 30
+  weightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   range: 3
   prefab: {fileID: 5557830314907911358, guid: 8b992ec21d38fb449a699d67f70faf49, type: 3}
   Platform: {fileID: 1754320976}
@@ -6931,11 +7038,77 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwipeAttackFinalBoss
   CoolDownDuration: 5
   finalBossController: {fileID: 0}
-  priority: 2
+  maxRecoveryTime: 15
+  Chance: 20
+  weightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   topRightSwipe: {fileID: 834699450}
   topLeftSwipe: {fileID: 1062541782}
   bottomRightSwipe: {fileID: 934826064}
   bottomLeftSwipe: {fileID: 67645622}
+--- !u!114 &2146745066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146745058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69533aa8b3a7548fdbc91addf5152075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeethAttackFinalBoss
+  CoolDownDuration: 10
+  finalBossController: {fileID: 0}
+  maxRecoveryTime: 25
+  Chance: 10
+  weightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TeethAttackTransform: {fileID: 1147918871}
 --- !u!1001 &3554205969815485264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7173,3 +7346,4 @@ SceneRoots:
   - {fileID: 1615184801}
   - {fileID: 1174536631}
   - {fileID: 1451639207}
+  - {fileID: 1256178759}
