@@ -106,6 +106,7 @@ public class BuffZone : MonoBehaviour
         {
             Debug.Log("Player leaving buff zone");
             player.ResetAttackRate();
+            player.DestroyGloomBuffVFX();
             player = null;
         }
     }
@@ -116,8 +117,12 @@ public class BuffZone : MonoBehaviour
         if(entity.tag == "Player")
         {
             EntityManager currentPlayer = entity.GetComponentInChildren<EntityManager>();
-            if (player != currentPlayer) player?.ResetAttackRate();
+            if (player != currentPlayer)
+            {
+                player?.ResetAttackRate();
+            }
             player = currentPlayer;
+            player.ApplyGloomBuffVFX();
             player.ApplyAttackCooldownMutliplier(attackCooldownMultiplier);
         }
     }

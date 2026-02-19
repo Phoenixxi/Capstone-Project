@@ -6,6 +6,7 @@ using System.Collections;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 using UnityEngine.AI;
 using System;
+using Unity.VisualScripting;
 
 public class EntityManager : MonoBehaviour
 {
@@ -80,6 +81,7 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private GameObject gloomDeathVFX;
     [SerializeField] private GameObject lowHealthCanvas;
     private RedFlashing redFlashingScript;
+    [SerializeField] private GameObject gloomBuffVFX;
 
 
     [Header("Zoom only")]
@@ -580,6 +582,25 @@ public class EntityManager : MonoBehaviour
     public void ResetAttackRate()
     {
         weapon.RestoreBaseFireRate();
+    }
+
+    public void ApplyGloomBuffVFX()
+    {
+        if(vfxAnchor.childCount > 0)
+            return;
+        
+        GameObject vfxInstance = Instantiate(gloomBuffVFX, vfxAnchor.position + Vector3.up * 0.5f + Vector3.back * 0.5f, Quaternion.identity, vfxAnchor);
+        vfxInstance.transform.localScale = Vector3.one * 1.2f;
+    }
+
+    public void DestroyGloomBuffVFX()
+    {
+        if(vfxAnchor.childCount == 0)
+            return;
+        for(int i = 0; i < vfxAnchor.childCount; i++)
+        {
+            Destroy(vfxAnchor.GetChild(i).gameObject);
+        }
     }
     
 
