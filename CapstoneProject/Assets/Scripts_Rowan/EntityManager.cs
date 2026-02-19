@@ -468,7 +468,10 @@ public class EntityManager : MonoBehaviour
             if (effectable != null && data != null)
             {
                 Instantiate(gloomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-                effectable.ApplySlow(data);
+                GameObject playerObject = GameObject.Find("Player");
+                PlayerController pc = playerObject.GetComponent<PlayerController>();
+                pc.HealAllCharacters(10f);
+                //effectable.ApplySlow(data);
             }
             OnElementReactionEvent?.Invoke(2);
         }
