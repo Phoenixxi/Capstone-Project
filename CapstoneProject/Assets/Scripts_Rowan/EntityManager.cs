@@ -19,6 +19,7 @@ public class EntityManager : MonoBehaviour
     public float currentHealth;
     public bool isAlive = true;
     public AbilityData data;
+    [SerializeField] private float reactionHealAmount = 5f;
     private bool usesNavAgent;
 
     [Header("Movement Settings")]
@@ -472,7 +473,7 @@ public class EntityManager : MonoBehaviour
                 Instantiate(gloomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
                 GameObject playerObject = GameObject.Find("Player");
                 PlayerController pc = playerObject.GetComponent<PlayerController>();
-                pc.HealAllCharacters(10f);
+                pc.HealAllCharacters(reactionHealAmount);
                 //effectable.ApplySlow(data);
             }
             OnElementReactionEvent?.Invoke(2);
