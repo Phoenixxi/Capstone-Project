@@ -2,19 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Analytics;
 
 public class FinalBossController : MonoBehaviour
 {
     [SerializeField] private EntityManager entityManager;
-    [SerializeField] private PriorityQueue<FinalBossAttacks> finalBossAttackQueue = new PriorityQueue<FinalBossAttacks>();
     [SerializeField] private float AttackCoolDownMin = 5f;
     [SerializeField] private float AttackCoolDownMax = 10f;
     [SerializeField] public float DecreaseAttackCoolDownPercentage = 30f;
-    [SerializeField] private float PreventDoubleAttackChancePercentage = 50f;
 
-
+    private FinalBossAttacks[] finalBossAttacks;
     private float AttackCoolDown;
     private float timeSinceLastAttack = 0f;
     private GameObject playerGameObject;
@@ -23,6 +22,7 @@ public class FinalBossController : MonoBehaviour
 
     void Awake()
     {
+        finalBossAttacks = GetComponents<FinalBossAttacks>();
         playerGameObject = GameObject.FindGameObjectWithTag("Player"); //Find the player in the world
         AttackCoolDown = UnityEngine.Random.Range(AttackCoolDownMin, AttackCoolDownMax);
         PhaseTwo += cutAttackCoolDown;
@@ -45,55 +45,28 @@ public class FinalBossController : MonoBehaviour
 
     private void AttemptToAttack()
     {
-        if(HasCooldownExpired() && finalBossAttackQueue.Count() > 0)
+        if(previousAttack != null && previousAttack.GetType() == typeof(TeethAttackFinalBoss))
         {
-            float preventSameAttack = UnityEngine.Random.Range(0, 100);
-            FinalBossAttacks fbaPeek = finalBossAttackQueue.Peek();
-            FinalBossAttacks fba;
-            if(fbaPeek == previousAttack && preventSameAttack <= PreventDoubleAttackChancePercentage)
+            TeethAttackFinalBoss teethAttackFinalBoss = previousAttack as TeethAttackFinalBoss;
+            if(teethAttackFinalBoss.IsAttacking()) return;
+        }
+
+        if(HasCooldownExpired())
+        {
+            float bestWeight = -Mathf.Infinity;
+            FinalBossAttacks fba = null;
+            foreach(FinalBossAttacks fbas in finalBossAttacks)
             {
-                fba = GetNextAttack();
-            }
-            else
-            {
-                fba = finalBossAttackQueue.Pop();
+                if(bestWeight < fbas.GetDynamicWeight())
+                {
+                    bestWeight = fbas.GetDynamicWeight();
+                    fba = fbas;
+                }
             }
 
             Attack(fba);
             previousAttack = fba;
         }
-    }
-
-    private FinalBossAttacks GetNextAttack()
-    {
-        List<FinalBossAttacks> skipped = new List<FinalBossAttacks>();
-        FinalBossAttacks fba = null;
-
-        while(finalBossAttackQueue.Count() > 0)
-        {
-            FinalBossAttacks attack = finalBossAttackQueue.Pop();
-
-            if(attack != previousAttack)
-            {
-                fba = attack;
-                break;
-            }
-
-            skipped.Add(attack);
-        }
-
-        if(fba == null && skipped.Count > 0)
-        {
-            fba = skipped[0];
-            skipped.RemoveAt(0);
-        }
-
-        foreach(FinalBossAttacks attack in skipped)
-        {
-            AddToAttackQueue(attack);
-        }
-
-        return fba;
     }
 
     private bool HasCooldownExpired()
@@ -107,10 +80,5 @@ public class FinalBossController : MonoBehaviour
         attack.Attack(playerGameObject.transform);
         AttackCoolDown = UnityEngine.Random.Range(AttackCoolDownMin, AttackCoolDownMax);
         timeSinceLastAttack = Time.time;
-    }
-
-    public void AddToAttackQueue(FinalBossAttacks finalBossAttacks)
-    {
-        finalBossAttackQueue.Enqueue(finalBossAttacks, (int)finalBossAttacks.priority);
     }
 }

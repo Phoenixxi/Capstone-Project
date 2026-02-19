@@ -17,6 +17,8 @@ public class SlamAttackFinalBoss : FinalBossAttacks
     }
     public override void Attack(Transform PlayerTransform)
     {
+        if(!HasCooldownExpired()) return;
+
         int amountOfSlams = UnityEngine.Random.Range(minSlams, maxSlams);
 
         for(int i = 0; i < amountOfSlams; i++)
@@ -36,12 +38,8 @@ public class SlamAttackFinalBoss : FinalBossAttacks
 
             Instantiate(prefab, spawnPosition, rotation);
         }
-    }
 
-    protected override void AddToAttackQueue()
-    {
-        if(finalBossController == null) return;
-        finalBossController.AddToAttackQueue(this);
+        UpdateTimeSinceLastAttack();
     }
 
     private void SlamAttackPhaseTwo()
