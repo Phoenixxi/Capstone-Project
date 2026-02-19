@@ -497,6 +497,7 @@ public class PlayerController : MonoBehaviour
 
         //Activate Zoom
 
+        entity.spriteRenderer.color = Color.white;
         zoom.SetActive(true);
 
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
@@ -569,7 +570,9 @@ public class PlayerController : MonoBehaviour
 
         // Activate Boom
 
+        entity.spriteRenderer.color = Color.white;
         boom.SetActive(true);
+        entity.spriteRenderer.color = Color.white;
 
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
 
@@ -636,8 +639,9 @@ public class PlayerController : MonoBehaviour
 
 
         // Activate Gloom
-
+        entity.spriteRenderer.color = Color.white;
         gloom.SetActive(true);
+        entity.spriteRenderer.color = Color.white;
 
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
 

@@ -391,6 +391,13 @@ public class EntityManager : MonoBehaviour
         //Instantiate(damageNumberVFXPrefab, transform);
     }
 
+
+    public void ResetRedFlashAnimation()
+    {
+        animator.Rebind();
+        animator.Update(0f);
+    }
+
     /// <summary>
     /// Called when the entity is attacked (with either a weapon or an ability)
     /// </summary>
