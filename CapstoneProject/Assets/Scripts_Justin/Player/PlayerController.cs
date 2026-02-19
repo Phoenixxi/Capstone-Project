@@ -572,7 +572,6 @@ public class PlayerController : MonoBehaviour
 
         entity.spriteRenderer.color = Color.white;
         boom.SetActive(true);
-        entity.spriteRenderer.color = Color.white;
 
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
 
@@ -641,7 +640,6 @@ public class PlayerController : MonoBehaviour
         // Activate Gloom
         entity.spriteRenderer.color = Color.white;
         gloom.SetActive(true);
-        entity.spriteRenderer.color = Color.white;
 
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
 
