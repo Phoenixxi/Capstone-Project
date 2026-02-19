@@ -50,7 +50,8 @@ public class MeatballDropper : MonoBehaviour
         {
             // Pick one random node to spawn at
             int randomIndex = UnityEngine.Random.Range(0, spline.Count);
-            SpawnAtNode(knots[randomIndex]);
+            //SpawnAtNode(knots[randomIndex]);
+            SpawnAtNode(spline[randomIndex]);
         }
     }
 
