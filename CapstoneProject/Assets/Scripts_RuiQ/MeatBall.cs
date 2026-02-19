@@ -3,10 +3,10 @@
 public class MeatballImpact : MonoBehaviour
 {
     [Header("💥 VFX Settings")]
-    [Tooltip("拖入你的爆炸/溅射特效 Prefab")]
+    [Tooltip("Drag VFX Prefab")]
     public GameObject impactVFXPrefab;
 
-    [Tooltip("特效播放多久后自动销毁 (秒)")]
+    [Tooltip("kill VFX after (second)")]
     public float vfxLifetime = 2f;
 
     // 碰撞到任何物体时触发
