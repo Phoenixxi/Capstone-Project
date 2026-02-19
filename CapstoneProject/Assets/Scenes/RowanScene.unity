@@ -853,7 +853,7 @@ PrefabInstance:
     - target: {fileID: 8039355975360593558, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
       propertyPath: zoomAttackVFX
       value: 
-      objectReference: {fileID: 9090841650386813736, guid: 7ca3b75a46196864aa19e39261ee6f01, type: 3}
+      objectReference: {fileID: 1104788038885962465, guid: 884793ef423f0bd4b87a15b4fc838421, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4637,6 +4637,14 @@ PrefabInstance:
     - target: {fileID: 7478264160224895753, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: shakeIntensity
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
+      propertyPath: currentHealth
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: lowHealthCanvas
