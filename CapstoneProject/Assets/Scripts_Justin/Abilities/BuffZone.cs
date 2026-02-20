@@ -132,5 +132,6 @@ public class BuffZone : MonoBehaviour
     {
         Debug.Log("Player leaving buff zone");
         player?.ResetAttackRate();
+        player?.DestroyGloomBuffVFX();
     }
 }
