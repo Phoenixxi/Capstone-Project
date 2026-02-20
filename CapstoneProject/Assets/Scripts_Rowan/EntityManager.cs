@@ -612,7 +612,7 @@ public class EntityManager : MonoBehaviour
             return;
         
         GameObject vfxInstance = Instantiate(gloomBuffVFX, vfxAnchor.position + Vector3.up * 0.5f + Vector3.back * 0.5f, Quaternion.identity, vfxAnchor);
-        vfxInstance.transform.localScale = Vector3.one * 1.2f;
+        vfxInstance.transform.localScale = Vector3.one * 1.5f;
     }
 
     public void DestroyGloomBuffVFX()
