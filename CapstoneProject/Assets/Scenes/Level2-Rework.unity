@@ -2050,7 +2050,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -22336,32 +22336,9 @@ MonoBehaviour:
   meatballPrefab: {fileID: 558560443}
   isSpawning: 1
   spawnInterval: 0.5
+  spawnAtAllNodes: 0
   dropHeight: -5
-  roadWidth: 3
-  spawnDistribution:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  spawnRadius: 3
 --- !u!4 &967640745
 Transform:
   m_ObjectHideFlags: 0
