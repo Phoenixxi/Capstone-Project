@@ -48,10 +48,12 @@ MonoBehaviour:
   damage: 10
   canRepeat: 0
   speedupAmount: 1
-  spawnSpedUp: 1
+  spawnSpedUp: 0
   hurtbox: {fileID: 8080487707460642805}
   hurtboxActiveTime: 0.4
   attackType: 0
+  followsPlayer: 0
+  rotationSpeed: 5
 --- !u!1001 &3461799837322842824
 PrefabInstance:
   m_ObjectHideFlags: 0
