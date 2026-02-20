@@ -13,6 +13,7 @@ public class GroundPoundAbility : Ability
     [SerializeField] private float coyoteTime;
     [SerializeField] private float landingFreezeTime;
     [SerializeField] private LayerMask slamLayerMask;
+    [SerializeField] private float knockbackDelayTime;
     [SerializeField] private float knockbackStrength;
     [SerializeField] private float knockbackDuration;
     [SerializeField] private GameObject boomVFXPrefab;
@@ -62,8 +63,10 @@ public class GroundPoundAbility : Ability
                     EntityManager enemy = hitEntity.transform.GetComponent<EntityManager>();
                     Vector3 knockback = (enemy.transform.position - transform.position).normalized;
                     knockback *= knockbackStrength;
+                    KnockbackMovement knockbackDelay = new KnockbackMovement(Vector3.zero, Time.time, knockbackDelayTime);
+                    KnockbackMovement knockbackMov = new KnockbackMovement(knockback, Time.time + knockbackDelayTime, knockbackDuration);
                     if (enemy == null) continue;
-                    enemy.TakeDamage(damage, element, new KnockbackMovement(knockback, Time.time, knockbackDuration));
+                    enemy.TakeDamage(damage, element, new KnockbackMovement[] { knockbackDelay, knockbackMov});
                 }
                 cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
             } else

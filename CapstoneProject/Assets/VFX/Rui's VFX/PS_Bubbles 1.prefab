@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8107170596286642825}
   - component: {fileID: 187449972105911238}
   - component: {fileID: 5459345396882729525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PS_Bubbles 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,7 +672,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 11, y: 11, z: 11}
+    m_Scale: {x: 11, y: 11, z: 3}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0

@@ -90,23 +90,25 @@ public class AbilityManager : MonoBehaviour, IEffectable
 
     public void HandleSlow()
     {
-        currentEffectTime += Time.deltaTime;
-        if(currentEffectTime >= data.effectLifeTime)
-        {   
-            RemoveEffect();
-            currentEffectTime = 0f;
-        }
+        // currentEffectTime += Time.deltaTime;
+        // if(currentEffectTime >= data.effectLifeTime)
+        // {   
+        //     RemoveEffect();
+        //     currentEffectTime = 0f;
+        // }
 
         if(data == null)
             return;
 
-        if (data.movementPenalty > 0)
-        {
-            currentMovementSpeed = startingMovementSpeed / data.movementPenalty;
-            entityManager.ApplyAttackCooldownMutliplier(data.movementPenalty);
-        }
+        
 
-        navMeshAgent.speed = currentMovementSpeed;
+        // if (data.movementPenalty > 0)
+        // {
+        //     currentMovementSpeed = startingMovementSpeed / data.movementPenalty;
+        //     entityManager.ApplyAttackCooldownMutliplier(data.movementPenalty);
+        // }
+
+        // navMeshAgent.speed = currentMovementSpeed;
     }
 
 

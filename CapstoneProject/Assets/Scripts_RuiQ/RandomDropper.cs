@@ -1,60 +1,89 @@
 ﻿using UnityEngine;
-using UnityEngine.Splines; // Required: Install Splines package
+using UnityEngine.Splines;
+using Unity.Mathematics;
 
-public class SimpleSplineRangeDropper : MonoBehaviour
+public class MeatballDropper : MonoBehaviour
 {
-    [Header("🔧 Required References")]
-    public SplineContainer path;
+    [Header("🔗 Required Assets")]
+    public SplineContainer targetPath;
     public GameObject meatballPrefab;
 
-    [Header("📈 Spawn Range Settings")]
-    public float spawnInterval = 0.5f;
-    public float dropHeight = 10f;
+    [Header("⏲️ Spawning Logic")]
+    public bool isSpawning = true;
+    public float spawnInterval = 1.0f;
+    [Tooltip("Every interval, should it spawn at ALL nodes or just one RANDOM node?")]
+    public bool spawnAtAllNodes = false;
 
-    // The width of the "spawn ribbon" (left and right from the spline)
-    public float horizontalRange = 3f;
-
-    // The thickness of the "spawn ribbon" (forward and backward along the spline)
-    public float forwardRange = 1f;
+    [Header("📐 Range Control")]
+    public float dropHeight = 15f;
+    [Range(0f, 10f)]
+    public float spawnRadius = 3f; // This is the "Adjustable Range" around each node
 
     private float timer;
 
     void Update()
     {
-        if (path == null || meatballPrefab == null) return;
+        if (targetPath == null || meatballPrefab == null || !isSpawning) return;
 
         timer += Time.deltaTime;
         if (timer >= spawnInterval)
         {
-            SpawnWithRange();
+            HandleSpawning();
             timer = 0f;
         }
     }
 
-    void SpawnWithRange()
+    void HandleSpawning()
     {
-        // 1. Pick a random point 't' on the spline (0 to 1)
-        float t = Random.value;
+        var spline = targetPath.Spline;
+        var knots = spline.Knots;
 
-        // 2. Get the base position and the forward direction (tangent) at that point
-        Vector3 basePos = path.EvaluatePosition(t);
-        Vector3 forward = ((Vector3)path.EvaluateTangent(t)).normalized;
+        if (spawnAtAllNodes)
+        {
+            // Spawn one at every node near its position
+            foreach (var knot in knots)
+            {
+                SpawnAtNode(knot);
+            }
+        }
+        else
+        {
+            // Pick one random node to spawn at
+            int randomIndex = UnityEngine.Random.Range(0, spline.Count);
+            //SpawnAtNode(knots[randomIndex]);
+            SpawnAtNode(spline[randomIndex]);
+        }
+    }
 
-        // 3. Calculate the 'right' vector (perpendicular to the path)
-        // Using Vector3.up ensures the 'right' is always horizontal
-        Vector3 right = Vector3.Cross(Vector3.up, forward).normalized;
+    void SpawnAtNode(BezierKnot knot)
+    {
+        // 1. Get the local position of the knot and convert to World Position
+        float3 localPos = knot.Position;
+        Vector3 worldNodePos = targetPath.transform.TransformPoint(localPos);
 
-        // 4. Generate random offsets within the defined range
-        float randomRight = Random.Range(-horizontalRange, horizontalRange);
-        float randomForward = Random.Range(-forwardRange, forwardRange);
+        // 2. Calculate a random offset within a circle (spawnRadius)
+        Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * spawnRadius;
+        Vector3 finalPos = new Vector3(
+            worldNodePos.x + randomCircle.x,
+            worldNodePos.y + dropHeight,
+            worldNodePos.z + randomCircle.y
+        );
 
-        // 5. Combine everything to get the final spawn position
-        // Base point + height + side offset + forward offset
-        Vector3 finalSpawnPos = basePos
-                                + (Vector3.up * dropHeight)
-                                + (right * randomRight)
-                                + (forward * randomForward);
+        // 3. Instantiate the meatball
+        Instantiate(meatballPrefab, finalPos, Quaternion.identity);
+    }
 
-        Instantiate(meatballPrefab, finalSpawnPos, Quaternion.identity);
+    // Visualizes the spawn range around each node in the Editor
+    private void OnDrawGizmosSelected()
+    {
+        if (targetPath == null) return;
+
+        Gizmos.color = Color.cyan;
+        foreach (var knot in targetPath.Spline.Knots)
+        {
+            Vector3 worldPos = targetPath.transform.TransformPoint(knot.Position);
+            // Draw the spawn radius at each node
+            Gizmos.DrawWireSphere(worldPos + Vector3.up * dropHeight, spawnRadius);
+        }
     }
 }

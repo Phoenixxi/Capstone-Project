@@ -4,12 +4,18 @@ public class BossAttackTester : MonoBehaviour
 {
     public GameObject attack;
     public Vector3 spawnPosition;
+    public bool isRepeating = false;
+    protected GameObject spawnedAttack;
     
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag != "Player") return;
+        if(!isRepeating || spawnedAttack == null)
         {
-            Instantiate(attack, spawnPosition, Quaternion.identity);
+            spawnedAttack = Instantiate(attack, spawnPosition, Quaternion.identity);
+        } else
+        {
+            spawnedAttack.GetComponent<BossAttack>().Attack();
         }
     }
 }

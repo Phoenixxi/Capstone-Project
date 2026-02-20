@@ -6,6 +6,8 @@ using System.Collections;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 using UnityEngine.AI;
 using System;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class EntityManager : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class EntityManager : MonoBehaviour
     public float currentHealth;
     public bool isAlive = true;
     public AbilityData data;
+    [SerializeField] private float reactionHealAmount = 5f;
     private bool usesNavAgent;
 
     [Header("Movement Settings")]
@@ -31,6 +34,7 @@ public class EntityManager : MonoBehaviour
     private int currentExtraJumps;
     private float currentCoyoteTime = 0f;
     private bool isHovering;
+    private PlayerInput playerInput;
 
     [Header("Animation")]
     public Animator animator;
@@ -80,6 +84,7 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private GameObject gloomDeathVFX;
     [SerializeField] private GameObject lowHealthCanvas;
     private RedFlashing redFlashingScript;
+    [SerializeField] private GameObject gloomBuffVFX;
 
 
     [Header("Zoom only")]
@@ -388,6 +393,13 @@ public class EntityManager : MonoBehaviour
         //Instantiate(damageNumberVFXPrefab, transform);
     }
 
+
+    public void ResetRedFlashAnimation()
+    {
+        animator.Rebind();
+        animator.Update(0f);
+    }
+
     /// <summary>
     /// Called when the entity is attacked (with either a weapon or an ability)
     /// </summary>
@@ -397,6 +409,18 @@ public class EntityManager : MonoBehaviour
     public void TakeDamage(float damage, ElementType element, KnockbackMovement knockback)
     {
         movementQueue.Enqueue(knockback);
+        TakeDamage(damage, element);
+    }
+
+    /// <summary>
+    /// Called when the entity is attacked (with eitehr a weapon or an ability)
+    /// </summary>
+    /// <param name="damage">The damage dealt by the attack</param>
+    /// <param name="element">The element applied by the attack</param>
+    /// <param name="movements">The sequence of knockbacks/movements that should be applied from the attack</param>
+    public void TakeDamage(float damage, ElementType element, KnockbackMovement[] movements)
+    {
+        foreach (var movement in movements) movementQueue.Enqueue(movement);
         TakeDamage(damage, element);
     }
 
@@ -468,7 +492,10 @@ public class EntityManager : MonoBehaviour
             if (effectable != null && data != null)
             {
                 Instantiate(gloomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
-                effectable.ApplySlow(data);
+                GameObject playerObject = GameObject.Find("Player");
+                PlayerController pc = playerObject.GetComponent<PlayerController>();
+                pc.HealAllCharacters(reactionHealAmount);
+                //effectable.ApplySlow(data);
             }
             OnElementReactionEvent?.Invoke(2);
         }
@@ -578,6 +605,25 @@ public class EntityManager : MonoBehaviour
     {
         weapon.RestoreBaseFireRate();
     }
+
+    public void ApplyGloomBuffVFX()
+    {
+        if(vfxAnchor.childCount > 0)
+            return;
+        
+        GameObject vfxInstance = Instantiate(gloomBuffVFX, vfxAnchor.position + Vector3.up * 0.5f + Vector3.back * 0.5f, Quaternion.identity, vfxAnchor);
+        vfxInstance.transform.localScale = Vector3.one * 1.2f;
+    }
+
+    public void DestroyGloomBuffVFX()
+    {
+        if(vfxAnchor.childCount == 0)
+            return;
+        for(int i = 0; i < vfxAnchor.childCount; i++)
+        {
+            Destroy(vfxAnchor.GetChild(i).gameObject);
+        }
+    }
     
 
 
@@ -617,10 +663,23 @@ public class EntityManager : MonoBehaviour
                     Instantiate(gloomDeathVFX, lastPlayerPosition, Quaternion.identity);
                     break;
             }
-            
+
+
             swappingManager.PlayerHasDied(gameObject);
+            // playerInput.actions.FindActionMap("Player").Disable();
+            // StartCoroutine(waitTime());
         }
 
+    }
+
+    
+
+    IEnumerator waitTime()
+    {
+        /// wait before giving player's control back after death
+        yield return new WaitForSeconds(1f);
+        playerInput.actions.FindActionMap("Player").Enable();
+        
     }
 
 

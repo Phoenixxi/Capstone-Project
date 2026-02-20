@@ -27,6 +27,8 @@ public class SwipeAttackFinalBoss : FinalBossAttacks
     }
     public override void Attack(Transform PlayerTransform)
     {
+        if(!HasCooldownExpired()) return;
+
         float topDistance = Vector3.Distance(PlayerTransform.position, topMidPoint);
         float bottomDistance = Vector3.Distance(PlayerTransform.position, bottomMidPoint);
 
@@ -40,11 +42,7 @@ public class SwipeAttackFinalBoss : FinalBossAttacks
             topRightSwipe.GetComponent<TentacleAttack>().Attack();
             topLeftSwipe.GetComponent<TentacleAttack>().Attack();
         }
-    }
 
-    protected override void AddToAttackQueue()
-    {
-        if(finalBossController == null) return;
-        finalBossController.AddToAttackQueue(this);
+        UpdateTimeSinceLastAttack();
     }
 }

@@ -52,6 +52,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Emissive_Map:
+        m_Texture: {fileID: 2800000, guid: f0678241128c9a94c9fc9cea7e694747, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Height_Map:
         m_Texture: {fileID: 2800000, guid: dd31e64fbf93e6549a2658b91acefb57, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -117,6 +121,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _Emissive_intensity: 6
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0

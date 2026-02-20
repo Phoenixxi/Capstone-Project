@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public enum Priority{None,First,Second,Third}
 public abstract class FinalBossAttacks : MonoBehaviour 
 {
     [SerializeField] protected float CoolDownDuration;
     [SerializeField] protected FinalBossController finalBossController;
-    public Priority priority;
+    [SerializeField] protected float maxRecoveryTime;
+    [SerializeField] protected float Chance;
+    [SerializeField] protected AnimationCurve weightCurve;
 
-    private float timeSinceLastAddedToQueue = 0f;
+    private float timeSinceLastAttacked;
 
     protected virtual void Awake()
     {
+        timeSinceLastAttacked = CoolDownDuration;
         finalBossController = GetComponent<FinalBossController>();
         finalBossController.PhaseTwo += CutCoolDownDuration;
     }
@@ -20,19 +22,15 @@ public abstract class FinalBossAttacks : MonoBehaviour
         
     }
 
-    void Update()
+    protected void UpdateTimeSinceLastAttack()
     {
-        if(HasCooldownExpired())
-        {
-            AddToAttackQueue();
-            timeSinceLastAddedToQueue = Time.time;
-        }
+        timeSinceLastAttacked = Time.time;
     }
 
-    private bool HasCooldownExpired()
+    protected bool HasCooldownExpired()
     {
         float currentTime = Time.time;
-        return currentTime - timeSinceLastAddedToQueue >= CoolDownDuration;
+        return currentTime - timeSinceLastAttacked >= CoolDownDuration;
     }
 
     private void CutCoolDownDuration()
@@ -40,7 +38,24 @@ public abstract class FinalBossAttacks : MonoBehaviour
         CoolDownDuration -= CoolDownDuration * (finalBossController.DecreaseAttackCoolDownPercentage/100f);
     }
 
-    protected abstract void AddToAttackQueue();
+    public float GetDynamicWeight()
+    {
+        if(!HasCooldownExpired()) return 0f;
+
+        float timeSince = Time.time - timeSinceLastAttacked;
+        float weight = Mathf.Clamp01(timeSince / maxRecoveryTime);
+        float dynamicWeight = weightCurve.Evaluate(weight);
+
+        float maxRecoveryBonus = 10f;
+        dynamicWeight *= maxRecoveryBonus;
+
+        if(Random.Range(0f, 1f) <= Chance/100f)
+        {
+            dynamicWeight += Random.Range(0f, maxRecoveryBonus * 0.3f);
+        }
+
+        return dynamicWeight;
+    }
 
     public abstract void Attack(Transform PlayerTransform);
 }

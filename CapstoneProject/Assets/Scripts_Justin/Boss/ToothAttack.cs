@@ -12,6 +12,7 @@ public class ToothAttack : BossAttack
     [SerializeField] protected float toothAttackLingerTimer;
     [SerializeField] protected Animator[] molarAnimators;
     [SerializeField] protected Animator toothAnimator;
+    [SerializeField] protected Animator uiAnimator;
     protected float currAttackTimer;
     protected float currLingerTimer;
 
@@ -29,6 +30,7 @@ public class ToothAttack : BossAttack
         currLingerTimer = toothAttackLingerTimer;
         Debug.Log("Tooth attack starting...");
         foreach (Animator molar in molarAnimators) molar.SetTrigger("Show");
+        uiAnimator.SetTrigger("Show");
     }
 
     protected void Update()
