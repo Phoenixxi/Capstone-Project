@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040626528220618235}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.98754793, y: -0, z: -0, w: -0.1573187}
-  m_LocalPosition: {x: -14.997, y: 0.85, z: -0.64}
+  m_LocalRotation: {x: -0.69830143, y: -0.11124344, z: 0.69830143, w: -0.11124344}
+  m_LocalPosition: {x: -14.987, y: 0.85, z: -0.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -198.103, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -198.103, y: 90, z: 0}
 --- !u!198 &1730641986884109449
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -1367,8 +1367,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.6, g: 0.1960784, b: 0.8000001, a: 0}
-        key1: {r: 0.7294118, g: 0.3333333, b: 0.8274511, a: 1}
-        key2: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 0.7294118, g: 0.3333333, b: 0.8274511, a: 0.5529412}
+        key2: {r: 1, g: 1, b: 1, a: 0.7372549}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1637,7 +1637,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: -1
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1646,7 +1646,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: -0.14542368
+          value: 0.18354818
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -2133,7 +2133,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    inWorldSpace: 0
+    inWorldSpace: 1
   InheritVelocityModule:
     enabled: 0
     m_Mode: 0
@@ -4874,7 +4874,7 @@ ParticleSystemRenderer:
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 0
-  m_Pivot: {x: 0, y: 0, z: 0}
+  m_Pivot: {x: -0.99, y: 0, z: 0.2}
   m_Flip: {x: 0, y: 0, z: 0}
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
