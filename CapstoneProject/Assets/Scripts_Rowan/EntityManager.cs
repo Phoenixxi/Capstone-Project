@@ -6,6 +6,7 @@ using System.Collections;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 using UnityEngine.AI;
 using System;
+using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 
 public class EntityManager : MonoBehaviour
@@ -33,6 +34,7 @@ public class EntityManager : MonoBehaviour
     private int currentExtraJumps;
     private float currentCoyoteTime = 0f;
     private bool isHovering;
+    private PlayerInput playerInput;
 
     [Header("Animation")]
     public Animator animator;
@@ -661,10 +663,23 @@ public class EntityManager : MonoBehaviour
                     Instantiate(gloomDeathVFX, lastPlayerPosition, Quaternion.identity);
                     break;
             }
-            
+
+
             swappingManager.PlayerHasDied(gameObject);
+            // playerInput.actions.FindActionMap("Player").Disable();
+            // StartCoroutine(waitTime());
         }
 
+    }
+
+    
+
+    IEnumerator waitTime()
+    {
+        /// wait before giving player's control back after death
+        yield return new WaitForSeconds(1f);
+        playerInput.actions.FindActionMap("Player").Enable();
+        
     }
 
 

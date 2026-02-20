@@ -120,6 +120,7 @@ public class BuffZone : MonoBehaviour
             if (player != currentPlayer)
             {
                 player?.ResetAttackRate();
+                player?.DestroyGloomBuffVFX();
             }
             player = currentPlayer;
             player.ApplyGloomBuffVFX();
