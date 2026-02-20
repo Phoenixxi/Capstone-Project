@@ -57,4 +57,9 @@ public class ToothAttack : BossAttack
             }
         }
     }
+
+    public override void ApplySpeedup()
+    {
+        throw new System.NotImplementedException();
+    }
 }

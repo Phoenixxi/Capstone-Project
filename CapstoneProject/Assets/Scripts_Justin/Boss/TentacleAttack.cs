@@ -23,9 +23,9 @@ public class TentacleAttack : BossAttack
         BossAttackEvents events = GetComponentInChildren<BossAttackEvents>();
         events.BecomeDamagingEvent += ActivateHurtbox;
         events.AttackEndedEvent += OnAttackEnded;
-
         hurtbox.SetHurtboxDamage(damage);
         hurtbox.SetElementType(lilGuysNamespace.EntityData.ElementType.Normal);
+        tentacleAnim.SetFloat("SpeedMultiplier", speedupAmount);
         base.Start();
     }
 
@@ -50,5 +50,10 @@ public class TentacleAttack : BossAttack
     {
         IsAttacking = false;
         if (!canRepeat) Destroy(gameObject);
+    }
+
+    public override void ApplySpeedup()
+    {
+        tentacleAnim.SetBool("IsSpedUp", true);
     }
 }
