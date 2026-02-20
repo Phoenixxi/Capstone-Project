@@ -20,7 +20,6 @@ public class ToothAttack : BossAttack
     {
         toothHurtbox.SetElementType(lilGuysNamespace.EntityData.ElementType.Normal);
         toothHurtbox.SetHurtboxDamage(damage);
-        uiAnimator = GetComponentInChildren<Animator>();
         base.Start();
     }
 
@@ -31,7 +30,7 @@ public class ToothAttack : BossAttack
         currLingerTimer = toothAttackLingerTimer;
         Debug.Log("Tooth attack starting...");
         foreach (Animator molar in molarAnimators) molar.SetTrigger("Show");
-        uiAnimator.SetTrigger("Attacking");
+        uiAnimator.SetTrigger("Show");
     }
 
     protected void Update()
