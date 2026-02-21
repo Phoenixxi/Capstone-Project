@@ -13,11 +13,14 @@ public class ToothAttack : BossAttack
     [SerializeField] protected Animator[] molarAnimators;
     [SerializeField] protected Animator toothAnimator;
     [SerializeField] protected Animator uiAnimator;
+    [SerializeField] protected float attackTimerSpeedMultiplier = 1f; //Used to control how much shorter the warning timer is in phase 2. speedupAmount controls how long the teeth linger
     protected float currAttackTimer;
     protected float currLingerTimer;
+    protected bool isSpedUp;
 
     protected override void Start()
     {
+        isSpedUp = false;
         toothHurtbox.SetElementType(lilGuysNamespace.EntityData.ElementType.Normal);
         toothHurtbox.SetHurtboxDamage(damage);
         base.Start();
@@ -26,8 +29,8 @@ public class ToothAttack : BossAttack
     public override void Attack()
     {
         IsAttacking = true;
-        currAttackTimer = toothAttackLingerTimer;
-        currLingerTimer = toothAttackLingerTimer;
+        currAttackTimer = toothAttackTimer / ((isSpedUp) ? attackTimerSpeedMultiplier : 1f);
+        currLingerTimer = toothAttackLingerTimer / ((isSpedUp) ? speedupAmount : 1f);
         Debug.Log("Tooth attack starting...");
         foreach (Animator molar in molarAnimators) molar.SetTrigger("Show");
         uiAnimator.SetTrigger("Show");
@@ -60,6 +63,7 @@ public class ToothAttack : BossAttack
 
     public override void ApplySpeedup()
     {
-        throw new System.NotImplementedException();
+        isSpedUp = true;
+        uiAnimator.SetFloat("SpeedMultiplier", attackTimerSpeedMultiplier);
     }
 }

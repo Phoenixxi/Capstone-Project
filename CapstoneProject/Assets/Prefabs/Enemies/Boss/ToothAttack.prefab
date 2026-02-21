@@ -52,6 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToothAttack
   damage: 0
   canRepeat: 1
+  speedupAmount: 1
+  spawnSpedUp: 0
   toothHurtbox: {fileID: 47480159616038206}
   toothAttackTimer: 3
   toothAttackLingerTimer: 4
@@ -62,6 +64,7 @@ MonoBehaviour:
   - {fileID: 1425243394258216976}
   toothAnimator: {fileID: 3929524100326390289}
   uiAnimator: {fileID: 4286244199417392367}
+  attackTimerSpeedMultiplier: 1
 --- !u!1 &6073162457694442161
 GameObject:
   m_ObjectHideFlags: 0
