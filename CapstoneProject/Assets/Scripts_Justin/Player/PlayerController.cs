@@ -109,6 +109,10 @@ public class PlayerController : MonoBehaviour
 
             Debug.LogError("Checkpoint Controller not set in Player Controller on player");
 
+
+        // For testing
+        transform.position = new Vector3(105.289001f,-8.64999962f,-26.7910004f);
+
     }
 
 
