@@ -69,6 +69,10 @@ MonoBehaviour:
   screenShakeIntensity: 1
   screenShakeDuration: 0.2
   layerMaskType: 0
+  causesKnockback: 1
+  orientationAffectsKnockback: 1
+  knockbackDuration: 0.15
+  knockback: {x: 3, y: 0, z: 0}
 --- !u!1 &1330741119533229141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,6 +1712,10 @@ MonoBehaviour:
   screenShakeIntensity: 0
   screenShakeDuration: 0
   layerMaskType: 0
+  causesKnockback: 0
+  orientationAffectsKnockback: 1
+  knockbackDuration: 0
+  knockback: {x: 0, y: 0, z: 0}
 --- !u!1 &8548868309109931021
 GameObject:
   m_ObjectHideFlags: 0
