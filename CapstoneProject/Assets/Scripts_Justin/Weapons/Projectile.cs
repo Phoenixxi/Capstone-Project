@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected float projectileSpeed;
     [SerializeField] protected float projectileLifetime;
     [SerializeField] protected bool causesKnockback = false;
-    [SerializeField] protected bool orientationInfluencesKnockback = true; //Determines whether the raw knockback vector will be used or if it'll change based on projectile direction
+    [SerializeField] protected bool orientationAffectsKnockback = true; //Determines whether the raw knockback vector will be used or if it'll change based on projectile direction
     [SerializeField] protected Vector3 knockback = Vector3.zero;
     [SerializeField] protected float knockbackDuration = 0f;
 
@@ -76,7 +76,7 @@ public class Projectile : MonoBehaviour
             if(causesKnockback)
             {
                 KnockbackMovement movement;
-                if(orientationInfluencesKnockback)
+                if(orientationAffectsKnockback)
                 {
                     //Quaternion projectileRotation = Quaternion.FromToRotation(knockback.normalized, projectile.linearVelocity.normalized);
                     //Vector3 direction = projectileRotation * knockback;

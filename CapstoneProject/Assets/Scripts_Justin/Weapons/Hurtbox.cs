@@ -12,6 +12,11 @@ public class Hurtbox : MonoBehaviour
     [SerializeField] private float screenShakeIntensity;
     [SerializeField] private float screenShakeDuration;
     [SerializeField] private LayerMaskType layerMaskType;
+    [SerializeField] private bool causesKnockback = false;
+    [SerializeField] private bool orientationAffectsKnockback = true;
+    [SerializeField] private float knockbackDuration = 0f;
+    [SerializeField] private Vector3 knockback = Vector3.zero;
+
     private bool hasShakenScreen = false;
     private float activeTime;
     private float currentActiveTime;
@@ -90,6 +95,28 @@ public class Hurtbox : MonoBehaviour
         element = type;
     }
 
+    private void DamageEntity(EntityManager entity)
+    {
+        if (!causesKnockback) entity.TakeDamage(damage, element);
+        else
+        {
+            KnockbackMovement movement;
+            if(orientationAffectsKnockback)
+            {
+                Vector3 baseDirection = transform.forward;
+                Vector3 forwardDirection = baseDirection * knockback.x;
+                Vector3 upDirection = Quaternion.AngleAxis(90f, Vector3.right) * baseDirection * knockback.y;
+                Vector3 sideDirection = Quaternion.AngleAxis(90f, Vector3.up) * baseDirection * knockback.z;
+                Vector3 finalDirection = (baseDirection + upDirection + sideDirection) * knockback.magnitude;
+                movement = new KnockbackMovement(finalDirection, Time.time, knockbackDuration);
+            } else
+            {
+                movement = new KnockbackMovement(knockback, Time.time, knockbackDuration);
+            }
+            entity.TakeDamage(damage, element, movement);
+        }
+        hitEntities.Add(entity);
+    }
 
     //dash for Zoom (CHANGE CODE IF OTHER CHARACTERS USE MELEE)
     private void OnTriggerEnter(Collider other)
@@ -102,8 +129,7 @@ public class Hurtbox : MonoBehaviour
         Debug.Log($"Entity manager null: {hitEntity == null}");
         Debug.Log($"Entity manager in hit entities: {hitEntities.Contains(hitEntity)}");
         if (hitEntity == null || hitEntities.Contains(hitEntity)) return;
-        hitEntity.TakeDamage(damage, element);
-        hitEntities.Add(hitEntity);
+        DamageEntity(hitEntity);
         if (!hasShakenScreen)
         {
             cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
@@ -126,8 +152,9 @@ public class Hurtbox : MonoBehaviour
                 Debug.LogError("oh thats not good brother, there should be an entitymanager");
             }
             else if (hitEntities.Contains(entityManager)) return;
-            entityManager.TakeDamage(damage, element);
-            hitEntities.Add(entityManager);
+            DamageEntity(entityManager);
+            //entityManager.TakeDamage(damage, element);
+            //hitEntities.Add(entityManager);
         }
 
         if(!hasShakenScreen)
