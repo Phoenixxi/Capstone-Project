@@ -103,11 +103,15 @@ public class Hurtbox : MonoBehaviour
             KnockbackMovement movement;
             if(orientationAffectsKnockback)
             {
-                Vector3 baseDirection = transform.forward;
-                Vector3 forwardDirection = baseDirection * knockback.x;
-                Vector3 upDirection = Quaternion.AngleAxis(90f, Vector3.right) * baseDirection * knockback.y;
-                Vector3 sideDirection = Quaternion.AngleAxis(90f, Vector3.up) * baseDirection * knockback.z;
-                Vector3 finalDirection = (baseDirection + upDirection + sideDirection) * knockback.magnitude;
+                //Vector3 baseDirection = transform.forward;
+                //Vector3 forwardDirection = baseDirection * knockback.x;
+                //Vector3 upDirection = Quaternion.AngleAxis(90f, Vector3.right) * baseDirection * knockback.y;
+                //Vector3 sideDirection = Quaternion.AngleAxis(90f, Vector3.up) * baseDirection * knockback.z;
+                Vector3 forwardDirection = transform.forward * knockback.x;
+                Vector3 upDirection = transform.up * knockback.y;
+                Vector3 sideDirection = transform.right * knockback.z;
+                //Vector3 finalDirection = (baseDirection + upDirection + sideDirection) * knockback.magnitude;
+                Vector3 finalDirection = forwardDirection + upDirection + sideDirection;
                 movement = new KnockbackMovement(finalDirection, Time.time, knockbackDuration);
             } else
             {
