@@ -29939,9 +29939,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2066061147}
-  - {fileID: 2077800546}
-  - {fileID: 1856415371}
-  - {fileID: 2006302074}
   - {fileID: 1687627801}
   - {fileID: 838196283}
   - {fileID: 529373920}
@@ -35612,6 +35609,9 @@ Transform:
   - {fileID: 429459251}
   - {fileID: 312775869}
   - {fileID: 1227138105}
+  - {fileID: 2077800546}
+  - {fileID: 1856415371}
+  - {fileID: 2006302074}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1790732355
@@ -37012,7 +37012,6 @@ GameObject:
   - component: {fileID: 1856415374}
   - component: {fileID: 1856415373}
   - component: {fileID: 1856415372}
-  - component: {fileID: 1856415375}
   m_Layer: 0
   m_Name: Barrier1
   m_TagString: Untagged
@@ -37029,11 +37028,11 @@ Transform:
   m_GameObject: {fileID: 1856415370}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.877014, y: -6.525, z: 16.883999}
+  m_LocalPosition: {x: 369.55, y: -2.69, z: -0.70000076}
   m_LocalScale: {x: 12.427, y: 13.308914, z: 25.952856}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1436104142}
+  m_Father: {fileID: 1784377172}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1856415372
 BoxCollider:
@@ -37081,7 +37080,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22890636fb7fd394abb2a5979e35e40b, type: 2}
+  - {fileID: 2100000, guid: b9ef33eee8a67e146ad74a12c7f67a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37112,18 +37111,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856415370}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1856415375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856415370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3cac31c0484a34297d5174706cd5b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AirWall
 --- !u!1 &1873590200
 GameObject:
   m_ObjectHideFlags: 0
@@ -39771,7 +39758,6 @@ GameObject:
   - component: {fileID: 2006302077}
   - component: {fileID: 2006302076}
   - component: {fileID: 2006302075}
-  - component: {fileID: 2006302078}
   m_Layer: 0
   m_Name: Barrier1
   m_TagString: Untagged
@@ -39788,11 +39774,11 @@ Transform:
   m_GameObject: {fileID: 2006302073}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.397003, y: -4.195, z: -1.22608}
+  m_LocalPosition: {x: 365.03, y: -0.36000013, z: -18.81008}
   m_LocalScale: {x: 16.322325, y: 1, z: 16.644726}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1436104142}
+  m_Father: {fileID: 1784377172}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2006302075
 BoxCollider:
@@ -39840,7 +39826,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22890636fb7fd394abb2a5979e35e40b, type: 2}
+  - {fileID: 2100000, guid: b9ef33eee8a67e146ad74a12c7f67a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -39871,18 +39857,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006302073}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2006302078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006302073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3cac31c0484a34297d5174706cd5b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AirWall
 --- !u!1 &2013062475
 GameObject:
   m_ObjectHideFlags: 0
@@ -44240,7 +44214,6 @@ GameObject:
   - component: {fileID: 2077800549}
   - component: {fileID: 2077800548}
   - component: {fileID: 2077800547}
-  - component: {fileID: 2077800550}
   m_Layer: 0
   m_Name: Barrier1
   m_TagString: Untagged
@@ -44257,11 +44230,11 @@ Transform:
   m_GameObject: {fileID: 2077800545}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.877014, y: -6.525, z: -16.816002}
+  m_LocalPosition: {x: 369.55, y: -2.69, z: -34.4}
   m_LocalScale: {x: 12.427, y: 13.308914, z: 25.952856}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1436104142}
+  m_Father: {fileID: 1784377172}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2077800547
 BoxCollider:
@@ -44309,7 +44282,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22890636fb7fd394abb2a5979e35e40b, type: 2}
+  - {fileID: 2100000, guid: b9ef33eee8a67e146ad74a12c7f67a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -44340,18 +44313,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077800545}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2077800550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077800545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3cac31c0484a34297d5174706cd5b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AirWall
 --- !u!1 &2090461010
 GameObject:
   m_ObjectHideFlags: 0
