@@ -6,6 +6,7 @@ public class SequentialSlamAttackFinalBoss : FinalBossAttacks
 {
     [SerializeField] private List<TentacleAttack> ListOfTentacleSlams;
     [SerializeField] private float timeBetweenSlams = 0.5f;
+    private bool isAttacking = false;
     public override void Attack(Transform PlayerTransform)
     {
         isAttacking = true;

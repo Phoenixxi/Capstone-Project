@@ -105,6 +105,11 @@ public class SlamAttackFinalBoss : FinalBossAttacks
 
     public override bool IsAttacking()
     {
-        return isAttacking;
+        foreach(TentacleAttack tentacleAttack in ListOfTentacleSlams)
+        {
+            if(tentacleAttack.IsAttacking) return true;
+        }
+
+        return false;
     }
 }

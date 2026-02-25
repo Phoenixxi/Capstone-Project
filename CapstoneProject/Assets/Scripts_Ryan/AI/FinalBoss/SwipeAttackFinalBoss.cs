@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -69,6 +70,13 @@ public class SwipeAttackFinalBoss : FinalBossAttacks
 
     public override bool IsAttacking()
     {
-        return isAttacking;
+        List<Transform> transforms = new List<Transform> {topRightSwipe, topLeftSwipe, bottomLeftSwipe, bottomRightSwipe};
+
+        foreach(Transform t in transforms)
+        {
+            if(t.GetComponent<TentacleAttack>().IsAttacking) return true;
+        }
+
+        return false;
     }
 }
