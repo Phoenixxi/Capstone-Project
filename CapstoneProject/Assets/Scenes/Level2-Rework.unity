@@ -702,7 +702,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.00568194, y: -0.99094373, z: 0.00073547143, w: 0.13415535}
   m_LocalPosition: {x: 371.6, y: 5.53, z: -15.55}
-  m_LocalScale: {x: 15.903659, y: 10.366701, z: -0.8525084}
+  m_LocalScale: {x: 15.903659, y: 10.366701, z: 0.8525084}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -983,7 +983,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.000000083772, y: -0.22, z: 6.38}
-  m_LocalScale: {x: 17.794403, y: -0.43056372, z: 12.120703}
+  m_LocalScale: {x: 17.794403, y: 0.4305637, z: 12.120703}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 216248445}
@@ -5630,6 +5630,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCtut_SpaceBar
       objectReference: {fileID: 0}
+    - target: {fileID: 7905867759427184756, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8797875168539556490, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -6267,6 +6271,10 @@ PrefabInstance:
     - target: {fileID: 7905867759427184756, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
       propertyPath: m_Name
       value: NPCtut_WASD
+      objectReference: {fileID: 0}
+    - target: {fileID: 7905867759427184756, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8797875168539556490, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
       propertyPath: m_fontAsset
@@ -7330,6 +7338,10 @@ PrefabInstance:
     - target: {fileID: 7905867759427184756, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
       propertyPath: m_Name
       value: NPCtut_ClearAllEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 7905867759427184756, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8797875168539556490, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
       propertyPath: m_margin.w
@@ -35548,6 +35560,10 @@ PrefabInstance:
     - target: {fileID: 7905867759427184756, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
       propertyPath: m_Name
       value: NPCtut_Venue CheckPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 7905867759427184756, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8797875168539556490, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
       propertyPath: m_fontAsset
