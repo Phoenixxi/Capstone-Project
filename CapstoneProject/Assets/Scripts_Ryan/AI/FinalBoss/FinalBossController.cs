@@ -19,6 +19,8 @@ public class FinalBossController : MonoBehaviour
     private GameObject playerGameObject;
     private FinalBossAttacks previousAttack;
     public Action PhaseTwo;
+    private FinalBossHealthUI finalBossHealthUI;
+    private bool initialized = false;
 
     void Awake()
     {
@@ -28,10 +30,23 @@ public class FinalBossController : MonoBehaviour
         PhaseTwo += cutAttackCoolDown;
     }
 
+    void Start()
+    {
+        foreach(FinalBossAttacks fba in finalBossAttacks)
+        {
+            fba.enabled = false;
+        }
+
+        FinalBossManagerSingleton.Instance.InitializeFinalBoss += OnInitializeFinalBoss;
+        entityManager = GetComponent<EntityManager>();
+        entityManager.OnEntityHurtEvent += OnHit;
+        finalBossHealthUI = GameObject.Find("FinalBossHealthBarRoot").GetComponentInChildren<FinalBossHealthUI>();
+    }
+
     void Update()
     {
-        //REMEMBER TO REMOVE THIS LINE ONCE U HAVE ENTITYMANAGER IN
-        //if(entityManager.currentHealth <= entityManager.maxHealth / 2) PhaseTwo?.Invoke();
+        if(!initialized) return;
+        if(entityManager.currentHealth <= entityManager.maxHealth / 2) PhaseTwo?.Invoke();
         AttemptToAttack();
     }
 
@@ -77,5 +92,20 @@ public class FinalBossController : MonoBehaviour
         attack.Attack(playerGameObject.transform);
         AttackCoolDown = UnityEngine.Random.Range(AttackCoolDownMin, AttackCoolDownMax);
         timeSinceLastAttack = Time.time;
+    }
+
+    private void OnInitializeFinalBoss()
+    {
+        foreach(FinalBossAttacks fba in finalBossAttacks)
+        {
+            fba.enabled = true;
+        }
+
+        initialized = true;
+    }
+
+    private void OnHit()
+    {
+        finalBossHealthUI.UpdateHealthBar(entityManager.currentHealth, entityManager.maxHealth);
     }
 }
