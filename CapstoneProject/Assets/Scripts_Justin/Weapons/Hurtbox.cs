@@ -16,6 +16,7 @@ public class Hurtbox : MonoBehaviour
     [SerializeField] private bool orientationAffectsKnockback = true;
     [SerializeField] private float knockbackDuration = 0f;
     [SerializeField] private Vector3 knockback = Vector3.zero;
+    [SerializeField] private bool preventDoubleHits = true;
 
     private bool hasShakenScreen = false;
     private float activeTime;
@@ -119,7 +120,7 @@ public class Hurtbox : MonoBehaviour
             }
             entity.TakeDamage(damage, element, movement);
         }
-        hitEntities.Add(entity);
+        if(preventDoubleHits) hitEntities.Add(entity);
     }
 
     //dash for Zoom (CHANGE CODE IF OTHER CHARACTERS USE MELEE)

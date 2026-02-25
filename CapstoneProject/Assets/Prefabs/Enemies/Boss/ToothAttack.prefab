@@ -140,7 +140,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1141,6 +1141,11 @@ MonoBehaviour:
   screenShakeIntensity: 0
   screenShakeDuration: 0
   layerMaskType: 1
+  causesKnockback: 1
+  orientationAffectsKnockback: 0
+  knockbackDuration: 0.1
+  knockback: {x: 0, y: 20, z: 0}
+  preventDoubleHits: 0
 --- !u!4 &8576706142497922197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3382051692375609244, guid: 2f5aa69252692ad4eabec21355e90b32, type: 3}
