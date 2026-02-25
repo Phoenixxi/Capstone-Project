@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using DG.Tweening;
+using Unity.Mathematics;
 
 public class NPCMovement : MonoBehaviour
 {
@@ -24,9 +25,11 @@ public class NPCMovement : MonoBehaviour
 
     void Start()
     {
+        if (spline == null || spline.GetLength() == 0) return;
         Tween tw = DOTween.To(() => t, x => t = x, 1f, duration).OnUpdate(() =>
         {
-            transform.position = spline.EvaluatePosition(t);
+            Vector3 newPos = spline.EvaluatePosition(t);
+            transform.position = newPos;
         });
 
         if(pingpong) tw.SetLoops(-1, LoopType.Yoyo);
