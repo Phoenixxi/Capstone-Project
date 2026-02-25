@@ -4,7 +4,6 @@ public abstract class FinalBossAttacks : MonoBehaviour
 {
     [SerializeField] protected float CoolDownDuration;
     [SerializeField] protected FinalBossController finalBossController;
-    [SerializeField] protected float Chance;
 
     protected float timeSinceLastAttacked;
 

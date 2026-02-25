@@ -9,6 +9,7 @@ public class SlamAttackFinalBoss : FinalBossAttacks
     [SerializeField] private List<TentacleAttack> ListOfTentacleSlams;
     [SerializeField] private int minSlams = 1;
     [SerializeField] private int maxSlams = 4;
+    [SerializeField] protected float Chance;
     [SerializeField] private float SequentialAttackChance = 50f;
     [SerializeField] private float timeBetweenSlams = 0.5f;
     [SerializeField] protected float maxRecoveryTime = 3f;
@@ -25,7 +26,7 @@ public class SlamAttackFinalBoss : FinalBossAttacks
     {
         if(!HasCooldownExpired()) return;
 
-        if(UnityEngine.Random.Range(0, 1) <= SequentialAttackChance/100f)
+        if(UnityEngine.Random.Range(0, 100) <= SequentialAttackChance)
         {
             SequentialAttack = true;
         }

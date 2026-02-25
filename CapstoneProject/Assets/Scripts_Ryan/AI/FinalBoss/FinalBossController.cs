@@ -21,7 +21,6 @@ public class FinalBossController : MonoBehaviour
     public Action PhaseTwo;
     private FinalBossHealthUI finalBossHealthUI;
     private bool initialized = false;
-    private bool phaseTwoInvoked = false;
 
     void Awake()
     {
@@ -112,10 +111,10 @@ public class FinalBossController : MonoBehaviour
 
     private void CheckPhaseTwo()
     {
-        if(entityManager.currentHealth <= entityManager.maxHealth / 2 && !phaseTwoInvoked)
+        if(entityManager.currentHealth <= entityManager.maxHealth / 2)
         {
             PhaseTwo?.Invoke();
-            phaseTwoInvoked = true;
+            entityManager.OnEntityHurtEvent -= CheckPhaseTwo;
         } 
     }
 }

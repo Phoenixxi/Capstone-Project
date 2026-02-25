@@ -11,6 +11,7 @@ public class SwipeAttackFinalBoss : FinalBossAttacks
     [SerializeField] private Transform bottomRightSwipe;
     [SerializeField] private Transform bottomLeftSwipe;
     [SerializeField] protected float maxRecoveryTime = 4f;
+    [SerializeField] protected float Chance;
     [SerializeField] private AnimationCurve weightCurve;
     private Vector3 topMidPoint;
     private Vector3 bottomMidPoint;
