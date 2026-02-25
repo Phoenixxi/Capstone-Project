@@ -4,11 +4,10 @@ public abstract class FinalBossAttacks : MonoBehaviour
 {
     [SerializeField] protected float CoolDownDuration;
     [SerializeField] protected FinalBossController finalBossController;
-    [SerializeField] protected float maxRecoveryTime;
     [SerializeField] protected float Chance;
-    [SerializeField] protected AnimationCurve weightCurve;
+    [SerializeField] protected bool isAttacking = false;
 
-    private float timeSinceLastAttacked;
+    protected float timeSinceLastAttacked;
 
     protected virtual void Awake()
     {
@@ -27,7 +26,7 @@ public abstract class FinalBossAttacks : MonoBehaviour
         timeSinceLastAttacked = Time.time;
     }
 
-    protected bool HasCooldownExpired()
+    public bool HasCooldownExpired()
     {
         float currentTime = Time.time;
         return currentTime - timeSinceLastAttacked >= CoolDownDuration;
@@ -38,24 +37,9 @@ public abstract class FinalBossAttacks : MonoBehaviour
         CoolDownDuration -= CoolDownDuration * (finalBossController.DecreaseAttackCoolDownPercentage/100f);
     }
 
-    public float GetDynamicWeight()
-    {
-        if(!HasCooldownExpired()) return 0f;
+    public abstract bool IsAttacking();
 
-        float timeSince = Time.time - timeSinceLastAttacked;
-        float weight = Mathf.Clamp01(timeSince / maxRecoveryTime);
-        float dynamicWeight = weightCurve.Evaluate(weight);
-
-        float maxRecoveryBonus = 10f;
-        dynamicWeight *= maxRecoveryBonus;
-
-        if(Random.Range(0f, 1f) <= Chance/100f)
-        {
-            dynamicWeight += Random.Range(0f, maxRecoveryBonus * 0.3f);
-        }
-
-        return dynamicWeight;
-    }
+    public abstract float GetDynamicWeight();
 
     public abstract void Attack(Transform PlayerTransform);
 }

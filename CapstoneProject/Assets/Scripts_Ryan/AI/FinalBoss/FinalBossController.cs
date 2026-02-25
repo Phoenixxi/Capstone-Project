@@ -45,11 +45,7 @@ public class FinalBossController : MonoBehaviour
 
     private void AttemptToAttack()
     {
-        if(previousAttack != null && previousAttack.GetType() == typeof(TeethAttackFinalBoss))
-        {
-            TeethAttackFinalBoss teethAttackFinalBoss = previousAttack as TeethAttackFinalBoss;
-            if(teethAttackFinalBoss.IsAttacking()) return;
-        }
+        if(previousAttack != null && previousAttack.IsAttacking()) return;
 
         if(HasCooldownExpired())
         {
@@ -57,13 +53,14 @@ public class FinalBossController : MonoBehaviour
             FinalBossAttacks fba = null;
             foreach(FinalBossAttacks fbas in finalBossAttacks)
             {
-                if(bestWeight < fbas.GetDynamicWeight())
+                if(bestWeight < fbas.GetDynamicWeight() && fbas.HasCooldownExpired())
                 {
                     bestWeight = fbas.GetDynamicWeight();
                     fba = fbas;
                 }
             }
 
+            if(fba == null) return;
             Attack(fba);
             previousAttack = fba;
         }
