@@ -21,6 +21,7 @@ public class FinalBossController : MonoBehaviour
     public Action PhaseTwo;
     private FinalBossHealthUI finalBossHealthUI;
     private bool initialized = false;
+    private bool phaseTwoInvoked = false;
 
     void Awake()
     {
@@ -40,13 +41,13 @@ public class FinalBossController : MonoBehaviour
         FinalBossManagerSingleton.Instance.InitializeFinalBoss += OnInitializeFinalBoss;
         entityManager = GetComponent<EntityManager>();
         entityManager.OnEntityHurtEvent += OnHit;
+        entityManager.OnEntityHurtEvent += CheckPhaseTwo;
         finalBossHealthUI = GameObject.Find("FinalBossHealthBarRoot").GetComponentInChildren<FinalBossHealthUI>();
     }
 
     void Update()
     {
         if(!initialized) return;
-        if(entityManager.currentHealth <= entityManager.maxHealth / 2) PhaseTwo?.Invoke();
         AttemptToAttack();
     }
 
@@ -107,5 +108,14 @@ public class FinalBossController : MonoBehaviour
     private void OnHit()
     {
         finalBossHealthUI.UpdateHealthBar(entityManager.currentHealth, entityManager.maxHealth);
+    }
+
+    private void CheckPhaseTwo()
+    {
+        if(entityManager.currentHealth <= entityManager.maxHealth / 2 && !phaseTwoInvoked)
+        {
+            PhaseTwo?.Invoke();
+            phaseTwoInvoked = true;
+        } 
     }
 }
