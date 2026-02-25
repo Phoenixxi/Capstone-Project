@@ -80,17 +80,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938386576034847899}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.006018921, y: 0.006018921, z: 0.006018921}
+  m_LocalRotation: {x: -0, y: 0.0000132692685, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000025465155}
+  m_LocalScale: {x: 0.067679666, y: 0.06767967, z: 0.067679666}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4389597265280447373}
-  m_Father: {fileID: 5184264744152773514}
+  m_Father: {fileID: 7017822454517335265}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.00004253602, y: 0}
   m_SizeDelta: {x: 1363, y: 699.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6988216210613709982
@@ -193,8 +193,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3592581165988107591}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.0000132692685, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0029509675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -331,11 +331,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4617604415355335522}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.0000132692685, z: 0, w: 1}
+  m_LocalPosition: {x: 0.000028053128, y: 0, z: -0.000002263935}
   m_LocalScale: {x: 0.08893248, y: 0.08893248, z: 0.08893248}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 3741307225020404746}
   m_Father: {fileID: 5184264744152773514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4145401364550733294
@@ -423,7 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
   m_Target: {fileID: 5217325394872951367}
   m_PlayOnAwake: 1
-  m_LoopMode: 1
+  m_LoopMode: 3
   m_Method: 0
   m_Duration: 1
   m_MaxSpeed: 3
@@ -578,7 +579,6 @@ Transform:
   - {fileID: 7017822454517335265}
   - {fileID: 9173359124067106316}
   - {fileID: 8669878885881469613}
-  - {fileID: 3741307225020404746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1722832141631585653
