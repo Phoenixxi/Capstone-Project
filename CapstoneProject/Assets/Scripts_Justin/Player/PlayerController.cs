@@ -178,6 +178,48 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void HealAllLivingCharacters(float healAmount)
+    {
+        foreach (GameObject character in charactersListPC)
+        {
+            EntityManager entity = character.GetComponentInChildren<EntityManager>();
+            if(entity.isAlive)
+            {
+                Debug.Log("Healed " + entity.entityName + " from reaction for " + 1f);
+                entity.Heal(healAmount);
+            }
+        }
+    }
+
+    public void HealLivingCharactersFromReaction()
+    {
+        foreach (GameObject character in charactersListPC)
+        {
+            EntityManager entity = character.GetComponentInChildren<EntityManager>();
+            if(!entity.isAlive)
+                return;
+            else
+            {
+                if(entity.standingInGloomBuffZone){ // BUG HERE FIX LATER
+                    HealAllLivingCharacters(1f);
+                }
+                else
+                {
+                    float missingHealth = entity.maxHealth - entity.currentHealth;
+                    float healthPercent = entity.currentHealth / entity.maxHealth; // 1.0 at full, 0.0 at empty
+
+                    // As health is lower, healing increases.
+                    // To decrease healing, decrease the maximum coefficient (the first one) and increase the minimum coefficient (the second one). 
+                    // To increase healing, do the opposite.
+                    float coefficient = Mathf.Lerp(0.11f, 0.1f, healthPercent);
+
+                    Debug.Log("Healed " + entity.entityName + " for " + (missingHealth * coefficient) + " who had current health of " + entity.currentHealth + " and missing health of " + missingHealth);
+                    entity.Heal(missingHealth * coefficient);
+                }
+            }
+        }
+    }
+
 
 
     public void TakeDamageWrapper(float damage)

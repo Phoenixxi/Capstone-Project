@@ -65,6 +65,7 @@ public class EntityManager : MonoBehaviour
     private Ability ability;
     //Keeps track of movements associated with abilities; if this queue is not empty, these movements must be performed before standard movements can
     public Queue<AbilityMovement> movementQueue;
+    public bool standingInGloomBuffZone = false;
 
     // DESIGNERS: Adjust fields here
     private float dmgMultiplier = 2.0f;
@@ -459,6 +460,11 @@ public class EntityManager : MonoBehaviour
         }
     }
 
+    public void SetStandingInGloomBuffZone(bool val)
+    {
+        standingInGloomBuffZone = val;
+    }
+
 
 
     /// <summary>
@@ -484,7 +490,7 @@ public class EntityManager : MonoBehaviour
             currentHealth = newHealth;
             OnElementReactionEvent?.Invoke(1);
         }
-        // ZOOM x GLOOM  // Slow
+        // ZOOM x GLOOM  // Life Steal
         else if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
         {
             currentHealth -= incomingDmg;
@@ -496,8 +502,8 @@ public class EntityManager : MonoBehaviour
                 Instantiate(gloomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
                 GameObject playerObject = GameObject.Find("Player");
                 PlayerController pc = playerObject.GetComponent<PlayerController>();
-                pc.HealAllCharacters(reactionHealAmount);
-                //effectable.ApplySlow(data);
+                pc.HealLivingCharactersFromReaction();
+                
             }
             OnElementReactionEvent?.Invoke(2);
         }
@@ -641,13 +647,19 @@ public class EntityManager : MonoBehaviour
         Debug.Log("Entity has died.");
         ClearVFX(ref currentElementalVFXInstance);
         OnEntityKilledEvent?.Invoke();
-        if(entityName == "FinalBoss") return;
+        if(entityName == "FinalBoss")
+        {
+            // TODO
+            // Trigger Outro scene
+            return;
+        }
         if (this.gameObject.CompareTag("Enemy"))
         {
             Vector3 lastEnemyPosition = gameObject.transform.position;
             currentEnemyDeathVFX = Instantiate(enemyDeathVFX, lastEnemyPosition, Quaternion.identity);
             Destroy(gameObject); 
         }
+
 
         if(this.gameObject.CompareTag("Player"))
         {

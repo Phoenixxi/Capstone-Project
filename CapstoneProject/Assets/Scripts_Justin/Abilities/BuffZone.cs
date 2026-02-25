@@ -107,6 +107,7 @@ public class BuffZone : MonoBehaviour
             Debug.Log("Player leaving buff zone");
             player.ResetAttackRate();
             player.DestroyGloomBuffVFX();
+            player.SetStandingInGloomBuffZone(false);
             player = null;
         }
     }
@@ -121,10 +122,12 @@ public class BuffZone : MonoBehaviour
             {
                 player?.ResetAttackRate();
                 player?.DestroyGloomBuffVFX();
+                player?.SetStandingInGloomBuffZone(false);
             }
             player = currentPlayer;
             player.ApplyGloomBuffVFX();
             player.ApplyAttackCooldownMutliplier(attackCooldownMultiplier);
+            player.SetStandingInGloomBuffZone(true);
         }
     }
 
@@ -133,5 +136,6 @@ public class BuffZone : MonoBehaviour
         Debug.Log("Player leaving buff zone");
         player?.ResetAttackRate();
         player?.DestroyGloomBuffVFX();
+        player?.SetStandingInGloomBuffZone(false);
     }
 }
