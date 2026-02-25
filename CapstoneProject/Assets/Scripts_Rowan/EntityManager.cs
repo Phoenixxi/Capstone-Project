@@ -196,6 +196,7 @@ public class EntityManager : MonoBehaviour
         if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, animator, projectileCount, perBulletSpread);
         else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime, animator);
         else if(explodeHurtBox != null) weapon = new ExplodeWeapon(attackCooldown, weaponDamage, defaultElement, explodeHurtBox, animator);
+        else if(entityName == "FinalBoss") return;
         else Debug.LogError($"Neither a melee nor ranged weapon could be assigned to {gameObject}. Make sure either the Projectile or Hurtbox fields have a value");
     }
 
@@ -640,6 +641,7 @@ public class EntityManager : MonoBehaviour
         Debug.Log("Entity has died.");
         ClearVFX(ref currentElementalVFXInstance);
         OnEntityKilledEvent?.Invoke();
+        if(entityName == "FinalBoss") return;
         if (this.gameObject.CompareTag("Enemy"))
         {
             Vector3 lastEnemyPosition = gameObject.transform.position;

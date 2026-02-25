@@ -34,6 +34,7 @@ public class FinalBossHealthUI : MonoBehaviour
 
     public void UpdateHealthBar(float remainingHealth, float maxHealth)
     {
+        if(remainingHealth < 0f) return;
         float t = remainingHealth/maxHealth;
         Vector3 scale = transform.localScale;
         scale.x = initialScaleX * t;
