@@ -19,7 +19,10 @@ public class NPCMovement : MonoBehaviour
         if (spline != null)
         {
             if(spline.GetLength() != 0)
+            {
                 splineAnimate.Container = splineContainer;
+                splineAnimate.Restart(true);
+            }
         }
     }
 }
