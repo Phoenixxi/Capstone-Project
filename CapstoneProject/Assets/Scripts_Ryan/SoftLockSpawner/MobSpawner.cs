@@ -14,13 +14,14 @@ public class MobSpawner : MonoBehaviour
     [SerializeField] private int MeleeCount;
     [SerializeField] private int ExplodingCount;
     [SerializeField] private float delay;
+    private Vector3 spawnPlatform;
 
     void Awake()
     {
         RaycastHit hit;
         if(Physics.Raycast(transform.position, -Vector3.up, out hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
         {
-            transform.position = new Vector3(transform.position.x, hit.collider.transform.position.y + 0.5f, transform.position.z);
+            spawnPlatform = new Vector3(transform.position.x, hit.collider.transform.position.y + 0.5f, transform.position.z);
         }
         else
         {
@@ -55,7 +56,8 @@ public class MobSpawner : MonoBehaviour
         for(int i = 0; i < spawnQueue.Count; i++)
         {
             Vector3 pos;
-            RandomPoint(transform.position, 1f, out pos);
+            RandomPoint(spawnPlatform, 1f, out pos);
+            pos.Set(pos.x, transform.position.y, pos.z);
             Transform enemy = Instantiate(spawnQueue[i], pos, Quaternion.identity);
             EntityManager entityManager = enemy.GetComponentInChildren<EntityManager>();
             OnEnemySpawned?.Invoke(entityManager);
