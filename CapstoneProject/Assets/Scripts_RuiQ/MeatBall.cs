@@ -5,6 +5,8 @@ public class Meatball : MonoBehaviour
     [Header("🚀 Physics")]
     public float maxSpeed = 25f; // 由 Dropper 脚本动态同步这个值
 
+    [SerializeField] private float damage = 10f;
+
     private Rigidbody rb;
 
     void Start()
@@ -34,6 +36,12 @@ public class Meatball : MonoBehaviour
 
         // 如果你有特效（VFX）预制体，可以在这里 Instantiate
         // Instantiate(impactVFX, transform.position, Quaternion.identity);
+
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            EntityManager entityManager = collision.gameObject.GetComponentInChildren<EntityManager>();
+            entityManager.TakeDamage(damage);
+        }
 
         Destroy(gameObject);
     }
