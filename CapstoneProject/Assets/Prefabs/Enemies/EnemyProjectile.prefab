@@ -870,7 +870,8 @@ MonoBehaviour:
   currentHealth: 0
   isAlive: 1
   data: {fileID: 0}
-  movementSpeed: 2
+  reactionHealAmount: 5
+  movementSpeed: 100
   jumpHeight: 1
   gravity: 10
   extraJumps: 0
@@ -888,6 +889,8 @@ MonoBehaviour:
   perBulletSpread: 0
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  explodeHurtBox: {fileID: 0}
+  standingInGloomBuffZone: 0
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 2261785964360444772, guid: f2ba69326fe154b46bc7f0c88578606d, type: 3}
@@ -896,6 +899,8 @@ MonoBehaviour:
   zoomDeathVFX: {fileID: 0}
   boomDeathVFX: {fileID: 0}
   gloomDeathVFX: {fileID: 0}
+  lowHealthCanvas: {fileID: 0}
+  gloomBuffVFX: {fileID: 0}
   zoomAttackVFX: {fileID: 0}
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
@@ -1079,7 +1084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyControllerProjectile
   AttackRange: 8
-  LineOfSightRange: 10
+  LineOfSightRange: 20
   characterController: {fileID: 5192659738883732383}
 --- !u!1 &7785730262722911322
 GameObject:
