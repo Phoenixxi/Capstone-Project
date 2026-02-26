@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class FinalBossAttacks : MonoBehaviour 
@@ -17,6 +18,11 @@ public abstract class FinalBossAttacks : MonoBehaviour
     protected virtual void Start()
     {
         
+    }
+
+    private void OnEnable()
+    {
+        UpdateTimeSinceLastAttack();
     }
 
     protected void UpdateTimeSinceLastAttack()

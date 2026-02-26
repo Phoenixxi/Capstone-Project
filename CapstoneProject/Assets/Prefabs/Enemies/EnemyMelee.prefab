@@ -747,6 +747,11 @@ MonoBehaviour:
   screenShakeIntensity: 1
   screenShakeDuration: 0.2
   layerMaskType: 1
+  causesKnockback: 0
+  orientationAffectsKnockback: 1
+  knockbackDuration: 0
+  knockback: {x: 0, y: 0, z: 0}
+  preventDoubleHits: 1
 --- !u!54 &1510797324475462658
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -968,6 +973,7 @@ MonoBehaviour:
   currentHealth: 0
   isAlive: 1
   data: {fileID: 0}
+  reactionHealAmount: 5
   movementSpeed: 3
   jumpHeight: 1
   gravity: 10
@@ -987,6 +993,7 @@ MonoBehaviour:
   meleeHurtbox: {fileID: 5379553879644229782}
   hurtboxActivationTime: 1
   explodeHurtBox: {fileID: 0}
+  standingInGloomBuffZone: 0
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 2261785964360444772, guid: f2ba69326fe154b46bc7f0c88578606d, type: 3}
@@ -996,7 +1003,8 @@ MonoBehaviour:
   boomDeathVFX: {fileID: 0}
   gloomDeathVFX: {fileID: 0}
   lowHealthCanvas: {fileID: 0}
-  zoomAttackVFX: {fileID: 9090841650386813736, guid: 7ca3b75a46196864aa19e39261ee6f01, type: 3}
+  gloomBuffVFX: {fileID: 0}
+  zoomAttackVFX: {fileID: 9090841650386813736, guid: 92d39f934e68ef0448973eb9d44c27da, type: 3}
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
   boomZoomReactionVFX: {fileID: 2974473035401064883, guid: 5bd66edc516a3ff4184b1634d6046994, type: 3}

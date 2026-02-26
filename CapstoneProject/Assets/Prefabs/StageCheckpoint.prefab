@@ -1646,6 +1646,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 779319271090855936}
     m_Modifications:
     - target: {fileID: 1722832141631585653, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722832141631585653, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
       propertyPath: dialogue
       value: Revive Station Used
       objectReference: {fileID: 0}
@@ -1727,6 +1731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6164481486805930724, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
+    - {fileID: 2470559162957212316, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4617604415355335522, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
     - {fileID: 6709933649092897850, guid: 1e317944e9ba2d34eb0053c7d747dc05, type: 3}
