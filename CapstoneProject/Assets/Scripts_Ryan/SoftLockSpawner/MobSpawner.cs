@@ -9,8 +9,10 @@ public class MobSpawner : MonoBehaviour
 {
     [SerializeField] private Transform ProjectileEnemyPrefab;
     [SerializeField] private Transform MeleeEnemyPrefab;
+    [SerializeField] private Transform ExplodingEnemyPrefab;
     [SerializeField] private int ProjectileCount;
     [SerializeField] private int MeleeCount;
+    [SerializeField] private int ExplodingCount;
     [SerializeField] private float delay;
 
     void Awake()
@@ -28,7 +30,7 @@ public class MobSpawner : MonoBehaviour
 
     public int GetMobCount()
     {
-        return ProjectileCount + MeleeCount;
+        return ProjectileCount + MeleeCount + ExplodingCount;
     }
 
     public IEnumerator SpawnEnemiesCoroutine(System.Action<EntityManager> OnEnemySpawned)
@@ -42,6 +44,10 @@ public class MobSpawner : MonoBehaviour
         for(int i = 0; i < MeleeCount; i++)
         {
             spawnQueue.Add(MeleeEnemyPrefab);
+        }
+        for(int i = 0; i < ExplodingCount; i++)
+        {
+            spawnQueue.Add(ExplodingEnemyPrefab);
         }
 
         spawnQueue = spawnQueue.OrderBy(x => UnityEngine.Random.value).ToList();
