@@ -536,15 +536,13 @@ public class EntityManager : MonoBehaviour
     {
         if (AbilityInUse())return;
         
-        if (weapon is RangedWeapon)
-        { 
-            if(weapon == null)
-            {
-                Debug.Log("wtf the weapon is null");
-            }
+        if (weapon is RangedWeapon) 
             (weapon as RangedWeapon).UpdateWeaponTransform(attackDirection, entityPosition);
-        }
         
+        if(weapon == null)
+        {
+            return;
+        }
         bool attacked = weapon.Attack();
         if(attacked)
         {
