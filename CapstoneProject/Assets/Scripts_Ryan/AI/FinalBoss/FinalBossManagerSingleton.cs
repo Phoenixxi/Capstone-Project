@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinalBossManagerSingleton : MonoBehaviour
 {
@@ -21,5 +22,10 @@ public class FinalBossManagerSingleton : MonoBehaviour
     public void InitializeBoss()
     {
         InitializeFinalBoss?.Invoke();
+    }
+
+    public void OnFinalBossDeath()
+    {
+        SceneManager.LoadScene("WinScreen");
     }
 }

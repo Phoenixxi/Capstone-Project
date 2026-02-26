@@ -41,6 +41,7 @@ public class FinalBossController : MonoBehaviour
         entityManager = GetComponent<EntityManager>();
         entityManager.OnEntityHurtEvent += OnHit;
         entityManager.OnEntityHurtEvent += CheckPhaseTwo;
+        entityManager.OnEntityKilledEvent += OnFinalBossDeath;
         finalBossHealthUI = GameObject.Find("FinalBossHealthBarRoot").GetComponentInChildren<FinalBossHealthUI>();
     }
 
@@ -116,5 +117,10 @@ public class FinalBossController : MonoBehaviour
             PhaseTwo?.Invoke();
             entityManager.OnEntityHurtEvent -= CheckPhaseTwo;
         } 
+    }
+
+    private void OnFinalBossDeath()
+    {
+        FinalBossManagerSingleton.Instance.OnFinalBossDeath();
     }
 }
