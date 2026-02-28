@@ -2,20 +2,27 @@ using UnityEngine;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class CameraCut : MonoBehaviour
 {
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject cutSceneCamera;
+    [SerializeField] private GameObject videoPlayer;
+    [SerializeField] private GameObject fadeCanvas;
     private PlayerInput playerInput;
+    private CanvasGroup fadeCanvasGroup;
 
     void Start()
     {
         GameObject Player = GameObject.Find("Player");
         playerInput = Player.GetComponent<PlayerInput>();
+        if(fadeCanvas != null)
+            fadeCanvasGroup = fadeCanvas.GetComponent<CanvasGroup>();
     }
 
+// Moves to second camera
     public void OnTriggerEnter(Collider other)
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -27,25 +34,62 @@ public class CameraCut : MonoBehaviour
         }
         else
         {
+            
             mainCamera.SetActive(false);
             cutSceneCamera.SetActive(true);
             playerInput.actions.FindActionMap("Player").Disable();
-            StartCoroutine(waitTime());
+            StartCoroutine(waitTime(2.5f));
+            
         }
     }
 
-    IEnumerator waitTime()
+    IEnumerator waitTime(float time)
     {
         /// wait 2.5 seconds
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(time);
         // reset cameras
-        mainCamera.SetActive(true);
-        cutSceneCamera.SetActive(false); 
-        StartCoroutine(onReturn());
+        if(gameObject.name == "TutorialCutReactionsTrigger") // zoom in for reactions cutscene
+        {
+            fadeCanvas.SetActive(true);
+            // turn alpha up on canvas to make it fade to white using delta time
+            while(fadeCanvasGroup.alpha < 1)
+            {
+                fadeCanvasGroup.alpha += Time.deltaTime;
+                yield return null;
+            }
+            videoPlayer.SetActive(true);
+            StartCoroutine(loadingTime());
+            StartCoroutine(videoWaitTime(5f));
+        }
+        else
+        {
+            mainCamera.SetActive(true);
+            cutSceneCamera.SetActive(false); 
+            StartCoroutine(onReturn());
+        }
         
     }
 
-    // Gives player controls back
+    //Gives game half a second to load everything properly
+    IEnumerator loadingTime()
+    {
+        yield return new WaitForSeconds(0.5f);
+        fadeCanvas.SetActive(false);
+    }
+
+    IEnumerator videoWaitTime(float time)
+    {
+        // wait for length of video
+        mainCamera.SetActive(true);
+        cutSceneCamera.SetActive(false); 
+        yield return new WaitForSeconds(time);
+        // reset cameras
+        videoPlayer.SetActive(false);
+        playerInput.actions.FindActionMap("Player").Enable();
+        Destroy(gameObject);
+    }
+
+    // Gives player controls back  
     IEnumerator onReturn()
     {
         yield return new WaitForSeconds(1.8f);

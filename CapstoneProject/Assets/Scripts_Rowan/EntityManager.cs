@@ -103,6 +103,7 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private GameObject zoomHitVFX;
     [SerializeField] private GameObject boomHitVFX;
     [SerializeField] private GameObject gloomHitVFX;
+    [SerializeField] private Renderer heartBossRenderer;
 
     [Header("Enemy Death: ENEMY ONLY")]
     [SerializeField] private GameObject enemyDeathVFX;
@@ -389,11 +390,24 @@ public class EntityManager : MonoBehaviour
 
         if(entityName != "FinalBoss")
             animator.SetTrigger("FlashRed");
+        else
+        {
+            
+            heartBossRenderer.material.SetColor("_BaseColor", Color.red);
+            StartCoroutine(ResetBossFlash());
+            
+        }
         //if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
         OnEntityHurtEvent?.Invoke();
 
         //Instantiate(damageNumberVFXPrefab, transform);
+    }
+
+    IEnumerator ResetBossFlash()
+    {
+        yield return new WaitForSeconds(0.2f);
+        heartBossRenderer.material.SetColor("_BaseColor", Color.white);
     }
 
 

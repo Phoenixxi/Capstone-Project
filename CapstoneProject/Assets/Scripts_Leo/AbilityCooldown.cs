@@ -28,7 +28,9 @@ public class AbilityCooldownDisplay : MonoBehaviour
 
     private void OnDisable()
     {
-        FindFirstObjectByType<PlayerController>().CharacterSwapEvent -= SwapAbilityIcon;
+        PlayerController player = FindAnyObjectByType<PlayerController>();
+        if (player != null) player.CharacterSwapEvent -= SwapAbilityIcon;
+        //FindFirstObjectByType<PlayerController>().CharacterSwapEvent -= SwapAbilityIcon;
         Ability.OnCooldownChangedEvent -= UpdateCooldown;
     }
 
