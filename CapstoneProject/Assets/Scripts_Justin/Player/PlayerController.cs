@@ -1,5 +1,5 @@
 using Unity.VisualScripting;
-
+using System.Collections;
 using UnityEngine;
 
 using UnityEngine.InputSystem;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public CheckpointController checkpointController;
 
     [SerializeField] private UIPlayerSwap uiPlayerSwap;
+    [SerializeField] private GameObject uiText;
 
 
 
@@ -371,6 +372,12 @@ public class PlayerController : MonoBehaviour
         secondKeyCount++;
     }
 
+    IEnumerator turnOffSwapWarning()
+    {
+        yield return new WaitForSeconds(2f);
+        uiText.SetActive(false);
+    }
+
     /// <summary>
 
     /// Triggers when the player swaps to the left or right character. Uses the existing swapping methods so as to not break existing systems
@@ -398,6 +405,10 @@ public class PlayerController : MonoBehaviour
         // Cannot swap characters at this time
         if ((secondKeyCount != 3 && keyCount == 2) || (pressedValue == -1 && secondKeyCount != 3))
         {
+            if(uiText.activeSelf)
+                return;
+            uiText.SetActive(true);
+            StartCoroutine(turnOffSwapWarning());
             return;
         }
 
