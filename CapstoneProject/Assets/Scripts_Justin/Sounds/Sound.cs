@@ -12,9 +12,11 @@ public class Sound
     [SerializeField]
     [Range(0, 1)] private float volume = 1f;
     [SerializeField] private float soundCooldown = 0f;
+    [SerializeField] private bool hasRandomPitch = false;
     private float lastPlayedTime = 0f;
     public AudioClip SoundClip { get => sound; }
     public float Volume { get => volume; }
+    public bool HasRandomPitch { get => hasRandomPitch; }
 
     /// <summary>
     /// Checks to see if the sound's cooldown has expired and, if so, resets it

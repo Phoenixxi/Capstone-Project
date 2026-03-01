@@ -560,12 +560,12 @@ public class EntityManager : MonoBehaviour
         bool attacked = weapon.Attack();
         if(attacked)
         {
-            OnEntityAttackEvent?.Invoke(defaultElement);
-            if(gameObject.CompareTag("Player"))
+            if (gameObject.CompareTag("Player"))
             {
                 weapon.AttackFromAnimation();
+                OnEntityAttackEvent?.Invoke(defaultElement);
             }
-            if(gameObject.CompareTag("Enemy") && entityName != "EnemyMelee") return;
+            if (gameObject.CompareTag("Enemy") && entityName != "EnemyMelee") return;
             if(entityName == "Zoom")
             {
                 if(vfxAnchor.childCount > 2)
@@ -741,6 +741,8 @@ public class EntityManager : MonoBehaviour
 
     public void AttackFromAnimation()
     {
+
+        OnEntityAttackEvent?.Invoke(defaultElement);
         weapon.AttackFromAnimation();
     }
 }

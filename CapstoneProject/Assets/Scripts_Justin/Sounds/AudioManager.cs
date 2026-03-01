@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -11,6 +12,8 @@ public class AudioManager : MonoBehaviour
     [Range(-3, 3)]private float randomPitchLowerBound = 1f;
     [SerializeField] 
     [Range(-3, 3)] private float randomPitchUpperBound = 1f;
+    private Queue<Sound> soundQueue = new Queue<Sound>();
+    private HashSet<AudioClip> usedSounds = new HashSet<AudioClip>();
 
     /// <summary>
     /// Plays a given sound at the given volume
@@ -21,7 +24,8 @@ public class AudioManager : MonoBehaviour
     {
         if (!sound.CanPlay()) return;
         sound.ResetCooldown();
-        staticAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
+        //staticAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
+        soundQueue.Enqueue(sound);
     }
 
     /// <summary>
@@ -29,11 +33,31 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="sound">The sound to play</param>
     /// <param name="volume">The volume to play the sound at. Should be between 0 and 1</param>
-    public void PlaySoundRandom(Sound sound)
+    //public void PlaySoundRandom(Sound sound)
+    //{
+    //    if (!sound.CanPlay()) return;
+    //    sound.ResetCooldown();
+    //    randomAudioSource.pitch = Random.Range(randomPitchLowerBound, randomPitchUpperBound);
+    //    randomAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
+    //}
+
+    private void Update()
     {
-        if (!sound.CanPlay()) return;
-        sound.ResetCooldown();
-        randomAudioSource.pitch = Random.Range(randomPitchLowerBound, randomPitchUpperBound);
-        randomAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
+        while(soundQueue.Count > 0)
+        {
+            Sound sound = soundQueue.Dequeue();
+            if (usedSounds.Contains(sound.SoundClip)) continue;
+            usedSounds.Add(sound.SoundClip);
+            if(sound.HasRandomPitch)
+            {
+                randomAudioSource.pitch = Random.Range(randomPitchLowerBound, randomPitchUpperBound);
+                randomAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
+            }
+            else
+            {
+                staticAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
+            }
+        }
+        usedSounds.Clear();
     }
 }

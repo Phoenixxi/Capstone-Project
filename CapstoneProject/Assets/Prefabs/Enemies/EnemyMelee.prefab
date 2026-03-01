@@ -1139,42 +1139,52 @@ MonoBehaviour:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   hurtSound:
     sound: {fileID: 8300000, guid: 093f72c70e62a6f48ba404a4a298beb8, type: 3}
     volume: 0.25
     soundCooldown: 0.3
+    hasRandomPitch: 1
   deathSound:
     sound: {fileID: 8300000, guid: f650f79943f68ca48b27f7e244902130, type: 3}
     volume: 0.25
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomBoomReactionSound:
     sound: {fileID: 8300000, guid: 4e9de55bdd577d249af5fb3e7c68b30b, type: 3}
     volume: 0.2
     soundCooldown: 0.2
+    hasRandomPitch: 0
   zoomGloomReactionSound:
     sound: {fileID: 8300000, guid: 4788e27e50f9d48449789ea3013d20b8, type: 3}
     volume: 0.2
     soundCooldown: 0.2
+    hasRandomPitch: 0
   boomGloomReactionSound:
     sound: {fileID: 8300000, guid: a5f5f109abee84944a0fcf85e621e1c3, type: 3}
     volume: 0.2
     soundCooldown: 0.2
+    hasRandomPitch: 0
   zoomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   boomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   gloomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   normalAttackSound:
     sound: {fileID: 8300000, guid: 7098aef7ffc37374cb603e3b43ec253a, type: 3}
     volume: 0.05
     soundCooldown: 0
+    hasRandomPitch: 1
 --- !u!114 &2181290064072314983
 MonoBehaviour:
   m_ObjectHideFlags: 0
