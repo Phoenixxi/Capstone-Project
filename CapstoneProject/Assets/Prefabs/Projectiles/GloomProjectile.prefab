@@ -157,8 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   projectileSpeed: 25
   projectileLifetime: 0.25
-  causesKnockback: 1
-  orientationInfluencesKnockback: 1
+  causesKnockback: 0
+  orientationAffectsKnockback: 1
   knockback: {x: 5, y: 0, z: 0}
   knockbackDuration: 0.25
   data: {fileID: 11400000, guid: 523c74c1d6101e6448d0152c017d2b95, type: 2}
