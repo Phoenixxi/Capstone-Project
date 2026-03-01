@@ -376,7 +376,7 @@ MonoBehaviour:
   boomDeathVFX: {fileID: 333905162687956583, guid: df5b982fab38a164781664c500ac4eb1, type: 3}
   gloomDeathVFX: {fileID: 7473593324572409369, guid: 3ac5c2954d1eaa14a948b9765ac3e09e, type: 3}
   lowHealthCanvas: {fileID: 0}
-  gloomBuffVFX: {fileID: 2040626528220618235, guid: 054acc986c7cd7144ac5af7e25c5bd5f, type: 3}
+  gloomBuffVFX: {fileID: 5763361988051981360, guid: ac88f5143ed90db4c8dcab6772af837e, type: 3}
   zoomAttackVFX: {fileID: 0}
   boomJumpVFX: {fileID: 2374949704436431568, guid: 1b52b88992560014184545c4faa3e9bb, type: 3}
   boomGloomReactionVFX: {fileID: 0}
@@ -385,6 +385,7 @@ MonoBehaviour:
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
+  heartBossRenderer: {fileID: 0}
   enemyDeathVFX: {fileID: 0}
 --- !u!114 &7478264160224895753
 MonoBehaviour:
@@ -599,6 +600,7 @@ MonoBehaviour:
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
+  heartBossRenderer: {fileID: 0}
   enemyDeathVFX: {fileID: 0}
 --- !u!114 &3301841785260470896
 MonoBehaviour:
@@ -888,6 +890,7 @@ MonoBehaviour:
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
+  heartBossRenderer: {fileID: 0}
   enemyDeathVFX: {fileID: 0}
 --- !u!114 &4328091491385667142
 MonoBehaviour:
@@ -1205,6 +1208,7 @@ MonoBehaviour:
     m_Bits: 4194304
   checkpointController: {fileID: 0}
   uiPlayerSwap: {fileID: 0}
+  uiText: {fileID: 0}
   SwitchOffZoom: {fileID: 194000099236636175, guid: f8cdb00adfb5c834984d220c91b562df, type: 3}
   SwitchOffBoom: {fileID: 7523342597919943425, guid: 2fc185409fc4e024b88f31b080577564, type: 3}
   SwitchOffGloom: {fileID: 8974518114030650362, guid: e75fe1437d65427479430551f2c944d9, type: 3}
