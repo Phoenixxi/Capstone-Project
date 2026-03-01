@@ -121,8 +121,10 @@ public class PlayerController : MonoBehaviour
     }
     else if(SceneManager.GetActiveScene().name == "Level2-Rework")
         {
-           // if(StaticSceneData.playerReattempting)
-               // transform.position = new 
+           if(StaticSceneData.playerReattempting)
+               transform.position = new Vector3(607.820007f,4.17000008f,-4.88999987f);
+            // else
+            //     transform.position = new Vector3(152.589996f,58.2000008f,-15.0900002f);
             
         }
 
