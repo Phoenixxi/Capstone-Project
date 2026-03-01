@@ -561,7 +561,6 @@ public class EntityManager : MonoBehaviour
         if(attacked)
         {
             OnEntityAttackEvent?.Invoke(defaultElement);
-            //animator.SetTrigger("Shoot");
             if(gameObject.CompareTag("Player"))
             {
                 weapon.AttackFromAnimation();
@@ -569,9 +568,9 @@ public class EntityManager : MonoBehaviour
             if(gameObject.CompareTag("Enemy") && entityName != "EnemyMelee") return;
             if(entityName == "Zoom")
             {
-                if(vfxAnchor.childCount > 0)
+                if(vfxAnchor.childCount > 2)
                 {
-                    for(int i = 0; i < vfxAnchor.childCount; i++)
+                    for(int i = 2; i < vfxAnchor.childCount; i++)
                     {
                         Destroy(vfxAnchor.GetChild(i).gameObject);
                     }

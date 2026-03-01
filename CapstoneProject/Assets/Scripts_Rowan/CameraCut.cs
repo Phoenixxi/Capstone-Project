@@ -12,6 +12,7 @@ public class CameraCut : MonoBehaviour
     [SerializeField] private GameObject videoPlayer;
     [SerializeField] private GameObject fadeCanvas;
     [SerializeField] private GameObject HUDCanvas;
+    [SerializeField] private GameObject skipTutorialButton;
     private PlayerInput playerInput;
     private CanvasGroup fadeCanvasGroup;
 
@@ -60,6 +61,7 @@ public class CameraCut : MonoBehaviour
             }
             videoPlayer.SetActive(true);
             HUDCanvas.SetActive(false);
+            skipTutorialButton.SetActive(true);
             StartCoroutine(loadingTime());
             StartCoroutine(videoWaitTime(18.7f)); // length of video in seconds
         }
@@ -88,6 +90,7 @@ public class CameraCut : MonoBehaviour
         // reset cameras
         videoPlayer.SetActive(false);
         HUDCanvas.SetActive(true);
+        skipTutorialButton.SetActive(false);
         playerInput.actions.FindActionMap("Player").Enable();
         Destroy(gameObject);
     }
@@ -98,6 +101,18 @@ public class CameraCut : MonoBehaviour
         yield return new WaitForSeconds(1.8f);
         playerInput.actions.FindActionMap("Player").Enable();
         // Destoy this trigger
+        Destroy(gameObject);
+    }
+
+    public void SkipTutorialVideo()
+    {
+        StopAllCoroutines();
+        mainCamera.SetActive(true);
+        cutSceneCamera.SetActive(false); 
+        videoPlayer.SetActive(false);
+        HUDCanvas.SetActive(true);
+        skipTutorialButton.SetActive(false);
+        playerInput.actions.FindActionMap("Player").Enable();
         Destroy(gameObject);
     }
 }
