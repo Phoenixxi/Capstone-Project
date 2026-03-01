@@ -33,7 +33,6 @@ public class MainMenuScript : MonoBehaviour
 
     public void ReattemptLevel()
     {
-        if(StaticSceneData.playerReachedBossZone)
         StaticSceneData.playerReattempting = true;
         SceneManager.LoadScene("LoadingScreen");
     }
