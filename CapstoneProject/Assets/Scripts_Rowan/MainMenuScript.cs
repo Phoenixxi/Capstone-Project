@@ -8,6 +8,7 @@ public class MainMenuScript : MonoBehaviour
     public void PlayGame()
     {
         StaticSceneData.playerReattempting = false;
+        StaticSceneData.playerReachedBossZone = false;
         SceneManager.LoadScene("IntroCutscene");
     }
 
@@ -32,6 +33,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void ReattemptLevel()
     {
+        if(StaticSceneData.playerReachedBossZone)
         StaticSceneData.playerReattempting = true;
         SceneManager.LoadScene("LoadingScreen");
     }

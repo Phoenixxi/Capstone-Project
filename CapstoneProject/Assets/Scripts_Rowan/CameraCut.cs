@@ -11,6 +11,7 @@ public class CameraCut : MonoBehaviour
     [SerializeField] private GameObject cutSceneCamera;
     [SerializeField] private GameObject videoPlayer;
     [SerializeField] private GameObject fadeCanvas;
+    [SerializeField] private GameObject HUDCanvas;
     private PlayerInput playerInput;
     private CanvasGroup fadeCanvasGroup;
 
@@ -58,8 +59,9 @@ public class CameraCut : MonoBehaviour
                 yield return null;
             }
             videoPlayer.SetActive(true);
+            HUDCanvas.SetActive(false);
             StartCoroutine(loadingTime());
-            StartCoroutine(videoWaitTime(5f));
+            StartCoroutine(videoWaitTime(18.7f)); // length of video in seconds
         }
         else
         {
@@ -85,6 +87,7 @@ public class CameraCut : MonoBehaviour
         yield return new WaitForSeconds(time);
         // reset cameras
         videoPlayer.SetActive(false);
+        HUDCanvas.SetActive(true);
         playerInput.actions.FindActionMap("Player").Enable();
         Destroy(gameObject);
     }

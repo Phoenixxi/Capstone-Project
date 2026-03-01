@@ -112,12 +112,19 @@ public class PlayerController : MonoBehaviour
 
 
     // Skip tutorial if player reattempts level after dying
-    if(SceneManager.GetActiveScene().name == "Level01_LouieScene"){
+    if(SceneManager.GetActiveScene().name == "Level01_LouieScene")
+    {
         if(StaticSceneData.playerReattempting)
             transform.position = new Vector3(105.289001f,-8.64999962f,-26.7910004f);
         else
         transform.position = new Vector3(-68.7699966f,-2.477f,-44.2700005f);
     }
+    else if(SceneManager.GetActiveScene().name == "Level2-Rework")
+        {
+           // if(StaticSceneData.playerReattempting)
+               // transform.position = new 
+            
+        }
 
     }
 
