@@ -17,8 +17,6 @@ public class EntityManager : MonoBehaviour
     [SerializeField] public ElementType taggedElement = ElementType.Normal;   // default and tagged will be the same if default != Normal
     [SerializeField] private SwappingManager swappingManager;
     [SerializeField] private CharacterController entityMovement;
-    [SerializeField] private bool disabledByDefault = false;
-    private bool isInvicible = false;
     public float currentHealth;
     public bool isAlive = true;
     public AbilityData data;
@@ -144,7 +142,6 @@ public class EntityManager : MonoBehaviour
         if (defaultElement != ElementType.Normal) 
             taggedElement = defaultElement;
         if (GetComponent<NavMeshAgent>() != null) usesNavAgent = true;
-        if (disabledByDefault) gameObject.SetActive(false);
     }
 
     void Awake()
@@ -747,14 +744,5 @@ public class EntityManager : MonoBehaviour
 
         OnEntityAttackEvent?.Invoke(defaultElement);
         weapon.AttackFromAnimation();
-    }
-
-    /// <summary>
-    /// Simple method that sets whether this entity is invicible
-    /// </summary>
-    /// <param name="isInvicible"></param>
-    private void SetInvicibility(bool isInvicible)
-    {
-        this.isInvicible = isInvicible;
     }
 }
