@@ -104,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 611961489548705185}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.344, z: 0.022}
+  m_LocalPosition: {x: 0, y: 0.54, z: 0.05}
   m_LocalScale: {x: 0.16408527, y: 0.16408527, z: 0.16408527}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -672,7 +672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShadowScale
   player: {fileID: 2113378421503788461}
   heightOffset: 0.1
-  baseScale: 0.68
+  baseScale: 1.14
   minScale: 0.6
   maxHeight: 5
   startingAlpha: 0.8
@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityManager
   entityName: AI Enemy
-  maxHealth: 125
+  maxHealth: 1000
   defaultElement: 0
   taggedElement: 0
   swappingManager: {fileID: 0}
@@ -1160,7 +1160,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9191394843906942324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.461}
+  m_LocalPosition: {x: 0, y: 0, z: -0.152}
   m_LocalScale: {x: -0.010519666, y: -0.009349879, z: -0.010519666}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1170,7 +1170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.361}
+  m_AnchoredPosition: {x: 0.121, y: 1.781}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1756437988872670454

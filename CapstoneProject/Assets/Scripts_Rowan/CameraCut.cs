@@ -61,7 +61,6 @@ public class CameraCut : MonoBehaviour
             }
             videoPlayer.SetActive(true);
             HUDCanvas.SetActive(false);
-            skipTutorialButton.SetActive(true);
             StartCoroutine(loadingTime());
             StartCoroutine(videoWaitTime(18.8f)); // length of video in seconds
         }
@@ -73,11 +72,13 @@ public class CameraCut : MonoBehaviour
         }
         
     }
+    
 
     //Gives game half a second to load everything properly
     IEnumerator loadingTime()
     {
         yield return new WaitForSeconds(0.5f);
+        skipTutorialButton.SetActive(true);
         fadeCanvas.SetActive(false);
     }
 
