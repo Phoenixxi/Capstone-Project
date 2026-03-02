@@ -3,6 +3,7 @@ using lilGuysNamespace;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System;
+using System.Collections;
 
 public class SwappingManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class SwappingManager : MonoBehaviour
     public string currentCharacter;
     public Action<int> DeathSwapEvent;
     [SerializeField] public UIPlayerSwap uiPlayerSwap;
+    [Header("Death Pause Effect Settings")]
+    [SerializeField] private float timePercentage = 0f; //What percentage of the normal speed time should be moving at during the death effect. Set to 0 to pause the game completely
+    [SerializeField] private float pauseDuration = 1f;
 
     void Start()
     {
@@ -50,18 +54,39 @@ public class SwappingManager : MonoBehaviour
         if(charactersList[2] == self)
             uiPlayerSwap.gloomDied();
 
-        
+        int characterIndex = -1;
         for(int i = 0; i < charactersList.Count; i++)
         {
             if(charactersList[i] != self && charactersList[i].GetComponent<EntityManager>().isAlive)
             {
                 Debug.Log("Swapping to: " + charactersList[i].name);
-                if (DeathSwapEvent != null) DeathSwapEvent(i + 1);
-                return;
+                //if (DeathSwapEvent != null) DeathSwapEvent(i + 1);
+                //return;
+                characterIndex = i;
+                break;
             }
         }
-        Debug.Log("All characters are dead.");
-        SceneManager.LoadScene("GameOver");
+        if(characterIndex != -1)
+        {
+            StartCoroutine(DeathPauseCoroutine(characterIndex));
+        } else
+        {
+            Debug.Log("All characters are dead.");
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+
+    private IEnumerator DeathPauseCoroutine(int characterIndex)
+    {
+        DeathSwapEvent?.Invoke(characterIndex + 1);
+        EntityManager entityManager = charactersList[characterIndex].GetComponent<EntityManager>(); //This is ugky, but its the best way to do it without messing with existing systems
+        entityManager.SetInviciblity(true);
+        float originalTimeScale = Time.timeScale;
+        Time.timeScale = timePercentage;
+        //TODO Make invicible
+        yield return new WaitForSecondsRealtime(pauseDuration);
+        Time.timeScale = originalTimeScale;
+        entityManager.SetInviciblity(false);
     }
 
 

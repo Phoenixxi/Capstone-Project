@@ -22,6 +22,7 @@ public class EntityManager : MonoBehaviour
     public AbilityData data;
     [SerializeField] private float reactionHealAmount = 5f;
     private bool usesNavAgent;
+    private bool isInvincible = false;
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
@@ -320,6 +321,7 @@ public class EntityManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isInvincible) return;
         currentHealth -= damage;
         ShowDamageNumber((int)damage, ElementType.Normal);
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
@@ -341,6 +343,7 @@ public class EntityManager : MonoBehaviour
     /// <param name="element">The incoming element.</param>
     public void TakeDamage(float damage, ElementType element)
     {
+        if (isInvincible) return;
         float newHealth = currentHealth - damage;
         if (newHealth <= 0 && isAlive)
         {
@@ -425,6 +428,7 @@ public class EntityManager : MonoBehaviour
     /// <param name="knockback">The knockback/movement that should be applied from the attack</param>
     public void TakeDamage(float damage, ElementType element, KnockbackMovement knockback)
     {
+        if (isInvincible) return;
         movementQueue.Enqueue(knockback);
         TakeDamage(damage, element);
     }
@@ -437,6 +441,7 @@ public class EntityManager : MonoBehaviour
     /// <param name="movements">The sequence of knockbacks/movements that should be applied from the attack</param>
     public void TakeDamage(float damage, ElementType element, KnockbackMovement[] movements)
     {
+        if (isInvincible) return;
         foreach (var movement in movements) movementQueue.Enqueue(movement);
         TakeDamage(damage, element);
     }
@@ -744,5 +749,10 @@ public class EntityManager : MonoBehaviour
 
         OnEntityAttackEvent?.Invoke(defaultElement);
         weapon.AttackFromAnimation();
+    }
+
+    public void SetInviciblity(bool isInvincible)
+    {
+        this.isInvincible = isInvincible;
     }
 }
