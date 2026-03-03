@@ -29,8 +29,13 @@ public class ToothAttack : BossAttack
     public override void Attack()
     {
         IsAttacking = true;
+<<<<<<< Updated upstream
         currAttackTimer = toothAttackTimer / ((isSpedUp) ? attackTimerSpeedMultiplier : 1f);
         currLingerTimer = toothAttackLingerTimer / ((isSpedUp) ? speedupAmount : 1f);
+=======
+        currAttackTimer = toothAttackLingerTimer;
+        currLingerTimer = toothAttackLingerTimer;
+>>>>>>> Stashed changes
         Debug.Log("Tooth attack starting...");
         foreach (Animator molar in molarAnimators) molar.SetTrigger("Show");
         uiAnimator.SetTrigger("Show");
