@@ -23,7 +23,7 @@ public class NextSceneLoader : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         AsyncOperation loadOperation;
-        if(StaticSceneData.playerReachedBossZone)
+        if(StaticSceneData.playerReachedLevel2)
         {
             loadOperation = SceneManager.LoadSceneAsync("Level2-Rework");
         }
