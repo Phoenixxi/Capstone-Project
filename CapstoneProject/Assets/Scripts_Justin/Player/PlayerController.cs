@@ -576,6 +576,7 @@ public class PlayerController : MonoBehaviour
         currentCharacter = entity;
 
         currentCharacterIndex = 0;
+        currentCharacter.SetInputDirection(movementInput);
 
 
 
@@ -647,7 +648,7 @@ public class PlayerController : MonoBehaviour
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
 
         currentCharacter = entity;
-
+        currentCharacter.SetInputDirection(movementInput);
         currentCharacterIndex = 1;
 
         // Deactivate the other characters
@@ -715,7 +716,7 @@ public class PlayerController : MonoBehaviour
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
 
         currentCharacter = entity;
-
+        currentCharacter.SetInputDirection(movementInput);
         currentCharacterIndex = 2;
 
         // Deactivate the other characters
