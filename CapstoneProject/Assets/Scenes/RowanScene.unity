@@ -706,7 +706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7543563098658516984, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7560839075110883680, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
       propertyPath: m_AnchorMax.x
@@ -991,6 +991,10 @@ PrefabInstance:
     - target: {fileID: 7543563098658516984, guid: dbabf2ed708d146aa9e3bb5576e22dea, type: 3}
       propertyPath: m_Name
       value: EnemyExplode
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543563098658516984, guid: dbabf2ed708d146aa9e3bb5576e22dea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7560839075110883680, guid: dbabf2ed708d146aa9e3bb5576e22dea, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1678,6 +1682,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8039355975360593558, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
+      propertyPath: zoomAttackVFX
+      value: 
+      objectReference: {fileID: 6843558517940880391, guid: 54a01673e027ecc438d953fa675747fd, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3987,7 +3995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 7850124068460452317, guid: ec84a02dec39cd84e8c80e815c228303, type: 3}
       propertyPath: gloomBuffVFX

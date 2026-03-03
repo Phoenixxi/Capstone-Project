@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1577413433576269654}
   - component: {fileID: 2013665814716318246}
   - component: {fileID: 836518953888148284}
+  - component: {fileID: 3881898778500443713}
   m_Layer: 3
   m_Name: VFX_EnemyMelee_2
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -49.76, y: 0, z: -54.51}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1506418568621292959}
@@ -4838,6 +4839,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3881898778500443713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843558517940880391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f29932f2310cc4418332139ba337e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXInstance
 --- !u!1 &7085470021738334639
 GameObject:
   m_ObjectHideFlags: 0

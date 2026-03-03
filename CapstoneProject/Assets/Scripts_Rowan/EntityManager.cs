@@ -36,6 +36,7 @@ public class EntityManager : MonoBehaviour
     private float currentCoyoteTime = 0f;
     private bool isHovering;
     private PlayerInput playerInput;
+    private Coroutine meleeEnemyAttackCoroutine;
 
     [Header("Animation")]
     public Animator animator;
@@ -587,14 +588,20 @@ public class EntityManager : MonoBehaviour
             }
             if(entityName == "EnemyMelee")
             {
-                StartCoroutine(MeleeEnemyAttackDelay()); 
+                // Prevent multiple calls to the coroutine
+                if (meleeEnemyAttackCoroutine != null)
+                    StopCoroutine(meleeEnemyAttackCoroutine);
+                
+
+                meleeEnemyAttackCoroutine = StartCoroutine(MeleeEnemyAttackDelay()); 
             }
         }
     }
 
     IEnumerator MeleeEnemyAttackDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        Debug.Log("Melee coroutine");
+        yield return new WaitForSeconds(0.3f);
         if(vfxAnchor.childCount > 0)
         {
             for(int i = 0; i < vfxAnchor.childCount; i++)
@@ -604,7 +611,7 @@ public class EntityManager : MonoBehaviour
         }
         else
         {
-            currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position, Quaternion.identity);
+            currentZoomAttackVFX = Instantiate(zoomAttackVFX, vfxAnchor.position + Vector3.up * 1.7f, Quaternion.identity, vfxAnchor);
         }  
     }
 
