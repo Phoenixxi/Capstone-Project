@@ -27,6 +27,8 @@ public abstract class EnemyController : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>(); //Get the navmeshagent component from this enemy
         entityManager = GetComponent<EntityManager>(); //Get the entity manager component
 
+        navMeshAgent.enabled = false;
+        
         //if these variables are empty, then set them to default values
         if (AttackRange == 0)
         {
