@@ -120,11 +120,11 @@ public class EntityManager : MonoBehaviour
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
     //Events designed for making playing sounds easier
-    public Action OnEntityHurtEvent;
-    public Action OnJumpEvent;
-    public Action OnEntityKilledEvent;
-    public Action<int> OnElementReactionEvent;
-    public Action<ElementType> OnEntityAttackEvent;
+    public event Action OnEntityHurtEvent;
+    public event Action OnJumpEvent;
+    public event Action OnEntityKilledEvent;
+    public event Action<int> OnElementReactionEvent;
+    public event Action OnEntityAttackEvent;
 
 
 
@@ -569,7 +569,7 @@ public class EntityManager : MonoBehaviour
             if (gameObject.CompareTag("Player"))
             {
                 weapon.AttackFromAnimation();
-                OnEntityAttackEvent?.Invoke(defaultElement);
+                OnEntityAttackEvent?.Invoke();
             }
             if (gameObject.CompareTag("Enemy") && entityName != "EnemyMelee") return;
             if(entityName == "Zoom")
@@ -754,7 +754,7 @@ public class EntityManager : MonoBehaviour
     public void AttackFromAnimation()
     {
 
-        OnEntityAttackEvent?.Invoke(defaultElement);
+        OnEntityAttackEvent?.Invoke();
         weapon.AttackFromAnimation();
     }
 

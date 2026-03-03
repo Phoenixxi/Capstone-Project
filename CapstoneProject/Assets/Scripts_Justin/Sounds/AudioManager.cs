@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// Script responsible for playing audio throughout the game
 /// </summary>
+[ExecuteAlways]
 public class AudioManager : MonoBehaviour
 {
+    /*
     [SerializeField] private AudioSource staticAudioSource;
     [SerializeField] private AudioSource randomAudioSource;
     [SerializeField]
@@ -28,19 +31,6 @@ public class AudioManager : MonoBehaviour
         soundQueue.Enqueue(sound);
     }
 
-    /// <summary>
-    /// Plays a given sound at the given volume with a randomized pitch
-    /// </summary>
-    /// <param name="sound">The sound to play</param>
-    /// <param name="volume">The volume to play the sound at. Should be between 0 and 1</param>
-    //public void PlaySoundRandom(Sound sound)
-    //{
-    //    if (!sound.CanPlay()) return;
-    //    sound.ResetCooldown();
-    //    randomAudioSource.pitch = Random.Range(randomPitchLowerBound, randomPitchUpperBound);
-    //    randomAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
-    //}
-
     private void Update()
     {
         while(soundQueue.Count > 0)
@@ -60,4 +50,108 @@ public class AudioManager : MonoBehaviour
         }
         usedSounds.Clear();
     }
+    */
+
+    /// <summary>
+    /// Helper class that stores SFX information
+    /// </summary>
+    [Serializable]
+    private class SoundEffect
+    {
+        public enum SoundType
+        {
+            SFX,
+            MUSIC
+        }
+        
+        [HideInInspector] public string name;
+        public float volume = 1f;
+        public AudioClip audioClip;
+        public SoundType type;
+        public bool variedPitch = false;
+        [Range(-3, 3)] public float pitchUpperBound = 1f;
+        [Range(-3, 3)] public float pitchLowerBound = 1f;
+    }
+
+    //==========================
+    //COMPONENT CODE STARTS HERE
+    //==========================
+    [Header("IMPORTANT: DON'T CHANGE AUDIO SOURCE ORDER")]
+    [SerializeField] private AudioSource[] sources; //IMPORTANT: The order that the audio sources are assigned is important, so unless you know what you're doing, DON'T MESS WITH THIS
+    [SerializeField] private SoundEffect[] sounds;
+
+    //Queue and set used to prevent overlapping sounds
+    private HashSet<SoundName> usedSounds;
+    private Queue<SoundName> soundQueue;
+
+    private void Awake()
+    {
+        usedSounds = new HashSet<SoundName>();
+        soundQueue = new Queue<SoundName>();
+    }
+
+    public void PlaySound(SoundName soundName)
+    {
+        if (!usedSounds.Contains(soundName))
+        {
+            usedSounds.Add(soundName);
+            soundQueue.Enqueue(soundName);
+        }
+    }
+
+    private void Update()
+    {
+        while(soundQueue != null && soundQueue.Count > 0)
+        {
+            SoundEffect queuedSound = sounds[(int)soundQueue.Dequeue()];
+            if (queuedSound.type == SoundEffect.SoundType.MUSIC)
+            {
+                sources[(int)queuedSound.type].volume = queuedSound.volume;
+                sources[(int)queuedSound.type].clip = queuedSound.audioClip;
+            }
+            else if (!queuedSound.variedPitch)
+            {
+                sources[(int)queuedSound.type].PlayOneShot(queuedSound.audioClip, queuedSound.volume);
+            }
+            else
+            {
+                sources[2].pitch = UnityEngine.Random.Range(queuedSound.pitchLowerBound, queuedSound.pitchUpperBound);
+                sources[2].PlayOneShot(queuedSound.audioClip, queuedSound.volume);
+            }
+        }
+        usedSounds.Clear();
+    }
+
+    //This makes it more convenient to modify the different sounds in the editor
+#if UNITY_EDITOR
+    private void OnEnable()
+    {
+        string[] soundNames = Enum.GetNames(typeof(SoundName));
+        Array.Resize(ref sounds, soundNames.Length);
+        for (int i = 0; i < soundNames.Length; i++)
+        {
+            sounds[i].name = soundNames[i];
+        }
+    }
+#endif
+
+}
+
+/// <summary>
+/// List of the names of every sound effect in the game
+/// </summary>
+public enum SoundName
+{
+    JUMP,
+    PLAYER_HURT,
+    PLAYER_DEATH,
+    ZOOM_ATTACK,
+    BOOM_ATTACK,
+    GLOOM_ATTACK,
+    ENEMY_HURT,
+    ENEMY_DEATH,
+    ENEMY_ATTACK,
+    ZOOM_BOOM_REACT,
+    ZOOM_GLOOM_REACT,
+    BOOM_GLOOM_REACT
 }

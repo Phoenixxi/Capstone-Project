@@ -6,17 +6,21 @@ using ElementType = lilGuysNamespace.EntityData.ElementType;
 public class EntitySFXManager : MonoBehaviour
 {
     [Header("Sounds")]
-    [SerializeField] private Sound jumpSound;
-    [SerializeField] private Sound hurtSound;
-    [SerializeField] private Sound deathSound;
-    [SerializeField] private Sound zoomBoomReactionSound;
-    [SerializeField] private Sound zoomGloomReactionSound;
-    [SerializeField] private Sound boomGloomReactionSound;
-    [SerializeField] private Sound zoomAttackSound;
-    [SerializeField] private Sound boomAttackSound;
-    [SerializeField] private Sound gloomAttackSound;
-    [SerializeField] private Sound normalAttackSound;
-    
+    //[SerializeField] private Sound jumpSound;
+    //[SerializeField] private Sound hurtSound;
+    //[SerializeField] private Sound deathSound;
+    //[SerializeField] private Sound zoomBoomReactionSound;
+    //[SerializeField] private Sound zoomGloomReactionSound;
+    //[SerializeField] private Sound boomGloomReactionSound;
+    //[SerializeField] private Sound zoomAttackSound;
+    //[SerializeField] private Sound boomAttackSound;
+    //[SerializeField] private Sound gloomAttackSound;
+    //[SerializeField] private Sound normalAttackSound;
+    [SerializeField] private SoundName jumpSound;
+    [SerializeField] private SoundName hurtSound;
+    [SerializeField] private SoundName deathSound;
+    [SerializeField] private SoundName attackSound;
+
 
     private EntityManager entity;
     private AudioManager manager;
@@ -51,7 +55,6 @@ public class EntitySFXManager : MonoBehaviour
 
     private void PlayHurtSound()
     {
-        //manager.PlaySoundRandom(hurtSound);
         manager.PlaySound(hurtSound);
     }
 
@@ -66,40 +69,42 @@ public class EntitySFXManager : MonoBehaviour
         {
             //ZOOM X BOOM
             case 1:
-                manager.PlaySound(zoomBoomReactionSound);
+                manager.PlaySound(SoundName.ZOOM_BOOM_REACT);
                 break;
             //ZOOM X GLOOM
             case 2:
-                manager.PlaySound(zoomGloomReactionSound);
+                manager.PlaySound(SoundName.ZOOM_GLOOM_REACT);
                 break;
             //BOOM X GLOOM
             case 3:
-                manager.PlaySound(boomGloomReactionSound);
+                manager.PlaySound(SoundName.BOOM_GLOOM_REACT);
                 break;
         }
     }
 
-    private void PlayAttackSound(ElementType element)
+    private void PlayAttackSound()
     {
-        switch(element)
-        {
-            case ElementType.Zoom:
-                //manager.PlaySoundRandom(zoomAttackSound);
-                manager.PlaySound(zoomAttackSound);
-                break;
-            case ElementType.Boom:
-                //manager.PlaySoundRandom(boomAttackSound);
-                manager.PlaySound(boomAttackSound);
-                break;
-            case ElementType.Gloom:
-                //manager.PlaySoundRandom(gloomAttackSound);
-                manager.PlaySound(gloomAttackSound);
-                break;
-            default:
-                //manager.PlaySoundRandom(normalAttackSound);
-                manager.PlaySound(normalAttackSound);
-                Debug.Log("Attempting to play attack sound");
-                break;
-        }
+        //    switch (element)
+        //    {
+        //        case ElementType.Zoom:
+        //            //manager.PlaySoundRandom(zoomAttackSound);
+        //            manager.PlaySound(zoomAttackSound);
+        //            break;
+        //        case ElementType.Boom:
+        //            //manager.PlaySoundRandom(boomAttackSound);
+        //            manager.PlaySound(boomAttackSound);
+        //            break;
+        //        case ElementType.Gloom:
+        //            //manager.PlaySoundRandom(gloomAttackSound);
+        //            manager.PlaySound(gloomAttackSound);
+        //            break;
+        //        default:
+        //            //manager.PlaySoundRandom(normalAttackSound);
+        //            manager.PlaySound(normalAttackSound);
+        //            Debug.Log("Attempting to play attack sound");
+        //            break;
+        //    }
+        //}
+        manager.PlaySound(attackSound);
     }
 }
