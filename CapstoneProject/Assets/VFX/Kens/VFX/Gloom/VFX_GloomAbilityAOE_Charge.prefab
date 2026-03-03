@@ -136,11 +136,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-<<<<<<< Updated upstream
   autoRandomSeed: 0
-=======
-  autoRandomSeed: 1
->>>>>>> Stashed changes
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -197,11 +193,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-<<<<<<< Updated upstream
   randomSeed: 978
-=======
-  randomSeed: 0
->>>>>>> Stashed changes
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5894,11 +5886,6 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-<<<<<<< Updated upstream
-          inSlope: 27.572039
-          outSlope: 27.572039
-=======
-<<<<<<< Updated upstream
           inSlope: 27.572039
           outSlope: 27.572039
           tangentMode: 0
@@ -5938,56 +5925,6 @@ ParticleSystem:
           inSlope: -0.017612547
           outSlope: -0.017612547
           tangentMode: 34
-=======
-          inSlope: 0
-          outSlope: 0
->>>>>>> Stashed changes
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.4043138
-        - serializedVersion: 3
-          time: 0.08738249
-          value: 1
-          inSlope: -0.010815747
-          outSlope: -0.010815747
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.9442326
-          outWeight: 0.33333334
-        - serializedVersion: 3
-<<<<<<< Updated upstream
-          time: 0.16446725
-          value: 0.94467056
-          inSlope: 0.01904428
-          outSlope: 0.01904428
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.23766764
-          value: 1
-          inSlope: 0.02019003
-          outSlope: 0.02019003
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.3118237
-          value: 0.9469426
-          inSlope: -0.017612547
-          outSlope: -0.017612547
-          tangentMode: 34
-=======
-          time: 0.29113278
-          value: 0.9281972
-          inSlope: -0.6678917
-          outSlope: -0.0032322987
-          tangentMode: 5
->>>>>>> Stashed changes
->>>>>>> Stashed changes
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
@@ -9916,15 +9853,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-<<<<<<< Updated upstream
     scalar: 0.3
-=======
-<<<<<<< Updated upstream
-    scalar: 0.3
-=======
-    scalar: 0
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -10921,10 +10850,6 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 1
         - serializedVersion: 3
-<<<<<<< Updated upstream
-          time: 0.10899508
-=======
-<<<<<<< Updated upstream
           time: 0.10899508
           value: 1
           inSlope: 12.872642
@@ -10932,29 +10857,6 @@ ParticleSystem:
           tangentMode: 1
           weightedMode: 0
           inWeight: 0.09399359
-=======
-          time: 0.19412737
-          value: 0.57552505
-          inSlope: 3.6494687
-          outSlope: 3.6494687
-          tangentMode: 1
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.28614962
->>>>>>> Stashed changes
-          value: 1
-          inSlope: 12.872642
-          outSlope: 0
-          tangentMode: 1
-          weightedMode: 0
-<<<<<<< Updated upstream
-          inWeight: 0.09399359
-=======
-          inWeight: 0.4366645
->>>>>>> Stashed changes
->>>>>>> Stashed changes
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 0.65464485
@@ -11280,79 +11182,33 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0, g: 0, b: 0, a: 0}
-<<<<<<< Updated upstream
         key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 1, g: 1, b: 1, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
-=======
-<<<<<<< Updated upstream
-        key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 1, g: 1, b: 1, a: 1}
-        key3: {r: 0, g: 0, b: 0, a: 0}
-=======
-        key1: {r: 0.46098724, g: 0.46098724, b: 0.46098724, a: 0.48935568}
-        key2: {r: 1, g: 1, b: 1, a: 1}
-        key3: {r: 1, g: 1, b: 1, a: 1}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-<<<<<<< Updated upstream
         ctime1: 10853
         ctime2: 47725
         ctime3: 65535
-=======
-<<<<<<< Updated upstream
-        ctime1: 10853
-        ctime2: 47725
-        ctime3: 65535
-=======
-        ctime1: 10575
-        ctime2: 18645
-        ctime3: 47725
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         ctime4: 65535
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-<<<<<<< Updated upstream
         atime1: 10992
         atime2: 47586
         atime3: 64144
-=======
-<<<<<<< Updated upstream
-        atime1: 10992
-        atime2: 47586
-        atime3: 64144
-=======
-        atime1: 10714
-        atime2: 18506
-        atime3: 47586
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         atime4: 64144
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_ColorSpace: 0
-<<<<<<< Updated upstream
         m_NumColorKeys: 4
         m_NumAlphaKeys: 4
-=======
-<<<<<<< Updated upstream
-        m_NumColorKeys: 4
-        m_NumAlphaKeys: 4
-=======
-        m_NumColorKeys: 5
-        m_NumAlphaKeys: 5
->>>>>>> Stashed changes
->>>>>>> Stashed changes
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14880,11 +14736,7 @@ Transform:
   m_GameObject: {fileID: 3477240073484268405}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 0, y: 0, z: 0.2}
-=======
-  m_LocalPosition: {x: 0, y: 0, z: 0.054}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14898,15 +14750,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3477240073484268405}
   serializedVersion: 8
-<<<<<<< Updated upstream
   lengthInSec: 0.5
-=======
-<<<<<<< Updated upstream
-  lengthInSec: 0.5
-=======
-  lengthInSec: 1.3
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -15838,15 +15682,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-<<<<<<< Updated upstream
     m_BurstCount: 1
-=======
-<<<<<<< Updated upstream
-    m_BurstCount: 1
-=======
-    m_BurstCount: 2
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     m_Bursts:
     - serializedVersion: 2
       time: 0
@@ -15906,70 +15742,6 @@ ParticleSystem:
       cycleCount: 1
       repeatInterval: 0.01
       probability: 1
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
-    - serializedVersion: 2
-      time: 0.8
-      countCurve:
-        serializedVersion: 2
-        minMaxState: 0
-        scalar: 10
-        minScalar: 30
-        maxCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        minCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-      cycleCount: 1
-      repeatInterval: 0.01
-      probability: 1
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   SizeModule:
     enabled: 1
     curve:
@@ -16993,33 +16765,17 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0.24429321
-<<<<<<< Updated upstream
           inSlope: 0.024671711
           outSlope: 0.024671711
-=======
-<<<<<<< Updated upstream
-          inSlope: 0.024671711
-          outSlope: 0.024671711
-=======
-          inSlope: 0.70066845
-          outSlope: 0.70066845
->>>>>>> Stashed changes
->>>>>>> Stashed changes
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 1
         - serializedVersion: 3
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
           time: 0.13563028
           value: 0.23582813
           inSlope: -4.1570106
           outSlope: -4.1570106
-<<<<<<< Updated upstream
-=======
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
@@ -17032,29 +16788,6 @@ ParticleSystem:
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.078390844
-=======
-          time: 0.06374392
-          value: 0.25188294
-          inSlope: -0.24720775
-          outSlope: -0.24720775
->>>>>>> Stashed changes
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.20126845
-        - serializedVersion: 3
-          time: 1
-          value: -1
-          inSlope: -0.36071432
-          outSlope: -0.36071432
-          tangentMode: 0
-          weightedMode: 0
-<<<<<<< Updated upstream
-          inWeight: 0.078390844
-=======
-          inWeight: 0
->>>>>>> Stashed changes
->>>>>>> Stashed changes
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -25900,11 +25633,6 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-<<<<<<< Updated upstream
-          inSlope: 27.572039
-          outSlope: 27.572039
-=======
-<<<<<<< Updated upstream
           inSlope: 27.572039
           outSlope: 27.572039
           tangentMode: 0
@@ -25944,56 +25672,6 @@ ParticleSystem:
           inSlope: -0.017612547
           outSlope: -0.017612547
           tangentMode: 34
-=======
-          inSlope: 0
-          outSlope: 0
->>>>>>> Stashed changes
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.4043138
-        - serializedVersion: 3
-          time: 0.08738249
-          value: 1
-          inSlope: -0.010815747
-          outSlope: -0.010815747
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.9442326
-          outWeight: 0.33333334
-        - serializedVersion: 3
-<<<<<<< Updated upstream
-          time: 0.16446725
-          value: 0.94467056
-          inSlope: 0.01904428
-          outSlope: 0.01904428
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.23766764
-          value: 1
-          inSlope: 0.02019003
-          outSlope: 0.02019003
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.3118237
-          value: 0.9469426
-          inSlope: -0.017612547
-          outSlope: -0.017612547
-          tangentMode: 34
-=======
-          time: 0.29113278
-          value: 0.9281972
-          inSlope: -0.6678917
-          outSlope: -0.0032322987
-          tangentMode: 5
->>>>>>> Stashed changes
->>>>>>> Stashed changes
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
@@ -29857,15 +29535,7 @@ ParticleSystemRenderer:
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
   m_TrailVertexStreams: 00010304
-<<<<<<< Updated upstream
   m_Mesh: {fileID: 1421190637562996210, guid: db11524eaa5b4a549b4da3d6eefe231f, type: 3}
-=======
-<<<<<<< Updated upstream
-  m_Mesh: {fileID: 1421190637562996210, guid: db11524eaa5b4a549b4da3d6eefe231f, type: 3}
-=======
-  m_Mesh: {fileID: 1421190637562996210, guid: c135e6ad07d2acf4986a9c8992cbec36, type: 3}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -29900,30 +29570,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5012512359677628361}
   serializedVersion: 2
-<<<<<<< Updated upstream
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-=======
-<<<<<<< Updated upstream
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-=======
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_LocalPosition: {x: -42.45, y: -2.56, z: -48.23}
   m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2007184986417476276}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
-<<<<<<< Updated upstream
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!199 &1305475756549871493
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -30023,11 +29677,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-<<<<<<< Updated upstream
   autoRandomSeed: 0
-=======
-  autoRandomSeed: 1
->>>>>>> Stashed changes
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -30084,11 +29734,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-<<<<<<< Updated upstream
   randomSeed: 978
-=======
-  randomSeed: 0
->>>>>>> Stashed changes
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -34869,11 +34515,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-<<<<<<< Updated upstream
   autoRandomSeed: 0
-=======
-  autoRandomSeed: 1
->>>>>>> Stashed changes
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -34930,11 +34572,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-<<<<<<< Updated upstream
   randomSeed: 978
-=======
-  randomSeed: 0
->>>>>>> Stashed changes
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -40627,11 +40265,6 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-<<<<<<< Updated upstream
-          inSlope: 27.572039
-          outSlope: 27.572039
-=======
-<<<<<<< Updated upstream
           inSlope: 27.572039
           outSlope: 27.572039
           tangentMode: 0
@@ -40671,56 +40304,6 @@ ParticleSystem:
           inSlope: -0.017612547
           outSlope: -0.017612547
           tangentMode: 34
-=======
-          inSlope: 0
-          outSlope: 0
->>>>>>> Stashed changes
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.4043138
-        - serializedVersion: 3
-          time: 0.08738249
-          value: 1
-          inSlope: -0.010815747
-          outSlope: -0.010815747
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.9442326
-          outWeight: 0.33333334
-        - serializedVersion: 3
-<<<<<<< Updated upstream
-          time: 0.16446725
-          value: 0.94467056
-          inSlope: 0.01904428
-          outSlope: 0.01904428
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.23766764
-          value: 1
-          inSlope: 0.02019003
-          outSlope: 0.02019003
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.3118237
-          value: 0.9469426
-          inSlope: -0.017612547
-          outSlope: -0.017612547
-          tangentMode: 34
-=======
-          time: 0.29113278
-          value: 0.9281972
-          inSlope: -0.6678917
-          outSlope: -0.0032322987
-          tangentMode: 5
->>>>>>> Stashed changes
->>>>>>> Stashed changes
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
@@ -44728,11 +44311,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-<<<<<<< Updated upstream
   autoRandomSeed: 0
-=======
-  autoRandomSeed: 1
->>>>>>> Stashed changes
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -44789,11 +44368,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-<<<<<<< Updated upstream
   randomSeed: 978
-=======
-  randomSeed: 0
->>>>>>> Stashed changes
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -49496,15 +49071,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-<<<<<<< Updated upstream
     scalar: 0.3
-=======
-<<<<<<< Updated upstream
-    scalar: 0.3
-=======
-    scalar: 0
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -50501,10 +50068,6 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 1
         - serializedVersion: 3
-<<<<<<< Updated upstream
-          time: 0.10899508
-=======
-<<<<<<< Updated upstream
           time: 0.10899508
           value: 1
           inSlope: 12.872642
@@ -50512,29 +50075,6 @@ ParticleSystem:
           tangentMode: 1
           weightedMode: 0
           inWeight: 0.09399359
-=======
-          time: 0.19412737
-          value: 0.57552505
-          inSlope: 3.6494687
-          outSlope: 3.6494687
-          tangentMode: 1
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.28614962
->>>>>>> Stashed changes
-          value: 1
-          inSlope: 12.872642
-          outSlope: 0
-          tangentMode: 1
-          weightedMode: 0
-<<<<<<< Updated upstream
-          inWeight: 0.09399359
-=======
-          inWeight: 0.4366645
->>>>>>> Stashed changes
->>>>>>> Stashed changes
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 0.65464485
@@ -50860,79 +50400,33 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0, g: 0, b: 0, a: 0}
-<<<<<<< Updated upstream
         key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 1, g: 1, b: 1, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
-=======
-<<<<<<< Updated upstream
-        key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 1, g: 1, b: 1, a: 1}
-        key3: {r: 0, g: 0, b: 0, a: 0}
-=======
-        key1: {r: 0.46098724, g: 0.46098724, b: 0.46098724, a: 0.48935568}
-        key2: {r: 1, g: 1, b: 1, a: 1}
-        key3: {r: 1, g: 1, b: 1, a: 1}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-<<<<<<< Updated upstream
         ctime1: 10853
         ctime2: 47725
         ctime3: 65535
-=======
-<<<<<<< Updated upstream
-        ctime1: 10853
-        ctime2: 47725
-        ctime3: 65535
-=======
-        ctime1: 10575
-        ctime2: 18645
-        ctime3: 47725
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         ctime4: 65535
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-<<<<<<< Updated upstream
         atime1: 10992
         atime2: 47586
         atime3: 64144
-=======
-<<<<<<< Updated upstream
-        atime1: 10992
-        atime2: 47586
-        atime3: 64144
-=======
-        atime1: 10714
-        atime2: 18506
-        atime3: 47586
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         atime4: 64144
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_ColorSpace: 0
-<<<<<<< Updated upstream
         m_NumColorKeys: 4
         m_NumAlphaKeys: 4
-=======
-<<<<<<< Updated upstream
-        m_NumColorKeys: 4
-        m_NumAlphaKeys: 4
-=======
-        m_NumColorKeys: 5
-        m_NumAlphaKeys: 5
->>>>>>> Stashed changes
->>>>>>> Stashed changes
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
