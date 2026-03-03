@@ -51,7 +51,8 @@ public class EntitySFXManager : MonoBehaviour
 
     private void PlayHurtSound()
     {
-        manager.PlaySoundRandom(hurtSound);
+        //manager.PlaySoundRandom(hurtSound);
+        manager.PlaySound(hurtSound);
     }
 
     private void PlayDeathSound()
@@ -83,16 +84,21 @@ public class EntitySFXManager : MonoBehaviour
         switch(element)
         {
             case ElementType.Zoom:
-                manager.PlaySoundRandom(zoomAttackSound);
+                //manager.PlaySoundRandom(zoomAttackSound);
+                manager.PlaySound(zoomAttackSound);
                 break;
             case ElementType.Boom:
-                manager.PlaySoundRandom(boomAttackSound);
+                //manager.PlaySoundRandom(boomAttackSound);
+                manager.PlaySound(boomAttackSound);
                 break;
             case ElementType.Gloom:
-                manager.PlaySoundRandom(gloomAttackSound);
+                //manager.PlaySoundRandom(gloomAttackSound);
+                manager.PlaySound(gloomAttackSound);
                 break;
             default:
-                manager.PlaySoundRandom(normalAttackSound);
+                //manager.PlaySoundRandom(normalAttackSound);
+                manager.PlaySound(normalAttackSound);
+                Debug.Log("Attempting to play attack sound");
                 break;
         }
     }

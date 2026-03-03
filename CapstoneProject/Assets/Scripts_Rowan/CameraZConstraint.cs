@@ -3,9 +3,10 @@ using Unity.Cinemachine;
 
 public class CameraZConstraint : MonoBehaviour
 {
-    [SerializeField] private float minZPosition = -30f; 
+    private float minZPosition; 
     private CinemachineBrain brain;
-    
+    private bool constraintActive = false;
+
     void Start()
     {
         brain = GetComponent<CinemachineBrain>();
@@ -23,6 +24,7 @@ public class CameraZConstraint : MonoBehaviour
     
     private void OnCameraUpdated(CinemachineBrain brain)
     {
+        if (!constraintActive) return;
         if (brain != this.brain) 
             return;
         
@@ -33,6 +35,17 @@ public class CameraZConstraint : MonoBehaviour
         {
             transform.position = new Vector3(currentPosition.x, currentPosition.y, newZPosition);
         }
+    }
+
+    public void ActivateConstraint(float newMinZ)
+    {
+        minZPosition = newMinZ;
+        constraintActive = true;
+    }
+
+    public void DeactivateConstraint()
+    {
+        constraintActive = false;
     }
 
 

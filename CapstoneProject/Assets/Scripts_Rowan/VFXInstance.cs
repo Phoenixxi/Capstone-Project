@@ -7,6 +7,7 @@ public class VFXInstance : MonoBehaviour
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
+        if (!ps.main.playOnAwake) ps.Play();
     }
 
     void Update()

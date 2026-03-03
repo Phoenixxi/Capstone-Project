@@ -1,5 +1,5 @@
 using Unity.VisualScripting;
-
+using System.Collections;
 using UnityEngine;
 
 using UnityEngine.InputSystem;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public CheckpointController checkpointController;
 
     [SerializeField] private UIPlayerSwap uiPlayerSwap;
+    [SerializeField] private GameObject uiText;
 
 
 
@@ -109,6 +110,24 @@ public class PlayerController : MonoBehaviour
 
             Debug.LogError("Checkpoint Controller not set in Player Controller on player");
 
+
+    // Skip tutorial if player reattempts level after dying
+    if(SceneManager.GetActiveScene().name == "Level01_LouieScene")
+    {
+        if(StaticSceneData.playerReattempting)
+            transform.position = new Vector3(105.289001f,-8.64999962f,-26.7910004f);
+        else
+        transform.position = new Vector3(-68.7699966f,-2.477f,-44.2700005f);
+    }
+    else if(SceneManager.GetActiveScene().name == "Level2-Rework")
+        {
+           if(StaticSceneData.playerReattempting)
+               transform.position = new Vector3(607.820007f,4.17000008f,-4.88999987f);
+            // else
+            //     transform.position = new Vector3(152.589996f,58.2000008f,-15.0900002f);
+            
+        }
+
     }
 
 
@@ -167,6 +186,48 @@ public class PlayerController : MonoBehaviour
 
         }
 
+    }
+
+    public void HealAllLivingCharacters(float healAmount)
+    {
+        foreach (GameObject character in charactersListPC)
+        {
+            EntityManager entity = character.GetComponentInChildren<EntityManager>();
+            if(entity.isAlive)
+            {
+                Debug.Log("Healed " + entity.entityName + " from reaction for " + 1f);
+                entity.Heal(healAmount);
+            }
+        }
+    }
+
+    public void HealLivingCharactersFromReaction()
+    {
+        foreach (GameObject character in charactersListPC)
+        {
+            EntityManager entity = character.GetComponentInChildren<EntityManager>();
+            if(!entity.isAlive)
+                return;
+            else
+            {
+                if(entity.standingInGloomBuffZone){ // BUG HERE FIX LATER
+                    HealAllLivingCharacters(1f);
+                }
+                else
+                {
+                    float missingHealth = entity.maxHealth - entity.currentHealth;
+                    float healthPercent = entity.currentHealth / entity.maxHealth; // 1.0 at full, 0.0 at empty
+
+                    // As health is lower, healing increases.
+                    // To decrease healing, decrease the maximum coefficient (the first one) and increase the minimum coefficient (the second one). 
+                    // To increase healing, do the opposite.
+                    float coefficient = Mathf.Lerp(0.11f, 0.1f, healthPercent);
+
+                    Debug.Log("Healed " + entity.entityName + " for " + (missingHealth * coefficient) + " who had current health of " + entity.currentHealth + " and missing health of " + missingHealth);
+                    entity.Heal(missingHealth * coefficient);
+                }
+            }
+        }
     }
 
 
@@ -320,6 +381,12 @@ public class PlayerController : MonoBehaviour
         secondKeyCount++;
     }
 
+    IEnumerator turnOffSwapWarning()
+    {
+        yield return new WaitForSeconds(2f);
+        uiText.SetActive(false);
+    }
+
     /// <summary>
 
     /// Triggers when the player swaps to the left or right character. Uses the existing swapping methods so as to not break existing systems
@@ -347,6 +414,10 @@ public class PlayerController : MonoBehaviour
         // Cannot swap characters at this time
         if ((secondKeyCount != 3 && keyCount == 2) || (pressedValue == -1 && secondKeyCount != 3))
         {
+            if(uiText.activeSelf)
+                return;
+            uiText.SetActive(true);
+            StartCoroutine(turnOffSwapWarning());
             return;
         }
 
@@ -505,6 +576,7 @@ public class PlayerController : MonoBehaviour
         currentCharacter = entity;
 
         currentCharacterIndex = 0;
+        currentCharacter.SetInputDirection(movementInput);
 
 
 
@@ -576,7 +648,7 @@ public class PlayerController : MonoBehaviour
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
 
         currentCharacter = entity;
-
+        currentCharacter.SetInputDirection(movementInput);
         currentCharacterIndex = 1;
 
         // Deactivate the other characters
@@ -644,7 +716,7 @@ public class PlayerController : MonoBehaviour
         entity.SetMovementVelocity(currentCharacter.GetMovementVelocity());
 
         currentCharacter = entity;
-
+        currentCharacter.SetInputDirection(movementInput);
         currentCharacterIndex = 2;
 
         // Deactivate the other characters

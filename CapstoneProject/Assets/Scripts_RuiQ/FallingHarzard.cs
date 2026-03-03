@@ -73,6 +73,7 @@ public class FallingHazard : MonoBehaviour
         else
         {
             // Hit ground/wall
+            Debug.Log("HIT GROUND");
             PlayShatterEffect();
             Destroy(gameObject);
         }

@@ -104,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 611961489548705185}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.344, z: 0.022}
+  m_LocalPosition: {x: 0, y: 0.54, z: 0.05}
   m_LocalScale: {x: 0.16408527, y: 0.16408527, z: 0.16408527}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -672,7 +672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShadowScale
   player: {fileID: 2113378421503788461}
   heightOffset: 0.1
-  baseScale: 0.68
+  baseScale: 1.14
   minScale: 0.6
   maxHeight: 5
   startingAlpha: 0.8
@@ -870,7 +870,8 @@ MonoBehaviour:
   currentHealth: 0
   isAlive: 1
   data: {fileID: 0}
-  movementSpeed: 2
+  reactionHealAmount: 5
+  movementSpeed: 100
   jumpHeight: 1
   gravity: 10
   extraJumps: 0
@@ -888,6 +889,8 @@ MonoBehaviour:
   perBulletSpread: 0
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
+  explodeHurtBox: {fileID: 0}
+  standingInGloomBuffZone: 0
   damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 2261785964360444772, guid: f2ba69326fe154b46bc7f0c88578606d, type: 3}
@@ -896,14 +899,17 @@ MonoBehaviour:
   zoomDeathVFX: {fileID: 0}
   boomDeathVFX: {fileID: 0}
   gloomDeathVFX: {fileID: 0}
+  lowHealthCanvas: {fileID: 0}
+  gloomBuffVFX: {fileID: 0}
   zoomAttackVFX: {fileID: 0}
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 6363676397236811388, guid: 14b88172a2be03b45a1cbd803686c43e, type: 3}
   boomZoomReactionVFX: {fileID: 2974473035401064883, guid: 5bd66edc516a3ff4184b1634d6046994, type: 3}
-  gloomZoomReactionVFX: {fileID: 7285756412311862427, guid: 99791c05788a42945a8d1fb8f98f3d04, type: 3}
+  gloomZoomReactionVFX: {fileID: 473824760803935799, guid: 41b4fe3dda6e66942b70408c52343b15, type: 3}
   zoomHitVFX: {fileID: 1104788038885962465, guid: 884793ef423f0bd4b87a15b4fc838421, type: 3}
   boomHitVFX: {fileID: 6691328004809160839, guid: 480bd0a864edbd0478f9ba400957c062, type: 3}
   gloomHitVFX: {fileID: 5790078647573406958, guid: 9cb9f58060f02204195fd826a8758099, type: 3}
+  heartBossRenderer: {fileID: 0}
   enemyDeathVFX: {fileID: 2992411469761058715, guid: a03bc310daf5afc4caf6a0638d85a931, type: 3}
 --- !u!114 &5053508518923957891
 MonoBehaviour:
@@ -1030,42 +1036,52 @@ MonoBehaviour:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   hurtSound:
     sound: {fileID: 8300000, guid: 093f72c70e62a6f48ba404a4a298beb8, type: 3}
     volume: 0.25
     soundCooldown: 0.3
+    hasRandomPitch: 1
   deathSound:
     sound: {fileID: 8300000, guid: f650f79943f68ca48b27f7e244902130, type: 3}
     volume: 0.25
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomBoomReactionSound:
     sound: {fileID: 8300000, guid: 4e9de55bdd577d249af5fb3e7c68b30b, type: 3}
     volume: 0.2
     soundCooldown: 0.2
+    hasRandomPitch: 0
   zoomGloomReactionSound:
     sound: {fileID: 8300000, guid: 4788e27e50f9d48449789ea3013d20b8, type: 3}
     volume: 0.2
     soundCooldown: 0.2
+    hasRandomPitch: 0
   boomGloomReactionSound:
     sound: {fileID: 8300000, guid: a5f5f109abee84944a0fcf85e621e1c3, type: 3}
     volume: 0.2
     soundCooldown: 0.2
+    hasRandomPitch: 0
   zoomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   boomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   gloomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   normalAttackSound:
     sound: {fileID: 8300000, guid: 7098aef7ffc37374cb603e3b43ec253a, type: 3}
     volume: 0.05
     soundCooldown: 0
+    hasRandomPitch: 1
 --- !u!114 &4105748099926472111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,7 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyControllerProjectile
   AttackRange: 8
-  LineOfSightRange: 10
+  LineOfSightRange: 20
   characterController: {fileID: 5192659738883732383}
 --- !u!1 &7785730262722911322
 GameObject:
@@ -1144,7 +1160,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9191394843906942324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.461}
+  m_LocalPosition: {x: 0, y: 0, z: -0.152}
   m_LocalScale: {x: -0.010519666, y: -0.009349879, z: -0.010519666}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1154,7 +1170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.361}
+  m_AnchoredPosition: {x: 0.121, y: 1.781}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1756437988872670454

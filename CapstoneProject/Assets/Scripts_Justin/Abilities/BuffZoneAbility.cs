@@ -8,6 +8,7 @@ public class BuffZoneAbility : Ability
 {
     [Header("Buff Zone Ability Settings")]
     [SerializeField] private GameObject buffZonePrefab;
+    [SerializeField] private GameObject chargeVFX;
     [SerializeField] private float radius = 5f;
     [SerializeField] private float duration;
     [SerializeField] private float damageRate;
@@ -25,6 +26,7 @@ public class BuffZoneAbility : Ability
         animator.SetTrigger("UseAbility");
         currentFreezeTimer = 0f;
         movements[0] = new AbilityMovement(Vector3.zero);
+        GameObject effect = Instantiate(chargeVFX, transform.position, Quaternion.Euler(new Vector3(90f, 0f, 0f)));
         cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
         return movements;
     }

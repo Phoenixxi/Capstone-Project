@@ -80,17 +80,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938386576034847899}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.006018921, y: 0.006018921, z: 0.006018921}
+  m_LocalRotation: {x: -0, y: 0.0000132692685, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000025465155}
+  m_LocalScale: {x: 0.067679666, y: 0.06767967, z: 0.067679666}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4389597265280447373}
-  m_Father: {fileID: 5184264744152773514}
+  m_Father: {fileID: 7017822454517335265}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.00004253602, y: 0}
   m_SizeDelta: {x: 1363, y: 699.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6988216210613709982
@@ -193,8 +193,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3592581165988107591}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.0000132692685, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0029509675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 7017822454517335265}
   - component: {fileID: 4145401364550733294}
   - component: {fileID: 5154764699064698099}
+  - component: {fileID: 4721736726648211435}
   m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
@@ -331,10 +332,11 @@ Transform:
   m_GameObject: {fileID: 4617604415355335522}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1, z: -0.161}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.08893248, y: 0.08893248, z: 0.08893248}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 3741307225020404746}
   m_Father: {fileID: 5184264744152773514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4145401364550733294
@@ -408,6 +410,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
   yRotation: 180
+--- !u!114 &4721736726648211435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4617604415355335522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_LoopMode: 3
+  m_Method: 0
+  m_Duration: 1
+  m_MaxSpeed: 3
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
 --- !u!1 &6709933649092897850
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +490,59 @@ MonoBehaviour:
       m_Data: []
     m_ObjectData:
       m_Data: []
-  m_Splines: []
+  m_Splines:
+  - m_EditModeType: 1
+    m_Knots:
+    - Position:
+        x: 0
+        y: 0
+        z: 0
+      TangentIn:
+        x: 0
+        y: 0
+        z: -1
+      TangentOut:
+        x: 0
+        y: 0
+        z: 1
+      Rotation:
+        value:
+          x: 0
+          y: 0
+          z: 0
+          w: 1
+    - Position:
+        x: 0
+        y: 0
+        z: 3
+      TangentIn:
+        x: 0
+        y: 0
+        z: -1
+      TangentOut:
+        x: 0
+        y: 0
+        z: 1
+      Rotation:
+        value:
+          x: 0
+          y: 0
+          z: 0
+          w: 1
+    m_MetaData:
+    - Mode: 2
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
   m_Knots:
     m_KnotsLink: []
 --- !u!1 &7905867759427184756
@@ -479,7 +556,7 @@ GameObject:
   - component: {fileID: 5184264744152773514}
   - component: {fileID: 1722832141631585653}
   - component: {fileID: 2854603400324719409}
-  - component: {fileID: 6164481486805930724}
+  - component: {fileID: 2470559162957212316}
   m_Layer: 18
   m_Name: NPC1
   m_TagString: Untagged
@@ -503,7 +580,6 @@ Transform:
   - {fileID: 7017822454517335265}
   - {fileID: 9173359124067106316}
   - {fileID: 8669878885881469613}
-  - {fileID: 3741307225020404746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1722832141631585653
@@ -519,7 +595,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialoguePopup
   text: {fileID: 4535640814069285954}
-  transparency: {fileID: 1273293299410683186}
   fadeTime: 1
   dialogue: Enter text here
 --- !u!54 &2854603400324719409
@@ -549,7 +624,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6164481486805930724
+--- !u!114 &2470559162957212316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -562,5 +637,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCMovement
   splineContainer: {fileID: 5217325394872951367}
-  duration: 10
-  pingpong: 0

@@ -22,6 +22,7 @@ public class EntityManager : MonoBehaviour
     public AbilityData data;
     [SerializeField] private float reactionHealAmount = 5f;
     private bool usesNavAgent;
+    private bool isInvincible = false;
 
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
@@ -65,6 +66,7 @@ public class EntityManager : MonoBehaviour
     private Ability ability;
     //Keeps track of movements associated with abilities; if this queue is not empty, these movements must be performed before standard movements can
     public Queue<AbilityMovement> movementQueue;
+    public bool standingInGloomBuffZone = false;
 
     // DESIGNERS: Adjust fields here
     private float dmgMultiplier = 2.0f;
@@ -102,6 +104,7 @@ public class EntityManager : MonoBehaviour
     [SerializeField] private GameObject zoomHitVFX;
     [SerializeField] private GameObject boomHitVFX;
     [SerializeField] private GameObject gloomHitVFX;
+    [SerializeField] private Renderer heartBossRenderer;
 
     [Header("Enemy Death: ENEMY ONLY")]
     [SerializeField] private GameObject enemyDeathVFX;
@@ -196,6 +199,7 @@ public class EntityManager : MonoBehaviour
         if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, animator, projectileCount, perBulletSpread);
         else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime, animator);
         else if(explodeHurtBox != null) weapon = new ExplodeWeapon(attackCooldown, weaponDamage, defaultElement, explodeHurtBox, animator);
+        else if(entityName == "FinalBoss") return;
         else Debug.LogError($"Neither a melee nor ranged weapon could be assigned to {gameObject}. Make sure either the Projectile or Hurtbox fields have a value");
     }
 
@@ -317,6 +321,7 @@ public class EntityManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isInvincible) return;
         currentHealth -= damage;
         ShowDamageNumber((int)damage, ElementType.Normal);
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
@@ -338,6 +343,7 @@ public class EntityManager : MonoBehaviour
     /// <param name="element">The incoming element.</param>
     public void TakeDamage(float damage, ElementType element)
     {
+        if (isInvincible) return;
         float newHealth = currentHealth - damage;
         if (newHealth <= 0 && isAlive)
         {
@@ -385,12 +391,26 @@ public class EntityManager : MonoBehaviour
             
         }
 
-        animator.SetTrigger("FlashRed");
+        if(entityName != "FinalBoss")
+            animator.SetTrigger("FlashRed");
+        else
+        {
+            
+            heartBossRenderer.material.SetColor("_BaseColor", Color.red);
+            StartCoroutine(ResetBossFlash());
+            
+        }
         //if (OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
         OnEntityHurtEvent?.Invoke();
 
         //Instantiate(damageNumberVFXPrefab, transform);
+    }
+
+    IEnumerator ResetBossFlash()
+    {
+        yield return new WaitForSeconds(0.2f);
+        heartBossRenderer.material.SetColor("_BaseColor", Color.white);
     }
 
 
@@ -408,6 +428,7 @@ public class EntityManager : MonoBehaviour
     /// <param name="knockback">The knockback/movement that should be applied from the attack</param>
     public void TakeDamage(float damage, ElementType element, KnockbackMovement knockback)
     {
+        if (isInvincible) return;
         movementQueue.Enqueue(knockback);
         TakeDamage(damage, element);
     }
@@ -420,6 +441,7 @@ public class EntityManager : MonoBehaviour
     /// <param name="movements">The sequence of knockbacks/movements that should be applied from the attack</param>
     public void TakeDamage(float damage, ElementType element, KnockbackMovement[] movements)
     {
+        if (isInvincible) return;
         foreach (var movement in movements) movementQueue.Enqueue(movement);
         TakeDamage(damage, element);
     }
@@ -457,6 +479,11 @@ public class EntityManager : MonoBehaviour
         }
     }
 
+    public void SetStandingInGloomBuffZone(bool val)
+    {
+        standingInGloomBuffZone = val;
+    }
+
 
 
     /// <summary>
@@ -482,7 +509,7 @@ public class EntityManager : MonoBehaviour
             currentHealth = newHealth;
             OnElementReactionEvent?.Invoke(1);
         }
-        // ZOOM x GLOOM  // Slow
+        // ZOOM x GLOOM  // Life Steal
         else if((taggedElement == ElementType.Zoom || initiatingElement == ElementType.Zoom) && (taggedElement == ElementType.Gloom || initiatingElement == ElementType.Gloom))
         {
             currentHealth -= incomingDmg;
@@ -494,8 +521,8 @@ public class EntityManager : MonoBehaviour
                 Instantiate(gloomZoomReactionVFX, vfxAnchor.position, Quaternion.identity, vfxAnchor);
                 GameObject playerObject = GameObject.Find("Player");
                 PlayerController pc = playerObject.GetComponent<PlayerController>();
-                pc.HealAllCharacters(reactionHealAmount);
-                //effectable.ApplySlow(data);
+                pc.HealLivingCharactersFromReaction();
+                
             }
             OnElementReactionEvent?.Invoke(2);
         }
@@ -531,21 +558,24 @@ public class EntityManager : MonoBehaviour
         if (weapon is RangedWeapon) 
             (weapon as RangedWeapon).UpdateWeaponTransform(attackDirection, entityPosition);
         
+        if(weapon == null)
+        {
+            return;
+        }
         bool attacked = weapon.Attack();
         if(attacked)
         {
-            OnEntityAttackEvent?.Invoke(defaultElement);
-            //animator.SetTrigger("Shoot");
-            if(gameObject.CompareTag("Player"))
+            if (gameObject.CompareTag("Player"))
             {
                 weapon.AttackFromAnimation();
+                OnEntityAttackEvent?.Invoke(defaultElement);
             }
-            if(gameObject.CompareTag("Enemy") && entityName != "EnemyMelee") return;
+            if (gameObject.CompareTag("Enemy") && entityName != "EnemyMelee") return;
             if(entityName == "Zoom")
             {
-                if(vfxAnchor.childCount > 0)
+                if(vfxAnchor.childCount > 2)
                 {
-                    for(int i = 0; i < vfxAnchor.childCount; i++)
+                    for(int i = 2; i < vfxAnchor.childCount; i++)
                     {
                         Destroy(vfxAnchor.GetChild(i).gameObject);
                     }
@@ -611,8 +641,7 @@ public class EntityManager : MonoBehaviour
         if(vfxAnchor.childCount > 0)
             return;
         
-        GameObject vfxInstance = Instantiate(gloomBuffVFX, vfxAnchor.position + Vector3.up * 0.5f + Vector3.back * 0.5f, Quaternion.identity, vfxAnchor);
-        vfxInstance.transform.localScale = Vector3.one * 1.5f;
+        GameObject vfxInstance = Instantiate(gloomBuffVFX, vfxAnchor.position + Vector3.up * 0.2f + Vector3.back * 0.5f, Quaternion.identity, vfxAnchor);
     }
 
     public void DestroyGloomBuffVFX()
@@ -639,12 +668,19 @@ public class EntityManager : MonoBehaviour
         Debug.Log("Entity has died.");
         ClearVFX(ref currentElementalVFXInstance);
         OnEntityKilledEvent?.Invoke();
+        if(entityName == "FinalBoss")
+        {
+            // TODO
+            // Trigger Outro scene
+            return;
+        }
         if (this.gameObject.CompareTag("Enemy"))
         {
             Vector3 lastEnemyPosition = gameObject.transform.position;
             currentEnemyDeathVFX = Instantiate(enemyDeathVFX, lastEnemyPosition, Quaternion.identity);
             Destroy(gameObject); 
         }
+
 
         if(this.gameObject.CompareTag("Player"))
         {
@@ -710,6 +746,13 @@ public class EntityManager : MonoBehaviour
 
     public void AttackFromAnimation()
     {
+
+        OnEntityAttackEvent?.Invoke(defaultElement);
         weapon.AttackFromAnimation();
+    }
+
+    public void SetInviciblity(bool isInvincible)
+    {
+        this.isInvincible = isInvincible;
     }
 }

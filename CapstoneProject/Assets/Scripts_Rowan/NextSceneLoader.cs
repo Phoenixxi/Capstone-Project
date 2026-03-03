@@ -21,8 +21,16 @@ public class NextSceneLoader : MonoBehaviour
 
     IEnumerator LoadAsyncScene()
     {
-        yield return new WaitForSeconds(3f);
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync("Level01_LouieScene");
+        yield return new WaitForSeconds(2.5f);
+        AsyncOperation loadOperation;
+        if(StaticSceneData.playerReachedBossZone)
+        {
+            loadOperation = SceneManager.LoadSceneAsync("Level2-Rework");
+        }
+        else
+        {
+            loadOperation = SceneManager.LoadSceneAsync("Level01_LouieScene");
+        }
 
         while(!loadOperation.isDone)
         {

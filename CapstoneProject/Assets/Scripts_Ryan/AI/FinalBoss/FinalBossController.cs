@@ -19,6 +19,8 @@ public class FinalBossController : MonoBehaviour
     private GameObject playerGameObject;
     private FinalBossAttacks previousAttack;
     public Action PhaseTwo;
+    private FinalBossHealthUI finalBossHealthUI;
+    private bool initialized = false;
 
     void Awake()
     {
@@ -28,10 +30,24 @@ public class FinalBossController : MonoBehaviour
         PhaseTwo += cutAttackCoolDown;
     }
 
+    void Start()
+    {
+        foreach(FinalBossAttacks fba in finalBossAttacks)
+        {
+            fba.enabled = false;
+        }
+
+        FinalBossManagerSingleton.Instance.InitializeFinalBoss += OnInitializeFinalBoss;
+        entityManager = GetComponent<EntityManager>();
+        entityManager.OnEntityHurtEvent += OnHit;
+        entityManager.OnEntityHurtEvent += CheckPhaseTwo;
+        entityManager.OnEntityKilledEvent += OnFinalBossDeath;
+        finalBossHealthUI = GameObject.Find("FinalBossHealthBarRoot").GetComponentInChildren<FinalBossHealthUI>();
+    }
+
     void Update()
     {
-        //REMEMBER TO REMOVE THIS LINE ONCE U HAVE ENTITYMANAGER IN
-        //if(entityManager.currentHealth <= entityManager.maxHealth / 2) PhaseTwo?.Invoke();
+        if(!initialized) return;
         AttemptToAttack();
     }
 
@@ -45,11 +61,7 @@ public class FinalBossController : MonoBehaviour
 
     private void AttemptToAttack()
     {
-        if(previousAttack != null && previousAttack.GetType() == typeof(TeethAttackFinalBoss))
-        {
-            TeethAttackFinalBoss teethAttackFinalBoss = previousAttack as TeethAttackFinalBoss;
-            if(teethAttackFinalBoss.IsAttacking()) return;
-        }
+        if(previousAttack != null && previousAttack.IsAttacking()) return;
 
         if(HasCooldownExpired())
         {
@@ -57,13 +69,14 @@ public class FinalBossController : MonoBehaviour
             FinalBossAttacks fba = null;
             foreach(FinalBossAttacks fbas in finalBossAttacks)
             {
-                if(bestWeight < fbas.GetDynamicWeight())
+                if(bestWeight < fbas.GetDynamicWeight() && fbas.HasCooldownExpired())
                 {
                     bestWeight = fbas.GetDynamicWeight();
                     fba = fbas;
                 }
             }
 
+            if(fba == null) return;
             Attack(fba);
             previousAttack = fba;
         }
@@ -80,5 +93,34 @@ public class FinalBossController : MonoBehaviour
         attack.Attack(playerGameObject.transform);
         AttackCoolDown = UnityEngine.Random.Range(AttackCoolDownMin, AttackCoolDownMax);
         timeSinceLastAttack = Time.time;
+    }
+
+    private void OnInitializeFinalBoss()
+    {
+        foreach(FinalBossAttacks fba in finalBossAttacks)
+        {
+            fba.enabled = true;
+        }
+
+        initialized = true;
+    }
+
+    private void OnHit()
+    {
+        finalBossHealthUI.UpdateHealthBar(entityManager.currentHealth, entityManager.maxHealth);
+    }
+
+    private void CheckPhaseTwo()
+    {
+        if(entityManager.currentHealth <= entityManager.maxHealth / 2)
+        {
+            PhaseTwo?.Invoke();
+            entityManager.OnEntityHurtEvent -= CheckPhaseTwo;
+        } 
+    }
+
+    private void OnFinalBossDeath()
+    {
+        FinalBossManagerSingleton.Instance.OnFinalBossDeath();
     }
 }

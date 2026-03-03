@@ -1137,6 +1137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7560839075110883680, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1248,12 +1252,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyMelee (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7560839075110883680, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 7543563098658516984, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7560839075110883680, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560839075110883680, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8039355975360593558, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
+      propertyPath: weaponDamage
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8039355975360593558, guid: de7a551343a7242e9af1f2dc4cf8dd49, type: 3}
@@ -2383,6 +2395,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7560839075110883680, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2394,6 +2410,10 @@ PrefabInstance:
     - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: maxHealth
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: weaponDamage
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8039355975360593558, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: boomVFXPrefab
@@ -2723,7 +2743,9 @@ MonoBehaviour:
   - {fileID: 1662300224}
   - {fileID: 1103931901}
   currentCharacter: 
-  uiPlayerSwap: {fileID: 0}
+  uiPlayerSwap: {fileID: 671278323}
+  timePercentage: 0.25
+  pauseDuration: 1
 --- !u!4 &769566056
 Transform:
   m_ObjectHideFlags: 0
@@ -3041,6 +3063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7560839075110883680, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3159,6 +3185,10 @@ PrefabInstance:
     - target: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_Name
       value: Enemy (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543563098658516984, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7560839075110883680, guid: 8a878e28ddf802a4b8004628abc6037e, type: 3}
       propertyPath: m_AnchorMax.x

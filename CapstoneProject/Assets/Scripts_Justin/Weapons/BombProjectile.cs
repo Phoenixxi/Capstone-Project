@@ -70,7 +70,12 @@ public class BombProjectile : Projectile
         }
         //cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
         ShakeScreen();
-        if (explosionVFX != null) Instantiate(explosionVFX, transform.position, Quaternion.identity);
+        if (explosionVFX != null)
+        {
+            GameObject vfxInstance = Instantiate(explosionVFX, transform.position, Quaternion.identity);
+            vfxInstance.transform.localScale = Vector3.one * 0.5f;
+
+        }
         Destroy(gameObject);
     }
 

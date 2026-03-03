@@ -69,6 +69,11 @@ MonoBehaviour:
   screenShakeIntensity: 1
   screenShakeDuration: 0.2
   layerMaskType: 0
+  causesKnockback: 1
+  orientationAffectsKnockback: 1
+  knockbackDuration: 0.15
+  knockback: {x: 3, y: 0, z: 0}
+  preventDoubleHits: 1
 --- !u!1 &1330741119533229141
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +366,7 @@ MonoBehaviour:
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
   explodeHurtBox: {fileID: 0}
+  standingInGloomBuffZone: 0
   damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
@@ -370,7 +376,7 @@ MonoBehaviour:
   boomDeathVFX: {fileID: 333905162687956583, guid: df5b982fab38a164781664c500ac4eb1, type: 3}
   gloomDeathVFX: {fileID: 7473593324572409369, guid: 3ac5c2954d1eaa14a948b9765ac3e09e, type: 3}
   lowHealthCanvas: {fileID: 0}
-  gloomBuffVFX: {fileID: 2040626528220618235, guid: 24917e5955aef534a9ae9e6543127831, type: 3}
+  gloomBuffVFX: {fileID: 5763361988051981360, guid: ac88f5143ed90db4c8dcab6772af837e, type: 3}
   zoomAttackVFX: {fileID: 0}
   boomJumpVFX: {fileID: 2374949704436431568, guid: 1b52b88992560014184545c4faa3e9bb, type: 3}
   boomGloomReactionVFX: {fileID: 0}
@@ -379,6 +385,7 @@ MonoBehaviour:
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
+  heartBossRenderer: {fileID: 0}
   enemyDeathVFX: {fileID: 0}
 --- !u!114 &7478264160224895753
 MonoBehaviour:
@@ -426,42 +433,52 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
     volume: 0.1
     soundCooldown: 0
+    hasRandomPitch: 0
   hurtSound:
     sound: {fileID: 8300000, guid: dca61efa361b40e4fb37c4f79dcb3383, type: 3}
     volume: 0.2
     soundCooldown: 0.2
+    hasRandomPitch: 1
   deathSound:
     sound: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
     volume: 0.4
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomBoomReactionSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomGloomReactionSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   boomGloomReactionSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   boomAttackSound:
     sound: {fileID: 8300000, guid: 4a77df370b51cf148a024f78b0c1c128, type: 3}
     volume: 0.05
     soundCooldown: 0
+    hasRandomPitch: 1
   gloomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   normalAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
 --- !u!1 &2838086303824349459
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,9 +572,9 @@ MonoBehaviour:
   isAlive: 1
   data: {fileID: 0}
   reactionHealAmount: 5
-  movementSpeed: 7.5
-  jumpHeight: 2
-  gravity: 25
+  movementSpeed: 10
+  jumpHeight: 2.5
+  gravity: 35
   extraJumps: 0
   coyoteTime: 0.1
   canHover: 0
@@ -574,6 +591,7 @@ MonoBehaviour:
   meleeHurtbox: {fileID: 7404555418333511468}
   hurtboxActivationTime: 0.2
   explodeHurtBox: {fileID: 0}
+  standingInGloomBuffZone: 0
   damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
@@ -583,7 +601,7 @@ MonoBehaviour:
   boomDeathVFX: {fileID: 333905162687956583, guid: df5b982fab38a164781664c500ac4eb1, type: 3}
   gloomDeathVFX: {fileID: 7473593324572409369, guid: 3ac5c2954d1eaa14a948b9765ac3e09e, type: 3}
   lowHealthCanvas: {fileID: 0}
-  gloomBuffVFX: {fileID: 2040626528220618235, guid: 24917e5955aef534a9ae9e6543127831, type: 3}
+  gloomBuffVFX: {fileID: 5763361988051981360, guid: ac88f5143ed90db4c8dcab6772af837e, type: 3}
   zoomAttackVFX: {fileID: 9090841650386813736, guid: 92d39f934e68ef0448973eb9d44c27da, type: 3}
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 0}
@@ -592,6 +610,7 @@ MonoBehaviour:
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
+  heartBossRenderer: {fileID: 0}
   enemyDeathVFX: {fileID: 0}
 --- !u!114 &3301841785260470896
 MonoBehaviour:
@@ -637,42 +656,52 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
     volume: 0.1
     soundCooldown: 0
+    hasRandomPitch: 0
   hurtSound:
     sound: {fileID: 8300000, guid: dca61efa361b40e4fb37c4f79dcb3383, type: 3}
     volume: 0.2
     soundCooldown: 0.2
+    hasRandomPitch: 1
   deathSound:
     sound: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
     volume: 0.39
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomBoomReactionSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomGloomReactionSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   boomGloomReactionSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomAttackSound:
     sound: {fileID: 8300000, guid: 36d945c7717ce0140b3f2a1a439cebcb, type: 3}
     volume: 0.05
     soundCooldown: 0
+    hasRandomPitch: 1
   boomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   gloomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   normalAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
 --- !u!1 &3153298784655456344
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +891,7 @@ MonoBehaviour:
   meleeHurtbox: {fileID: 0}
   hurtboxActivationTime: 0
   explodeHurtBox: {fileID: 0}
+  standingInGloomBuffZone: 0
   damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
   damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
@@ -871,7 +901,7 @@ MonoBehaviour:
   boomDeathVFX: {fileID: 333905162687956583, guid: df5b982fab38a164781664c500ac4eb1, type: 3}
   gloomDeathVFX: {fileID: 7473593324572409369, guid: 3ac5c2954d1eaa14a948b9765ac3e09e, type: 3}
   lowHealthCanvas: {fileID: 0}
-  gloomBuffVFX: {fileID: 2040626528220618235, guid: 24917e5955aef534a9ae9e6543127831, type: 3}
+  gloomBuffVFX: {fileID: 5763361988051981360, guid: ac88f5143ed90db4c8dcab6772af837e, type: 3}
   zoomAttackVFX: {fileID: 0}
   boomJumpVFX: {fileID: 0}
   boomGloomReactionVFX: {fileID: 0}
@@ -880,6 +910,7 @@ MonoBehaviour:
   zoomHitVFX: {fileID: 0}
   boomHitVFX: {fileID: 0}
   gloomHitVFX: {fileID: 0}
+  heartBossRenderer: {fileID: 0}
   enemyDeathVFX: {fileID: 0}
 --- !u!114 &4328091491385667142
 MonoBehaviour:
@@ -899,6 +930,7 @@ MonoBehaviour:
   screenShakeIntensity: 0
   screenShakeDuration: 0
   buffZonePrefab: {fileID: 408079023155133850, guid: 38f39e8b5ba4fed42afee22c1cbe220a, type: 3}
+  chargeVFX: {fileID: 5012512359677628361, guid: c164eb2ffd794104ab6efafa0e893c71, type: 3}
   radius: 7.5
   duration: 5
   damageRate: 0.57
@@ -921,42 +953,52 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
     volume: 0.1
     soundCooldown: 0
+    hasRandomPitch: 0
   hurtSound:
     sound: {fileID: 8300000, guid: dca61efa361b40e4fb37c4f79dcb3383, type: 3}
     volume: 0.2
     soundCooldown: 0.2
+    hasRandomPitch: 1
   deathSound:
     sound: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
     volume: 0.4
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomBoomReactionSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomGloomReactionSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   boomGloomReactionSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   zoomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   boomAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
   gloomAttackSound:
     sound: {fileID: 8300000, guid: fc41fb103ad51924da8a00e4c15c0274, type: 3}
     volume: 0.05
     soundCooldown: 0
+    hasRandomPitch: 1
   normalAttackSound:
     sound: {fileID: 0}
     volume: 1
     soundCooldown: 0
+    hasRandomPitch: 0
 --- !u!1 &5182977827765358829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1239,7 @@ MonoBehaviour:
     m_Bits: 4194304
   checkpointController: {fileID: 0}
   uiPlayerSwap: {fileID: 0}
+  uiText: {fileID: 0}
   SwitchOffZoom: {fileID: 194000099236636175, guid: f8cdb00adfb5c834984d220c91b562df, type: 3}
   SwitchOffBoom: {fileID: 7523342597919943425, guid: 2fc185409fc4e024b88f31b080577564, type: 3}
   SwitchOffGloom: {fileID: 8974518114030650362, guid: e75fe1437d65427479430551f2c944d9, type: 3}
@@ -1708,6 +1751,11 @@ MonoBehaviour:
   screenShakeIntensity: 0
   screenShakeDuration: 0
   layerMaskType: 0
+  causesKnockback: 0
+  orientationAffectsKnockback: 1
+  knockbackDuration: 0
+  knockback: {x: 0, y: 0, z: 0}
+  preventDoubleHits: 1
 --- !u!1 &8548868309109931021
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class HealthCameraCut : MonoBehaviour
 {
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject cutSceneCamera;
+    [SerializeField] private GameObject stageCharacters;
     private PlayerInput playerInput;
     private GameObject Player;
 
@@ -22,6 +23,7 @@ public class HealthCameraCut : MonoBehaviour
         {
             mainCamera.SetActive(false);
             cutSceneCamera.SetActive(true);
+            stageCharacters.SetActive(true);
             playerInput.actions.FindActionMap("Player").Disable();
             Player.SetActive(false);
             StartCoroutine(waitTime());
@@ -44,6 +46,7 @@ public class HealthCameraCut : MonoBehaviour
     {
         yield return new WaitForSeconds(1.8f);
         Player.SetActive(true);
+        stageCharacters.SetActive(false);
         playerInput.actions.FindActionMap("Player").Enable();
         // Destoy this trigger
         Destroy(gameObject);

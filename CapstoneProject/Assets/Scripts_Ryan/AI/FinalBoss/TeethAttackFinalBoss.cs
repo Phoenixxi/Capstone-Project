@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TeethAttackFinalBoss : FinalBossAttacks
@@ -24,8 +25,14 @@ public class TeethAttackFinalBoss : FinalBossAttacks
         }
     }
 
-    public bool IsAttacking()
+    public override bool IsAttacking()
     {
         return toothAttackScript.IsAttacking;
+    }
+
+    public override float GetDynamicWeight()
+    {
+        if(!HasCooldownExpired()) return 0f;
+        return Mathf.Infinity;
     }
 }
