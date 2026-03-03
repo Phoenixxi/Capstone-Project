@@ -10,17 +10,19 @@ public class BlendShapeIndicators : MonoBehaviour
 
     [SerializeField] private float timeTaken;
     
-    private float currentBlendShapeValue = 100f;
+    private float currentBlendShapeValue = 0f;
 
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         
-        skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
-        skinnedMesh = GetComponent<SkinnedMeshRenderer>().sharedMesh;
+        skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
         blendShapeCount = skinnedMesh.blendShapeCount;
+
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,5 +36,24 @@ public class BlendShapeIndicators : MonoBehaviour
 
             skinnedMeshRenderer.SetBlendShapeWeight(0, currentBlendShapeValue);
         }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    void OnEnable()
+    {
+        StartIndicator();
+    }
+
+    public void SetTimeTaken(float timeTaken)
+    {
+        this.timeTaken = timeTaken;
+    }
+
+    public void StartIndicator()
+    {
+        currentBlendShapeValue = 100f;
     }
 }

@@ -10,6 +10,7 @@ public class TeethAttackFinalBoss : FinalBossAttacks
     {
         if(!HasCooldownExpired()) return;
 
+        finalBossAttackIndicator.TeethAttackIndicatorActivate();
         toothAttackScript.Attack();
 
         UpdateTimeSinceLastAttack();

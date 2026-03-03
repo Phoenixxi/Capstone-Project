@@ -38,11 +38,13 @@ public class SwipeAttackFinalBoss : FinalBossAttacks
 
         if(topDistance > bottomDistance)
         {
+            finalBossAttackIndicator.SwipeBottomIndicatorActivate();
             bottomRightSwipe.GetComponent<TentacleAttack>().Attack();
             bottomLeftSwipe.GetComponent<TentacleAttack>().Attack();
         }
         else
         {
+            finalBossAttackIndicator.SwipeTopIndicatorActivate();
             topRightSwipe.GetComponent<TentacleAttack>().Attack();
             topLeftSwipe.GetComponent<TentacleAttack>().Attack();
         }

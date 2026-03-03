@@ -7,12 +7,14 @@ public abstract class FinalBossAttacks : MonoBehaviour
     [SerializeField] protected FinalBossController finalBossController;
 
     protected float timeSinceLastAttacked;
+    protected FinalBossAttackIndicator finalBossAttackIndicator;
 
     protected virtual void Awake()
     {
         timeSinceLastAttacked = CoolDownDuration;
         finalBossController = GetComponent<FinalBossController>();
         finalBossController.PhaseTwo += CutCoolDownDuration;
+        finalBossAttackIndicator = GetComponent<FinalBossAttackIndicator>();
     }
 
     protected virtual void Start()
