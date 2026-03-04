@@ -16,4 +16,9 @@ public class CameraXConstraintTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
             cameraConstraint.DeactivateConstraint();
     }
+
+    private void OnDestroy()
+    {
+        cameraConstraint.DeactivateConstraint();
+    }
 }
