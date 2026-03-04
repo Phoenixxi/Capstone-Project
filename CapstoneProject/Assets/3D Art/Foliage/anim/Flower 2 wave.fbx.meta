@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: e8b2cb9dadd497b4e85ebd66ee2716d1
 ModelImporter:
   serializedVersion: 24200
@@ -9,6 +10,23 @@ ModelImporter:
     materialName: 3
     materialSearch: 1
     materialLocation: 0
+=======
+guid: 50da83ee3e716d64c9420bae3a0a5223
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: cd50b3fea3303ab48ab589663f54205c, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+>>>>>>> Stashed changes
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -40,10 +58,17 @@ ModelImporter:
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
+<<<<<<< Updated upstream
       loop: 1
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
+=======
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+>>>>>>> Stashed changes
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -59,7 +84,11 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+<<<<<<< Updated upstream
     isReadable: 1
+=======
+    isReadable: 0
+>>>>>>> Stashed changes
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -67,6 +96,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+<<<<<<< Updated upstream
     importPhysicalCameras: 0
     importVisibility: 0
     importBlendShapes: 1
@@ -74,6 +104,15 @@ ModelImporter:
     importLights: 0
     nodeNameCollisionStrategy: 0
     fileIdsGeneration: 1
+=======
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+>>>>>>> Stashed changes
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -89,6 +128,7 @@ ModelImporter:
     meshLodGenerationFlags: 0
     maximumMeshLod: -1
     meshOptimizationFlags: -1
+<<<<<<< Updated upstream
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -98,13 +138,30 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
+=======
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+>>>>>>> Stashed changes
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
+<<<<<<< Updated upstream
     tangentImportMode: 4
     normalCalculationMode: 0
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+=======
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+>>>>>>> Stashed changes
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
@@ -127,12 +184,21 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
+<<<<<<< Updated upstream
   animationType: 1
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 1
+=======
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+>>>>>>> Stashed changes
   additionalBone: 0
   userData: 
   assetBundleName: 
