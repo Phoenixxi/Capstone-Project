@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Steamworks;
 /// <summary>
 /// Simple script for handling the hazard's behavior
 /// </summary>
@@ -16,6 +16,16 @@ public class Hazard : MonoBehaviour
 
             if(UIScreen != null)
                 UIScreen.SetActive(true);
+
+            if (SteamClient.IsValid)
+            {
+                var achievement = new Steamworks.Data.Achievement("ACH_IsekaiTruck");
+                if (!achievement.State)
+                {
+                    achievement.Trigger();
+                    Destroy(gameObject);
+                }
+            }
 
         }
         else if(other.gameObject.tag == "Enemy")
