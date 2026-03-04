@@ -46,6 +46,7 @@ public class ToothAttack : BossAttack
                 toothAnimator.SetTrigger("Show");
                 toothHurtbox.Activate(toothAttackLingerTimer, true);
                 Debug.Log("Teeth can damage!");
+                audioManager.PlaySound(SoundName.TOOTH_ATTACK);
             }
         } else if(currLingerTimer > 0)
         {

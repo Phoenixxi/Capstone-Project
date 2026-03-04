@@ -10,11 +10,13 @@ public abstract class BossAttack : MonoBehaviour
     [SerializeField] protected bool canRepeat; //Set to true if you don't want the attack to delete itself after finishing
     [SerializeField] protected float speedupAmount = 1f;
     [SerializeField] protected bool spawnSpedUp = false;
+    protected AudioManager audioManager;
     public bool IsAttacking { get; protected set; }
 
     protected virtual void Start()
     {
         IsAttacking = false;
+        audioManager = FindFirstObjectByType<AudioManager>();
         if (spawnSpedUp) ApplySpeedup();
         if(!canRepeat) Attack();
     }

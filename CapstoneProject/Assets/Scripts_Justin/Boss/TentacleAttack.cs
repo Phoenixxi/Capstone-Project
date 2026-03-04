@@ -41,6 +41,7 @@ public class TentacleAttack : BossAttack
         if(attackType == AttackType.SLAM)
         {
             tentacleAnim.SetTrigger("Slam");
+            audioManager.PlaySound(SoundName.TENTACLE_WINDUP);
         } else
         {
             tentacleAnim.SetTrigger("Swipe");
@@ -59,6 +60,8 @@ public class TentacleAttack : BossAttack
     {
         isFollowingPlayer = false;
         hurtbox.Activate(hurtboxActiveTime, true);
+        if (attackType == AttackType.SLAM) audioManager.PlaySound(SoundName.TENTACLE_SLAM);
+        else audioManager.PlaySound(SoundName.TENTACLE_SWIPE);
     }
 
     protected void OnAttackEnded()
