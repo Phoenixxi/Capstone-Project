@@ -206,6 +206,13 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+  - name: BUTTON_CLICk
+    volume: 0.1
+    audioClip: {fileID: 8300000, guid: 76b610a2db008d34dbdeb5b501a675fd, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
 --- !u!82 &2608983481665621871
 AudioSource:
   m_ObjectHideFlags: 0

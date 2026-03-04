@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private List<GameObject> HelpMenu;
     private PlayerInput playerInput;
     private bool isPaused;
+    private AudioManager audioManager;
 
     public event EventHandler unPaused;
 
@@ -32,6 +33,7 @@ public class PauseMenu : MonoBehaviour
         playerInput = Player.GetComponent<PlayerInput>();
         PlayerController playerController = Player.GetComponent<PlayerController>();
         playerController.Pause += OnPause;
+        audioManager = FindFirstObjectByType<AudioManager>();
         SetActive(false);
     }
 
@@ -63,6 +65,7 @@ public class PauseMenu : MonoBehaviour
             playerInput.actions.FindActionMap("Player").Enable();
             Time.timeScale = 1f;
             unPaused?.Invoke(this, EventArgs.Empty);
+            audioManager.PlaySound(SoundName.BUTTON_CLICK);
         }
         else
         {
@@ -79,6 +82,7 @@ public class PauseMenu : MonoBehaviour
         {
             element.SetActive(true);
         }
+        audioManager.PlaySound(SoundName.BUTTON_CLICK);
     }
 
     public void BackHelp()
@@ -87,10 +91,12 @@ public class PauseMenu : MonoBehaviour
         {
             element.SetActive(false);
         }
+        audioManager.PlaySound(SoundName.BUTTON_CLICK);
     }
 
     public void Quit()
     {
+        audioManager.PlaySound(SoundName.BUTTON_CLICK);
         Application.Quit();
     }
 }
