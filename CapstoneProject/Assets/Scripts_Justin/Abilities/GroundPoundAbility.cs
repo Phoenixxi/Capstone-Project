@@ -69,6 +69,7 @@ public class GroundPoundAbility : Ability
                     enemy.TakeDamage(damage, element, new KnockbackMovement[] { knockbackDelay, knockbackMov});
                 }
                 cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
+                audioManager.PlaySound(SoundName.BOOM_GROUND_POUND);
             } else
             {
                 currentLandingFreezeTime += Time.deltaTime;

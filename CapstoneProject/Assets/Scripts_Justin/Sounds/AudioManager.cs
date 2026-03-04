@@ -139,12 +139,15 @@ public class AudioManager : MonoBehaviour
 /// </summary>
 public enum SoundName
 {
-    JUMP,
+    JUMP = 0,
     PLAYER_HURT,
     PLAYER_DEATH,
     ZOOM_ATTACK,
     BOOM_ATTACK,
     GLOOM_ATTACK,
+    ZOOM_DASH,
+    BOOM_GROUND_POUND,
+    GLOOM_AURA,
     ENEMY_HURT,
     ENEMY_DEATH,
     ENEMY_ATTACK,
