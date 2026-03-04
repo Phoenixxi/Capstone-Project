@@ -108,18 +108,8 @@ public class LevelBlocker : MonoBehaviour
                 arrow.StartFlash();
             }
             enemyCounter.disableText();
+
+            Destroy(gameObject);
         }
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if(nextScene == null || nextScene.Length == 0)
-            return;
-        if(other.CompareTag("Player") && allowedToMoveOn)
-        {
-            SceneManager.LoadScene(nextScene);
-        }
-    }
-
-
 }

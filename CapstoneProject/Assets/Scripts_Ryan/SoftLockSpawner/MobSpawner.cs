@@ -63,6 +63,8 @@ public class MobSpawner : MonoBehaviour
             OnEnemySpawned?.Invoke(entityManager);
             yield return new WaitForSeconds(delay);
         }
+
+        Destroy(gameObject);
     }
 
     // public List<EntityManager> SpawnEnemies()
