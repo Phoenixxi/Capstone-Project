@@ -21,6 +21,7 @@ public class FinalBossController : MonoBehaviour
     public Action PhaseTwo;
     private FinalBossHealthUI finalBossHealthUI;
     private bool initialized = false;
+    private AudioManager audioManager;
 
     void Awake()
     {
@@ -43,6 +44,7 @@ public class FinalBossController : MonoBehaviour
         entityManager.OnEntityHurtEvent += CheckPhaseTwo;
         entityManager.OnEntityKilledEvent += OnFinalBossDeath;
         finalBossHealthUI = GameObject.Find("FinalBossHealthBarRoot").GetComponentInChildren<FinalBossHealthUI>();
+        audioManager = FindFirstObjectByType<AudioManager>();
     }
 
     void Update()
@@ -103,6 +105,7 @@ public class FinalBossController : MonoBehaviour
         }
 
         initialized = true;
+        audioManager.PlaySound(SoundName.BOSS_THEME);
     }
 
     private void OnHit()
@@ -116,6 +119,7 @@ public class FinalBossController : MonoBehaviour
         {
             PhaseTwo?.Invoke();
             entityManager.OnEntityHurtEvent -= CheckPhaseTwo;
+            audioManager.PlaySound(SoundName.BOSS_THEME_PHASE_2);
         } 
     }
 

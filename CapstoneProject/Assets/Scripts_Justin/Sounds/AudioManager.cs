@@ -60,8 +60,8 @@ public class AudioManager : MonoBehaviour
     {
         public enum SoundType
         {
-            SFX,
-            MUSIC
+            SFX = 0,
+            MUSIC = 1
         }
         
         [HideInInspector] public string name;
@@ -84,12 +84,6 @@ public class AudioManager : MonoBehaviour
     private HashSet<SoundName> usedSounds;
     private Queue<SoundName> soundQueue;
 
-    private void Awake()
-    {
-        usedSounds = new HashSet<SoundName>();
-        soundQueue = new Queue<SoundName>();
-    }
-
     public void PlaySound(SoundName soundName)
     {
         if (!usedSounds.Contains(soundName))
@@ -108,6 +102,7 @@ public class AudioManager : MonoBehaviour
             {
                 sources[(int)queuedSound.type].volume = queuedSound.volume;
                 sources[(int)queuedSound.type].clip = queuedSound.audioClip;
+                sources[(int)queuedSound.type].Play();
             }
             else if (!queuedSound.variedPitch)
             {
@@ -126,6 +121,8 @@ public class AudioManager : MonoBehaviour
 #if UNITY_EDITOR
     private void OnEnable()
     {
+        usedSounds = new HashSet<SoundName>();
+        soundQueue = new Queue<SoundName>();
         string[] soundNames = Enum.GetNames(typeof(SoundName));
         Array.Resize(ref sounds, soundNames.Length);
         for (int i = 0; i < soundNames.Length; i++)
@@ -153,5 +150,7 @@ public enum SoundName
     ENEMY_ATTACK,
     ZOOM_BOOM_REACT,
     ZOOM_GLOOM_REACT,
-    BOOM_GLOOM_REACT
+    BOOM_GLOOM_REACT,
+    BOSS_THEME,
+    BOSS_THEME_PHASE_2
 }
