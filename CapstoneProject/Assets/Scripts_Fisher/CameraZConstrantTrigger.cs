@@ -9,6 +9,7 @@ public class CameraZConstrantTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
             cameraConstraint.ActivateConstraint(triggerMinZ);
+        Debug.Log("It working w");
     }
 
     private void OnTriggerExit(Collider other)

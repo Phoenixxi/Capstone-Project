@@ -28,11 +28,21 @@ public class CameraController : MonoBehaviour
         if(currentShakeTimer > 0)
         {
             currentShakeTimer -= Time.deltaTime;
+            float normalizedTime = currentShakeTimer / shakeTimer;
+            perlin.AmplitudeGain = currentInensity * normalizedTime;
+
             if (currentShakeTimer <= 0f)
             {
                 perlin.AmplitudeGain = 0f;
                 currentInensity = 0f;
             }
         }
+    }
+
+    public void StopShake()
+    {
+        currentShakeTimer = 0f;
+        perlin.AmplitudeGain = 0f;
+        currentInensity = 0f;
     }
 }
