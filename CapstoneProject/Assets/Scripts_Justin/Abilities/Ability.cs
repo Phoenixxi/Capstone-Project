@@ -19,6 +19,7 @@ public abstract class Ability : MonoBehaviour
     protected AbilityMovement[] movements;
     protected float disabledTime = 0f;
     protected CameraController cameraController;
+    protected AudioManager audioManager;
 
     public static Action<float, float> OnCooldownChangedEvent;
 
@@ -27,6 +28,7 @@ public abstract class Ability : MonoBehaviour
         abilityInUse = false;
         currentCooldown = 0f;
         cameraController = FindFirstObjectByType<CameraController>();
+        audioManager = FindFirstObjectByType<AudioManager>();
     }
 
     protected virtual void Update()

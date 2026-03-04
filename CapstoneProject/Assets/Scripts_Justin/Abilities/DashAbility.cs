@@ -41,6 +41,7 @@ public class DashAbility : Ability
         else movementVector = new Vector3(horizontalDirection.x, 0f, horizontalDirection.y) * speed;
         movements[0] = new AbilityMovement(movementVector);
         entityCollision.excludeLayers += dashPhasingLayers;
+        audioManager.PlaySound(SoundName.ZOOM_DASH);
         return movements;
     }
 

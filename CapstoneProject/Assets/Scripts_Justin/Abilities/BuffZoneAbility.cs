@@ -28,6 +28,7 @@ public class BuffZoneAbility : Ability
         movements[0] = new AbilityMovement(Vector3.zero);
         GameObject effect = Instantiate(chargeVFX, transform.position, Quaternion.Euler(new Vector3(90f, 0f, 0f)));
         cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
+        audioManager.PlaySound(SoundName.GLOOM_AURA);
         return movements;
     }
 
