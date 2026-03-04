@@ -11,7 +11,6 @@ public class BombProjectile : Projectile
     [SerializeField] protected float innerScreenShakeRadius; //Distancec at which the player will receive the full screen shake amount
     [SerializeField] protected float outerScreenShakeRadius; //The maximum distance away from the bomb the player can be to still get screenshot; screen shake strength decreases with distance
     [SerializeField] protected GameObject explosionVFX;
-    //TODO Add fields for VFX and SFX
 
     protected override void Update()
     {
@@ -76,6 +75,7 @@ public class BombProjectile : Projectile
             vfxInstance.transform.localScale = Vector3.one * 0.5f;
 
         }
+        FindFirstObjectByType<AudioManager>().PlaySound(SoundName.BOOM_BOMB_EXPLOSION);
         Destroy(gameObject);
     }
 

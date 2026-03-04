@@ -74,8 +74,8 @@ MonoBehaviour:
     pitchUpperBound: 1
     pitchLowerBound: 1
   - name: ZOOM_ATTACK
-    volume: 0.1
-    audioClip: {fileID: 8300000, guid: 36d945c7717ce0140b3f2a1a439cebcb, type: 3}
+    volume: 0.05
+    audioClip: {fileID: 8300000, guid: 0bf65fb8ef64a604ca7d1a3d64b575d2, type: 3}
     type: 0
     variedPitch: 1
     pitchUpperBound: 1.1
@@ -88,8 +88,8 @@ MonoBehaviour:
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
   - name: GLOOM_ATTACK
-    volume: 0.1
-    audioClip: {fileID: 8300000, guid: fc41fb103ad51924da8a00e4c15c0274, type: 3}
+    volume: 0.05
+    audioClip: {fileID: 8300000, guid: da604a960f7e70b44bca2767f7606c74, type: 3}
     type: 0
     variedPitch: 1
     pitchUpperBound: 1.1
@@ -199,6 +199,13 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+  - name: BOOM_BOMB_EXPLOSION
+    volume: 0.1
+    audioClip: {fileID: 8300000, guid: 9a85a74a2aff9914289ae057e7227918, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
 --- !u!82 &2608983481665621871
 AudioSource:
   m_ObjectHideFlags: 0
