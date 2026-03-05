@@ -1,6 +1,5 @@
 using UnityEngine;
 using lilGuysNamespace;
-using AmplifyShaderEditor;
 
 public class StaticSceneData : MonoBehaviour
 {

@@ -1,5 +1,4 @@
 using System.Linq;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class FinalBossAttackIndicator : MonoBehaviour
