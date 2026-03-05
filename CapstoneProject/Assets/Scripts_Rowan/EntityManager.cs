@@ -653,6 +653,7 @@ public class EntityManager : MonoBehaviour
 
     public void DestroyGloomBuffVFX()
     {
+        if(vfxAnchor == null) return;
         if(vfxAnchor.childCount == 0)
             return;
         for(int i = 0; i < vfxAnchor.childCount; i++)
