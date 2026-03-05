@@ -12,6 +12,7 @@ public class CameraZConstrantTrigger : MonoBehaviour
         Debug.Log("It working w");
     }
 
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
