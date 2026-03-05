@@ -443,6 +443,11 @@ public class EntityManager : MonoBehaviour
     public void TakeDamage(float damage, ElementType element, KnockbackMovement knockback)
     {
         if (isInvincible) return;
+        if(AbilityInUse())
+        {
+            ability.Cancel();
+            movementQueue.Clear();
+        }
         movementQueue.Enqueue(knockback);
         TakeDamage(damage, element);
     }
@@ -456,6 +461,11 @@ public class EntityManager : MonoBehaviour
     public void TakeDamage(float damage, ElementType element, KnockbackMovement[] movements)
     {
         if (isInvincible) return;
+        if (AbilityInUse())
+        {
+            ability.Cancel();
+            movementQueue.Clear();
+        }
         foreach (var movement in movements) movementQueue.Enqueue(movement);
         TakeDamage(damage, element);
     }
