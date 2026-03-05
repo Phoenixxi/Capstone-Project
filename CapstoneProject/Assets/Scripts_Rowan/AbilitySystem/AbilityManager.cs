@@ -19,9 +19,10 @@ public class AbilityManager : MonoBehaviour, IEffectable
     private float currentEffectTime = 0f;
     private float lastTickTime = 0f;
 
-    private void Start()
+    private void Awake()
     {
         entityManager = GetComponent<EntityManager>();
+        if(entityManager.entityName == "FinalBoss") return;
         navMeshAgent = GetComponent<NavMeshAgent>();
         startingMovementSpeed = navMeshAgent.speed; // store original speed
         currentMovementSpeed = startingMovementSpeed;
@@ -63,9 +64,12 @@ public class AbilityManager : MonoBehaviour, IEffectable
         applyingSlow = false;
         currentEffectTime = 0f;
         lastTickTime = 0f;
-        navMeshAgent.speed = startingMovementSpeed;   // reset speed back to original
-        currentMovementSpeed = startingMovementSpeed;
-        entityManager.ResetAttackRate();
+        if(navMeshAgent != null && entityManager != null)
+        {
+            navMeshAgent.speed = startingMovementSpeed;   // reset speed back to original
+            currentMovementSpeed = startingMovementSpeed;
+            entityManager.ResetAttackRate();
+        }
     }
 
 
