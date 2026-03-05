@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,6 +80,7 @@ public class AudioManager : MonoBehaviour
     [Header("IMPORTANT: DON'T CHANGE AUDIO SOURCE ORDER")]
     [SerializeField] private AudioSource[] sources; //IMPORTANT: The order that the audio sources are assigned is important, so unless you know what you're doing, DON'T MESS WITH THIS
     [SerializeField] private SoundEffect[] sounds;
+    [SerializeField] private float songTransitionTime = 0.25f;
 
     //Queue and set used to prevent overlapping sounds
     private HashSet<SoundName> usedSounds;
@@ -100,9 +102,12 @@ public class AudioManager : MonoBehaviour
             SoundEffect queuedSound = sounds[(int)soundQueue.Dequeue()];
             if (queuedSound.type == SoundEffect.SoundType.MUSIC)
             {
-                sources[(int)queuedSound.type].volume = queuedSound.volume;
-                sources[(int)queuedSound.type].clip = queuedSound.audioClip;
-                sources[(int)queuedSound.type].Play();
+                //sources[(int)queuedSound.type].volume = queuedSound.volume;
+                //sources[(int)queuedSound.type].clip = queuedSound.audioClip;
+                //sources[(int)queuedSound.type].Play();
+                int currentMusicSource = (int)queuedSound.type;
+                if (sources[currentMusicSource].isPlaying) StartCoroutine(MusicTransitionCoroutine(currentMusicSource, currentMusicSource + 2, queuedSound));
+                else StartCoroutine(MusicTransitionCoroutine(currentMusicSource + 2, currentMusicSource, queuedSound));
             }
             else if (!queuedSound.variedPitch)
             {
@@ -115,6 +120,33 @@ public class AudioManager : MonoBehaviour
             }
         }
         usedSounds.Clear();
+    }
+
+    /// <summary>
+    /// Coroutine that gradually transitions from one song to another
+    /// </summary>
+    /// <param name="currentSourceIndex">The index of the current music source</param>
+    /// <param name="nextSourceIndex">The index of the new music source</param>
+    /// <returns></returns>
+    private IEnumerator MusicTransitionCoroutine(int currentSourceIndex, int nextSourceIndex, SoundEffect song)
+    {
+        AudioSource currentSource = sources[currentSourceIndex];
+        AudioSource nextSource = sources[nextSourceIndex];
+        nextSource.volume = 0f;
+        nextSource.clip = song.audioClip;
+        float currentTransitionTime = 0f;
+        float currentSongVolume = currentSource.volume;
+        nextSource.Play();
+        while(currentTransitionTime < songTransitionTime)
+        {
+            currentTransitionTime += Time.deltaTime;
+            float newVolume = Mathf.Lerp(currentSongVolume, 0f, currentTransitionTime / songTransitionTime);
+            currentSource.volume = newVolume;
+            newVolume = Mathf.Lerp(0f, song.volume, currentTransitionTime / songTransitionTime);
+            nextSource.volume = newVolume;
+            yield return null;
+        }
+        currentSource.Stop();
     }
 
     //This makes it more convenient to modify the different sounds in the editor
