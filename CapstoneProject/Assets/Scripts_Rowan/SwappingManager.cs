@@ -38,7 +38,7 @@ public class SwappingManager : MonoBehaviour
         return null;
     }
 
-    public void PlayerHasDied(GameObject self)
+    public void PlayerHasDied(GameObject self, Queue<AbilityMovement> deathMovements)
     {
         Debug.Log($"{self} has died", self);
         if(uiPlayerSwap == null)
@@ -68,7 +68,7 @@ public class SwappingManager : MonoBehaviour
         }
         if(characterIndex != -1)
         {
-            StartCoroutine(DeathPauseCoroutine(characterIndex));
+            StartCoroutine(DeathPauseCoroutine(characterIndex, deathMovements));
         } else
         {
             Debug.Log("All characters are dead.");
@@ -76,11 +76,12 @@ public class SwappingManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DeathPauseCoroutine(int characterIndex)
+    private IEnumerator DeathPauseCoroutine(int characterIndex, Queue<AbilityMovement> deathMovements)
     {
         DeathSwapEvent?.Invoke(characterIndex + 1);
-        EntityManager entityManager = charactersList[characterIndex].GetComponent<EntityManager>(); //This is ugky, but its the best way to do it without messing with existing systems
+        EntityManager entityManager = charactersList[characterIndex].GetComponent<EntityManager>(); //This is ugly, but its the best way to do it without messing with existing systems
         entityManager.SetInviciblity(true);
+        entityManager.TransferKnockback(deathMovements);
         float originalTimeScale = Time.timeScale;
         Time.timeScale = timePercentage;
         //TODO Make invicible

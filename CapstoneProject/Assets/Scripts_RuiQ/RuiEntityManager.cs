@@ -378,7 +378,7 @@ public class RuiEntityManager : MonoBehaviour
                 case "Boom": if (boomDeathVFX) Instantiate(boomDeathVFX, lastPos, Quaternion.identity); break;
                 case "Gloom": if (gloomDeathVFX) Instantiate(gloomDeathVFX, lastPos, Quaternion.identity); break;
             }
-            if (swappingManager) swappingManager.PlayerHasDied(gameObject);
+            if (swappingManager) swappingManager.PlayerHasDied(gameObject, movementQueue);
         }
     }
 

@@ -135,7 +135,7 @@ public class EntityManager : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         CreateWeapon();
         ability = GetComponent<Ability>();
-        movementQueue = new Queue<AbilityMovement>();
+        if(movementQueue == null) movementQueue = new Queue<AbilityMovement>();
         if(gameObject.CompareTag("Player"))
             redFlashingScript = lowHealthCanvas.GetComponent<RedFlashing>();
         
@@ -302,6 +302,19 @@ public class EntityManager : MonoBehaviour
         else this.isHovering = isHovering;
     }
 
+    /// <summary>
+    /// Enqueues any knockback movement in the given queue into this character's movement queue. Is intended to be used for when
+    /// the player dies while they have knockback applied to them
+    /// </summary>
+    public void TransferKnockback(Queue<AbilityMovement> oldMovementQueue)
+    {
+        if (movementQueue == null) movementQueue = new Queue<AbilityMovement>();
+        while(oldMovementQueue.Count > 0)
+        {
+            AbilityMovement movement = oldMovementQueue.Dequeue();
+            if (movement is KnockbackMovement) movementQueue.Enqueue(movement);
+        }
+    }
 
     // Abilities / Damage / Attacking ====================================================================================================================
     /// <summary>
@@ -693,7 +706,6 @@ public class EntityManager : MonoBehaviour
         if(this.gameObject.CompareTag("Player"))
         {
             Vector3 lastPlayerPosition = gameObject.transform.position;
-            movementQueue.Clear();
             if (ability != null) ability.Cancel();
             switch(entityName)
             {
@@ -707,9 +719,10 @@ public class EntityManager : MonoBehaviour
                     Instantiate(gloomDeathVFX, lastPlayerPosition, Quaternion.identity);
                     break;
             }
-
-
-            swappingManager.PlayerHasDied(gameObject);
+            Queue<AbilityMovement> oldMovements = new Queue<AbilityMovement>();
+            while (movementQueue.Count > 0) oldMovements.Enqueue(movementQueue.Dequeue());
+;           swappingManager.PlayerHasDied(gameObject, oldMovements);
+            //movementQueue.Clear();
             // playerInput.actions.FindActionMap("Player").Disable();
             // StartCoroutine(waitTime());
         }
