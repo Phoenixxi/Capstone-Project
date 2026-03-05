@@ -12,6 +12,7 @@ public class FinalBossController : MonoBehaviour
     [SerializeField] private float AttackCoolDownMin = 5f;
     [SerializeField] private float AttackCoolDownMax = 10f;
     [SerializeField] public float DecreaseAttackCoolDownPercentage = 30f;
+    [SerializeField] private Animator ribsAnimator;
 
     private FinalBossAttacks[] finalBossAttacks;
     private float AttackCoolDown;
@@ -59,6 +60,7 @@ public class FinalBossController : MonoBehaviour
         mid -= mid * (DecreaseAttackCoolDownPercentage/100f);
         AttackCoolDownMax -= mid;
         AttackCoolDownMin = Mathf.Clamp(AttackCoolDownMin - mid, 1f, AttackCoolDownMin);
+        ribsAnimator.SetTrigger("Phase2");
     }
 
     private void AttemptToAttack()
