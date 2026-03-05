@@ -17,6 +17,7 @@ public class MainMenuScript : MonoBehaviour
     {
         StaticSceneData.playerReattempting = false;
         StaticSceneData.playerReachedBossZone = false;
+        StaticSceneData.playerReachedLevel2 = false;
         PlayButtonSound();
         SceneManager.LoadScene("IntroCutscene");
     }
