@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class DestroyNPCS : MonoBehaviour
 {
-    [SerializeField] private GameObject targetToDestroy;
-
+    [SerializeField] private GameObject[] targetsToDestroy;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(targetToDestroy);
+            foreach (GameObject target in targetsToDestroy)
+            {
+                if (target != null)
+                {
+                    Destroy(target);
+                }
+            }
         }
     }
 }
