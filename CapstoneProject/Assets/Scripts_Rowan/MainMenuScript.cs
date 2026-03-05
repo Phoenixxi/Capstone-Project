@@ -8,9 +8,10 @@ public class MainMenuScript : MonoBehaviour
     private AudioManager audioManager;
 
 
-    private void Start()
+    private void Awake()
     {
         audioManager = FindFirstObjectByType<AudioManager>();
+        Debug.Log($"Audio Manager: {audioManager}");
     }
     public void PlayGame()
     {

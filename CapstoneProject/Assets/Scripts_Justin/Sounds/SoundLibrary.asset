@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b41825065d06de459013a5042dee761, type: 3}
+  m_Name: SoundLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::SoundLibrary
+  soundList:
+  - name: JUMP
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: f8946e5ea46e49e43a001cff5871d388, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
+  - name: PLAYER_HURT
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: dca61efa361b40e4fb37c4f79dcb3383, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
+  - name: PLAYER_DEATH
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: ZOOM_ATTACK
+    volume: 0.05
+    audioClip: {fileID: 8300000, guid: 0bf65fb8ef64a604ca7d1a3d64b575d2, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
+  - name: BOOM_ATTACK
+    volume: 0.1
+    audioClip: {fileID: 8300000, guid: 4a77df370b51cf148a024f78b0c1c128, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
+  - name: GLOOM_ATTACK
+    volume: 0.05
+    audioClip: {fileID: 8300000, guid: da604a960f7e70b44bca2767f7606c74, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
+  - name: ZOOM_DASH
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: ed6576f1948d89b499a596de3224b53c, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: BOOM_GROUND_POUND
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: e5fbebe15ad686d4481ef5d8e0dd0c9a, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: GLOOM_AURA
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: 7188cd46d8836454fb39b78360b205cf, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: ENEMY_HURT
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: 093f72c70e62a6f48ba404a4a298beb8, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
+  - name: ENEMY_DEATH
+    volume: 0.18
+    audioClip: {fileID: 8300000, guid: f650f79943f68ca48b27f7e244902130, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: ENEMY_ATTACK
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: 7098aef7ffc37374cb603e3b43ec253a, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
+  - name: ZOOM_BOOM_REACT
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: 4e9de55bdd577d249af5fb3e7c68b30b, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: ZOOM_GLOOM_REACT
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: 4788e27e50f9d48449789ea3013d20b8, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: BOOM_GLOOM_REACT
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: a5f5f109abee84944a0fcf85e621e1c3, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: TOOTH_ATTACK
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: 0fef3954e6fc60441a109dccb989872d, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: TENTACLE_WINDUP
+    volume: 1
+    audioClip: {fileID: 8300000, guid: 0c2de1b9ad183ba4cb1607f32c8883a2, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
+  - name: TENTACLE_SLAM
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: b8c1edec9752a1b43aaaa92fbee68b2b, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: TENTACLE_SWIPE
+    volume: 0.15
+    audioClip: {fileID: 8300000, guid: 94f1b4853cdcd874c9bd801f74c84ffe, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: BOSS_THEME
+    volume: 0.2
+    audioClip: {fileID: 8300000, guid: faf846e3dafbe5e43acce0dcc3e027d2, type: 3}
+    type: 1
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: BOSS_THEME_PHASE_2
+    volume: 0.2
+    audioClip: {fileID: 8300000, guid: 8ed0f628ea670794aaa0dfc3e0d6e5c2, type: 3}
+    type: 1
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1
+  - name: BOOM_BOMB_EXPLOSION
+    volume: 0.2
+    audioClip: {fileID: 8300000, guid: 9a85a74a2aff9914289ae057e7227918, type: 3}
+    type: 0
+    variedPitch: 1
+    pitchUpperBound: 1.1
+    pitchLowerBound: 0.9
+  - name: BUTTON_CLICK
+    volume: 0.1
+    audioClip: {fileID: 8300000, guid: 76b610a2db008d34dbdeb5b501a675fd, type: 3}
+    type: 0
+    variedPitch: 0
+    pitchUpperBound: 1
+    pitchLowerBound: 1

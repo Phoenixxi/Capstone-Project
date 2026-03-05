@@ -1,63 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
 /// Script responsible for playing audio throughout the game
 /// </summary>
-[ExecuteAlways]
 public class AudioManager : MonoBehaviour
 {
-    /*
-    [SerializeField] private AudioSource staticAudioSource;
-    [SerializeField] private AudioSource randomAudioSource;
-    [SerializeField]
-    [Range(-3, 3)]private float randomPitchLowerBound = 1f;
-    [SerializeField] 
-    [Range(-3, 3)] private float randomPitchUpperBound = 1f;
-    private Queue<Sound> soundQueue = new Queue<Sound>();
-    private HashSet<AudioClip> usedSounds = new HashSet<AudioClip>();
-
-    /// <summary>
-    /// Plays a given sound at the given volume
-    /// </summary>
-    /// <param name="sound">The sound to play</param>
-    /// <param name="volume">The volume to play the sound at. Should be between 0 and 1</param>
-    public void PlaySound(Sound sound)
-    {
-        if (!sound.CanPlay()) return;
-        sound.ResetCooldown();
-        //staticAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
-        soundQueue.Enqueue(sound);
-    }
-
-    private void Update()
-    {
-        while(soundQueue.Count > 0)
-        {
-            Sound sound = soundQueue.Dequeue();
-            if (usedSounds.Contains(sound.SoundClip)) continue;
-            usedSounds.Add(sound.SoundClip);
-            if(sound.HasRandomPitch)
-            {
-                randomAudioSource.pitch = Random.Range(randomPitchLowerBound, randomPitchUpperBound);
-                randomAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
-            }
-            else
-            {
-                staticAudioSource.PlayOneShot(sound.SoundClip, sound.Volume);
-            }
-        }
-        usedSounds.Clear();
-    }
-    */
-
     /// <summary>
     /// Helper class that stores SFX information
     /// </summary>
     [Serializable]
-    private class SoundEffect
+    public class SoundEffect
     {
         public enum SoundType
         {
@@ -79,7 +35,8 @@ public class AudioManager : MonoBehaviour
     //==========================
     [Header("IMPORTANT: DON'T CHANGE AUDIO SOURCE ORDER")]
     [SerializeField] private AudioSource[] sources; //IMPORTANT: The order that the audio sources are assigned is important, so unless you know what you're doing, DON'T MESS WITH THIS
-    [SerializeField] private SoundEffect[] sounds;
+    //[SerializeField] private SoundEffect[] sounds;
+    [SerializeField] private SoundLibrary sounds;
     [SerializeField] private float songTransitionTime = 0.25f;
 
     //Queue and set used to prevent overlapping sounds
@@ -95,16 +52,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        soundQueue = new Queue<SoundName>();
+        usedSounds = new HashSet<SoundName>();
+    }
+
     private void Update()
     {
         while(soundQueue != null && soundQueue.Count > 0)
         {
-            SoundEffect queuedSound = sounds[(int)soundQueue.Dequeue()];
+            SoundEffect queuedSound = sounds.soundList[(int)soundQueue.Dequeue()];
             if (queuedSound.type == SoundEffect.SoundType.MUSIC)
             {
-                //sources[(int)queuedSound.type].volume = queuedSound.volume;
-                //sources[(int)queuedSound.type].clip = queuedSound.audioClip;
-                //sources[(int)queuedSound.type].Play();
                 int currentMusicSource = (int)queuedSound.type;
                 if (sources[currentMusicSource].isPlaying) StartCoroutine(MusicTransitionCoroutine(currentMusicSource, currentMusicSource + 2, queuedSound));
                 else StartCoroutine(MusicTransitionCoroutine(currentMusicSource + 2, currentMusicSource, queuedSound));
@@ -148,21 +108,6 @@ public class AudioManager : MonoBehaviour
         }
         currentSource.Stop();
     }
-
-    //This makes it more convenient to modify the different sounds in the editor
-#if UNITY_EDITOR
-    private void OnEnable()
-    {
-        usedSounds = new HashSet<SoundName>();
-        soundQueue = new Queue<SoundName>();
-        string[] soundNames = Enum.GetNames(typeof(SoundName));
-        Array.Resize(ref sounds, soundNames.Length);
-        for (int i = 0; i < soundNames.Length; i++)
-        {
-            sounds[i].name = soundNames[i];
-        }
-    }
-#endif
 
 }
 
