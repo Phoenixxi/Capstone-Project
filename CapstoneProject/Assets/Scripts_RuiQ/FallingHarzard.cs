@@ -65,7 +65,6 @@ public class FallingHazard : MonoBehaviour
             // TODO: [PROGRAMMER] DAMAGE LOGIC HERE
             // ================================================================
             collision.gameObject.GetComponentInChildren<EntityManager>().TakeDamage(damage, lilGuysNamespace.EntityData.ElementType.Normal);
-            Debug.Log("HIT PLAYER");
 
             PlayShatterEffect();
             Destroy(gameObject);
@@ -73,7 +72,6 @@ public class FallingHazard : MonoBehaviour
         else
         {
             // Hit ground/wall
-            Debug.Log("HIT GROUND");
             PlayShatterEffect();
             Destroy(gameObject);
         }

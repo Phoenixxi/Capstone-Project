@@ -39,21 +39,18 @@ public class AbilityCooldownDisplay : MonoBehaviour
         switch(characterNum)
         {
             case 1:
-                Debug.Log("Zoom swapped to");
                 zoomIcon.SetActive(true);
                 boomIcon.SetActive(false);
                 gloomIcon.SetActive(false);
                 cooldownImage = zoomIcon.transform.GetChild(0).GetComponent<Image>();
                 break;
             case 2:
-                Debug.Log("Boom swapped to");
                 zoomIcon.SetActive(false);
                 boomIcon.SetActive(true);
                 gloomIcon.SetActive(false);
                 cooldownImage = boomIcon.transform.GetChild(0).GetComponent<Image>();
                 break;
             case 3:
-                Debug.Log("Gloom swapped to");
                 zoomIcon.SetActive(false);
                 boomIcon.SetActive(false);
                 gloomIcon.SetActive(true);

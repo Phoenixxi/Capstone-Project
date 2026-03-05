@@ -88,7 +88,6 @@ public class RangedWeapon : Weapon
 
     public override void AttackFromAnimation()
     {
-        Debug.Log("Attacking from animation");
         int currentProjectileNum = 0;
         if(projectileCount % 2 != 0)
         {

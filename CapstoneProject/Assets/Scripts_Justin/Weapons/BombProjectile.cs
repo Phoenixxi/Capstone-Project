@@ -41,7 +41,6 @@ public class BombProjectile : Projectile
     /// <param name="other">The other object the bomb collided with</param>
     private void OnCollide(Collider other)
     {
-        Debug.Log($"Bomb collided with {other.gameObject}");
         int otherLayerMask = 1 << other.gameObject.layer;
         //Checking if collider layer is within the accepted list of layers
         if((validCollisions & otherLayerMask) != 0) {
@@ -87,14 +86,12 @@ public class BombProjectile : Projectile
         if(explosionDistance <= innerScreenShakeRadius)
         {
             cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
-            Debug.Log("Received max screen shake");
         } else if(explosionDistance <= outerScreenShakeRadius)
         {
             float adjustedRadius = outerScreenShakeRadius - innerScreenShakeRadius;
             float adjustedDistance = explosionDistance - innerScreenShakeRadius;
             float intensityPercentage = 1 - (adjustedDistance / adjustedRadius);
             cameraController.ShakeCamera(screenShakeIntensity * intensityPercentage, screenShakeDuration);
-            Debug.Log($"Received {intensityPercentage} percent screen shake");
         }
     }
 

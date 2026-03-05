@@ -60,7 +60,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("hello");
             TriggerDialogue();
         }
     }

@@ -623,7 +623,6 @@ public class EntityManager : MonoBehaviour
 
     IEnumerator MeleeEnemyAttackDelay()
     {
-        Debug.Log("Melee coroutine");
         yield return new WaitForSeconds(0.3f);
         if(vfxAnchor.childCount > 0)
         {
@@ -696,7 +695,6 @@ public class EntityManager : MonoBehaviour
         currentHealth = 0;
         isAlive = false;
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
-        Debug.Log("Entity has died.");
         ClearVFX(ref currentElementalVFXInstance);
         OnEntityKilledEvent?.Invoke();
         if(entityName == "FinalBoss")
@@ -757,7 +755,6 @@ public class EntityManager : MonoBehaviour
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
 
-        Debug.Log("Entity healed. Current health: " + currentHealth);
         if(OnHealthUpdatedEvent != null) OnHealthUpdatedEvent(currentHealth, maxHealth, taggedElement);
     }
 

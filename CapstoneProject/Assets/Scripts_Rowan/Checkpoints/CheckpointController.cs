@@ -31,7 +31,6 @@ public class CheckpointController : MonoBehaviour
     // Give location of most recent checkpoint to player if they fell
     public Vector3 RecentCheckpointLocation()
     {
-        Debug.Log("CP Location: " + mostRecentCheckpoint.transform.position);
         mostRecentCheckpoint.hasPlayerFallen = true;
         return mostRecentCheckpoint.transform.position;
     }

@@ -75,12 +75,12 @@ public class PriorityQueue<T>
 
     private void printHeap()
     {
-        string heapString = "Print Heap: ";
-        foreach(var item in heap)
-        {
-            heapString += item + " "; 
-        }
+        //string heapString = "Print Heap: ";
+        //foreach(var item in heap)
+        //{
+        //    heapString += item + " "; 
+        //}
 
-        Debug.Log(heapString);
+        //Debug.Log(heapString);
     }
 }

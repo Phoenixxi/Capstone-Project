@@ -196,7 +196,6 @@ public class PlayerController : MonoBehaviour
             EntityManager entity = character.GetComponentInChildren<EntityManager>();
             if(entity.isAlive)
             {
-                Debug.Log("Healed " + entity.entityName + " from reaction for " + 1f);
                 entity.Heal(healAmount);
             }
         }
@@ -223,8 +222,6 @@ public class PlayerController : MonoBehaviour
                     // To decrease healing, decrease the maximum coefficient (the first one) and increase the minimum coefficient (the second one). 
                     // To increase healing, do the opposite.
                     float coefficient = Mathf.Lerp(0.11f, 0.1f, healthPercent);
-
-                    Debug.Log("Healed " + entity.entityName + " for " + (missingHealth * coefficient) + " who had current health of " + entity.currentHealth + " and missing health of " + missingHealth);
                     entity.Heal(missingHealth * coefficient);
                 }
             }
@@ -303,8 +300,6 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     private void OnHover(InputValue input)
     {
-        if (input.isPressed) Debug.Log("Start Hovering");
-        else Debug.Log("Stop Hovering");
         hoverButtonPressed = input.isPressed;
     }
 
@@ -539,7 +534,6 @@ public class PlayerController : MonoBehaviour
 
         {
 
-            Debug.Log("Zoom is dead and cannot be swapped to.");
 
             return;
 
@@ -615,8 +609,6 @@ public class PlayerController : MonoBehaviour
 
         {
 
-            Debug.Log("Boom is dead and cannot be swapped to.");
-
             return;
 
         }
@@ -684,7 +676,6 @@ public class PlayerController : MonoBehaviour
 
         {
 
-            Debug.Log("Gloom is dead and cannot be swapped to.");
 
             return;
 

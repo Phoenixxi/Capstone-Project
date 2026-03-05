@@ -53,7 +53,6 @@ public class TumorManager : MonoBehaviour
 
     void OpenDoor()
     {
-        Debug.Log("🎉 所有肉瘤清除完毕，通道开启！");
         if (doorToOpen != null)
         {
             // 这里可以换成播放动画，现在简单粗暴地关掉门

@@ -68,7 +68,6 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter(UnityEngine.Collider other)
     {
-        Debug.Log($"Hit {other}", other);
         EntityManager hitEntity = other.gameObject.GetComponent<EntityManager>();
         if (hitEntity == null) hitEntity = other.gameObject.GetComponentInChildren<EntityManager>();
         if (hitEntity != null) {

@@ -31,7 +31,6 @@ public class ToothAttack : BossAttack
         IsAttacking = true;
         currAttackTimer = toothAttackTimer / ((isSpedUp) ? attackTimerSpeedMultiplier : 1f);
         currLingerTimer = toothAttackLingerTimer / ((isSpedUp) ? speedupAmount : 1f);
-        Debug.Log("Tooth attack starting...");
         foreach (Animator molar in molarAnimators) molar.SetTrigger("Show");
         uiAnimator.SetTrigger("Show");
     }
@@ -45,7 +44,6 @@ public class ToothAttack : BossAttack
             {
                 toothAnimator.SetTrigger("Show");
                 toothHurtbox.Activate(toothAttackLingerTimer, true);
-                Debug.Log("Teeth can damage!");
                 audioManager.PlaySound(SoundName.TOOTH_ATTACK);
             }
         } else if(currLingerTimer > 0)
@@ -56,7 +54,6 @@ public class ToothAttack : BossAttack
                 IsAttacking = false;
                 toothAnimator.SetTrigger("Hide");
                 foreach (Animator molar in molarAnimators) molar.SetTrigger("Hide");
-                Debug.Log("Teeth retracted");
                 if (!canRepeat) Destroy(gameObject);
             }
         }

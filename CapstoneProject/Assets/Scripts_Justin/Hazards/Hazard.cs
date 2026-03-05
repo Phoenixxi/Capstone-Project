@@ -8,7 +8,6 @@ public class Hazard : MonoBehaviour
     [SerializeField] private GameObject UIScreen;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Collided with {other.gameObject}", other.gameObject);
         if(other.gameObject.tag == "Player")
         {
             other.GetComponent<PlayerController>().SendToCheckpoint();

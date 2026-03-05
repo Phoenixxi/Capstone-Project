@@ -54,12 +54,10 @@ public class Hurtbox : MonoBehaviour
         hitEntities = new HashSet<EntityManager>();
         meleeCollider.enabled = true;
         HitDetection();
-        Debug.Log("Hurtbox activated");
     }
 
     private void OnDisable()
     {
-        Debug.Log("Hurtbox deactivated");
         meleeCollider.enabled = false;
         hasShakenScreen = false;
     }
@@ -126,13 +124,9 @@ public class Hurtbox : MonoBehaviour
     //dash for Zoom (CHANGE CODE IF OTHER CHARACTERS USE MELEE)
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{other.gameObject} in trigger");
         if (!isDashing) return;
-        Debug.Log($"Melee hit {other.gameObject}", other.gameObject);
         EntityManager hitEntity = other.gameObject.GetComponent<EntityManager>();
         if (hitEntity == null) hitEntity = other.gameObject.GetComponentInChildren<EntityManager>();
-        Debug.Log($"Entity manager null: {hitEntity == null}");
-        Debug.Log($"Entity manager in hit entities: {hitEntities.Contains(hitEntity)}");
         if (hitEntity == null || hitEntities.Contains(hitEntity)) return;
         DamageEntity(hitEntity);
         if (!hasShakenScreen)
@@ -149,7 +143,6 @@ public class Hurtbox : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            Debug.Log($"Melee hit {collider.gameObject}", collider.gameObject);
             EntityManager entityManager = collider.gameObject.GetComponentInChildren<EntityManager>();
             if (entityManager == null) entityManager = collider.gameObject.GetComponent<EntityManager>();
             if (entityManager == null)

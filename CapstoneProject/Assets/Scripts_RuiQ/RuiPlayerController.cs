@@ -254,7 +254,6 @@ public class RuiQPlayerController : MonoBehaviour
 
         if (!targetEntity.isAlive)
         {
-            Debug.Log($"{targetCharObj.name} is dead and cannot be swapped to.");
             return;
         }
 

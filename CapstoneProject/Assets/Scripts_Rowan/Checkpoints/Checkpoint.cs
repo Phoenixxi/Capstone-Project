@@ -19,7 +19,6 @@ public class Checkpoint : MonoBehaviour
     //Check if player reaches checkpoint
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Checkpoint Triggered");
         if (other.CompareTag("Player"))
         {
             isCheckpointReached = true;
@@ -28,7 +27,6 @@ public class Checkpoint : MonoBehaviour
                 checkpointController.playerController.TakeDamageWrapper(20);
                 hasPlayerFallen = false;
             }
-            Debug.Log("Checkpoint reached");
         }
 
         checkpointController.UpdateCheckpointList(this);

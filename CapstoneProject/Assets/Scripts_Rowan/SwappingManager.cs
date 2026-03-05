@@ -17,11 +17,11 @@ public class SwappingManager : MonoBehaviour
 
     void Start()
     {
-         foreach (GameObject character in charactersList)
-        {
-            Debug.Log(character.name);
-        }
-        currentCharacter = "zoom";
+        // foreach (GameObject character in charactersList)
+        //{
+        //    Debug.Log(character.name);
+        //}
+        //currentCharacter = "zoom";
     }
 
 

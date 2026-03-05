@@ -59,7 +59,6 @@ public class GroundPoundAbility : Ability
                 RaycastHit[] hitEnemies = Physics.SphereCastAll(sphereRay, slamRadius, 0.1f, slamLayerMask);
                 foreach (RaycastHit hitEntity in hitEnemies)
                 {
-                    Debug.Log($"Hit {hitEntity.transform.gameObject}", hitEntity.transform.gameObject);
                     EntityManager enemy = hitEntity.transform.GetComponent<EntityManager>();
                     Vector3 knockback = (enemy.transform.position - transform.position).normalized;
                     knockback *= knockbackStrength;

@@ -71,14 +71,12 @@ public class BuffZone : MonoBehaviour
 
     private IEnumerator DamageEnemyCoroutine(EntityManager enemy)
     {
-        Debug.Log("Damage coroutine started");
         while(enemy != null && enemies.ContainsKey(enemy.gameObject))
         {
             yield return new WaitForSeconds(damageRate);
             if(enemy != null)
                 enemy.TakeDamage(damage, element);
         }
-        Debug.Log("Damage coroutine ended");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,7 +102,6 @@ public class BuffZone : MonoBehaviour
             if (enemies.ContainsKey(entity)) enemies.Remove(entity);
         } else if(entity.tag == "Player")
         {
-            Debug.Log("Player leaving buff zone");
             player.ResetAttackRate();
             player.DestroyGloomBuffVFX();
             player.SetStandingInGloomBuffZone(false);
@@ -133,7 +130,6 @@ public class BuffZone : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Player leaving buff zone");
         player?.ResetAttackRate();
         player?.DestroyGloomBuffVFX();
         player?.SetStandingInGloomBuffZone(false);

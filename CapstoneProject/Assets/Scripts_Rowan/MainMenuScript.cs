@@ -11,7 +11,6 @@ public class MainMenuScript : MonoBehaviour
     private void Awake()
     {
         audioManager = FindFirstObjectByType<AudioManager>();
-        Debug.Log($"Audio Manager: {audioManager}");
     }
     public void PlayGame()
     {
@@ -25,7 +24,6 @@ public class MainMenuScript : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("QUIT!");
         PlayButtonSound();
         Application.Quit();
     }

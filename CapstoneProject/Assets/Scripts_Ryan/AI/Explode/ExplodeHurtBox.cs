@@ -55,7 +55,7 @@ public class ExplodeHurtBox : MonoBehaviour
         
             foreach (Collider collider in colliders)
             {
-                Debug.Log($"Melee hit {collider.gameObject}", collider.gameObject);
+                //Debug.Log($"Melee hit {collider.gameObject}", collider.gameObject);
                 EntityManager entityManager = collider.gameObject.GetComponentInChildren<EntityManager>();
                 if(entityManager == null)
                 {
@@ -76,7 +76,7 @@ public class ExplodeHurtBox : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Explode enemy attacked");
+        //Debug.Log("Explode enemy attacked");
 
         if(hashit)
         {

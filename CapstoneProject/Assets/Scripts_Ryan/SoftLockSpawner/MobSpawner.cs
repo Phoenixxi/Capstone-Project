@@ -102,7 +102,7 @@ public class MobSpawner : MonoBehaviour
     {
         Vector2 vector2 = UnityEngine.Random.insideUnitCircle * range;
         Vector3 randomPoint = center + new Vector3(vector2.x, 0f, vector2.y);
-        Debug.Log($"This is random point: {randomPoint}");
+        //Debug.Log($"This is random point: {randomPoint}");
         NavMeshHit hit;
 
         //Navmesh.SamplePosition finds the nearest navigable (walkable) point on the NavMesh
@@ -115,7 +115,7 @@ public class MobSpawner : MonoBehaviour
             return;
         }
 
-        Debug.Log("Didn't cause sample position");
+        //Debug.Log("Didn't cause sample position");
 
         result = center;
         return;
