@@ -14,7 +14,7 @@ public class FinalBossAttackIndicator : MonoBehaviour
         float timeTaken = (38f - 0f)/swipeAttackAnimationClip.frameRate;
         swipeAttackTopBlendShapeIndicator.GetComponent<BlendShapeIndicators>().SetTimeTaken(timeTaken);
         swipeAttackBottomBlendShapeIndicator.GetComponent<BlendShapeIndicators>().SetTimeTaken(timeTaken);
-        timeTaken = (52f - 0f)/teethAttackAnimationClip.frameRate;
+        timeTaken = (96f - 0f)/teethAttackAnimationClip.frameRate;
         teethAttackBlendShapeIndicator.GetComponent<BlendShapeIndicators>().SetTimeTaken(timeTaken);
     }
 
