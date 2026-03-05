@@ -17,6 +17,7 @@ public class TentacleAttack : BossAttack
     [SerializeField] protected AttackType attackType;
     [SerializeField] protected bool followsPlayer = false;
     [SerializeField] protected float rotationSpeed = 1f;
+    [SerializeField] protected GameObject attackIndicator;
     protected Animator tentacleAnim;
     protected bool isFollowingPlayer;
     protected Transform playerTransform;
@@ -42,6 +43,8 @@ public class TentacleAttack : BossAttack
         {
             tentacleAnim.SetTrigger("Slam");
             audioManager.PlaySound(SoundName.TENTACLE_WINDUP);
+            //TODO Trigger attack indicator
+            attackIndicator.SetActive(true);
         } else
         {
             tentacleAnim.SetTrigger("Swipe");
