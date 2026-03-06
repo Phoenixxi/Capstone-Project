@@ -127,6 +127,11 @@ public class FinalBossController : MonoBehaviour
 
     private void OnFinalBossDeath()
     {
+        foreach(FinalBossAttacks fba in finalBossAttacks)
+        {
+            fba.OnFinalBossDeath();
+        }
         FinalBossManagerSingleton.Instance.OnFinalBossDeath();
+        enabled = false;
     }
 }

@@ -22,6 +22,11 @@ public abstract class FinalBossAttacks : MonoBehaviour
         
     }
 
+    public void OnFinalBossDeath()
+    {
+        enabled = false;
+    }
+
     private void OnEnable()
     {
         UpdateTimeSinceLastAttack();
