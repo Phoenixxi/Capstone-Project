@@ -49,7 +49,7 @@ public class FinalBossManagerSingleton : MonoBehaviour
             fade.alpha += 0.1f;
             yield return new WaitForSeconds(0.5f);
         }
-        SceneManager.LoadScene("WinScreen");
+        SceneManager.LoadScene("EndingCutscene");
     }
 
     private IEnumerator PlayExplosionVFX()
