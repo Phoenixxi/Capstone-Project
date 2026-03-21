@@ -26,7 +26,7 @@ public class DamageNumber : MonoBehaviour
     {
         //int otherDamageNumbers = FindObjectsByType<DamageNumber>(FindObjectsSortMode.None).Length - 1;
         //transform.position += spawnOffset + 0.5f * otherDamageNumbers * spawnOffset;
-        textStartingY = text.transform.position.y;
+        textStartingY = text.transform.localPosition.y;
     }
 
     /// <summary>
@@ -50,7 +50,7 @@ public class DamageNumber : MonoBehaviour
     public void ShowDamage(int damage, ElementType element, float time, Vector3 position, int otherNumbersCount = 0)
     {
         transform.position = position + GetResetPosition(otherNumbersCount);
-        text.transform.position = new Vector3(text.transform.position.x, textStartingY, text.transform.position.z);
+        text.transform.localPosition = new Vector3(text.transform.localPosition.x, textStartingY, text.transform.localPosition.z);
         text.text = damage.ToString();
         switch(element)
         {
@@ -79,13 +79,13 @@ public class DamageNumber : MonoBehaviour
     {
         float currentTime = 0f;
         float endingY = textStartingY + floatDistance;
-        Vector3 currentPosition = new Vector3(text.transform.position.x, textStartingY, text.transform.position.z);
+        Vector3 currentPosition = new Vector3(text.transform.localPosition.x, textStartingY, text.transform.localPosition.z);
         while(currentTime < time)
         {
             currentTime += Time.deltaTime;
             text.alpha = Mathf.Lerp(1, 0f, currentTime / time);
             currentPosition.y = Mathf.Lerp(textStartingY, endingY, currentTime / time);
-            text.transform.position = currentPosition;
+            text.transform.localPosition = currentPosition;
             yield return null;
         }
         ObjectPool.Release(this);

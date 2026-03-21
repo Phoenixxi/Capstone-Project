@@ -49,6 +49,7 @@ public class DamageNumberManager : MonoBehaviour
     /// <param name="position">The position the number should be shown at</param>
     public void ShowDamageNumber(int damage, ElementType element, Vector3 position)
     {
+        Debug.Log($"Called show damage number at position {position}");
         DamageNumber number = numberPool.Get();
         //TODO Calculate how many other damage numbers there are
         number.ShowDamage(damage, element, displayTime, position);

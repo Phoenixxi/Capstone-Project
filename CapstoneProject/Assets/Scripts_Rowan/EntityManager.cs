@@ -478,6 +478,7 @@ public class EntityManager : MonoBehaviour
         //DamageNumber damageNumber = Instantiate(damageNumberVFXPrefab, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
         //damageNumber.ShowDamage(damage, element, damageNumberDisplayTime);
         if (damageNumberManager == null) Debug.LogError("Damage Number Manager not found. Make sure there is one in your scene");
+        Debug.Log($"Entity calling show damage number at {transform.position}", transform);
         damageNumberManager.ShowDamageNumber(damage, element, transform.position);
     }
 
