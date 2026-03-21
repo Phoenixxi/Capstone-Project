@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 
 /// <summary>
@@ -17,12 +18,25 @@ public class DamageNumber : MonoBehaviour
     [SerializeField] private Color gloomColor;
     [SerializeField] private float floatDistance;
     [SerializeField] private Vector3 spawnOffset;
+    private float textStartingY;
+    
+    public ObjectPool<DamageNumber> ObjectPool { get; set; }
 
     private void Awake()
     {
-        int otherDamageNumbers = FindObjectsByType<DamageNumber>(FindObjectsSortMode.None).Length - 1;
-        transform.position += spawnOffset + 0.5f * otherDamageNumbers * spawnOffset;
-       
+        //int otherDamageNumbers = FindObjectsByType<DamageNumber>(FindObjectsSortMode.None).Length - 1;
+        //transform.position += spawnOffset + 0.5f * otherDamageNumbers * spawnOffset;
+        textStartingY = text.transform.position.y;
+    }
+
+    /// <summary>
+    /// Returns the position that the damage number should appear at
+    /// </summary>
+    /// <param name="otherNumbersCount">How maany other damage numbers are active in the scene</param>
+    /// <returns>The position of the damage number</returns>
+    private Vector3 GetResetPosition(int otherNumbersCount)
+    {
+        return spawnOffset + 0.5f * otherNumbersCount * spawnOffset;
     }
 
     /// <summary>
@@ -31,8 +45,12 @@ public class DamageNumber : MonoBehaviour
     /// <param name="damage">The amount of damage to display</param>
     /// <param name="element">The damage's element</param>
     /// <param name="time">How long the text should appear for</param>
-    public void ShowDamage(int damage, ElementType element, float time)
+    /// <param name="position">The position the damage number should appear at</param>
+    /// <param name="otherNumbersCount">How many other damage numbers are active in the scene. Used to calculate spawn offset</param>
+    public void ShowDamage(int damage, ElementType element, float time, Vector3 position, int otherNumbersCount = 0)
     {
+        transform.position = position + GetResetPosition(otherNumbersCount);
+        text.transform.position = new Vector3(text.transform.position.x, textStartingY, text.transform.position.z);
         text.text = damage.ToString();
         switch(element)
         {
@@ -60,17 +78,17 @@ public class DamageNumber : MonoBehaviour
     private IEnumerator ShowDamageCoroutine(float time)
     {
         float currentTime = 0f;
-        float startingY = text.transform.position.y;
-        float endingY = startingY + floatDistance;
-        Vector3 currentPosition = new Vector3(text.transform.position.x, startingY, text.transform.position.z);
+        float endingY = textStartingY + floatDistance;
+        Vector3 currentPosition = new Vector3(text.transform.position.x, textStartingY, text.transform.position.z);
         while(currentTime < time)
         {
             currentTime += Time.deltaTime;
             text.alpha = Mathf.Lerp(1, 0f, currentTime / time);
-            currentPosition.y = Mathf.Lerp(startingY, endingY, currentTime / time);
+            currentPosition.y = Mathf.Lerp(textStartingY, endingY, currentTime / time);
             text.transform.position = currentPosition;
             yield return null;
         }
-        Destroy(gameObject);
+        ObjectPool.Release(this);
+        //Destroy(gameObject);
     } 
 }

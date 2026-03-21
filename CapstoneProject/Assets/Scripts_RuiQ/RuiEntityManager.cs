@@ -268,7 +268,7 @@ public class RuiEntityManager : MonoBehaviour
         if (damageNumberVFXPrefab != null)
         {
             DamageNumber damageNumber = Instantiate(damageNumberVFXPrefab, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
-            damageNumber.ShowDamage(damage, element, damageNumberDisplayTime);
+            //damageNumber.ShowDamage(damage, element, damageNumberDisplayTime);
         }
     }
 

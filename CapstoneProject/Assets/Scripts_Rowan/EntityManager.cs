@@ -72,8 +72,9 @@ public class EntityManager : MonoBehaviour
     // DESIGNERS: Adjust fields here
     private float dmgMultiplier = 2.0f;
 
-    [SerializeField] private GameObject damageNumberVFXPrefab;
-    [SerializeField] private float damageNumberDisplayTime;
+    //TODO Re-implement damage numbers
+    //[SerializeField] private GameObject damageNumberVFXPrefab;
+    //[SerializeField] private float damageNumberDisplayTime;
 
     // VFX info
     [Header("Elemental glow VFX: Needed for both player and enemy")]
@@ -116,6 +117,7 @@ public class EntityManager : MonoBehaviour
     private GameObject currentEnemyDeathVFX;
     private Transform vfxAnchor;
     private Transform vfxHitAnchor;
+    private DamageNumberManager damageNumberManager;
 
     public Action<float, float, ElementType> OnHealthUpdatedEvent;
 
@@ -144,6 +146,7 @@ public class EntityManager : MonoBehaviour
         if (defaultElement != ElementType.Normal) 
             taggedElement = defaultElement;
         if (GetComponent<NavMeshAgent>() != null) usesNavAgent = true;
+        damageNumberManager = FindFirstObjectByType<DamageNumberManager>();
     }
 
     void Awake()
@@ -196,7 +199,6 @@ public class EntityManager : MonoBehaviour
 
     private void CreateWeapon()
     {
-        //TODO Replace default element with the entity-specific one
         if (projectile != null) weapon = new RangedWeapon(attackCooldown, weaponDamage, defaultElement, projectile, animator, projectileCount, perBulletSpread);
         else if (meleeHurtbox != null) weapon = new MeleeWeapon(attackCooldown, weaponDamage, defaultElement, meleeHurtbox, hurtboxActivationTime, animator);
         else if(explodeHurtBox != null) weapon = new ExplodeWeapon(attackCooldown, weaponDamage, defaultElement, explodeHurtBox, animator);
@@ -470,10 +472,13 @@ public class EntityManager : MonoBehaviour
         TakeDamage(damage, element);
     }
 
+    //TODO Reimplement damage numbers
     private void ShowDamageNumber(int damage, ElementType element)
     {
-        DamageNumber damageNumber = Instantiate(damageNumberVFXPrefab, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
-        damageNumber.ShowDamage(damage, element, damageNumberDisplayTime);
+        //DamageNumber damageNumber = Instantiate(damageNumberVFXPrefab, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
+        //damageNumber.ShowDamage(damage, element, damageNumberDisplayTime);
+        if (damageNumberManager == null) Debug.LogError("Damage Number Manager not found. Make sure there is one in your scene");
+        damageNumberManager.ShowDamageNumber(damage, element, transform.position);
     }
 
 
