@@ -3,19 +3,16 @@ using System.Collections.Generic;
 
 public class TumorManager : MonoBehaviour
 {
-    [Header("🚪 目标门")]
+    [Header("目标门")]
     public GameObject doorToOpen;
-
-    // 自动维护的瘤子列表
     //private List<PulsingTumor> allTumors = new List<PulsingTumor>();
 
     void Start()
     {
-        // 🛡️ 自动全图搜索所有挂了 PulsingTumor 的物体
         //PulsingTumor[] foundTumors = FindObjectsByType<PulsingTumor>(FindObjectsSortMode.None);
         //allTumors.AddRange(foundTumors);
 
-        // 认亲大会：让每个瘤子知道谁是老大
+        // 
         //foreach (var tumor in allTumors)
         //{
         //    tumor.manager = this;

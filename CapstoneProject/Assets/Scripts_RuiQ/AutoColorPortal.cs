@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,33 +10,33 @@ public class AutoColorPortal : MonoBehaviour
         Red, Blue, Green, Yellow, Purple, Cyan
     }
 
-    [Header("📢 设置")]
-    [Tooltip("选择颜色，脚本会自动连接场景里另一个同色的门")]
+    [Header("📢 Settings")]
+    [Tooltip("Choose a color; the script will automatically link to another portal in the scene with the same color.")]
     public PortalChannel portalColor = PortalChannel.Red;
 
-    [Header("🎨 视觉")]
-    [Tooltip("把圆盘模型拖到这里，自动改颜色")]
+    [Header("🎨 Visuals")]
+    [Tooltip("Drag the disc model here to automatically apply the channel color.")]
     public MeshRenderer portalRenderer;
 
-    [Header("⏱️ 动画设置")]
-    [Tooltip("变大变小的时间 (秒)")]
+    [Header("⏱️ Animation Settings")]
+    [Tooltip("Duration for the scale-up/down animation (seconds).")]
     public float animationDuration = 0.5f;
 
-    [Header("🚀 横版抛出设置")]
-    [Tooltip("水平抛出的距离 (X轴)")]
+    [Header("🚀 Side-Scrolling Toss Settings")]
+    [Tooltip("Horizontal distance to throw the player (X-axis).")]
     public float throwDistance = 5f;
-    [Tooltip("抛出的高度 (Y轴)")]
+    [Tooltip("Vertical height of the throw arc (Y-axis).")]
     public float throwHeight = 3f;
-    [Tooltip("飞行时间 (秒)")]
+    [Tooltip("Duration of the flight (seconds).")]
     public float flightDuration = 0.8f;
 
-    // --- 内部变量 ---
+    // --- Internal Variables ---
     private AutoColorPortal linkedTarget;
     private bool isCoolingDown = false;
     private Collider myCollider;
 
-    // 颜色字典
-    private readonly System.Collections.Generic.Dictionary<PortalChannel, Color> channelColors = new System.Collections.Generic.Dictionary<PortalChannel, Color>()
+    // Color mapping dictionary
+    private readonly Dictionary<PortalChannel, Color> channelColors = new Dictionary<PortalChannel, Color>()
     {
         { PortalChannel.Red, Color.red },
         { PortalChannel.Blue, Color.blue },
@@ -62,6 +63,7 @@ public class AutoColorPortal : MonoBehaviour
         var allPortals = FindObjectsByType<AutoColorPortal>(FindObjectsSortMode.None);
         foreach (var portal in allPortals)
         {
+            // Search for another portal instance with the matching color channel
             if (portal != this && portal.portalColor == this.portalColor)
             {
                 linkedTarget = portal;
@@ -75,10 +77,13 @@ public class AutoColorPortal : MonoBehaviour
     {
         if (portalRenderer != null && channelColors.ContainsKey(portalColor))
         {
+            // Apply color to the material's color property (handles both URP and Standard shaders)
             Material mat = new Material(portalRenderer.sharedMaterial);
             Color targetColor = channelColors[portalColor];
+
             if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", targetColor);
             else if (mat.HasProperty("_Color")) mat.SetColor("_Color", targetColor);
+
             portalRenderer.material = mat;
         }
     }
@@ -95,7 +100,7 @@ public class AutoColorPortal : MonoBehaviour
 
     private IEnumerator TeleportProcess(GameObject player)
     {
-        // 1. 禁用控制
+        // 1. Disable player controls and physics
         CharacterController cc = player.GetComponent<CharacterController>();
         Rigidbody rb = player.GetComponent<Rigidbody>();
         if (cc) cc.enabled = false;
@@ -105,7 +110,7 @@ public class AutoColorPortal : MonoBehaviour
         Vector3 startPos = player.transform.position;
         float timer = 0f;
 
-        // --- 第一阶段：吸入变小 ---
+        // --- Phase 1: Inhale and shrink ---
         while (timer < animationDuration)
         {
             timer += Time.deltaTime;
@@ -116,19 +121,18 @@ public class AutoColorPortal : MonoBehaviour
         }
         player.transform.localScale = Vector3.zero;
 
-        // --- 第二阶段：传送 ---
+        // --- Phase 2: Teleportation ---
         linkedTarget.StartCooldown();
         player.transform.position = linkedTarget.transform.position;
 
-        // --- 第三阶段：🔥 获取目标门的 X 轴方向 🔥 ---
-        // 直接读取出口门 (linkedTarget) 的 transform.right (红轴方向)
-        // 如果你的门旋转了，这个方向就会变
+        // --- Phase 3: 🔥 Get exit direction 🔥 ---
+        // Read the target portal's transform.right to determine ejection direction
         Vector3 portalRight = linkedTarget.transform.right;
 
-        // 强制归一化成纯粹的 左(-1) 或 右(1)，防止门歪了导致斜着飞
+        // Normalize to pure Left (-1) or Right (1) to prevent diagonal drift if the portal is tilted
         Vector3 throwDir = (portalRight.x >= 0) ? Vector3.right : Vector3.left;
 
-        // --- 第四阶段：同时变大 + 弹射 ---
+        // --- Phase 4: Scale back up + Ejection arc ---
         Coroutine throwRoutine = StartCoroutine(ThrowPlayerSideScroll(player, linkedTarget, throwDir));
 
         timer = 0f;
@@ -143,7 +147,7 @@ public class AutoColorPortal : MonoBehaviour
 
         yield return throwRoutine;
 
-        // --- 第五阶段：恢复控制 ---
+        // --- Phase 5: Restore controls ---
         if (cc) cc.enabled = true;
         if (rb) rb.isKinematic = false;
     }
@@ -153,13 +157,13 @@ public class AutoColorPortal : MonoBehaviour
         float elapsed = 0f;
         Vector3 p0 = originPortal.transform.position;
 
-        // 计算落点
+        // Define landing point
         Vector3 p2 = p0 + (direction * throwDistance);
 
-        // 控制点(最高点)
+        // Define control point (apex of the jump arc)
         Vector3 p1 = p0 + (direction * (throwDistance / 2)) + (Vector3.up * throwHeight);
 
-        // 锁死 Z 轴
+        // Lock the Z-axis for 2.5D side-scrolling consistency
         float fixedZ = player.transform.position.z;
 
         while (elapsed < flightDuration)
@@ -167,7 +171,7 @@ public class AutoColorPortal : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = elapsed / flightDuration;
 
-            // 贝塞尔曲线
+            // Quadratic Bezier curve calculation
             Vector3 position = Mathf.Pow(1 - t, 2) * p0 + 2 * (1 - t) * t * p1 + Mathf.Pow(t, 2) * p2;
             position.z = fixedZ;
 
@@ -198,10 +202,11 @@ public class AutoColorPortal : MonoBehaviour
     {
         if (linkedTarget != null)
         {
+            // Draw a line connecting linked portals in the Editor for debugging
             Gizmos.color = channelColors.ContainsKey(portalColor) ? channelColors[portalColor] : Color.white;
             Gizmos.DrawLine(transform.position, linkedTarget.transform.position);
 
-            // 画出当前门的弹出方向，方便你调试
+            // Draw the ejection direction ray (Yellow)
             Vector3 dir = transform.right.x >= 0 ? Vector3.right : Vector3.left;
             Gizmos.color = Color.yellow;
             Gizmos.DrawRay(transform.position, dir * 2f);
