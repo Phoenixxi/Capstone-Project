@@ -24,6 +24,8 @@ public class DamageNumberManager : MonoBehaviour
         numberPool = new ObjectPool<DamageNumber>(createFunc: SpawnDamageNumber, actionOnDestroy: DestroyDamageNumber, defaultCapacity: defaultSize, maxSize: maxSize);
         playerNumberPool = new ObjectPool<DamageNumber>(createFunc: SpawnPlayerDamageNumber, actionOnDestroy: DestroyDamageNumber, defaultCapacity: playerDefaultSize, maxSize: playerMaxSize);
         currentSize = numberPool.CountAll;
+        for (int i = 0; i < defaultSize; i++) SpawnDamageNumber();
+        for (int i = 0; i < playerDefaultSize; i++) SpawnPlayerDamageNumber();
     }
 
     /// <summary>
