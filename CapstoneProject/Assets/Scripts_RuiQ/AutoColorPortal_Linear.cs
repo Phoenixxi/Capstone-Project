@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class AutoColorPortalLinear : MonoBehaviour
+public class AutoColorPortal_Linear : MonoBehaviour
 {
     public enum PortalChannel
     {
@@ -24,7 +24,7 @@ public class AutoColorPortalLinear : MonoBehaviour
     public float ejectionDistance = 3.5f;
 
     // --- Internal Variables ---
-    private AutoColorPortalLinear linkedTarget;
+    private AutoColorPortal_Linear linkedTarget;
     private bool isCoolingDown = false;
     private BoxCollider myCollider;
 
@@ -49,7 +49,7 @@ public class AutoColorPortalLinear : MonoBehaviour
 
     public void FindMyPartner()
     {
-        var allPortals = Object.FindObjectsByType<AutoColorPortalLinear>(FindObjectsSortMode.None);
+        var allPortals = Object.FindObjectsByType<AutoColorPortal_Linear>(FindObjectsSortMode.None);
         foreach (var portal in allPortals)
         {
             if (portal != this && portal.portalColor == this.portalColor)
