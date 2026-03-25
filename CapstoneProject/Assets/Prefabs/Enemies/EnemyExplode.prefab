@@ -720,7 +720,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.3, z: -0.005}
-  m_LocalScale: {x: 3.0693, y: 1, z: 1.2853}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2113378421503788461}
@@ -769,6 +769,8 @@ MonoBehaviour:
   layerMaskType: 1
   explodeCollider: {fileID: 8625676964957096541}
   duration: 0.5
+  knockbackStrength: 15
+  knockbackDuration: 0.25
 --- !u!135 &8625676964957096541
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -784,11 +786,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.67605895
+  m_Radius: 1.84
   m_Center: {x: -0.08493793, y: 0, z: -0.21759716}
 --- !u!1 &5094408285399476842
 GameObject:
@@ -1005,8 +1007,6 @@ MonoBehaviour:
   hurtboxActivationTime: 1
   explodeHurtBox: {fileID: 242646812142147769}
   standingInGloomBuffZone: 0
-  damageNumberVFXPrefab: {fileID: 904633409773242173, guid: f903fcafbc04c0b48bb0f00f43836661, type: 3}
-  damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 2261785964360444772, guid: f2ba69326fe154b46bc7f0c88578606d, type: 3}
   boomElementVFX: {fileID: 3078832510061991453, guid: 15ed86c13a3a9674aa5b8f9cf9e87f4e, type: 3}
   gloomElementVFX: {fileID: 4066244819483997229, guid: acbdf77e4dce3774b8d74f0bb95b7371, type: 3}

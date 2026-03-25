@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Numerics;
 using UnityEngine;
@@ -15,6 +16,9 @@ public class ExplodeHurtBox : MonoBehaviour
     [SerializeField] private float duration = 0.5f;
     private CameraController cameraController;
     private LayerMask layerMask;
+    [Header("Knockback Settings")]
+    [SerializeField] private float knockbackStrength;
+    [SerializeField] private float knockbackDuration;
 
     private void Awake()
     {
@@ -52,7 +56,6 @@ public class ExplodeHurtBox : MonoBehaviour
         while(time < duration)
         {
             Collider[] colliders = Physics.OverlapSphere(explodeCollider.bounds.center, explodeCollider.radius, layerMask);
-        
             foreach (Collider collider in colliders)
             {
                 //Debug.Log($"Melee hit {collider.gameObject}", collider.gameObject);
@@ -61,8 +64,10 @@ public class ExplodeHurtBox : MonoBehaviour
                 {
                     Debug.LogError("oh thats not good brother, there should be an entitymanager");
                 }
-                entityManager.TakeDamage(damage, element);
-            
+                UnityEngine.Vector3 knockback = (entityManager.transform.position - transform.position).normalized;
+                knockback *= knockbackStrength;
+                KnockbackMovement knockbackMov = new KnockbackMovement(knockback, Time.time, knockbackDuration);
+                entityManager.TakeDamage(damage, element, knockbackMov);
                 hashit = true;
                 time = duration;
             }
@@ -93,6 +98,5 @@ public class ExplodeHurtBox : MonoBehaviour
     {
         this.element = elementType;
     }
-
 
 }
