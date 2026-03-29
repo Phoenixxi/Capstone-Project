@@ -15,26 +15,26 @@ public class MeatballDropper : MonoBehaviour
 
     [Header("⏲️ Spawning Logic")]
     public bool isSpawning = false;
-    [Tooltip("新节点的默认生成频率")]
+    [Tooltip("Default spawn interval for new knots")]
     public float defaultInterval = 1.0f;
 
     [Header("📐 Cylinder Settings")]
     public float dropHeight = 15f;
-    [Tooltip("圆柱体的高度范围（纵向随机区间）")]
+    [Tooltip("Height range of the cylinder (vertical random range)")]
     public float cylinderHeight = 5f;
     public float defaultRadius = 3f;
 
     [Header("🎯 Physics Control")]
-    [Tooltip("限制肉丸下落的最大速度")]
+    [Tooltip("Maximum falling speed limit for the meatball")]
     public float maxFallSpeed = 25f;
 
     [Header("🎯 Individual Knot Settings")]
-    [Tooltip("手动调节每个节点的半径")]
+    [Tooltip("Manual radius adjustment for each knot")]
     public List<float> nodeRadii = new List<float>();
-    [Tooltip("手动调节每个节点的生成频率（秒/个）")]
+    [Tooltip("Manual spawn interval for each knot (seconds per spawn)")]
     public List<float> nodeIntervals = new List<float>();
 
-    // 为每个节点存储独立的计时器
+    // Store independent timers for each knot
     private List<float> nodeTimers = new List<float>();
 
     private void OnValidate()
@@ -42,9 +42,9 @@ public class MeatballDropper : MonoBehaviour
         if (targetPath == null || targetPath.Spline == null) return;
         int knotCount = targetPath.Spline.Count;
 
-        // 自动对齐半径列表
+        // Sync the radius list to match the knot count
         SyncList(nodeRadii, knotCount, defaultRadius);
-        // 自动对齐频率列表
+        // Sync the interval list to match the knot count
         SyncList(nodeIntervals, knotCount, defaultInterval);
     }
 
@@ -58,19 +58,19 @@ public class MeatballDropper : MonoBehaviour
     {
         if (targetPath == null || meatballPrefab == null || !isSpawning || targetPath.Spline.Count == 0) return;
 
-        // 初始化或更新内部计时器列表长度
+        // Initialize or update the internal timer list length
         while (nodeTimers.Count < targetPath.Spline.Count) nodeTimers.Add(0f);
 
-        // 核心：遍历所有节点，每个节点运行自己的时钟
+        // Core logic: Iterate through all knots, each running its own timer
         for (int i = 0; i < targetPath.Spline.Count; i++)
         {
             nodeTimers[i] += Time.deltaTime;
 
-            // 如果当前节点的时间到了，就生成
+            // Spawn if the current knot's timer has been reached
             if (nodeTimers[i] >= nodeIntervals[i])
             {
                 SpawnAtNode(targetPath.Spline[i], i);
-                nodeTimers[i] = 0f; // 重置该节点的计时器
+                nodeTimers[i] = 0f; // Reset the timer for this knot
             }
         }
     }
@@ -80,10 +80,10 @@ public class MeatballDropper : MonoBehaviour
         Vector3 worldNodePos = targetPath.transform.TransformPoint((float3)knot.Position);
         float radius = nodeRadii[index];
 
-        // 1. 水平随机 (圆柱截面)
+        // 1. Horizontal randomness (cylinder cross-section)
         Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * radius;
 
-        // 2. 垂直随机 (圆柱高度)
+        // 2. Vertical randomness (cylinder height)
         float randomYOffset = UnityEngine.Random.Range(0, cylinderHeight);
 
         Vector3 finalPos = new Vector3(
@@ -94,7 +94,7 @@ public class MeatballDropper : MonoBehaviour
 
         GameObject ball = Instantiate(meatballPrefab, finalPos, Quaternion.identity);
 
-        // 3. 物理限速传递
+        // 3. Apply physics speed limit
         Meatball mb = ball.GetComponent<Meatball>();
         if (mb != null) mb.maxSpeed = maxFallSpeed;
     }
@@ -113,7 +113,7 @@ public class MeatballDropper : MonoBehaviour
             float radius = nodeRadii[i];
             float interval = nodeIntervals[i];
 
-            // 可视化圆柱体
+            // Visualize the cylinder
             Handles.color = new Color(1, 0.5f, 0, 0.3f);
             Vector3 bottom = worldPos + Vector3.up * dropHeight;
             Vector3 top = bottom + Vector3.up * cylinderHeight;
@@ -122,7 +122,7 @@ public class MeatballDropper : MonoBehaviour
             Handles.DrawWireDisc(top, Vector3.up, radius);
             Handles.DrawLine(bottom + Vector3.left * radius, top + Vector3.left * radius);
 
-            // 显示信息标签：增加了间隔时间显示
+            // Display info label: Added interval time display
             GUIStyle style = new GUIStyle { normal = { textColor = Color.white }, fontSize = 11, fontStyle = FontStyle.Bold };
             Handles.Label(top + Vector3.up * 0.5f, $"[{i}] R:{radius} | Int:{interval}s", style);
         }
