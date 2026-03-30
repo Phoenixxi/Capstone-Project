@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 8435708965926859348}
   - component: {fileID: 77311480950156832}
   - component: {fileID: 2826826900504353271}
-  - component: {fileID: 3080864524682125408}
+  - component: {fileID: 5778598376740288530}
   m_Layer: 0
   m_Name: Meatball
   m_TagString: Untagged
@@ -231,7 +231,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3080864524682125408
+--- !u!114 &5778598376740288530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,8 +240,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7601915873499213965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de0a2904ab47f924cb5d5baa3692f77e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f5c84766e4c29842a9d03ba8900ade3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Meatball
+  m_EditorClassIdentifier: Assembly-CSharp::MeatballHazard
+  explosionVFX: {fileID: 0}
+  visualModel: {fileID: 7601915873499213965}
+  triggerDistance: 0.8
+  castRadius: 0.5
+  damageDelay: 0.1
+  destroyDelay: 2
+  damageRadius: 5
+  damageHeight: 3
+  damageLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  targetTag: Player
   maxSpeed: 25
   damage: 10
+  maxLifeTime: 10

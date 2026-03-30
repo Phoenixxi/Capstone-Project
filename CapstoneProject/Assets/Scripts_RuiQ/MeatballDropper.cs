@@ -34,7 +34,6 @@ public class MeatballDropper : MonoBehaviour
     [Tooltip("Manual spawn interval for each knot (seconds per spawn)")]
     public List<float> nodeIntervals = new List<float>();
 
-    // Store independent timers for each knot
     private List<float> nodeTimers = new List<float>();
 
     private void OnValidate()
@@ -42,9 +41,7 @@ public class MeatballDropper : MonoBehaviour
         if (targetPath == null || targetPath.Spline == null) return;
         int knotCount = targetPath.Spline.Count;
 
-        // Sync the radius list to match the knot count
         SyncList(nodeRadii, knotCount, defaultRadius);
-        // Sync the interval list to match the knot count
         SyncList(nodeIntervals, knotCount, defaultInterval);
     }
 
@@ -58,19 +55,16 @@ public class MeatballDropper : MonoBehaviour
     {
         if (targetPath == null || meatballPrefab == null || !isSpawning || targetPath.Spline.Count == 0) return;
 
-        // Initialize or update the internal timer list length
         while (nodeTimers.Count < targetPath.Spline.Count) nodeTimers.Add(0f);
 
-        // Core logic: Iterate through all knots, each running its own timer
         for (int i = 0; i < targetPath.Spline.Count; i++)
         {
             nodeTimers[i] += Time.deltaTime;
 
-            // Spawn if the current knot's timer has been reached
             if (nodeTimers[i] >= nodeIntervals[i])
             {
                 SpawnAtNode(targetPath.Spline[i], i);
-                nodeTimers[i] = 0f; // Reset the timer for this knot
+                nodeTimers[i] = 0f;
             }
         }
     }
@@ -80,10 +74,7 @@ public class MeatballDropper : MonoBehaviour
         Vector3 worldNodePos = targetPath.transform.TransformPoint((float3)knot.Position);
         float radius = nodeRadii[index];
 
-        // 1. Horizontal randomness (cylinder cross-section)
         Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * radius;
-
-        // 2. Vertical randomness (cylinder height)
         float randomYOffset = UnityEngine.Random.Range(0, cylinderHeight);
 
         Vector3 finalPos = new Vector3(
@@ -94,7 +85,6 @@ public class MeatballDropper : MonoBehaviour
 
         GameObject ball = Instantiate(meatballPrefab, finalPos, Quaternion.identity);
 
-        // 3. Apply physics speed limit
         Meatball mb = ball.GetComponent<Meatball>();
         if (mb != null) mb.maxSpeed = maxFallSpeed;
     }
@@ -113,7 +103,6 @@ public class MeatballDropper : MonoBehaviour
             float radius = nodeRadii[i];
             float interval = nodeIntervals[i];
 
-            // Visualize the cylinder
             Handles.color = new Color(1, 0.5f, 0, 0.3f);
             Vector3 bottom = worldPos + Vector3.up * dropHeight;
             Vector3 top = bottom + Vector3.up * cylinderHeight;
@@ -122,7 +111,6 @@ public class MeatballDropper : MonoBehaviour
             Handles.DrawWireDisc(top, Vector3.up, radius);
             Handles.DrawLine(bottom + Vector3.left * radius, top + Vector3.left * radius);
 
-            // Display info label: Added interval time display
             GUIStyle style = new GUIStyle { normal = { textColor = Color.white }, fontSize = 11, fontStyle = FontStyle.Bold };
             Handles.Label(top + Vector3.up * 0.5f, $"[{i}] R:{radius} | Int:{interval}s", style);
         }
