@@ -4874,7 +4874,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -42.45, y: -2.56, z: -48.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8151250672989261495}
   - {fileID: 4441010906319540491}
@@ -4970,7 +4970,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2385842899017453392}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5037,7 +5037,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 0
+  scalingMode: 1
   randomSeed: 5664
   InitialModule:
     serializedVersion: 3
@@ -10131,7 +10131,7 @@ ParticleSystem:
     startRotationX:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1.5707963
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -10292,7 +10292,7 @@ ParticleSystem:
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
-    rotation3D: 0
+    rotation3D: 1
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
@@ -14579,7 +14579,7 @@ ParticleSystemRenderer:
   m_VertexStreams: 0001030422
   m_UseCustomTrailVertexStreams: 0
   m_TrailVertexStreams: 00010304
-  m_Mesh: {fileID: 7450741763379908841, guid: 81185756c31d97046b507a1da4ea8904, type: 3}
+  m_Mesh: {fileID: -2124705421725058983, guid: c30a1aa4cfe56a34ab7594c40bc114a9, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -20865,7 +20865,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 4070
-        atime1: 9613
+        atime1: 12708
         atime2: 47420
         atime3: 63404
         atime4: 65535
