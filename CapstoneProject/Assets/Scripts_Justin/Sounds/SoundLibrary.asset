@@ -20,6 +20,8 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0
+    lastUsedTime: 0
   - name: PLAYER_HURT
     volume: 0.15
     audioClip: {fileID: 8300000, guid: dca61efa361b40e4fb37c4f79dcb3383, type: 3}
@@ -27,6 +29,8 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0.2
+    lastUsedTime: 0
   - name: PLAYER_DEATH
     volume: 0.15
     audioClip: {fileID: 8300000, guid: 617cfff588e2a464b8e58fff5d1f7471, type: 3}
@@ -34,6 +38,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: ZOOM_ATTACK
     volume: 0.05
     audioClip: {fileID: 8300000, guid: 0bf65fb8ef64a604ca7d1a3d64b575d2, type: 3}
@@ -41,6 +47,8 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0.1
+    lastUsedTime: 0
   - name: BOOM_ATTACK
     volume: 0.15
     audioClip: {fileID: 8300000, guid: 0f28ec332bd15a141bb6f034c9f64b30, type: 3}
@@ -48,6 +56,8 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0
+    lastUsedTime: 0
   - name: GLOOM_ATTACK
     volume: 0.05
     audioClip: {fileID: 8300000, guid: da604a960f7e70b44bca2767f7606c74, type: 3}
@@ -55,6 +65,8 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0
+    lastUsedTime: 0
   - name: ZOOM_DASH
     volume: 0.15
     audioClip: {fileID: 8300000, guid: ed6576f1948d89b499a596de3224b53c, type: 3}
@@ -62,6 +74,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: BOOM_GROUND_POUND
     volume: 0.15
     audioClip: {fileID: 8300000, guid: e5fbebe15ad686d4481ef5d8e0dd0c9a, type: 3}
@@ -69,6 +83,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: GLOOM_AURA
     volume: 0.15
     audioClip: {fileID: 8300000, guid: 7188cd46d8836454fb39b78360b205cf, type: 3}
@@ -76,6 +92,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: ENEMY_HURT
     volume: 0.15
     audioClip: {fileID: 8300000, guid: 093f72c70e62a6f48ba404a4a298beb8, type: 3}
@@ -83,6 +101,8 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0.2
+    lastUsedTime: 0
   - name: ENEMY_DEATH
     volume: 0.18
     audioClip: {fileID: 8300000, guid: f650f79943f68ca48b27f7e244902130, type: 3}
@@ -90,6 +110,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0.2
+    lastUsedTime: 0
   - name: ENEMY_ATTACK
     volume: 0.15
     audioClip: {fileID: 8300000, guid: 7098aef7ffc37374cb603e3b43ec253a, type: 3}
@@ -97,6 +119,8 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0.2
+    lastUsedTime: 0
   - name: ZOOM_BOOM_REACT
     volume: 0.15
     audioClip: {fileID: 8300000, guid: c7a10f5b48b36b24d96e38a1722523a8, type: 3}
@@ -104,6 +128,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0.2
+    lastUsedTime: 0
   - name: ZOOM_GLOOM_REACT
     volume: 0.15
     audioClip: {fileID: 8300000, guid: 570c1b383046972429c2c686a784852a, type: 3}
@@ -111,6 +137,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0.2
+    lastUsedTime: 0
   - name: BOOM_GLOOM_REACT
     volume: 0.15
     audioClip: {fileID: 8300000, guid: 1963b977566130a4da3a1398371520c3, type: 3}
@@ -118,6 +146,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: TOOTH_ATTACK
     volume: 0.15
     audioClip: {fileID: 8300000, guid: 0fef3954e6fc60441a109dccb989872d, type: 3}
@@ -125,6 +155,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: TENTACLE_WINDUP
     volume: 1
     audioClip: {fileID: 8300000, guid: 0c2de1b9ad183ba4cb1607f32c8883a2, type: 3}
@@ -132,6 +164,8 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0
+    lastUsedTime: 0
   - name: TENTACLE_SLAM
     volume: 0.15
     audioClip: {fileID: 8300000, guid: b8c1edec9752a1b43aaaa92fbee68b2b, type: 3}
@@ -139,6 +173,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: TENTACLE_SWIPE
     volume: 0.15
     audioClip: {fileID: 8300000, guid: 94f1b4853cdcd874c9bd801f74c84ffe, type: 3}
@@ -146,6 +182,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: BOSS_THEME
     volume: 0.2
     audioClip: {fileID: 8300000, guid: faf846e3dafbe5e43acce0dcc3e027d2, type: 3}
@@ -153,6 +191,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: BOSS_THEME_PHASE_2
     volume: 0.2
     audioClip: {fileID: 8300000, guid: 8ed0f628ea670794aaa0dfc3e0d6e5c2, type: 3}
@@ -160,6 +200,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: BOOM_BOMB_EXPLOSION
     volume: 0.2
     audioClip: {fileID: 8300000, guid: 9a85a74a2aff9914289ae057e7227918, type: 3}
@@ -167,6 +209,8 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0
+    lastUsedTime: 0
   - name: BUTTON_CLICK
     volume: 0.1
     audioClip: {fileID: 8300000, guid: 76b610a2db008d34dbdeb5b501a675fd, type: 3}
@@ -174,6 +218,8 @@ MonoBehaviour:
     variedPitch: 0
     pitchUpperBound: 1
     pitchLowerBound: 1
+    cooldown: 0
+    lastUsedTime: 0
   - name: BOSS_HURT
     volume: 0.4
     audioClip: {fileID: 8300000, guid: 43a942c7d285516479634b4b4e9d3ab7, type: 3}
@@ -181,3 +227,5 @@ MonoBehaviour:
     variedPitch: 1
     pitchUpperBound: 1.1
     pitchLowerBound: 0.9
+    cooldown: 0.2
+    lastUsedTime: 0

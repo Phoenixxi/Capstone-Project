@@ -28,6 +28,8 @@ public class AudioManager : MonoBehaviour
         public bool variedPitch = false;
         [Range(-3, 3)] public float pitchUpperBound = 1f;
         [Range(-3, 3)] public float pitchLowerBound = 1f;
+        public float cooldown = 0f;
+        [HideInInspector] public float lastUsedTime;
     }
 
     //==========================
@@ -63,6 +65,8 @@ public class AudioManager : MonoBehaviour
         while(soundQueue != null && soundQueue.Count > 0)
         {
             SoundEffect queuedSound = sounds.soundList[(int)soundQueue.Dequeue()];
+            if (Time.time - queuedSound.lastUsedTime < queuedSound.cooldown) continue;
+            queuedSound.lastUsedTime = Time.time;
             if (queuedSound.type == SoundEffect.SoundType.MUSIC)
             {
                 int currentMusicSource = (int)queuedSound.type;
