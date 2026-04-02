@@ -7,6 +7,7 @@ public class MeatballHazard : MonoBehaviour
     [Header("💥 VFX & Visuals")]
     public GameObject explosionVFX;
     public GameObject visualModel;
+    public GameObject indicator;
 
     [Header("📏 Prediction Settings")]
     public float triggerDistance = 0.3f;
@@ -30,6 +31,7 @@ public class MeatballHazard : MonoBehaviour
 
     private Rigidbody rb;
     private bool isExploding = false;
+    private Vector3 indicatorPosition;
 
     void Start()
     {
@@ -41,6 +43,15 @@ public class MeatballHazard : MonoBehaviour
         // --------------------------
 
         if (explosionVFX != null) explosionVFX.SetActive(false);
+        indicator.SetActive(true);
+        RaycastHit landingPosition;
+        if(Physics.SphereCast(origin: transform.position, radius: castRadius, direction: Vector3.down, out landingPosition, maxLifeTime * maxSpeed, ~0, QueryTriggerInteraction.Ignore))
+        {
+            indicatorPosition = landingPosition.point;
+        } else
+        {
+            indicatorPosition = transform.position - new Vector3(0, maxLifeTime * maxSpeed, 0);
+        }
     }
 
     void FixedUpdate()
@@ -53,6 +64,11 @@ public class MeatballHazard : MonoBehaviour
         }
 
         PredictAnyImpact();
+    }
+
+    private void Update()
+    {
+        indicator.transform.position = indicatorPosition;
     }
 
     private void PredictAnyImpact()
