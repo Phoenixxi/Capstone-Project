@@ -67,7 +67,7 @@ public class PauseMenu : MonoBehaviour
             unPaused?.Invoke(this, EventArgs.Empty);
             audioManager.PlaySound(SoundName.BUTTON_CLICK);
         }
-        else
+        else if(Time.timeScale == 1f)
         {
             SetActive(true);
             isPaused = true;
