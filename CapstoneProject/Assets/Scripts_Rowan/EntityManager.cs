@@ -784,6 +784,14 @@ public class EntityManager : MonoBehaviour
         weapon.AttackFromAnimation();
     }
 
+    //THIS CODE ONLY WORKS FOR EXPLOSION ENEMY
+    //FOR NOW SMIRK FACE
+    public void CancelAttack()
+    {
+        animator.ResetTrigger("Shoot");
+        animator.SetTrigger("CancelAttack");
+    }
+
     public void SetInviciblity(bool isInvincible)
     {
         this.isInvincible = isInvincible;

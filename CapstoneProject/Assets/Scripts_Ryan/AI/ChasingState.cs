@@ -5,7 +5,7 @@ using UnityEngine.Animations;
 
 public abstract class ChasingState : IState
 {
-    public void OnEnter(AIContext aIContext)
+    public virtual void OnEnter(AIContext aIContext)
     {
         
     }

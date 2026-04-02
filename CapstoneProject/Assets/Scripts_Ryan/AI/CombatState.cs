@@ -7,12 +7,12 @@ public abstract class CombatState : IState
 {
     public bool isAttacking = false; //variable to lock the enemy in attack state
 
-    public void OnEnter(AIContext aIContext)
+    public virtual void OnEnter(AIContext aIContext)
     {
         
     }
 
-    public void OnExit(AIContext aIContext)
+    public virtual void OnExit(AIContext aIContext)
     {
 
     }
