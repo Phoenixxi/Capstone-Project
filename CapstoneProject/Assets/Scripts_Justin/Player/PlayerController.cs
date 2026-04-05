@@ -115,9 +115,18 @@ public class PlayerController : MonoBehaviour
     if(SceneManager.GetActiveScene().name == "Level01_LouieScene")
     {
         if(StaticSceneData.playerReattempting)
-            transform.position = new Vector3(105.289001f,-8.64999962f,-26.7910004f);
-        else
-        transform.position = new Vector3(-68.7699966f,-2.477f,-44.2700005f);
+        {
+            if(StaticSceneData.playerReachedPOSTparkourStage)
+                transform.position = new Vector3(434.130005f,46.1599998f,-12.29f);
+            else if(StaticSceneData.playerReachedPREparkourStage)
+                transform.position = new Vector3(374.5f,21.8069992f,-8.76000023f);
+            else if(StaticSceneData.playerReachedBuildingStage)
+                transform.position = new Vector3(248.050003f,8.62325001f,-29f);
+            else // player did not reach any checkpoints, start at first stage in tutorial
+                transform.position = new Vector3(105.289001f,-8.64999962f,-26.7910004f);
+        }
+        else // player is not reattempting level, start at beginning
+            transform.position = new Vector3(-68.7699966f,-2.477f,-44.2700005f);
     }
     else if(SceneManager.GetActiveScene().name == "Level2-Rework")
         {
