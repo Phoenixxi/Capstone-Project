@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Steamworks;
 
 public class Isekai : MonoBehaviour
 {
@@ -30,6 +31,18 @@ public class Isekai : MonoBehaviour
     }
     void OnEnable()
     {
+
+        if (SteamClient.IsValid)
+            {
+                var achievement = new Steamworks.Data.Achievement("ACH_IsekaiTruck");
+                if (!achievement.State)
+                {
+                    achievement.Trigger();
+                    Destroy(gameObject);
+                }
+                Debug.Log("Achievement Triggered");
+            }
+
         fadeOut = true;
         if (audioSource != null && FAAHsound != null)
         {

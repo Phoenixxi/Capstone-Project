@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
@@ -97,6 +98,6 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         audioManager.PlaySound(SoundName.BUTTON_CLICK);
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 }

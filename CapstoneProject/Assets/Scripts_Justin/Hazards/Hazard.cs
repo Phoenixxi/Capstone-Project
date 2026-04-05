@@ -16,15 +16,16 @@ public class Hazard : MonoBehaviour
             if(UIScreen != null)
                 UIScreen.SetActive(true);
 
-            if (SteamClient.IsValid)
-            {
-                var achievement = new Steamworks.Data.Achievement("ACH_IsekaiTruck");
-                if (!achievement.State)
-                {
-                    achievement.Trigger();
-                    Destroy(gameObject);
-                }
-            }
+            // Moved into Isekai.cs
+            // if (SteamClient.IsValid)
+            // {
+            //     var achievement = new Steamworks.Data.Achievement("ACH_IsekaiTruck");
+            //     if (!achievement.State)
+            //     {
+            //         achievement.Trigger();
+            //         Destroy(gameObject);
+            //     }
+            // }
 
         }
         else if(other.gameObject.tag == "Enemy")
