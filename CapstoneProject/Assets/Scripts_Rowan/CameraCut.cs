@@ -62,7 +62,7 @@ public class CameraCut : MonoBehaviour
             videoPlayer.SetActive(true);
             HUDCanvas.SetActive(false);
             StartCoroutine(loadingTime());
-            StartCoroutine(videoWaitTime(18.8f)); // length of video in seconds
+            StartCoroutine(videoWaitTime(48f)); // length of video in seconds
         }
         else
         {
