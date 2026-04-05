@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
         [Range(-3, 3)] public float pitchUpperBound = 1f;
         [Range(-3, 3)] public float pitchLowerBound = 1f;
         public float cooldown = 0f;
-        [HideInInspector] public float lastUsedTime;
+        [HideInInspector] public float lastUsedTime = 0f;
     }
 
     //==========================

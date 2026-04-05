@@ -4,4 +4,9 @@ using UnityEngine;
 public class SoundLibrary : ScriptableObject
 {
     public AudioManager.SoundEffect[] soundList;
+
+    private void OnEnable()
+    {
+        foreach (var sound in soundList) sound.lastUsedTime = 0f;
+    }
 }
