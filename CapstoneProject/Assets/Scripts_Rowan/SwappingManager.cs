@@ -14,14 +14,11 @@ public class SwappingManager : MonoBehaviour
     [Header("Death Pause Effect Settings")]
     [SerializeField] private float timePercentage = 0f; //What percentage of the normal speed time should be moving at during the death effect. Set to 0 to pause the game completely
     [SerializeField] private float pauseDuration = 1f;
+    [SerializeField] private GraveAnimationController GraveController;
 
     void Start()
     {
-        // foreach (GameObject character in charactersList)
-        //{
-        //    Debug.Log(character.name);
-        //}
-        //currentCharacter = "zoom";
+
     }
 
 
@@ -48,11 +45,20 @@ public class SwappingManager : MonoBehaviour
         }
         
         if(charactersList[0] == self)
+        {
+            GraveController.PlayZoomAnimation();
             uiPlayerSwap.zoomDied();
+        }
         if(charactersList[1] == self)
+        {
+            GraveController.PlayBoomAnimation();
             uiPlayerSwap.boomDied();
+        }
         if(charactersList[2] == self)
+        {
+            GraveController.PlayGloomAnimation();
             uiPlayerSwap.gloomDied();
+        }
 
         int characterIndex = -1;
         for(int i = 0; i < charactersList.Count; i++)
@@ -84,8 +90,8 @@ public class SwappingManager : MonoBehaviour
         entityManager.TransferKnockback(deathMovements);
         float originalTimeScale = Time.timeScale;
         Time.timeScale = timePercentage;
-        //TODO Make invicible
-        yield return new WaitForSecondsRealtime(pauseDuration);
+        // if character index
+        yield return new WaitForSecondsRealtime(1.5f); //why wont method play until after this
         Time.timeScale = originalTimeScale;
         entityManager.SetInviciblity(false);
     }
