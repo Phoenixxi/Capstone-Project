@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
@@ -24,8 +25,12 @@ public class DamageNumberManager : MonoBehaviour
         numberPool = new ObjectPool<DamageNumber>(createFunc: SpawnDamageNumber, actionOnDestroy: DestroyDamageNumber, defaultCapacity: defaultSize, maxSize: maxSize);
         playerNumberPool = new ObjectPool<DamageNumber>(createFunc: SpawnPlayerDamageNumber, actionOnDestroy: DestroyDamageNumber, defaultCapacity: playerDefaultSize, maxSize: playerMaxSize);
         currentSize = numberPool.CountAll;
-        for (int i = 0; i < defaultSize; i++) SpawnDamageNumber();
-        for (int i = 0; i < playerDefaultSize; i++) SpawnPlayerDamageNumber();
+        List<DamageNumber> enemyDamageNumbers = new List<DamageNumber>(defaultSize);
+        List<DamageNumber> playerDamageNumbers = new List<DamageNumber>(playerDefaultSize);
+        for (int i = 0; i < defaultSize; i++) enemyDamageNumbers.Add(SpawnDamageNumber());
+        for (int i = 0; i < playerDefaultSize; i++) playerDamageNumbers.Add(SpawnPlayerDamageNumber());
+        foreach (DamageNumber number in enemyDamageNumbers) numberPool.Release(number);
+        foreach (DamageNumber number in playerDamageNumbers) playerNumberPool.Release(number);
     }
 
     /// <summary>
