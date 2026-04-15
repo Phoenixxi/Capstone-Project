@@ -27,7 +27,7 @@ public class MeatballHazard : MonoBehaviour
 
     [Header("🛠️ Debug & Cleanup")]
     [Tooltip("Maximum life time in seconds if it doesn't hit anything (fallback).")]
-    public float maxLifeTime = 10f; // <--- 在这里改默认时间
+    public float maxLifeTime = 10f; 
 
     private Rigidbody rb;
     private bool isExploding = false;
