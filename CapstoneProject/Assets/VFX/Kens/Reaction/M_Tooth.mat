@@ -25,8 +25,11 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _FDISSOLVEPLUSTEX_ON
+  - _FDISSOLVETEX_ON
   - _FFNL_ON
   m_InvalidKeywords:
+  - _CUSTOMDISSOLVE_ON
   - _DISSOLVEPLUSTEXAR_ON
   - _DISSOLVEPLUSTEXUVCLIP_ON
   - _DISSOLVETEXAR_ON
@@ -77,11 +80,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolvePlusTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: f67ecb16641aa18429db04a34c2e5143, type: 3}
+        m_Scale: {x: 1, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _DissolveTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a39aecdb0879b714f915cc7cbe58fe57, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortTex:
@@ -159,7 +162,7 @@ Material:
     - _ColorMode: 0
     - _Cull: 2
     - _CullMode: 0
-    - _CustomDissolve: 0
+    - _CustomDissolve: 1
     - _CustomDissolvePlusTexUOffset: 0
     - _CustomDissolvePlusTexVOffset: 0
     - _CustomDissolveTexUOffset: 0
@@ -177,7 +180,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DissolveFactor: 0
     - _DissolveFactorC: 1
-    - _DissolvePlusIntensity: 0.5
+    - _DissolvePlusIntensity: 0.246
     - _DissolvePlusTexAR: 1
     - _DissolvePlusTexDetail: 0
     - _DissolvePlusTexRotator: 0
@@ -190,7 +193,7 @@ Material:
     - _DissolvePlusTexVMirror: 0
     - _DissolvePlusTexVOffsetC: 1
     - _DissolvePlusTexVSpeed: 0
-    - _DissolveSoft: 0.1
+    - _DissolveSoft: 0.239
     - _DissolveTexAR: 1
     - _DissolveTexDetail: 0
     - _DissolveTexRotator: 0
@@ -203,7 +206,7 @@ Material:
     - _DissolveTexVMirror: 0
     - _DissolveTexVOffsetC: 1
     - _DissolveTexVSpeed: 0
-    - _DissolveWide: 0.05
+    - _DissolveWide: 0
     - _DistortDissolveTex: 0
     - _DistortFactor: 0
     - _DistortFactorC: 1
@@ -228,8 +231,8 @@ Material:
     - _DstBlendAlpha: 10
     - _EnvironmentReflections: 1
     - _FDepth: 0
-    - _FDissolvePlusTex: 0
-    - _FDissolveTex: 0
+    - _FDissolvePlusTex: 1
+    - _FDissolveTex: 1
     - _FDistortTex: 0
     - _FFnl: 1
     - _FMaskTex: 0
@@ -340,10 +343,10 @@ Material:
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveColor: {r: 0, g: 0.1559265, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FnlColor: {r: 1.0825211, g: 1.9622642, b: 0.43503025, a: 1}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 2, g: 2, b: 2, a: 1}
     - _MainTexRefine: {r: 1, g: 1, b: 1, a: 0}
     - _RampColor1: {r: 0, g: 0.156, b: 0, a: 1}
     - _RampColor2: {r: 0.097604625, g: 0.6415094, b: 0.04538981, a: 1}

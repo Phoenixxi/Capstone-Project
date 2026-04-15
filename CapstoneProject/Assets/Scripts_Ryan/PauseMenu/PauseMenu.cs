@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     [Header("The UI Elements that need to persist, \nbut disappear when paused")]
     [SerializeField] private List<GameObject> UIElementsPersistent;
     [SerializeField] private List<GameObject> HelpMenu;
+    [SerializeField] private GameObject SettingsMenu;
     private PlayerInput playerInput;
     private bool isPaused;
     private AudioManager audioManager;
@@ -93,6 +94,28 @@ public class PauseMenu : MonoBehaviour
             element.SetActive(false);
         }
         audioManager.PlaySound(SoundName.BUTTON_CLICK);
+    }
+
+    //Activate settings menu and deactivate pause menu when settings button is clicked;
+    //do the opposite when settings are closed. -LA
+    private void Settings(bool opening)
+    {
+        SettingsMenu.SetActive(opening);
+        foreach(var element in UIElements)
+        {
+            element.SetActive(!opening);
+        }
+        audioManager.PlaySound(SoundName.BUTTON_CLICK);
+    }
+
+    public void OpenSettings()
+    {
+        Settings(true);
+    }
+
+    public void CloseSettings()
+    {
+        Settings(false);
     }
 
     public void Quit()

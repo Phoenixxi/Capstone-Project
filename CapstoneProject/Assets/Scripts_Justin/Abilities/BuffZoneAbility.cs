@@ -15,9 +15,8 @@ public class BuffZoneAbility : Ability
     [SerializeField] private float attackCooldownMultiplier;
     [SerializeField] private float movementFreezeTime;
     [SerializeField] public Animator animator;
-
+    private EntityManager player;
     private float currentFreezeTimer = 0f;
-
 
     public override AbilityMovement[] UseAbility(Vector2 horizontalDirection)
     {
@@ -29,6 +28,7 @@ public class BuffZoneAbility : Ability
         GameObject effect = Instantiate(chargeVFX, transform.position, Quaternion.Euler(new Vector3(90f, 0f, 0f)));
         cameraController.ShakeCamera(screenShakeIntensity, screenShakeDuration);
         audioManager.PlaySound(SoundName.GLOOM_AURA);
+        player.SetInviciblity(true);
         return movements;
     }
 
@@ -45,6 +45,7 @@ public class BuffZoneAbility : Ability
                 movements[0].Complete();
                 SpawnBuffZone();
                 currentCooldown = cooldown;
+                player.SetInviciblity(false);
             }
         }
     }
@@ -68,6 +69,7 @@ public class BuffZoneAbility : Ability
     {
         base.Awake();
         movements = new AbilityMovement[1];
+        player = GetComponent<EntityManager>();
     }
 
     public override void Cancel()
