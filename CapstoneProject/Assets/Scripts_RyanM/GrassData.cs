@@ -1,8 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "NewGrassData", menuName = "Grass/Data Container")]
+[System.Serializable]
+public class GrassChunk
+{
+    public Matrix4x4[] matrices;
+}
+
+[CreateAssetMenu(fileName = "GrassData", menuName = "ScriptableObjects/GrassData")]
 public class GrassData : ScriptableObject
 {
-    public List<Matrix4x4> matrices = new List<Matrix4x4>();
+    // We are switching from one list to a list of chunks
+    public List<GrassChunk> chunks = new List<GrassChunk>();
 }
