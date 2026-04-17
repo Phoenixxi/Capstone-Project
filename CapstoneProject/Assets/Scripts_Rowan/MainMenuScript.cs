@@ -11,6 +11,7 @@ public class MainMenuScript : MonoBehaviour
     private void Awake()
     {
         audioManager = FindFirstObjectByType<AudioManager>();
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void PlayGame()
     {
