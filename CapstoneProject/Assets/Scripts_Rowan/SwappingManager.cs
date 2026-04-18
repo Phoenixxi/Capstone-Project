@@ -44,21 +44,6 @@ public class SwappingManager : MonoBehaviour
             return;
         }
         
-        if(charactersList[0] == self)
-        {
-            GraveController.PlayZoomAnimation();
-            uiPlayerSwap.zoomDied();
-        }
-        if(charactersList[1] == self)
-        {
-            GraveController.PlayBoomAnimation();
-            uiPlayerSwap.boomDied();
-        }
-        if(charactersList[2] == self)
-        {
-            GraveController.PlayGloomAnimation();
-            uiPlayerSwap.gloomDied();
-        }
 
         int characterIndex = -1;
         for(int i = 0; i < charactersList.Count; i++)
@@ -72,13 +57,39 @@ public class SwappingManager : MonoBehaviour
                 break;
             }
         }
+
+        if(characterIndex != -1)
+        {
+            if(charactersList[0] == self)
+            {
+                GraveController.PlayZoomAnimation();
+                uiPlayerSwap.zoomDied();
+            }
+            if(charactersList[1] == self)
+            {
+                GraveController.PlayBoomAnimation();
+                uiPlayerSwap.boomDied();
+            }
+            if(charactersList[2] == self)
+            {
+                GraveController.PlayGloomAnimation();
+                uiPlayerSwap.gloomDied();
+            }
+        }
+        else    // All characters are dead
+        {
+            GraveController.PlayAllCharacterAnimations();
+        }
+
+
         if(characterIndex != -1)
         {
             StartCoroutine(DeathPauseCoroutine(characterIndex, deathMovements));
         } else
         {
             Debug.Log("All characters are dead.");
-            SceneManager.LoadScene("GameOver");
+            //might need to move scene manager to coroutine
+            //SceneManager.LoadScene("GameOver");
         }
     }
 

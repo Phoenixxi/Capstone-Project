@@ -2,12 +2,14 @@ using UnityEngine;
 using lilGuysNamespace;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GraveAnimationController : MonoBehaviour
 {
     [SerializeField] private GameObject BoomFolder;
     [SerializeField] private GameObject ZoomFolder;
     [SerializeField] private GameObject GloomFolder;
+    [SerializeField] private GameObject AllCharacterFolder;
 
     public void PlayBoomAnimation()
     {
@@ -28,6 +30,22 @@ public class GraveAnimationController : MonoBehaviour
         GloomFolder.SetActive(true);
         GloomFolder.GetComponentInChildren<Animator>().SetTrigger("Play");
         StartCoroutine(DisableFolders());
+    }
+
+    public void PlayAllCharacterAnimations()
+    {
+        AllCharacterFolder.SetActive(true);
+        foreach (Animator animator in AllCharacterFolder.GetComponentsInChildren<Animator>())
+        {
+            animator.SetTrigger("Play");
+        }
+        StartCoroutine(GoToEndScene());
+    }
+
+    IEnumerator GoToEndScene()
+    {
+        yield return new WaitForSeconds(1.8f);
+        SceneManager.LoadScene("GameOver");
     }
 
     IEnumerator DisableFolders()
