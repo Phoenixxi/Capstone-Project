@@ -61,6 +61,10 @@ public class PauseMenu : MonoBehaviour
     {
         if (isPaused)
         {
+            if (SettingsMenu.activeSelf)
+            {
+                CloseSettings();
+            }
             SetActive(false);
             BackHelp();
             isPaused = false;
