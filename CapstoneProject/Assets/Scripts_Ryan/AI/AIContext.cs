@@ -14,13 +14,14 @@ public class AIContext
     public ElementType EnemyType { get; private set; }
     public float AttackRange { get; private set; }
     public float LineOfSightRange { get; private set; }
+    public Animator animator {get; private set;}
 
     //fields that we need to update after a state is complete
     public float DistanceToPlayer => Vector3.Distance(EnemyTransform.position, PlayerTransform.position);
     public ElementType PlayerType => entityManagerPlayer.defaultElement;
     public bool isGrounded;
 
-    public AIContext(NavMeshAgent navMeshAgent, Transform eTransform, Transform pTransform, float range, float LineOfSightRange)
+    public AIContext(NavMeshAgent navMeshAgent, Transform eTransform, Transform pTransform, float range, float LineOfSightRange, Animator animator)
     {
         agent = navMeshAgent;
         EnemyTransform = eTransform;
@@ -33,5 +34,7 @@ public class AIContext
 
         AttackRange = range;
         this.LineOfSightRange = LineOfSightRange;
+
+        this.animator = animator;
     }
 }

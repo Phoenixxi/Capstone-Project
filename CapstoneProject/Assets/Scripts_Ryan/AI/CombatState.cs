@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class CombatState : IState
 {
-    public bool isAttacking = false; //variable to lock the enemy in attack state
 
     public virtual void OnEnter(AIContext aIContext)
     {
@@ -19,6 +18,15 @@ public abstract class CombatState : IState
 
     public AIStateType UpdateAI(AIContext aIContext)
     {
+        var animationState = aIContext.animator.GetCurrentAnimatorStateInfo(0);
+        bool isAttacking = animationState.IsTag("Attack");
+        if(isAttacking && animationState.normalizedTime < 1f)
+        {
+            aIContext.agent.velocity = Vector3.zero;
+            aIContext.agent.ResetPath();
+            return AIStateType.Combat;
+        }
+
         //Grab necessary references
         EntityManager entityManager = aIContext.entityManagerEnemy;
         Transform EnemyTransform = aIContext.EnemyTransform;
@@ -40,10 +48,7 @@ public abstract class CombatState : IState
 
         if (!isAttacking)
         {
-            isAttacking = true; //lock the enemy in attack state
             entityManager.Attack(direction, EnemyTransform.position); //call attack
-            //Debug.Log("CombatState Attacking");
-            isAttacking = false; //unlock the enemy from attack state
         }
 
         return CheckTransition(aIContext);
