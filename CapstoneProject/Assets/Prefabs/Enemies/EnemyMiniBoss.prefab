@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 2962701942172438257}
   - component: {fileID: 4432518792157287831}
   - component: {fileID: 8252612145990424494}
-  - component: {fileID: 586205512132456756}
+  - component: {fileID: 765958475498281567}
   m_Layer: 3
   m_Name: EnemyBody
   m_TagString: Untagged
@@ -216,8 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36120670da5222245a996598822e25ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackFromAnimation
-  entityManager: {fileID: 0}
---- !u!114 &586205512132456756
+  entityManager: {fileID: 8039355975360593558}
+--- !u!114 &765958475498281567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,10 +226,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 611961489548705185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 681584786ce254dd89b75fe91ca09124, type: 3}
+  m_Script: {fileID: 11500000, guid: bfda575bfdcd8064f9e99c18a3435534, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DeathFromAnimation
-  entityManager: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::DisableHurtBoxMiniBoss
+  hurtbox: {fileID: 242646812142147769}
 --- !u!1 &1269007311065635165
 GameObject:
   m_ObjectHideFlags: 0
