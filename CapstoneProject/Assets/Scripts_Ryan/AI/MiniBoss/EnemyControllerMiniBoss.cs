@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyControllerMiniBoss : EnemyController
 {
+    [SerializeField] private int JumpCoolDown = 3;
     protected override void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player"); //Find the player in the world
@@ -37,6 +38,6 @@ public class EnemyControllerMiniBoss : EnemyController
     {
         stateDic.Add(AIStateType.ChargingJump, new ChargingJumpStateMiniBoss());
         stateDic.Add(AIStateType.Jump, new JumpStateMiniBoss());
-        stateDic.Add(AIStateType.Delay, new DelayStateMiniBoss(5));
+        stateDic.Add(AIStateType.Delay, new DelayStateMiniBoss(JumpCoolDown));
     }
 }
