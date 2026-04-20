@@ -329,7 +329,10 @@ public class EntityManager : MonoBehaviour
         {
             AbilityMovement[] movementList = ability.UseAbility(horizontalDirection);
             foreach (AbilityMovement movement in movementList) movementQueue.Enqueue(movement);
-        } else
+            if(gameObject.CompareTag("Enemy") && entityName != "FinalBoss")
+                animator.SetTrigger("HitStun");
+        } 
+        else
         {
             Debug.LogError("No ability assigned; make sure an ability script has been attatched to this game object");
         }
@@ -407,6 +410,7 @@ public class EntityManager : MonoBehaviour
             
         }
 
+        // Flash red on damage
         if(entityName != "FinalBoss")
             animator.SetTrigger("FlashRed");
         else
@@ -420,8 +424,9 @@ public class EntityManager : MonoBehaviour
         OnHealthUpdatedEvent?.Invoke(currentHealth, maxHealth, taggedElement);
         OnEntityHurtEvent?.Invoke();
 
-        //Instantiate(damageNumberVFXPrefab, transform);
     }
+
+
 
     IEnumerator ResetBossFlash()
     {
