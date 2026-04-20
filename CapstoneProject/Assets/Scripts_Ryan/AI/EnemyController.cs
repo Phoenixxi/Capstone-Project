@@ -57,7 +57,7 @@ public abstract class EnemyController : MonoBehaviour
     protected void Update()
     {
         bool grounded = isGrounded();
-        if(entityManager.movementQueue.Count > 0 || !grounded)
+        if((entityManager.movementQueue.Count > 0 || !grounded) && CurrentState is not JumpStateMiniBoss)
         {
             navMeshAgent.enabled = false;
             navMeshAgent.Warp(transform.position);
