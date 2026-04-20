@@ -8,7 +8,7 @@ public class JumpStateMiniBoss : IState
     private Vector3 target;
     private Vector3 jumpStart;
     private float jumpHeight = 5f;
-    private float jumpDuration = 2f;
+    private float jumpDuration = 0.8f;
     private float elapsedTime = 0f;
     public AIStateType CheckTransition(AIContext aIContext)
     {
