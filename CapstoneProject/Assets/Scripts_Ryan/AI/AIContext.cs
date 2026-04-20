@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.TextCore.Text;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
 
 public class AIContext
@@ -14,13 +15,15 @@ public class AIContext
     public ElementType EnemyType { get; private set; }
     public float AttackRange { get; private set; }
     public float LineOfSightRange { get; private set; }
+    public Animator animator {get; private set;}
+    public CharacterController characterController { get; private set; }
 
     //fields that we need to update after a state is complete
     public float DistanceToPlayer => Vector3.Distance(EnemyTransform.position, PlayerTransform.position);
     public ElementType PlayerType => entityManagerPlayer.defaultElement;
     public bool isGrounded;
 
-    public AIContext(NavMeshAgent navMeshAgent, Transform eTransform, Transform pTransform, float range, float LineOfSightRange)
+    public AIContext(NavMeshAgent navMeshAgent, Transform eTransform, Transform pTransform, float range, float LineOfSightRange, Animator animator, CharacterController characterController)
     {
         agent = navMeshAgent;
         EnemyTransform = eTransform;
@@ -33,5 +36,8 @@ public class AIContext
 
         AttackRange = range;
         this.LineOfSightRange = LineOfSightRange;
+
+        this.animator = animator;
+        this.characterController = characterController;
     }
 }

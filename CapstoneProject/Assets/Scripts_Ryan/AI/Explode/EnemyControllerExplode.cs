@@ -7,6 +7,6 @@ public class EnemyControllerExplode : EnemyController
         stateDic.Add(AIStateType.Combat, new CombatStateExplode());
         stateDic.Add(AIStateType.Chasing, new ChasingStateExplode());
         stateDic.Add(AIStateType.Wandering, new WanderingStateExplode());
-        stateDic.Add(AIStateType.Delay, new DelayStateExplode(10));
+        stateDic.Add(AIStateType.Delay, new DelayStateExplode(1));
     }
 }

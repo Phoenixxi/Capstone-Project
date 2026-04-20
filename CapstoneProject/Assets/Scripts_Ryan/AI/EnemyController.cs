@@ -15,6 +15,7 @@ public abstract class EnemyController : MonoBehaviour
     [Header("Enemy Line Of Sight Range. \n The larger the number, the farther the player can be spotted. \n Default is 10")]
     [SerializeField] protected float LineOfSightRange;
     [SerializeField] protected CharacterController characterController;
+    [SerializeField] protected Animator animator;
     protected EntityManager entityManager; //The entity manager of this enemy
     protected NavMeshAgent navMeshAgent; //The navmeshagent component that handles pathfinding
     protected GameObject player; //The player object that the enemy AI will path towards
@@ -66,6 +67,7 @@ public abstract class EnemyController : MonoBehaviour
         }
 
         navMeshAgent.enabled = true;
+
         //update the enemy with the current action and get the new state after doing said action
         IState newState = stateDic[CurrentState.UpdateAI(aIContext)];
         
@@ -97,10 +99,10 @@ public abstract class EnemyController : MonoBehaviour
     /// </summary>
     protected void initializeAIContext()
     {
-        aIContext = new AIContext(navMeshAgent, transform, player.transform, AttackRange, LineOfSightRange);
+        aIContext = new AIContext(navMeshAgent, transform, player.transform, AttackRange, LineOfSightRange, animator, characterController);
     }
 
-    protected bool isGrounded()
+    protected virtual bool isGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up, characterController.height/2 + 0.1f, LayerMask.GetMask("Ground") | LayerMask.GetMask("Default"));
     }

@@ -20,7 +20,7 @@ public abstract class DelayState : IState
     {
         if(SecondsPassed < DelaySeconds)
         {
-            SecondsPassed++;
+            SecondsPassed+=Time.deltaTime;
             return AIStateType.Delay;
         }
 

@@ -27,10 +27,11 @@ public abstract class WanderingState : IState
             transform = aIContext.PlayerTransform;
         }
         transform = aIContext.EnemyTransform;
-        
+
         //check if the enemy AI is done with its previous pathing
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
+            agent.velocity = Vector3.zero;
             Vector3 point;
             if (RandomPoint(transform.position, range, out point))
             {
