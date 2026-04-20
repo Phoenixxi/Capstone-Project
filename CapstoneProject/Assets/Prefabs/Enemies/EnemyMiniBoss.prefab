@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7543563098658516984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d76832e7bcfba0b46bb97bc7cc047d70, type: 3}
   m_Name: 
@@ -1166,6 +1166,7 @@ MonoBehaviour:
   LineOfSightRange: 0
   characterController: {fileID: 5192659738883732383}
   animator: {fileID: 4432518792157287831}
+  JumpCoolDown: 3
 --- !u!1 &7785730262722911322
 GameObject:
   m_ObjectHideFlags: 0
