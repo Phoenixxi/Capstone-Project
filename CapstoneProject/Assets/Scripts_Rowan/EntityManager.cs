@@ -216,6 +216,7 @@ public class EntityManager : MonoBehaviour
     private void HandleDefaultMovement()
     {
         if (usesNavAgent) return;
+        
         if (entityMovement.isGrounded && movementVelocity.y < 0)
             movementVelocity.y = -2f;
         movementVelocity.y -= gravity * Time.deltaTime;
@@ -329,8 +330,6 @@ public class EntityManager : MonoBehaviour
         {
             AbilityMovement[] movementList = ability.UseAbility(horizontalDirection);
             foreach (AbilityMovement movement in movementList) movementQueue.Enqueue(movement);
-            if(gameObject.CompareTag("Enemy") && entityName != "FinalBoss")
-                animator.SetTrigger("HitStun");
         } 
         else
         {
@@ -456,6 +455,8 @@ public class EntityManager : MonoBehaviour
             movementQueue.Clear();
         }
         movementQueue.Enqueue(knockback);
+        if(gameObject.CompareTag("Enemy") && entityName != "FinalBoss")
+            KnockbackHelper();
         TakeDamage(damage, element);
     }
 
@@ -474,8 +475,28 @@ public class EntityManager : MonoBehaviour
             movementQueue.Clear();
         }
         foreach (var movement in movements) movementQueue.Enqueue(movement);
+        if(gameObject.CompareTag("Enemy") && entityName != "FinalBoss")
+            KnockbackHelper();
         TakeDamage(damage, element);
     }
+
+    public void KnockbackHelper()
+    {
+        AbilityMovement currentKB = movementQueue.Peek();
+        Vector3 movement = currentKB.GetMovementVelocity();
+        Debug.Log("Vector 3: " + movement);
+        animator.SetTrigger("HitStun");
+        spriteRenderer.flipX = movement.x > 0f;
+
+    }
+
+    public IEnumerator FlipSpriteAfterDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        spriteRenderer.flipX = false;   
+    }
+
+
 
     //TODO Reimplement damage numbers
     private void ShowDamageNumber(int damage, ElementType element)
