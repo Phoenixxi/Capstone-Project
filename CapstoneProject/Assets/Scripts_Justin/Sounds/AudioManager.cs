@@ -143,5 +143,6 @@ public enum SoundName
     BOSS_THEME_PHASE_2,
     BOOM_BOMB_EXPLOSION,
     BUTTON_CLICK,
-    BOSS_HURT
+    BOSS_HURT,
+    MINIBOSS_THEME
 }
