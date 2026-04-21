@@ -367,8 +367,6 @@ MonoBehaviour:
   hurtboxActivationTime: 0
   explodeHurtBox: {fileID: 0}
   standingInGloomBuffZone: 0
-  damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
-  damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
@@ -546,8 +544,6 @@ MonoBehaviour:
   hurtboxActivationTime: 0.2
   explodeHurtBox: {fileID: 0}
   standingInGloomBuffZone: 0
-  damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
-  damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
@@ -800,8 +796,6 @@ MonoBehaviour:
   hurtboxActivationTime: 0
   explodeHurtBox: {fileID: 0}
   standingInGloomBuffZone: 0
-  damageNumberVFXPrefab: {fileID: 5455248113798268596, guid: 80f82cbd8b0ae0748aeaad6c03b973f8, type: 3}
-  damageNumberDisplayTime: 1
   zoomElementVFX: {fileID: 1670844182887115607, guid: a7ee868e8e44f844082152d13cc77699, type: 3}
   boomElementVFX: {fileID: 5200501481157026247, guid: 070e97c27264f8842857e3761a0d7fbe, type: 3}
   gloomElementVFX: {fileID: 3630968043995782248, guid: 510b8c82a6b3d3d408640b9072177b70, type: 3}
@@ -1410,7 +1404,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0bad065316fc244e8e20cdd2f102713, type: 2}
+  - {fileID: 2100000, guid: 1f41064192f540443909dce1ad6ce786, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
