@@ -33,6 +33,7 @@ public class ToothAttack : BossAttack
         currLingerTimer = toothAttackLingerTimer / ((isSpedUp) ? speedupAmount : 1f);
         foreach (Animator molar in molarAnimators) molar.SetTrigger("Show");
         uiAnimator.SetTrigger("Show");
+        audioManager.PlaySound(SoundName.TOOTH_ATTACK_WARNING);
     }
 
     protected void Update()
