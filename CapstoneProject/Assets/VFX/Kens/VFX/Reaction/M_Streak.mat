@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: f45207aa8f9b2f349a63470c9b6ecf0c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _FDEPTH_ON
   m_InvalidKeywords:
   - _DISSOLVEPLUSTEXAR_ON
   - _DISSOLVEPLUSTEXUVCLIP_ON
@@ -129,7 +130,7 @@ Material:
     - _AlphaCutoff: 0.5
     - _AlphaToMask: 0
     - _Blend: 0
-    - _BlendMode: 0
+    - _BlendMode: 1
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -196,11 +197,11 @@ Material:
     - _DistortTexVSpeed: 0
     - _DistortUIntensity: 1
     - _DistortVIntensity: 1
-    - _Dst: 10
+    - _Dst: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FDepth: 0
+    - _FDepth: 1
     - _FDissolvePlusTex: 0
     - _FDissolveTex: 0
     - _FDistortTex: 0
@@ -274,7 +275,7 @@ Material:
     - _RefactionTexVSpeed: 0
     - _SB: 0
     - _SBCompare: 0
-    - _Scr: 5
+    - _Scr: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -304,7 +305,7 @@ Material:
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FnlColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 16, g: 16, b: 16, a: 1}
+    - _MainColor: {r: 15.999999, g: 15.999999, b: 15.999999, a: 1}
     - _MainTexRefine: {r: 1, g: 1, b: 1, a: 0}
     - _RampColor1: {r: 0, g: 0, b: 0, a: 1}
     - _RampColor2: {r: 0.5, g: 0.5, b: 0.5, a: 1}
