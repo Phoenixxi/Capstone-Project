@@ -1,3 +1,5 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Animations;
 using ElementType = lilGuysNamespace.EntityData.ElementType;
@@ -34,6 +36,19 @@ public static class StateCheck
         Vector3 directionToPlayer = PlayerPosition - EnemyPosition;
 
         return RayCastToPlayer(EnemyPosition, directionToPlayer.normalized, LineOfSightRange, layerMask);
+    }
+
+    public static bool CheckStillExploding(AIContext aIContext)
+    {
+        float DistanceToPlayer = aIContext.DistanceToPlayer;
+        float AttackRange = aIContext.AttackRange;
+
+        if(Math.Abs(DistanceToPlayer - AttackRange) < 3)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private static bool RayCastToPlayer(Vector3 EnemyPos, Vector3 directionToPlayer, float Range, LayerMask layerMask)

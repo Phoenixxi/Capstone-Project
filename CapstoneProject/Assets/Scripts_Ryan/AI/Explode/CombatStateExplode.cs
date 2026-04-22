@@ -12,7 +12,7 @@ public class CombatStateExplode : CombatState
 
     public override AIStateType CheckTransition(AIContext aIContext)
     {
-        if(StateCheck.CheckCombat(aIContext))
+        if(StateCheck.CheckStillExploding(aIContext))
         {
             return AIStateType.Combat;
         }
