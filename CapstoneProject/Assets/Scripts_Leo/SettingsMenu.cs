@@ -16,7 +16,11 @@ public class SettingsMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        float sliderLevel = 0;
+        mixer.GetFloat("MusicVol", out sliderLevel);
+        sliderMusicVol.value = sliderLevel;
+        mixer.GetFloat("SFXVol", out sliderLevel);
+        sliderSFXVol.value = sliderLevel;
     }
 
     // Update is called once per frame
