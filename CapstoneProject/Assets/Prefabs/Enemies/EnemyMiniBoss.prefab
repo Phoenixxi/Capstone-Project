@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 765958475498281567}
   m_Layer: 3
   m_Name: EnemyBody
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackFromAnimation
   entityManager: {fileID: 8039355975360593558}
+  Attack_VFX: {fileID: 5577452615066482558, guid: 13bca76fad97d4d4887b60206db9c560, type: 3}
 --- !u!114 &765958475498281567
 MonoBehaviour:
   m_ObjectHideFlags: 0
