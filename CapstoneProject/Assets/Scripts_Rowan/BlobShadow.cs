@@ -10,6 +10,7 @@ public class BlobShadow : MonoBehaviour
     public float minScale = 0.3f;
     public float maxHeight = 10f;
     public float groundOffset = 0.02f;
+    public float shadowHeightOffset = 0.5f;
  
     [Header("Opacity Settings")]
     public float maxAlpha = 0.8f;
@@ -41,7 +42,7 @@ public class BlobShadow : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(player.position, Vector3.down, out hit, maxHeight, raycastMask))
         {
-            // Position shadow just above the surface it hit
+            // Position shadow just above the surface, then offset upward toward player feet
             transform.position = hit.point + hit.normal * groundOffset;
  
             // Align shadow to the surface normal, accounting for Quad's 90 degree X rotation
@@ -69,7 +70,7 @@ public class BlobShadow : MonoBehaviour
         else
         {
             // No surface found, hide shadow
-            //meshRenderer.enabled = false;
+            meshRenderer.enabled = false;
         }
     }
 }
