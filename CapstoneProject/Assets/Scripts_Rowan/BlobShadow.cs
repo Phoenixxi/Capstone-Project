@@ -33,10 +33,21 @@ public class BlobShadow : MonoBehaviour
         // Only raycast against Default and Ground layers
         raycastMask = LayerMask.GetMask("Default", "Ground");
     }
+
  
     void LateUpdate()
     {
         if (player == null) return;
+
+        if (!player.gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
  
         // Raycast straight down from player to find any surface below
         RaycastHit hit;
