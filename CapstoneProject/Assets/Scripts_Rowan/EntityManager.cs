@@ -484,7 +484,7 @@ public class EntityManager : MonoBehaviour
     {
         AbilityMovement currentKB = movementQueue.Peek();
         Vector3 movement = currentKB.GetMovementVelocity();
-        Debug.Log("Vector 3: " + movement);
+        //Debug.Log("Vector 3: " + movement);
         animator.SetTrigger("HitStun");
         spriteRenderer.flipX = movement.x > 0f;
 

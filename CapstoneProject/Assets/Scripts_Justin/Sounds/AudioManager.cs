@@ -87,6 +87,39 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Causes the current background music to be temporarily dampened for a duration
+    /// </summary>
+    /// <param name="duration">How long the music should be dampened for</param>
+    public void DampenMusic(float duration)
+    {
+        int currentSourceIndex = (sources[(int)SoundEffect.SoundType.MUSIC].isPlaying) ? (int)SoundEffect.SoundType.MUSIC : (int)SoundEffect.SoundType.MUSIC + 2;
+        StartCoroutine(MusicDampenCoroutine(currentSourceIndex, duration));
+    }
+
+    private IEnumerator MusicDampenCoroutine(int currentSourceIndex, float dampenDuration)
+    {
+        AudioSource currentSource = sources[currentSourceIndex];
+        float currentTransitionTime = 0f;
+        float currentSongVolume = currentSource.volume;
+        while(currentTransitionTime < songTransitionTime)
+        {
+            currentTransitionTime += Time.deltaTime;
+            float newVolume = Mathf.Lerp(currentSongVolume, 0f, currentTransitionTime / songTransitionTime);
+            currentSource.volume = newVolume;
+            yield return null;
+        }
+        yield return new WaitForSeconds(dampenDuration);
+        currentTransitionTime = 0f;
+        while(currentTransitionTime < songTransitionTime)
+        {
+            currentTransitionTime += Time.deltaTime;
+            float newVolume = Mathf.Lerp(0f, currentSongVolume, currentTransitionTime / songTransitionTime);
+            currentSource.volume = newVolume;
+            yield return null;
+        }
+    }
+
+    /// <summary>
     /// Coroutine that gradually transitions from one song to another
     /// </summary>
     /// <param name="currentSourceIndex">The index of the current music source</param>
@@ -146,5 +179,6 @@ public enum SoundName
     BOSS_HURT,
     MINIBOSS_THEME,
     COLOSSEUM_THENE,
-    TOOTH_ATTACK_WARNING
+    TOOTH_ATTACK_WARNING,
+    STAGE_HEAl
 }

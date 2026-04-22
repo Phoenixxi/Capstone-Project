@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 779319271090855936}
   - component: {fileID: 450803503130309674}
   - component: {fileID: 4926765016263767686}
+  - component: {fileID: 7560398066567965498}
   m_Layer: 0
   m_Name: StageCheckpoint
   m_TagString: Untagged
@@ -104,6 +105,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7560398066567965498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7062603961537013481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b184b49a1ec01348b13879ab8d166b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthCameraCut
+  mainCamera: {fileID: 0}
+  cutSceneCamera: {fileID: 0}
+  stageCharacters: {fileID: 9058433286908782822}
 --- !u!1 &9058433286908782822
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,16 +10,20 @@ public class HealthCameraCut : MonoBehaviour
     [SerializeField] private GameObject stageCharacters;
     private PlayerInput playerInput;
     private GameObject Player;
+    private AudioManager audioManager;
+    private bool active;
 
     void Start()
     {
         Player = GameObject.Find("Player");
         playerInput = Player.GetComponent<PlayerInput>();
+        audioManager = FindFirstObjectByType<AudioManager>();
+        active = true;
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && active)
         {
             mainCamera.SetActive(false);
             cutSceneCamera.SetActive(true);
@@ -27,6 +31,9 @@ public class HealthCameraCut : MonoBehaviour
             playerInput.actions.FindActionMap("Player").Disable();
             Player.SetActive(false);
             StartCoroutine(waitTime());
+            active = false;
+            audioManager.PlaySound(SoundName.STAGE_HEAl);
+            audioManager.DampenMusic(2.5f);
         }
     }
 
@@ -49,6 +56,6 @@ public class HealthCameraCut : MonoBehaviour
         stageCharacters.SetActive(false);
         playerInput.actions.FindActionMap("Player").Enable();
         // Destoy this trigger
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
