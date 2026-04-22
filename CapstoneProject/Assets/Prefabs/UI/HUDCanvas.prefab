@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 5262903243702547868}
   - component: {fileID: 3616750150036083888}
   - component: {fileID: 6558679855424363197}
+  - component: {fileID: 6491154846834208694}
   m_Layer: 5
   m_Name: GloomGraveAnimator
   m_TagString: Untagged
@@ -352,7 +353,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5995ea63335786940ab624c947deeb3a, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -362,6 +363,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6491154846834208694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781896859876251334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d5e6c75e6a8824fb3f7b833d56e27d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GraveSoundPlayer
 --- !u!1 &1109639995817306839
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +387,7 @@ GameObject:
   - component: {fileID: 4432898146773615381}
   - component: {fileID: 2340314043832529718}
   - component: {fileID: 3957019375326896267}
+  - component: {fileID: 8532883018349106185}
   m_Layer: 5
   m_Name: ZoomGraveAnimator
   m_TagString: Untagged
@@ -450,7 +464,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 09f4cd5349876bd44ac54b934cf9afb8, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -460,6 +474,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8532883018349106185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109639995817306839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d5e6c75e6a8824fb3f7b833d56e27d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GraveSoundPlayer
 --- !u!1 &1551605688581059653
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +498,7 @@ GameObject:
   - component: {fileID: 329379171011233559}
   - component: {fileID: 4990604675119940330}
   - component: {fileID: 3453790304014420014}
+  - component: {fileID: 5028495358206645017}
   m_Layer: 5
   m_Name: BoomGrave
   m_TagString: Untagged
@@ -548,7 +575,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fe1e8b4192314e4aa7fc7b9957638b5, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -558,6 +585,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5028495358206645017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551605688581059653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d5e6c75e6a8824fb3f7b833d56e27d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GraveSoundPlayer
 --- !u!1 &1743358255627159938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1528,7 @@ GameObject:
   - component: {fileID: 2566226811909516115}
   - component: {fileID: 1790963317237020851}
   - component: {fileID: 2481875541756574217}
+  - component: {fileID: 3790575252986185651}
   m_Layer: 5
   m_Name: GloomGrave
   m_TagString: Untagged
@@ -1565,7 +1605,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5c4e83c17a616c341b42b87bec961e7a, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1575,6 +1615,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3790575252986185651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838426161477651331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d5e6c75e6a8824fb3f7b833d56e27d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GraveSoundPlayer
 --- !u!1 &4040686224461370094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,6 +2244,7 @@ GameObject:
   - component: {fileID: 8370410713240465871}
   - component: {fileID: 8195029547127198328}
   - component: {fileID: 119804423620060302}
+  - component: {fileID: 4143989568399329497}
   m_Layer: 5
   m_Name: ZoomGrave
   m_TagString: Untagged
@@ -2268,7 +2321,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 65842bc0b9bf3f04ab91cb330202ac6c, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -2278,6 +2331,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4143989568399329497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5553818448971726518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d5e6c75e6a8824fb3f7b833d56e27d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GraveSoundPlayer
 --- !u!1 &5653866817963687362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3614,6 +3679,7 @@ GameObject:
   - component: {fileID: 3431231053079354289}
   - component: {fileID: 8452177475725427671}
   - component: {fileID: 3251438789295779931}
+  - component: {fileID: 2033086693035885280}
   m_Layer: 5
   m_Name: BoomGraveAnimator
   m_TagString: Untagged
@@ -3690,7 +3756,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6e822bd5ca62c8b43bda5e4133f10d41, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -3700,6 +3766,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2033086693035885280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8917243381218042301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d5e6c75e6a8824fb3f7b833d56e27d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &9174662007131634320
 GameObject:
   m_ObjectHideFlags: 0
@@ -3977,11 +4055,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5472980148593118683, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5472980148593118683, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.71428573
       objectReference: {fileID: 0}
     - target: {fileID: 5630440012582904756, guid: 74692a4cfd6e5814fbbdc5b36991ea5e, type: 3}
       propertyPath: m_Name

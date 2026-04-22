@@ -34,6 +34,7 @@ public class GraveAnimationController : MonoBehaviour
 
     public void PlayAllCharacterAnimations()
     {
+        FindFirstObjectByType<PlayerController>().gameObject.SetActive(false);
         AllCharacterFolder.SetActive(true);
         foreach (Animator animator in AllCharacterFolder.GetComponentsInChildren<Animator>())
         {
@@ -50,7 +51,7 @@ public class GraveAnimationController : MonoBehaviour
 
     IEnumerator DisableFolders()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         BoomFolder.SetActive(false);
         ZoomFolder.SetActive(false);
         GloomFolder.SetActive(false);

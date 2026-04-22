@@ -180,5 +180,6 @@ public enum SoundName
     MINIBOSS_THEME,
     COLOSSEUM_THENE,
     TOOTH_ATTACK_WARNING,
-    STAGE_HEAl
+    STAGE_HEAl,
+    GRAVE_DROP
 }
