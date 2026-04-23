@@ -125,6 +125,7 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         audioManager.PlaySound(SoundName.BUTTON_CLICK);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 }
